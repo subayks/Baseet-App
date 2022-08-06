@@ -11,7 +11,6 @@ class HomeViewControllerVM {
     var navigationClosure:(()->())?
     var alertClosure:((String)->())?
     var errorClosure:((String)->())?
-    var hideErrorLabel: Bool = true
     var showLoadingIndicatorClosure:(()->())?
     var hideLoadingIndicatorClosure:(()->())?
     var shopListModel: ShopListModel?

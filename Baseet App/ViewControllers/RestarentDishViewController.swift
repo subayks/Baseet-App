@@ -34,8 +34,35 @@ class RestarentDishViewController: UIViewController {
 //        swipeLeft.direction = UISwipeGestureRecognizer.Direction.left
 //        self.view.addGestureRecognizer(swipeLeft)
 //        self.view.addGestureRecognizer(swipeRight)
-
+    }
+    
+    override func viewWillAppear(_ animated: Bool)
+    {
+        self.restarentDishViewControllerVM?.showLoadingIndicatorClosure = { [weak self] in
+            DispatchQueue.main.async {
+                guard let self = self else {return}
+                self.showLoadingView()
+            }
+        }
         
+        self.restarentDishViewControllerVM?.hideLoadingIndicatorClosure = { [weak self] in
+            DispatchQueue.main.async {
+                guard let self = self else {return}
+                self.hideLoadingView()
+            }
+        }
+        
+        self.restarentDishViewControllerVM?.navigateToDetailsClosure = { [weak self] in
+            DispatchQueue.main.async {
+                guard let self = self else {return}
+                let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
+                let vc = storyboard.instantiateViewController(identifier: "RecipeDetailsVC") as! RecipeDetailsVC
+                vc.recipeDetailsVCVM = self.restarentDishViewControllerVM?.getRecipeDetailsVCVM()
+                vc.modalTransitionStyle = .coverVertical
+                vc.modalPresentationStyle = .fullScreen
+                self.present(vc, animated: true, completion: nil)
+            }
+        }
     }
     
     @IBAction func backBtn(_ sender: Any) {
@@ -118,11 +145,7 @@ extension RestarentDishViewController:UICollectionViewDelegate,UICollectionViewD
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
-        let vc = storyboard.instantiateViewController(identifier: "RecipeDetailsVC") as! RecipeDetailsVC
-        vc.modalTransitionStyle = .coverVertical
-        vc.modalPresentationStyle = .fullScreen
-        self.present(vc, animated: true, completion: nil)
+        self.restarentDishViewControllerVM?.makeProductDetailsCall(item: 1)
     }
     
     

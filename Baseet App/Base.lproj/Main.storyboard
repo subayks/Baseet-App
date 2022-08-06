@@ -3594,6 +3594,9 @@ meat, and sometimes, in addition, eggs and potatoes.</string>
                                                         </fragment>
                                                     </attributedString>
                                                 </buttonConfiguration>
+                                                <connections>
+                                                    <action selector="buttonAddItem:" destination="5cS-Mc-Sx8" eventType="touchUpInside" id="ocy-It-qd8"/>
+                                                </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tLl-X2-oJr">
                                                 <rect key="frame" x="158.5" y="0.0" width="8.5" height="40"/>
@@ -3613,6 +3616,9 @@ meat, and sometimes, in addition, eggs and potatoes.</string>
                                                         </fragment>
                                                     </attributedString>
                                                 </buttonConfiguration>
+                                                <connections>
+                                                    <action selector="actionReduceItem:" destination="5cS-Mc-Sx8" eventType="touchUpInside" id="sSq-mn-L1e"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
@@ -3664,13 +3670,6 @@ meat, and sometimes, in addition, eggs and potatoes.</string>
                                     <action selector="addToBasketBtn:" destination="5cS-Mc-Sx8" eventType="touchUpInside" id="2yj-RB-X7O"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4me-b7-uZ2">
-                                <rect key="frame" x="43" y="208" width="42" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="AVF-b2-4hW"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -3713,6 +3712,11 @@ meat, and sometimes, in addition, eggs and potatoes.</string>
                     <size key="freeformSize" width="414" height="885"/>
                     <connections>
                         <outlet property="addOnLbl" destination="jeE-zV-CVB" id="kt5-JW-NmS"/>
+                        <outlet property="commentsTextView" destination="ybT-Jb-jBE" id="3am-OO-NBj"/>
+                        <outlet property="discriptionLabel" destination="mTM-OK-mYz" id="4LJ-b0-4Kt"/>
+                        <outlet property="labelCount" destination="tLl-X2-oJr" id="G7f-Nd-a6g"/>
+                        <outlet property="productImage" destination="Zpr-xJ-88c" id="5Os-qe-fxY"/>
+                        <outlet property="productName" destination="TfZ-LD-Xcn" id="tnD-93-7CC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fFI-Lf-Lba" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -7412,11 +7416,11 @@ printing and typesetting industry.</string>
         <scene sceneID="YV6-FR-A6M">
             <objects>
                 <viewController id="3Vd-wx-WqS" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" ambiguous="YES" id="rS6-iM-UjN">
+                    <view key="view" contentMode="scaleToFill" id="rS6-iM-UjN">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zHT-eT-XXl">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zHT-eT-XXl">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="100"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="IbE-6j-lHp">
@@ -7451,10 +7455,10 @@ printing and typesetting industry.</string>
                                     <constraint firstItem="IbE-6j-lHp" firstAttribute="leading" secondItem="zHT-eT-XXl" secondAttribute="leading" constant="8" id="wud-7b-5Mb"/>
                                 </constraints>
                             </view>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="splash" translatesAutoresizingMaskIntoConstraints="NO" id="wEt-iG-Qpw">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="splash" translatesAutoresizingMaskIntoConstraints="NO" id="wEt-iG-Qpw">
                                 <rect key="frame" x="0.0" y="100" width="414" height="743"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gjb-3w-Ug8">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gjb-3w-Ug8">
                                 <rect key="frame" x="20" y="482" width="374" height="41"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="41" id="PUA-jQ-mbZ"/>
@@ -7465,7 +7469,7 @@ printing and typesetting industry.</string>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Forgot Your Password ?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OUz-Nl-L0r">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Forgot Your Password ?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OUz-Nl-L0r">
                                 <rect key="frame" x="120" y="394" width="174" height="70"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="70" id="m67-1e-Ifh"/>
@@ -7474,14 +7478,14 @@ printing and typesetting industry.</string>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="forgot_password" translatesAutoresizingMaskIntoConstraints="NO" id="IU2-5I-h0d">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="forgot_password" translatesAutoresizingMaskIntoConstraints="NO" id="IU2-5I-h0d">
                                 <rect key="frame" x="107" y="170" width="200" height="200"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="200" id="cSU-SQ-0hd"/>
                                     <constraint firstAttribute="height" constant="200" id="fqf-mq-Isb"/>
                                 </constraints>
                             </imageView>
-                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" spacing="26" translatesAutoresizingMaskIntoConstraints="NO" id="00K-Cr-YU6">
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="26" translatesAutoresizingMaskIntoConstraints="NO" id="00K-Cr-YU6">
                                 <rect key="frame" x="20" y="613" width="374" height="146"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder=" Type your Mobile Number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7f3-29-9mz">
@@ -7944,7 +7948,7 @@ printing and typesetting industry.</string>
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YEd-Yi-Okg">
-                                <rect key="frame" x="20" y="160" width="374" height="666"/>
+                                <rect key="frame" x="20" y="160" width="374" height="652"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add-ons" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FAh-dG-zGW">
                                         <rect key="frame" x="25" y="45" width="341" height="21.5"/>
@@ -7953,7 +7957,7 @@ printing and typesetting industry.</string>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Qax-t2-MKn">
-                                        <rect key="frame" x="19" y="77" width="336" height="469"/>
+                                        <rect key="frame" x="19" y="77" width="336" height="455"/>
                                         <color key="backgroundColor" red="0.76862745099999996" green="0.16078431369999999" blue="0.16078431369999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" rowHeight="130" id="V46-h2-91q" customClass="AddOnTableViewCell" customModule="Baseet_App" customModuleProvider="target">
@@ -7989,6 +7993,9 @@ printing and typesetting industry.</string>
                                                                             <rect key="frame" x="0.0" y="0.0" width="30.5" height="31"/>
                                                                             <state key="normal" title="Button"/>
                                                                             <buttonConfiguration key="configuration" style="plain" title="-"/>
+                                                                            <connections>
+                                                                                <action selector="actionReduce:" destination="V46-h2-91q" eventType="touchUpInside" id="8YQ-1h-Gpb"/>
+                                                                            </connections>
                                                                         </button>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VBS-Ns-CXk">
                                                                             <rect key="frame" x="31.5" y="0.0" width="10" height="31"/>
@@ -8000,6 +8007,9 @@ printing and typesetting industry.</string>
                                                                             <rect key="frame" x="42.5" y="0.0" width="33" height="31"/>
                                                                             <state key="normal" title="Button"/>
                                                                             <buttonConfiguration key="configuration" style="plain" title="+"/>
+                                                                            <connections>
+                                                                                <action selector="actionAdd:" destination="V46-h2-91q" eventType="touchUpInside" id="upn-6F-OQT"/>
+                                                                            </connections>
                                                                         </button>
                                                                     </subviews>
                                                                 </stackView>
@@ -8057,7 +8067,10 @@ printing and typesetting industry.</string>
                                                 </tableViewCellContentView>
                                                 <color key="backgroundColor" red="0.76862745099999996" green="0.16078431369999999" blue="0.16078431369999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <connections>
+                                                    <outlet property="QuantityCount" destination="VBS-Ns-CXk" id="kOK-vy-Ksb"/>
+                                                    <outlet property="adOnImage" destination="A7V-yG-f1E" id="2EL-Q5-ZNg"/>
                                                     <outlet property="addOnView" destination="t00-lW-8nW" id="YAH-8s-g6k"/>
+                                                    <outlet property="titleLabel" destination="ALT-zM-em9" id="j20-lT-u4U"/>
                                                 </connections>
                                             </tableViewCell>
                                         </prototypes>
@@ -8067,7 +8080,7 @@ printing and typesetting industry.</string>
                                         </connections>
                                     </tableView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DOf-UM-e4m">
-                                        <rect key="frame" x="25" y="586" width="317" height="50"/>
+                                        <rect key="frame" x="25" y="572" width="317" height="50"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="kxS-Av-99n"/>
@@ -8122,7 +8135,7 @@ printing and typesetting industry.</string>
                             <constraint firstAttribute="bottom" secondItem="2bD-pa-Ml8" secondAttribute="bottom" id="YGb-Z1-DjI"/>
                             <constraint firstItem="YEd-Yi-Okg" firstAttribute="leading" secondItem="Fc2-09-jXd" secondAttribute="leading" constant="20" id="Z5Y-6e-mjh"/>
                             <constraint firstItem="2bD-pa-Ml8" firstAttribute="leading" secondItem="Fc2-09-jXd" secondAttribute="leading" id="jH5-R1-mdP"/>
-                            <constraint firstItem="Fc2-09-jXd" firstAttribute="bottom" secondItem="YEd-Yi-Okg" secondAttribute="bottom" constant="36" id="lqJ-RF-MSI"/>
+                            <constraint firstItem="Fc2-09-jXd" firstAttribute="bottom" secondItem="YEd-Yi-Okg" secondAttribute="bottom" constant="50" id="lqJ-RF-MSI"/>
                             <constraint firstItem="Fc2-09-jXd" firstAttribute="trailing" secondItem="YEd-Yi-Okg" secondAttribute="trailing" constant="20" id="o4t-IK-mAq"/>
                             <constraint firstItem="2bD-pa-Ml8" firstAttribute="trailing" secondItem="Fc2-09-jXd" secondAttribute="trailing" id="oJK-XY-eq5"/>
                         </constraints>
@@ -8717,8 +8730,8 @@ logout from this application.es</string>
         <image name="otp" width="159.5" height="159.5"/>
         <image name="paytm" width="48" height="19"/>
         <image name="pedit" width="17" height="17"/>
-        <image name="person" width="153" height="138"/>
         <image name="person" catalog="system" width="128" height="117"/>
+        <image name="person" width="153" height="138"/>
         <image name="person Logo" width="92" height="93"/>
         <image name="person.fill" catalog="system" width="128" height="120"/>
         <image name="phone.arrow.down.left.fill" catalog="system" width="128" height="115"/>

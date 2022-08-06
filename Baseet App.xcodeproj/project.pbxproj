@@ -21,6 +21,10 @@
 		09832AEB28983D2300B99EAB /* HomeViewControllerVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09832AEA28983D2300B99EAB /* HomeViewControllerVM.swift */; };
 		09832AEE28983E9800B99EAB /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09832AED28983E9800B99EAB /* Constants.swift */; };
 		09832AF02898523500B99EAB /* HomeCollectionViewDownCellVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09832AEF2898523500B99EAB /* HomeCollectionViewDownCellVM.swift */; };
+		0986D5FA289EE5B700214056 /* ProDuctDetailsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0986D5F9289EE5B700214056 /* ProDuctDetailsModel.swift */; };
+		0986D5FC289EE83F00214056 /* RecipeDetailsVCVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0986D5FB289EE83F00214056 /* RecipeDetailsVCVM.swift */; };
+		0986D5FE289EF71E00214056 /* AddOnViewControllerVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0986D5FD289EF71E00214056 /* AddOnViewControllerVM.swift */; };
+		0986D600289EFEE100214056 /* AddOnTableViewCellVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0986D5FF289EFEE100214056 /* AddOnTableViewCellVM.swift */; };
 		8807015D288FD2B8001B8907 /* MapkitViewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8807015C288FD2B8001B8907 /* MapkitViewVC.swift */; };
 		8807015F288FD4E7001B8907 /* DeliveredSucessViewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8807015E288FD4E7001B8907 /* DeliveredSucessViewVC.swift */; };
 		88149F88287ED49B00E57AC7 /* MyPlacesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88149F87287ED49B00E57AC7 /* MyPlacesViewController.swift */; };
@@ -122,6 +126,10 @@
 		09832AEA28983D2300B99EAB /* HomeViewControllerVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewControllerVM.swift; sourceTree = "<group>"; };
 		09832AED28983E9800B99EAB /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		09832AEF2898523500B99EAB /* HomeCollectionViewDownCellVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCollectionViewDownCellVM.swift; sourceTree = "<group>"; };
+		0986D5F9289EE5B700214056 /* ProDuctDetailsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProDuctDetailsModel.swift; sourceTree = "<group>"; };
+		0986D5FB289EE83F00214056 /* RecipeDetailsVCVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeDetailsVCVM.swift; sourceTree = "<group>"; };
+		0986D5FD289EF71E00214056 /* AddOnViewControllerVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddOnViewControllerVM.swift; sourceTree = "<group>"; };
+		0986D5FF289EFEE100214056 /* AddOnTableViewCellVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddOnTableViewCellVM.swift; sourceTree = "<group>"; };
 		8807015C288FD2B8001B8907 /* MapkitViewVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapkitViewVC.swift; sourceTree = "<group>"; };
 		8807015E288FD4E7001B8907 /* DeliveredSucessViewVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveredSucessViewVC.swift; sourceTree = "<group>"; };
 		88149F87287ED49B00E57AC7 /* MyPlacesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPlacesViewController.swift; sourceTree = "<group>"; };
@@ -246,6 +254,7 @@
 				09266099289AE04E003F50DB /* ShopDetailsModel.swift */,
 				094AA399289C45740032D4A5 /* LatestRestaurentModel.swift */,
 				094AA39B289C45CC0032D4A5 /* AllRestaurentModel.swift */,
+				0986D5F9289EE5B700214056 /* ProDuctDetailsModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -257,6 +266,9 @@
 				09832AEF2898523500B99EAB /* HomeCollectionViewDownCellVM.swift */,
 				09266097289ADB3F003F50DB /* HomeCollectionViewCellVM.swift */,
 				0926609B289AE16B003F50DB /* RestarentDishViewControllerVM.swift */,
+				0986D5FB289EE83F00214056 /* RecipeDetailsVCVM.swift */,
+				0986D5FD289EF71E00214056 /* AddOnViewControllerVM.swift */,
+				0986D5FF289EFEE100214056 /* AddOnTableViewCellVM.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -542,6 +554,7 @@
 				883A0994288E838B0006EA77 /* LocationDeliveryVC.swift in Sources */,
 				883901A1287D648D00C85BE2 /* NotificationsTableViewCell.swift in Sources */,
 				88149F88287ED49B00E57AC7 /* MyPlacesViewController.swift in Sources */,
+				0986D600289EFEE100214056 /* AddOnTableViewCellVM.swift in Sources */,
 				88149F8A287ED83C00E57AC7 /* MyPlacesTableViewCell.swift in Sources */,
 				094AA39A289C45740032D4A5 /* LatestRestaurentModel.swift in Sources */,
 				88DBC1EB288EDA6E00A5E514 /* OrderSucessViewVC.swift in Sources */,
@@ -559,6 +572,7 @@
 				09266096289AD488003F50DB /* CategoryListModel.swift in Sources */,
 				8884E98F2880887A00D6C9F2 /* HomeCollectionViewSecCell.swift in Sources */,
 				88149F8E287F034200E57AC7 /* MyFevTableViewCell.swift in Sources */,
+				0986D5FC289EE83F00214056 /* RecipeDetailsVCVM.swift in Sources */,
 				88FDAB292881B55E006F06D0 /* MyPastOrderVC.swift in Sources */,
 				885B5DFB287C5DE1006A7044 /* CartTableViewCell.swift in Sources */,
 				09832AE5289837EF00B99EAB /* HomeApiServices.swift in Sources */,
@@ -598,6 +612,7 @@
 				885B5DF9287C5BAF006A7044 /* InviteFriendsViewController.swift in Sources */,
 				88149F92287F24EE00E57AC7 /* EditNotificationVC.swift in Sources */,
 				8884E98D28806A5200D6C9F2 /* HomeCollectionViewCell.swift in Sources */,
+				0986D5FA289EE5B700214056 /* ProDuctDetailsModel.swift in Sources */,
 				09832AF02898523500B99EAB /* HomeCollectionViewDownCellVM.swift in Sources */,
 				88FDAB25288189BA006F06D0 /* ResDishCollectionViewCellTwo.swift in Sources */,
 				8859B5A1288BE8B000555C05 /* HomeCollectionViewDownCell.swift in Sources */,
@@ -608,6 +623,7 @@
 				883901A3287D64A200C85BE2 /* NotificationsViewController.swift in Sources */,
 				09832AE828983C9D00B99EAB /* ShopListModel.swift in Sources */,
 				885AB290288ACFDD0041AE74 /* LocationAccessVC.swift in Sources */,
+				0986D5FE289EF71E00214056 /* AddOnViewControllerVM.swift in Sources */,
 				885B5DFF287C73F9006A7044 /* SettingsTableViewCell.swift in Sources */,
 				88FDAB2F2881B5F1006F06D0 /* MyPastOrderTableViewCell.swift in Sources */,
 				88DBC1E9288EC78400A5E514 /* PayWithVC.swift in Sources */,

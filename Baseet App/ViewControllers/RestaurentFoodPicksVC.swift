@@ -13,6 +13,7 @@ class RestaurentFoodPicksVC: UIViewController {
     @IBOutlet weak var addSpecialNotLbl: UILabel!
     
     var locatonDelivery_VC: LocationDeliveryVC!
+    var restaurentFoodPicksVCVM: RestaurentFoodPicksVCVM?
     
     override func viewDidLoad()
     {

@@ -31,6 +31,7 @@ class RestarentDishViewController: UIViewController {
         
         menu_vc1 = self.storyboard?.instantiateViewController(withIdentifier: "RecipeDetailsVC") as? RecipeDetailsVC
         setupValues()
+        self.restarentDishViewControllerVM?.setUpItemsList()
         //        let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(self.respondToGesture))
         //        swipeRight.direction = UISwipeGestureRecognizer.Direction.right
         //        let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(self.respondToGesture))
@@ -66,6 +67,33 @@ class RestarentDishViewController: UIViewController {
                 self.present(vc, animated: true, completion: nil)
             }
         }
+        
+        self.restarentDishViewControllerVM?.reloadRecipieCollectionView = { [weak self] in
+            DispatchQueue.main.async {
+                guard let self = self else {return}
+                self.resDishTB.reloadData()
+                self.checkForCartButton()
+            }
+        }
+        
+        self.restarentDishViewControllerVM?.alertClosure = { [weak self] (error) in
+            DispatchQueue.main.async {
+                guard let self = self else {return}
+                let alert = UIAlertController(title: "Alert", message: error, preferredStyle: UIAlertController.Style.alert)
+                alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+            }
+        }
+    }
+    
+    func checkForCartButton() {
+        let showButton = self.restarentDishViewControllerVM?.isItemAvailable()
+        self.buttonGoToCart.isHidden = !showButton!
+        if showButton == false {
+            self.collectionViewBottomConstraint.constant = 66
+        } else {
+            self.collectionViewBottomConstraint.constant = 130
+        }
     }
     
     @IBAction func backBtn(_ sender: Any) {
@@ -88,48 +116,27 @@ class RestarentDishViewController: UIViewController {
     
 }
 
-extension RestarentDishViewController:UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout
-{
+extension RestarentDishViewController:UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if collectionView == self.resDishCV
-        {
+        if collectionView == self.resDishCV {
             return 8
         }
-        
-        return 8
-        
+        return self.restarentDishViewControllerVM?.foodItems?.count ?? 0
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
-    {
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        
-        
-        
-        if collectionView == self.resDishCV
-        {
-            
+        if collectionView == self.resDishCV {
             let cellA = resDishCV.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! ResDishCollectionViewCell
-            
-            
-            
-            
             return cellA
-        }
-        
-        else
-        {
+        } else {
             let cellC = resDishTB.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! ResDishCollectionViewCellTwo
-            
             cellC.buttonAdd.layer.cornerRadius = 10
-            cellC.itemAdded  = { bool in
+            cellC.resDishCollectionViewCellTwoVM = self.restarentDishViewControllerVM?.getResDishCollectionViewCellTwoVM(index: indexPath.row)
+            cellC.buttonAdd.tag = indexPath.row
+            cellC.itemAdded  = { (itemCount, index) in
                 DispatchQueue.main.async {
-                    self.buttonGoToCart.isHidden = !bool
-                    if bool == false {
-                        self.collectionViewBottomConstraint.constant = 66
-                    } else {
-                        self.collectionViewBottomConstraint.constant = 130
-                    }
+                    self.restarentDishViewControllerVM?.updateValues(itemCount: itemCount, index: index)
                 }
             }
             return cellC
@@ -163,7 +170,7 @@ extension RestarentDishViewController:UICollectionViewDelegate,UICollectionViewD
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        self.restarentDishViewControllerVM?.makeProductDetailsCall(item: 1)
+        self.restarentDishViewControllerVM?.makeProductDetailsCall(item: indexPath.row)
     }
     
     

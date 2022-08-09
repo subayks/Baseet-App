@@ -2953,7 +2953,7 @@ Oatar.</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YYH-81-iTQ">
-                                <rect key="frame" x="0.0" y="-22" width="414" height="100"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="100"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="koj-nS-A0E">
                                         <rect key="frame" x="8" y="52" width="205" height="35"/>
@@ -2988,13 +2988,13 @@ Oatar.</string>
                                 </constraints>
                             </view>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="tge-9n-1On">
-                                <rect key="frame" x="0.0" y="78" width="414" height="515"/>
+                                <rect key="frame" x="0.0" y="100" width="414" height="515"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="515" id="ftV-u1-6KN"/>
                                 </constraints>
                             </mapView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SELECT DELIVERY LOCATION" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rLV-tW-uGq">
-                                <rect key="frame" x="5" y="598" width="404" height="20"/>
+                                <rect key="frame" x="5" y="620" width="404" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="20" id="1cy-yB-mwL"/>
                                 </constraints>
@@ -3003,14 +3003,14 @@ Oatar.</string>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pin" translatesAutoresizingMaskIntoConstraints="NO" id="6pu-Bt-HAc">
-                                <rect key="frame" x="10" y="637" width="30" height="30"/>
+                                <rect key="frame" x="10" y="659" width="30" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="NDJ-2A-hlM"/>
                                     <constraint firstAttribute="width" constant="30" id="yK9-mv-nJ2"/>
                                 </constraints>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="top" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="DzW-hd-OZR">
-                                <rect key="frame" x="57" y="637" width="236" height="80"/>
+                                <rect key="frame" x="57" y="659" width="236" height="80"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="DOHA" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T6d-p0-e6f">
                                         <rect key="frame" x="0.0" y="0.0" width="49" height="27.5"/>
@@ -3032,7 +3032,7 @@ Oatar.</string>
                                 </constraints>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LMl-fi-YV9">
-                                <rect key="frame" x="5" y="747" width="404" height="60"/>
+                                <rect key="frame" x="5" y="769" width="404" height="60"/>
                                 <color key="backgroundColor" red="0.76862745099999996" green="0.16078431369999999" blue="0.16078431369999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="kHo-yk-faq"/>
@@ -3058,7 +3058,7 @@ Oatar.</string>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WWY-hF-Io9">
-                                <rect key="frame" x="337.5" y="637" width="66.5" height="22"/>
+                                <rect key="frame" x="337.5" y="659" width="66.5" height="22"/>
                                 <color key="backgroundColor" red="0.85022259782312182" green="0.85022259782312182" blue="0.85022259782312182" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="22" id="gth-ep-kH7"/>
@@ -5709,6 +5709,7 @@ of the printing and typesetting industry</string>
                                                             <outlet property="itemCountLabel" destination="ias-s0-CED" id="Hmq-8Q-JKp"/>
                                                             <outlet property="itemImage" destination="vo1-QV-4zP" id="5ly-89-RVN"/>
                                                             <outlet property="itemName" destination="RfI-3d-9V4" id="4LP-Wm-dgZ"/>
+                                                            <outlet property="qrCodeLabel" destination="QgT-DJ-3yq" id="j0s-Ik-r47"/>
                                                             <outlet property="ratingLabel" destination="gUA-ju-72y" id="kqG-g3-8rm"/>
                                                         </connections>
                                                     </collectionViewCell>
@@ -8830,8 +8831,8 @@ logout from this application.es</string>
         <image name="otp" width="159.5" height="159.5"/>
         <image name="paytm" width="48" height="19"/>
         <image name="pedit" width="17" height="17"/>
-        <image name="person" catalog="system" width="128" height="117"/>
         <image name="person" width="153" height="138"/>
+        <image name="person" catalog="system" width="128" height="117"/>
         <image name="person Logo" width="92" height="93"/>
         <image name="person.fill" catalog="system" width="128" height="120"/>
         <image name="phone.arrow.down.left.fill" catalog="system" width="128" height="115"/>

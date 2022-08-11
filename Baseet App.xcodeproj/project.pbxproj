@@ -27,6 +27,7 @@
 		0986D5FC289EE83F00214056 /* RecipeDetailsVCVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0986D5FB289EE83F00214056 /* RecipeDetailsVCVM.swift */; };
 		0986D5FE289EF71E00214056 /* AddOnViewControllerVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0986D5FD289EF71E00214056 /* AddOnViewControllerVM.swift */; };
 		0986D600289EFEE100214056 /* AddOnTableViewCellVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0986D5FF289EFEE100214056 /* AddOnTableViewCellVM.swift */; };
+		0995BFC028A57C7B004F0EC5 /* RestFoodPickTableViewCellVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0995BFBF28A57C7B004F0EC5 /* RestFoodPickTableViewCellVM.swift */; };
 		8807015D288FD2B8001B8907 /* MapkitViewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8807015C288FD2B8001B8907 /* MapkitViewVC.swift */; };
 		8807015F288FD4E7001B8907 /* DeliveredSucessViewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8807015E288FD4E7001B8907 /* DeliveredSucessViewVC.swift */; };
 		88149F88287ED49B00E57AC7 /* MyPlacesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88149F87287ED49B00E57AC7 /* MyPlacesViewController.swift */; };
@@ -134,6 +135,7 @@
 		0986D5FB289EE83F00214056 /* RecipeDetailsVCVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeDetailsVCVM.swift; sourceTree = "<group>"; };
 		0986D5FD289EF71E00214056 /* AddOnViewControllerVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddOnViewControllerVM.swift; sourceTree = "<group>"; };
 		0986D5FF289EFEE100214056 /* AddOnTableViewCellVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddOnTableViewCellVM.swift; sourceTree = "<group>"; };
+		0995BFBF28A57C7B004F0EC5 /* RestFoodPickTableViewCellVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestFoodPickTableViewCellVM.swift; sourceTree = "<group>"; };
 		8807015C288FD2B8001B8907 /* MapkitViewVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapkitViewVC.swift; sourceTree = "<group>"; };
 		8807015E288FD4E7001B8907 /* DeliveredSucessViewVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveredSucessViewVC.swift; sourceTree = "<group>"; };
 		88149F87287ED49B00E57AC7 /* MyPlacesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPlacesViewController.swift; sourceTree = "<group>"; };
@@ -275,6 +277,7 @@
 				0986D5FF289EFEE100214056 /* AddOnTableViewCellVM.swift */,
 				094CCCC028A2BD4F0043EA18 /* RestaurentFoodPicksVCVM.swift */,
 				094CCCC228A2C6500043EA18 /* ResDishCollectionViewCellTwoVM.swift */,
+				0995BFBF28A57C7B004F0EC5 /* RestFoodPickTableViewCellVM.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -611,6 +614,7 @@
 				8807015F288FD4E7001B8907 /* DeliveredSucessViewVC.swift in Sources */,
 				885B5DF7287C5B8F006A7044 /* ContactUsViewController.swift in Sources */,
 				88C44F412877309F00D31258 /* SceneDelegate.swift in Sources */,
+				0995BFC028A57C7B004F0EC5 /* RestFoodPickTableViewCellVM.swift in Sources */,
 				88FDAB232881882C006F06D0 /* ResDishCollectionViewCell.swift in Sources */,
 				887487F828843383004F8C3B /* AddNoteVC.swift in Sources */,
 				88FDAB33288304F3006F06D0 /* OrderDetailsVC.swift in Sources */,

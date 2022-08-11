@@ -95,11 +95,12 @@ class RestarentDishViewControllerVM {
         return ResDishCollectionViewCellTwoVM(foodItems: (self.foodItems?[index])!)
     }
     
-    func createItems() ->FoodOrderItems {
-        return FoodOrderItems()
+    func getSelectedFood() ->[FoodItems] {
+        let selectedItems = self.foodItems?.filter{$0.itemQuantity ?? 0 > 0} ?? [FoodItems()]
+        return selectedItems
     }
     
     func getRestaurentFoodPicksVCVM() ->RestaurentFoodPicksVCVM {
-        return RestaurentFoodPicksVCVM(foodOrderItems: self.createItems())
+        return RestaurentFoodPicksVCVM(foodOrderItems: FoodOrderItems(shopName: self.shopDetailsModel?.name, icon: self.shopDetailsModel?.applogo, foodItems: getSelectedFood()))
     }
 }

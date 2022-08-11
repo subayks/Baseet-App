@@ -103,6 +103,7 @@ class RestarentDishViewController: UIViewController {
     @IBAction func actionGoToBasket(_ sender: Any) {
         let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
         let vc = storyboard.instantiateViewController(identifier: "RestaurentFoodPicksVC") as! RestaurentFoodPicksVC
+        vc.restaurentFoodPicksVCVM = self.restarentDishViewControllerVM?.getRestaurentFoodPicksVCVM()
         vc.modalPresentationStyle = .fullScreen
         self.present(vc, animated: true, completion: nil)
     }
@@ -172,7 +173,6 @@ extension RestarentDishViewController:UICollectionViewDelegate,UICollectionViewD
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         self.restarentDishViewControllerVM?.makeProductDetailsCall(item: indexPath.row)
     }
-    
     
 }
 

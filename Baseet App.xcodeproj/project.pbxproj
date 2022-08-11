@@ -28,6 +28,8 @@
 		0986D5FE289EF71E00214056 /* AddOnViewControllerVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0986D5FD289EF71E00214056 /* AddOnViewControllerVM.swift */; };
 		0986D600289EFEE100214056 /* AddOnTableViewCellVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0986D5FF289EFEE100214056 /* AddOnTableViewCellVM.swift */; };
 		0995BFC028A57C7B004F0EC5 /* RestFoodPickTableViewCellVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0995BFBF28A57C7B004F0EC5 /* RestFoodPickTableViewCellVM.swift */; };
+		0995BFC428A587EE004F0EC5 /* BasketFooterViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0995BFC328A587EE004F0EC5 /* BasketFooterViewCell.swift */; };
+		0995BFC628A594F3004F0EC5 /* BasketFooterViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0995BFC528A594F2004F0EC5 /* BasketFooterViewCell.xib */; };
 		8807015D288FD2B8001B8907 /* MapkitViewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8807015C288FD2B8001B8907 /* MapkitViewVC.swift */; };
 		8807015F288FD4E7001B8907 /* DeliveredSucessViewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8807015E288FD4E7001B8907 /* DeliveredSucessViewVC.swift */; };
 		88149F88287ED49B00E57AC7 /* MyPlacesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88149F87287ED49B00E57AC7 /* MyPlacesViewController.swift */; };
@@ -136,6 +138,8 @@
 		0986D5FD289EF71E00214056 /* AddOnViewControllerVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddOnViewControllerVM.swift; sourceTree = "<group>"; };
 		0986D5FF289EFEE100214056 /* AddOnTableViewCellVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddOnTableViewCellVM.swift; sourceTree = "<group>"; };
 		0995BFBF28A57C7B004F0EC5 /* RestFoodPickTableViewCellVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestFoodPickTableViewCellVM.swift; sourceTree = "<group>"; };
+		0995BFC328A587EE004F0EC5 /* BasketFooterViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketFooterViewCell.swift; sourceTree = "<group>"; };
+		0995BFC528A594F2004F0EC5 /* BasketFooterViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BasketFooterViewCell.xib; sourceTree = "<group>"; };
 		8807015C288FD2B8001B8907 /* MapkitViewVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapkitViewVC.swift; sourceTree = "<group>"; };
 		8807015E288FD4E7001B8907 /* DeliveredSucessViewVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveredSucessViewVC.swift; sourceTree = "<group>"; };
 		88149F87287ED49B00E57AC7 /* MyPlacesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPlacesViewController.swift; sourceTree = "<group>"; };
@@ -328,6 +332,8 @@
 				88DBC1EA288EDA6E00A5E514 /* OrderSucessViewVC.swift */,
 				8807015C288FD2B8001B8907 /* MapkitViewVC.swift */,
 				8807015E288FD4E7001B8907 /* DeliveredSucessViewVC.swift */,
+				0995BFC328A587EE004F0EC5 /* BasketFooterViewCell.swift */,
+				0995BFC528A594F2004F0EC5 /* BasketFooterViewCell.xib */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -532,6 +538,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0995BFC628A594F3004F0EC5 /* BasketFooterViewCell.xib in Resources */,
 				88C44F4B287730A200D31258 /* LaunchScreen.storyboard in Resources */,
 				88C44F48287730A200D31258 /* Assets.xcassets in Resources */,
 				88C44F462877309F00D31258 /* Main.storyboard in Resources */,
@@ -597,6 +604,7 @@
 				09832AE02898366D00B99EAB /* HTTPClass.swift in Sources */,
 				094CCCC128A2BD4F0043EA18 /* RestaurentFoodPicksVCVM.swift in Sources */,
 				09832AE22898366D00B99EAB /* NetworkAdapter.swift in Sources */,
+				0995BFC428A587EE004F0EC5 /* BasketFooterViewCell.swift in Sources */,
 				883901A7287DA8A100C85BE2 /* AddCardViewController.swift in Sources */,
 				883C8A98287DF4210077A8F5 /* SearchCollectionViewCell.swift in Sources */,
 				885A7D7B288981D300801D50 /* UISupportFile.swift in Sources */,

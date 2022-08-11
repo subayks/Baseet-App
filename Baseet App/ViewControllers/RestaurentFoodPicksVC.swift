@@ -9,8 +9,6 @@ import UIKit
 
 class RestaurentFoodPicksVC: UIViewController {
 
-    @IBOutlet weak var offerCodeImage: UIImageView!
-    @IBOutlet weak var addMoreItem: UIButton!
     @IBOutlet weak var addSpecialNote: UIImageView!
     @IBOutlet weak var totalSavingsAmountLabel: UILabel!
     @IBOutlet weak var restaurentName: UILabel!
@@ -28,6 +26,7 @@ class RestaurentFoodPicksVC: UIViewController {
         let tap = UITapGestureRecognizer(target: self, action: #selector(RestaurentFoodPicksVC.tapFunction))
         addSpecialNotLbl.isUserInteractionEnabled = true
         addSpecialNotLbl.addGestureRecognizer(tap)
+        restFoodPick.register(UINib(nibName: "BasketFooterViewCell", bundle: nil), forHeaderFooterViewReuseIdentifier: "BasketFooterViewCell")
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -72,8 +71,10 @@ class RestaurentFoodPicksVC: UIViewController {
         self.dismiss(animated: true,completion: nil)
     }
     
-    @IBAction func checkOutBtn(_ sender: Any) {
-        
+    @objc func actionAddMore() {
+    }
+    
+    @objc func bucketButtonClicked() {
         let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
         let vc = storyboard.instantiateViewController(identifier: "LocationDeliveryVC") as! LocationDeliveryVC
         vc.modalTransitionStyle  = .crossDissolve
@@ -99,5 +100,18 @@ extension RestaurentFoodPicksVC:UITableViewDelegate,UITableViewDataSource
             }
         }
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: "BasketFooterViewCell") as! BasketFooterViewCell
+        headerView.goToBasket.addTarget(self, action:#selector(self.bucketButtonClicked), for: .touchUpInside)
+        
+        headerView.addMoreItem.addTarget(self, action:#selector(self.actionAddMore), for: .touchUpInside)
+
+        return headerView
+    }
+
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+    return 343
     }
 }

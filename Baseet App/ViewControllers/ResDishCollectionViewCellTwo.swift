@@ -26,8 +26,8 @@ class ResDishCollectionViewCellTwo: UICollectionViewCell {
     var itemCount = 0
     
     func setupValues() {
-        self.itemImage.loadImageUsingURL(self.resDishCollectionViewCellTwoVM?.foodItems?.itemImage)
-        self.itemName.text = self.resDishCollectionViewCellTwoVM?.foodItems?.itemName
+        self.itemImage.loadImageUsingURL(self.resDishCollectionViewCellTwoVM?.foodItems?.appimage)
+        self.itemName.text = self.resDishCollectionViewCellTwoVM?.foodItems?.name
         if self.resDishCollectionViewCellTwoVM?.foodItems?.itemQuantity == 0 {
             self.buttonAdd.isHidden = false
             self.countView.isHidden = true
@@ -37,8 +37,8 @@ class ResDishCollectionViewCellTwo: UICollectionViewCell {
             self.countView.isHidden = false
         }
         self.itemCount = self.resDishCollectionViewCellTwoVM?.getItemQuantity() ?? 0
-        self.ratingLabel.text = "⭑ \(self.resDishCollectionViewCellTwoVM?.foodItems?.rating ?? "")"
-        self.qrCodeLabel.text = self.resDishCollectionViewCellTwoVM?.foodItems?.qrCode
+        self.ratingLabel.text = "⭑ \(self.resDishCollectionViewCellTwoVM?.foodItems?.avgRating ?? 0)"
+        self.qrCodeLabel.text = "Empty"
     }
     
     @IBAction func actionAdd(_ sender: Any) {
@@ -59,13 +59,13 @@ class ResDishCollectionViewCellTwo: UICollectionViewCell {
     @IBAction func actionReduce(_ sender: Any) {
         if self.itemCount == 1 {
             itemCount = self.itemCount - 1
-            self.itemAdded?(self.itemCount, buttonAdd.tag)
             self.buttonAdd.isHidden = false
             self.countView.isHidden = true
         } else {
             self.itemCount = self.itemCount - 1
             self.itemCountLabel.text = "\(self.itemCount)"
         }
+        self.itemAdded?(self.itemCount, buttonAdd.tag)
     }
     
 }

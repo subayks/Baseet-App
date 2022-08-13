@@ -17,4 +17,11 @@ class AddOnViewControllerVM {
     func getAddOnTableViewCellVM(index: Int) ->AddOnTableViewCellVM {
         return AddOnTableViewCellVM(addOn: self.addOns?[index] ?? AddOns())
     }
+    
+    func updateValues(itemCount: Int, index: Int) {
+        var item = self.addOns?[index]
+        item?.itemQuantity = itemCount
+        self.addOns?.remove(at: index)
+        self.addOns?.insert(item ?? AddOns(), at: index)
+    }
 }

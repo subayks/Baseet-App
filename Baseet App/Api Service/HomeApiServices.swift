@@ -32,7 +32,7 @@ class HomeApiServices: HomeApiServicesProtocol {
                         completion(false,errorCode,nil,"Unhandled Error")
                         return
                     }
-                    let values = try decoder.decode(ProDuctDetailsModel.self, from: result!)
+                    let values = try decoder.decode(FoodItems.self, from: result!)
                     completion(true,errorCode,values as AnyObject?,error)
                     
                 } catch let error as NSError {

@@ -98,7 +98,14 @@ class HomeViewController: UIViewController {
             }
         }
         
-        
+        self.homeViewControllerVM.alertClosure = { [weak self] (error) in
+            DispatchQueue.main.async {
+                guard let self = self else {return}
+                let alert = UIAlertController(title: "Alert", message: error, preferredStyle: UIAlertController.Style.alert)
+                alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+            }
+        }
     }
     
     @objc func respondToGesture(gesture: UISwipeGestureRecognizer)

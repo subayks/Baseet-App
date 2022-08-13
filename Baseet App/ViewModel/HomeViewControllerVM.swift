@@ -73,7 +73,7 @@ class HomeViewControllerVM {
     func makeShopDetailsCall(id: Int) {
         if Reachability.isConnectedToNetwork() {
             self.showLoadingIndicatorClosure?()
-            self.apiServices?.getShopDetails(finalURL: "\(Constants.Common.finalURL)/restaurants/details/\(id)",  completion: { (status: Bool? , errorCode: String?,result: AnyObject?, errorMessage: String?) -> Void in
+            self.apiServices?.getShopDetails(finalURL: "\(Constants.Common.finalURL)/products/product_by_restaurant?restaurant_id=\(id)&category_id=0&limit=10&offset=1",  completion: { (status: Bool? , errorCode: String?,result: AnyObject?, errorMessage: String?) -> Void in
             DispatchQueue.main.async {
                 self.hideLoadingIndicatorClosure?()
                 if status == true {

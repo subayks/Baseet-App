@@ -61,7 +61,12 @@ class RestarentDishViewController: UIViewController {
                 guard let self = self else {return}
                 let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
                 let vc = storyboard.instantiateViewController(identifier: "RecipeDetailsVC") as! RecipeDetailsVC
-                vc.recipeDetailsVCVM = self.restarentDishViewControllerVM?.getRecipeDetailsVCVM()
+             //   vc.recipeDetailsVCVM = self.restarentDishViewControllerVM?.getRecipeDetailsVCVM(index: <#Int#>)
+                vc.itemAdded  = { (itemCount, index, addOns) in
+                    DispatchQueue.main.async {
+                        self.restarentDishViewControllerVM?.updateValues(itemCount: itemCount, index: index, addOns: addOns)
+                    }
+                }
                 vc.modalTransitionStyle = .coverVertical
                 vc.modalPresentationStyle = .fullScreen
                 self.present(vc, animated: true, completion: nil)
@@ -109,9 +114,9 @@ class RestarentDishViewController: UIViewController {
     }
     
     func setupValues() {
-        self.logoImage.loadImageUsingURL(self.restarentDishViewControllerVM?.shopDetailsModel?.applogo ?? "")
-        self.restaurantName.text = self.restarentDishViewControllerVM?.shopDetailsModel?.name
-        self.restaurantAddress.text = self.restarentDishViewControllerVM?.shopDetailsModel?.address
+        self.logoImage.loadImageUsingURL(self.restarentDishViewControllerVM?.shopDetailsModel?.restaurant?.applogo ?? "")
+        self.restaurantName.text = self.restarentDishViewControllerVM?.shopDetailsModel?.restaurant?.name
+        self.restaurantAddress.text = self.restarentDishViewControllerVM?.shopDetailsModel?.restaurant?.address
         self.buttonGoToCart.isHidden  = true
     }
     
@@ -171,9 +176,28 @@ extension RestarentDishViewController:UICollectionViewDelegate,UICollectionViewD
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        self.restarentDishViewControllerVM?.makeProductDetailsCall(item: indexPath.row)
+       // self.restarentDishViewControllerVM?.makeProductDetailsCall(item: indexPath.row)
+        let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewController(identifier: "RecipeDetailsVC") as! RecipeDetailsVC
+        vc.recipeDetailsVCVM = self.restarentDishViewControllerVM?.getRecipeDetailsVCVM(index: indexPath.row)
+        vc.itemAdded  = { (itemCount, index, addOns) in
+            DispatchQueue.main.async {
+                self.restarentDishViewControllerVM?.updateValues(itemCount: itemCount, index: index, addOns: addOns)
+            }
+        }
+        vc.modalTransitionStyle = .coverVertical
+        vc.modalPresentationStyle = .fullScreen
+        self.present(vc, animated: true, completion: nil)
     }
     
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        if ((resDishTB.contentOffset.y + resDishTB.frame.size.height) >= resDishTB.contentSize.height)
+        {
+            DispatchQueue.main.async {
+                 self.restarentDishViewControllerVM?.makeLoadMore()
+            }
+        }
+    }
 }
 
 

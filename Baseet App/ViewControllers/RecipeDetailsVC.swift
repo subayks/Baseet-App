@@ -17,7 +17,8 @@ class RecipeDetailsVC: UIViewController {
     @IBOutlet weak var commentsTextView: UITextView!
     var recipeDetailsVCVM: RecipeDetailsVCVM?
     var itemCount = 1
-    
+    var itemAdded:((Int, Int, [AddOns])->())?
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -32,6 +33,11 @@ class RecipeDetailsVC: UIViewController {
             let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
             let vc = storyboard.instantiateViewController(identifier: "AddOnViewController") as! AddOnViewController
             vc.addOnViewControllerVM = self.recipeDetailsVCVM?.getAddOnViewControllerVM()
+            vc.addOns  = { (addOns) in
+                DispatchQueue.main.async {
+                    self.recipeDetailsVCVM?.updateAdons(addOns: addOns)
+                }
+            }
             vc.modalTransitionStyle  = .crossDissolve
            // vc.modalPresentationStyle = .fullScreen
             self.present(vc, animated: true, completion: nil)
@@ -55,17 +61,15 @@ class RecipeDetailsVC: UIViewController {
     }
     
     @IBAction func addToBasketBtn(_ sender: Any) {
-        
-        let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
-        let vc = storyboard.instantiateViewController(identifier: "RestaurentFoodPicksVC") as! RestaurentFoodPicksVC
-        vc.modalPresentationStyle = .fullScreen
-        self.present(vc, animated: true, completion: nil)
+        self.itemAdded?(itemCount, self.recipeDetailsVCVM?.index ?? 0, self.recipeDetailsVCVM?.proDuctDetailsModel?.addOns ?? [AddOns()])
+        self.dismiss(animated: true,completion: nil)
     }
     
     func setupValues() {
         self.productImage.loadImageUsingURL(self.recipeDetailsVCVM?.proDuctDetailsModel?.appimage ?? "")
         self.productName.text = self.recipeDetailsVCVM?.proDuctDetailsModel?.name ?? ""
         self.discriptionLabel.text = self.recipeDetailsVCVM?.proDuctDetailsModel?.description ?? ""
-        self.labelCount.text = "\(itemCount)"
+        self.labelCount.text = "\(self.recipeDetailsVCVM?.proDuctDetailsModel?.itemQuantity ?? 0)"
+        self.itemCount = self.recipeDetailsVCVM?.proDuctDetailsModel?.itemQuantity ?? 0
     }
 }

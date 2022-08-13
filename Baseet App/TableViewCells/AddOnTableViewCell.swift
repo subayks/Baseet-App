@@ -9,11 +9,13 @@ import UIKit
 
 class AddOnTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var buttonAdd: UIButton!
     @IBOutlet weak var addOnView: UIView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var adOnImage: UIImageView!
     @IBOutlet weak var QuantityCount: UILabel!
     var itemCount = 1
+    var itemAdded:((Int, Int)->())?
 
     var addOnTableViewCellVM: AddOnTableViewCellVM? {
         didSet {
@@ -30,20 +32,29 @@ class AddOnTableViewCell: UITableViewCell {
     
     func setupValues() {
         self.titleLabel.text = self.addOnTableViewCellVM?.addOn?.name
-        self.QuantityCount.text = "\(itemCount)"
+        self.QuantityCount.text = "\(self.addOnTableViewCellVM?.addOn?.itemQuantity ?? 0)"
+        self.itemCount = self.addOnTableViewCellVM?.addOn?.itemQuantity ?? 0
     }
 
     @IBAction func actionReduce(_ sender: Any) {
-        if itemCount > 1 {
-        itemCount = itemCount - 1
-        self.QuantityCount.text = "\(itemCount)"
+        if self.itemCount == 1 {
+            itemCount = self.itemCount - 1
+            self.QuantityCount.text = "\(self.itemCount)"
+        } else {
+            if itemCount > 0 {
+            self.itemCount = self.itemCount - 1
+            self.QuantityCount.text = "\(self.itemCount)"
+            }
         }
+        self.itemAdded?(self.itemCount, buttonAdd.tag)
     }
     
     @IBAction func actionAdd(_ sender: Any) {
         itemCount = itemCount + 1
         self.QuantityCount.text = "\(itemCount)"
+        self.itemAdded?(self.itemCount, buttonAdd.tag)
     }
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 

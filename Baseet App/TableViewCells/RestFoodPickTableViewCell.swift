@@ -33,11 +33,11 @@ class RestFoodPickTableViewCell: UITableViewCell {
     }
     
     func setupValues() {
-        self.itemName.text = self.RestFoodPickTableViewCellVM?.foodItems?.itemName
+        self.itemName.text = self.RestFoodPickTableViewCellVM?.foodItems?.name
         self.itemCount.text = "\(self.RestFoodPickTableViewCellVM?.foodItems?.itemQuantity ?? 0)"
         self.itemCountValue = self.RestFoodPickTableViewCellVM?.foodItems?.itemQuantity ?? 0
-        self.qrCodeLabel.text = self.RestFoodPickTableViewCellVM?.foodItems?.qrCode
-        self.itemImage.loadImageUsingURL(self.RestFoodPickTableViewCellVM?.foodItems?.itemImage)
+        self.qrCodeLabel.text = "Empty"
+        self.itemImage.loadImageUsingURL(self.RestFoodPickTableViewCellVM?.foodItems?.appimage)
     }
 
     @IBAction func reduceQuantity(_ sender: Any) {

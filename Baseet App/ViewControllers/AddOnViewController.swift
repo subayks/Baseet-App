@@ -12,7 +12,9 @@ class AddOnViewController: UIViewController {
     
     @IBOutlet weak var addonTB: UITableView!
     var addOnViewControllerVM: AddOnViewControllerVM?
-    
+    var itemAdded:((Int, Int)->())?
+    var addOns:(([AddOns])->())?
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -23,9 +25,8 @@ class AddOnViewController: UIViewController {
         self.dismiss(animated: true,completion: nil)
     }
     
-    @IBAction func nextBtn(_ sender: Any)
-    {
-        
+    @IBAction func nextBtn(_ sender: Any) {
+        self.addOns?(self.addOnViewControllerVM?.addOns ?? [AddOns()])
         self.dismiss(animated: true,completion: nil)
     }
     
@@ -40,6 +41,12 @@ extension AddOnViewController:UITableViewDelegate,UITableViewDataSource{
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! AddOnTableViewCell
         cell.addOnView.layer.borderColor = UIColor.white.cgColor
         cell.addOnView.layer.borderWidth = 2
+        cell.buttonAdd.tag = indexPath.row
+        cell.itemAdded  = { (itemCount, index) in
+            DispatchQueue.main.async {
+                self.addOnViewControllerVM?.updateValues(itemCount: itemCount, index: index)
+            }
+        }
         cell.addOnTableViewCellVM = self.addOnViewControllerVM?.getAddOnTableViewCellVM(index: indexPath.row)
     
         return cell

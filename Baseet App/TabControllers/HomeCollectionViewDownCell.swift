@@ -26,9 +26,12 @@ class HomeCollectionViewDownCell: UICollectionViewCell {
         self.hotelLogo.loadImageUsingURL(self.homeCollectionViewDownCellVM?.restaurantsModel?.applogo ?? "")
         
         self.salonName.text = self.homeCollectionViewDownCellVM?.restaurantsModel?.name
-   //     self.distanceButton.setTitle((self.homeCollectionViewDownCellVM?.restaurantsModel?.distance ?? ""), for: .normal)
-    //    self.distanceButton.titleLabel?.numberOfLines = 1
+        //self.distanceButton.setTitle((self.homeCollectionViewDownCellVM?.restaurantsModel?.distance ?? ""), for: .normal)
+        self.distanceButton.titleLabel?.numberOfLines = 1
+        self.ratingButton.setTitle(String(self.homeCollectionViewDownCellVM?.restaurantsModel?.avgRating ?? 0), for: .normal)
+
 //        if (self.homeCollectionViewDownCellVM?.restaurantsModel?.avgRating ?? 0) > 0 {
+//            self.ratingButton.isHidden = false
 //            self.ratingButton.setTitle(String(self.homeCollectionViewDownCellVM?.restaurantsModel?.avgRating ?? 0), for: .normal)
 //        } else {
 //            self.ratingButton.isHidden = true

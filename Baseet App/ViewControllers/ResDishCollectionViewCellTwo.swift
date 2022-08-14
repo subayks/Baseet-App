@@ -38,7 +38,7 @@ class ResDishCollectionViewCellTwo: UICollectionViewCell {
         }
         self.itemCount = self.resDishCollectionViewCellTwoVM?.getItemQuantity() ?? 0
         self.ratingLabel.text = "⭑ \(self.resDishCollectionViewCellTwoVM?.foodItems?.avgRating ?? 0)"
-        self.qrCodeLabel.text = "Empty"
+        self.qrCodeLabel.text = "QR \(self.resDishCollectionViewCellTwoVM?.foodItems?.price ?? 0)"
     }
     
     @IBAction func actionAdd(_ sender: Any) {

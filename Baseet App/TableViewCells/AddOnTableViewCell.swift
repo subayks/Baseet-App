@@ -9,6 +9,7 @@ import UIKit
 
 class AddOnTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var labelPrice: UILabel!
     @IBOutlet weak var buttonAdd: UIButton!
     @IBOutlet weak var addOnView: UIView!
     @IBOutlet weak var titleLabel: UILabel!
@@ -31,9 +32,14 @@ class AddOnTableViewCell: UITableViewCell {
     }
     
     func setupValues() {
+        self.addOnView.layer.borderWidth = 1
+        self.addOnView.layer.borderColor = UIColor.white.cgColor
+        self.addOnView.layer.cornerRadius = 15
+        self.adOnImage.loadImageUsingURL("")
         self.titleLabel.text = self.addOnTableViewCellVM?.addOn?.name
         self.QuantityCount.text = "\(self.addOnTableViewCellVM?.addOn?.itemQuantity ?? 0)"
         self.itemCount = self.addOnTableViewCellVM?.addOn?.itemQuantity ?? 0
+        self.labelPrice.text = "QR \(self.addOnTableViewCellVM?.addOn?.price ?? 0)"
     }
 
     @IBAction func actionReduce(_ sender: Any) {

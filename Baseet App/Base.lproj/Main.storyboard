@@ -3543,6 +3543,7 @@ meat, and sometimes, in addition, eggs and potatoes.</string>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="np0-ik-jgp">
                                                 <rect key="frame" x="0.0" y="0.0" width="37.5" height="40"/>
+                                                <color key="tintColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain">
                                                     <attributedString key="attributedTitle">
@@ -3565,6 +3566,7 @@ meat, and sometimes, in addition, eggs and potatoes.</string>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m7Z-ee-scM">
                                                 <rect key="frame" x="288" y="0.0" width="30" height="40"/>
+                                                <color key="tintColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain">
                                                     <attributedString key="attributedTitle">
@@ -3674,8 +3676,10 @@ meat, and sometimes, in addition, eggs and potatoes.</string>
                         <outlet property="commentsTextView" destination="ybT-Jb-jBE" id="3am-OO-NBj"/>
                         <outlet property="discriptionLabel" destination="mTM-OK-mYz" id="4LJ-b0-4Kt"/>
                         <outlet property="labelCount" destination="tLl-X2-oJr" id="G7f-Nd-a6g"/>
+                        <outlet property="pricingLabel" destination="5f0-HL-MPZ" id="AlD-Nc-qyp"/>
                         <outlet property="productImage" destination="Zpr-xJ-88c" id="5Os-qe-fxY"/>
                         <outlet property="productName" destination="TfZ-LD-Xcn" id="tnD-93-7CC"/>
+                        <outlet property="quantityOverView" destination="2e7-xO-c0l" id="mYj-JW-vAR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fFI-Lf-Lba" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -5373,27 +5377,11 @@ of the printing and typesetting industry</string>
                                                                                 <rect key="frame" x="0.0" y="19" width="139.5" height="20"/>
                                                                                 <subviews>
                                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Rating" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g0x-pJ-oS0">
-                                                                                        <rect key="frame" x="0.0" y="0.0" width="51.5" height="20"/>
+                                                                                        <rect key="frame" x="0.0" y="0.0" width="139.5" height="20"/>
                                                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                                         <color key="textColor" red="0.35294117650000001" green="0.4431372549" blue="0.4823529412" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                                                         <nil key="highlightedColor"/>
                                                                                     </label>
-                                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="star.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="CHA-8W-IHp">
-                                                                                        <rect key="frame" x="51.5" y="-0.5" width="22" height="20"/>
-                                                                                        <color key="tintColor" red="1" green="0.84313725490000002" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                                    </imageView>
-                                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="star.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="PEv-CO-aKE">
-                                                                                        <rect key="frame" x="73.5" y="-0.5" width="22" height="20"/>
-                                                                                        <color key="tintColor" red="1" green="0.84313725490000002" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                                    </imageView>
-                                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="star.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="XQZ-1y-JFW">
-                                                                                        <rect key="frame" x="95.5" y="-0.5" width="22" height="20"/>
-                                                                                        <color key="tintColor" red="1" green="0.84313725490000002" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                                    </imageView>
-                                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="star.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="lIy-nj-eXj">
-                                                                                        <rect key="frame" x="117.5" y="-0.5" width="22" height="20"/>
-                                                                                        <color key="tintColor" red="1" green="0.84313725490000002" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                                    </imageView>
                                                                                 </subviews>
                                                                                 <constraints>
                                                                                     <constraint firstAttribute="height" constant="20" id="GJb-0m-f8x"/>
@@ -5503,17 +5491,17 @@ of the printing and typesetting industry</string>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
-                                                                <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="rNy-dA-9u2">
+                                                                <stackView opaque="NO" contentMode="scaleToFill" distribution="equalCentering" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="rNy-dA-9u2">
                                                                     <rect key="frame" x="5" y="207" width="117" height="20"/>
                                                                     <subviews>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="⭑5.0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gUA-ju-72y">
-                                                                            <rect key="frame" x="0.0" y="0.0" width="59.5" height="20"/>
+                                                                            <rect key="frame" x="0.0" y="0.0" width="27.5" height="20"/>
                                                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                                             <nil key="textColor"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
                                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="P4T-T9-ljz">
-                                                                            <rect key="frame" x="69.5" y="0.0" width="2" height="20"/>
+                                                                            <rect key="frame" x="55.5" y="0.0" width="2" height="20"/>
                                                                             <color key="backgroundColor" systemColor="systemPinkColor"/>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="width" constant="2" id="j7H-mI-KQn"/>
@@ -5521,9 +5509,6 @@ of the printing and typesetting industry</string>
                                                                         </view>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="QR 20" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QgT-DJ-3yq">
                                                                             <rect key="frame" x="81.5" y="0.0" width="35.5" height="20"/>
-                                                                            <constraints>
-                                                                                <constraint firstAttribute="width" constant="35.5" id="RSe-A0-emz"/>
-                                                                            </constraints>
                                                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                                             <nil key="textColor"/>
                                                                             <nil key="highlightedColor"/>
@@ -5614,7 +5599,7 @@ of the printing and typesetting industry</string>
                                                                     <state key="normal" title="Button"/>
                                                                     <buttonConfiguration key="configuration" style="plain">
                                                                         <attributedString key="attributedTitle">
-                                                                            <fragment content="Add">
+                                                                            <fragment content="+ Add">
                                                                                 <attributes>
                                                                                     <font key="NSFont" size="18" name="Helvetica-Bold"/>
                                                                                     <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
@@ -5793,6 +5778,8 @@ of the printing and typesetting industry</string>
                         <outlet property="buttonGoToCart" destination="ecX-1c-Stp" id="4ej-5A-eqL"/>
                         <outlet property="collectionViewBottomConstraint" destination="GPE-fp-oAF" id="EYw-qM-MDM"/>
                         <outlet property="logoImage" destination="KQj-eA-kcP" id="TRy-QG-Pfj"/>
+                        <outlet property="ratingLabel" destination="g0x-pJ-oS0" id="rLX-Dk-H35"/>
+                        <outlet property="reatingStackView" destination="86x-12-dHM" id="F50-a6-tdZ"/>
                         <outlet property="resDishCV" destination="lyl-fH-8dC" id="iCj-Qp-XEh"/>
                         <outlet property="resDishTB" destination="Fan-Pf-Ees" id="dzN-WZ-zNQ"/>
                         <outlet property="restaurantAddress" destination="nz0-pR-bSv" id="oLl-Jv-CuQ"/>
@@ -7482,7 +7469,7 @@ printing and typesetting industry.</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zHT-eT-XXl">
-                                <rect key="frame" x="0.0" y="53" width="414" height="100"/>
+                                <rect key="frame" x="0.0" y="-843" width="414" height="100"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="IbE-6j-lHp">
                                         <rect key="frame" x="8" y="52" width="219.5" height="35"/>
@@ -7517,10 +7504,10 @@ printing and typesetting industry.</string>
                                 </constraints>
                             </view>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="splash" translatesAutoresizingMaskIntoConstraints="NO" id="wEt-iG-Qpw">
-                                <rect key="frame" x="0.0" y="153" width="414" height="743"/>
+                                <rect key="frame" x="0.0" y="-743" width="414" height="743"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gjb-3w-Ug8">
-                                <rect key="frame" x="20" y="535" width="374" height="41"/>
+                                <rect key="frame" x="20" y="-361" width="374" height="41"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="41" id="PUA-jQ-mbZ"/>
                                 </constraints>
@@ -7531,7 +7518,7 @@ printing and typesetting industry.</string>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Forgot Your Password ?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OUz-Nl-L0r">
-                                <rect key="frame" x="120" y="447" width="174" height="70"/>
+                                <rect key="frame" x="120" y="-449" width="174" height="70"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="70" id="m67-1e-Ifh"/>
                                 </constraints>
@@ -7540,14 +7527,14 @@ printing and typesetting industry.</string>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="forgot_password" translatesAutoresizingMaskIntoConstraints="NO" id="IU2-5I-h0d">
-                                <rect key="frame" x="107" y="223" width="200" height="200"/>
+                                <rect key="frame" x="107" y="-673" width="200" height="200"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="200" id="cSU-SQ-0hd"/>
                                     <constraint firstAttribute="height" constant="200" id="fqf-mq-Isb"/>
                                 </constraints>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="26" translatesAutoresizingMaskIntoConstraints="NO" id="00K-Cr-YU6">
-                                <rect key="frame" x="20" y="666" width="374" height="146"/>
+                                <rect key="frame" x="20" y="-230" width="374" height="146"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder=" Type your Mobile Number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7f3-29-9mz">
                                         <rect key="frame" x="0.0" y="0.0" width="374" height="60"/>
@@ -8002,14 +7989,14 @@ printing and typesetting industry.</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2bD-pa-Ml8">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="441"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <state key="normal" title="Button"/>
                                 <connections>
                                     <action selector="backBtn:" destination="HP4-KV-6pE" eventType="touchUpInside" id="i7c-aT-3Bh"/>
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YEd-Yi-Okg">
-                                <rect key="frame" x="20" y="160" width="374" height="197"/>
+                                <rect key="frame" x="20" y="146" width="374" height="666"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add-ons" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FAh-dG-zGW">
                                         <rect key="frame" x="25" y="45" width="341" height="21.5"/>
@@ -8018,7 +8005,7 @@ printing and typesetting industry.</string>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Qax-t2-MKn">
-                                        <rect key="frame" x="19" y="77" width="336" height="0.0"/>
+                                        <rect key="frame" x="19" y="77" width="336" height="469"/>
                                         <color key="backgroundColor" red="0.76862745099999996" green="0.16078431369999999" blue="0.16078431369999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" rowHeight="130" id="V46-h2-91q" customClass="AddOnTableViewCell" customModule="Baseet_App" customModuleProvider="target">
@@ -8036,22 +8023,20 @@ printing and typesetting industry.</string>
                                                             </constraints>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Green Salad" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ALT-zM-em9">
-                                                            <rect key="frame" x="117" y="27" width="93" height="21"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="height" constant="21" id="vyC-H7-VaA"/>
-                                                            </constraints>
+                                                            <rect key="frame" x="117" y="27" width="93" height="20.5"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <color key="textColor" red="0.93831077699999998" green="0.98042930829999997" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="t00-lW-8nW">
-                                                            <rect key="frame" x="117" y="50" width="79.5" height="31"/>
+                                                            <rect key="frame" x="117" y="54.5" width="93" height="31"/>
                                                             <subviews>
                                                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="3LI-69-8yR">
-                                                                    <rect key="frame" x="2" y="0.0" width="75.5" height="31"/>
+                                                                    <rect key="frame" x="2" y="0.0" width="89" height="31"/>
                                                                     <subviews>
                                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n2Q-w3-XCA">
-                                                                            <rect key="frame" x="0.0" y="0.0" width="30.5" height="31"/>
+                                                                            <rect key="frame" x="0.0" y="0.0" width="44" height="31"/>
+                                                                            <color key="tintColor" red="1" green="0.84313725490000002" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                                             <state key="normal" title="Button"/>
                                                                             <buttonConfiguration key="configuration" style="plain" title="-"/>
                                                                             <connections>
@@ -8059,13 +8044,17 @@ printing and typesetting industry.</string>
                                                                             </connections>
                                                                         </button>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VBS-Ns-CXk">
-                                                                            <rect key="frame" x="31.5" y="0.0" width="10" height="31"/>
+                                                                            <rect key="frame" x="45" y="0.0" width="10" height="31"/>
                                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                             <color key="textColor" red="0.93831077699999998" green="0.98042930829999997" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
                                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V9i-8E-mJK">
-                                                                            <rect key="frame" x="42.5" y="0.0" width="33" height="31"/>
+                                                                            <rect key="frame" x="56" y="0.0" width="33" height="31"/>
+                                                                            <constraints>
+                                                                                <constraint firstAttribute="width" constant="33" id="e08-Yz-SHe"/>
+                                                                            </constraints>
+                                                                            <color key="tintColor" red="1" green="0.84313725490000002" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                                             <state key="normal" title="Button"/>
                                                                             <buttonConfiguration key="configuration" style="plain" title="+"/>
                                                                             <connections>
@@ -8089,40 +8078,35 @@ printing and typesetting industry.</string>
                                                             </userDefinedRuntimeAttributes>
                                                         </view>
                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Nvk-VS-W87">
-                                                            <rect key="frame" x="283" y="45" width="40" height="40"/>
+                                                            <rect key="frame" x="274" y="27" width="49" height="58"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="QR 3" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4lm-5z-SZL">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="40" height="20"/>
-                                                                    <constraints>
-                                                                        <constraint firstAttribute="height" constant="20" id="dts-4Y-nyv"/>
-                                                                    </constraints>
-                                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="49" height="18"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                                     <color key="textColor" red="0.93831077699999998" green="0.98042930829999997" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dtq-8r-RFf">
-                                                                    <rect key="frame" x="0.0" y="20" width="40" height="20"/>
+                                                                    <rect key="frame" x="0.0" y="18" width="49" height="40"/>
                                                                     <state key="normal" title="Button"/>
                                                                     <buttonConfiguration key="configuration" style="plain" image="checkmark" title=""/>
                                                                 </button>
                                                             </subviews>
-                                                            <constraints>
-                                                                <constraint firstAttribute="width" constant="40" id="JKO-ch-fVA"/>
-                                                            </constraints>
                                                         </stackView>
                                                     </subviews>
                                                     <constraints>
-                                                        <constraint firstAttribute="trailingMargin" relation="lessThanOrEqual" secondItem="ALT-zM-em9" secondAttribute="trailing" constant="106" id="GxH-P8-6AH"/>
+                                                        <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="t00-lW-8nW" secondAttribute="bottom" constant="33.5" id="0f8-uw-Qlh"/>
+                                                        <constraint firstItem="Nvk-VS-W87" firstAttribute="top" secondItem="ALT-zM-em9" secondAttribute="top" id="38G-Nh-NYj"/>
+                                                        <constraint firstItem="t00-lW-8nW" firstAttribute="trailing" secondItem="ALT-zM-em9" secondAttribute="trailing" id="I6Q-R1-viI"/>
+                                                        <constraint firstItem="Nvk-VS-W87" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="ALT-zM-em9" secondAttribute="trailing" constant="35" id="KdU-vg-CSa"/>
                                                         <constraint firstItem="t00-lW-8nW" firstAttribute="leading" secondItem="A7V-yG-f1E" secondAttribute="trailing" constant="10" id="MG9-hc-bcu"/>
                                                         <constraint firstAttribute="trailing" secondItem="Nvk-VS-W87" secondAttribute="trailing" constant="13" id="MvT-nQ-gMh"/>
                                                         <constraint firstAttribute="bottom" secondItem="Nvk-VS-W87" secondAttribute="bottom" constant="45" id="T4R-Yz-SaZ"/>
-                                                        <constraint firstItem="t00-lW-8nW" firstAttribute="top" secondItem="ALT-zM-em9" secondAttribute="bottom" constant="2" id="YdQ-A5-KIr"/>
+                                                        <constraint firstItem="t00-lW-8nW" firstAttribute="top" secondItem="ALT-zM-em9" secondAttribute="bottom" constant="7" id="YdQ-A5-KIr"/>
                                                         <constraint firstItem="ALT-zM-em9" firstAttribute="top" secondItem="Mam-Re-3Pr" secondAttribute="topMargin" constant="16" id="e5e-wa-Vah"/>
-                                                        <constraint firstAttribute="bottomMargin" secondItem="t00-lW-8nW" secondAttribute="bottom" constant="38" id="eVU-D9-2AH"/>
                                                         <constraint firstItem="ALT-zM-em9" firstAttribute="leading" secondItem="A7V-yG-f1E" secondAttribute="trailing" constant="10" id="qKc-e5-r3z"/>
                                                         <constraint firstItem="A7V-yG-f1E" firstAttribute="top" secondItem="Mam-Re-3Pr" secondAttribute="top" constant="16" id="xbG-12-Afw"/>
                                                         <constraint firstItem="A7V-yG-f1E" firstAttribute="leading" secondItem="Mam-Re-3Pr" secondAttribute="leading" constant="10" id="xcu-Lw-nnn"/>
-                                                        <constraint firstItem="Nvk-VS-W87" firstAttribute="top" secondItem="Mam-Re-3Pr" secondAttribute="top" constant="45" id="yGw-os-l8C"/>
                                                         <constraint firstAttribute="bottom" secondItem="A7V-yG-f1E" secondAttribute="bottom" constant="17" id="ywu-bl-kSU"/>
                                                     </constraints>
                                                 </tableViewCellContentView>
@@ -8132,6 +8116,7 @@ printing and typesetting industry.</string>
                                                     <outlet property="adOnImage" destination="A7V-yG-f1E" id="2EL-Q5-ZNg"/>
                                                     <outlet property="addOnView" destination="t00-lW-8nW" id="YAH-8s-g6k"/>
                                                     <outlet property="buttonAdd" destination="V9i-8E-mJK" id="PAW-K5-TqD"/>
+                                                    <outlet property="labelPrice" destination="4lm-5z-SZL" id="hjz-jv-1h5"/>
                                                     <outlet property="titleLabel" destination="ALT-zM-em9" id="j20-lT-u4U"/>
                                                 </connections>
                                             </tableViewCell>
@@ -8142,7 +8127,7 @@ printing and typesetting industry.</string>
                                         </connections>
                                     </tableView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DOf-UM-e4m">
-                                        <rect key="frame" x="25" y="117" width="317" height="50"/>
+                                        <rect key="frame" x="25" y="586" width="317" height="50"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="kxS-Av-99n"/>
@@ -8192,7 +8177,6 @@ printing and typesetting industry.</string>
                         <viewLayoutGuide key="safeArea" id="Fc2-09-jXd"/>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.39918154760000002" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
-                            <constraint firstItem="YEd-Yi-Okg" firstAttribute="top" secondItem="Fc2-09-jXd" secondAttribute="top" constant="116" id="Adr-g9-eFJ"/>
                             <constraint firstItem="2bD-pa-Ml8" firstAttribute="top" secondItem="V0p-5P-yOT" secondAttribute="top" id="WXH-ms-QVk"/>
                             <constraint firstAttribute="bottom" secondItem="2bD-pa-Ml8" secondAttribute="bottom" id="YGb-Z1-DjI"/>
                             <constraint firstItem="YEd-Yi-Okg" firstAttribute="leading" secondItem="Fc2-09-jXd" secondAttribute="leading" constant="20" id="Z5Y-6e-mjh"/>
@@ -8814,7 +8798,6 @@ logout from this application.es</string>
         <image name="simage" width="402" height="198"/>
         <image name="splash" width="480" height="853.5"/>
         <image name="star" catalog="system" width="128" height="116"/>
-        <image name="star.fill" catalog="system" width="128" height="116"/>
         <image name="stopbtn" width="15" height="17"/>
         <image name="unselect" width="22" height="21"/>
         <image name="visa" width="35.5" height="40.5"/>

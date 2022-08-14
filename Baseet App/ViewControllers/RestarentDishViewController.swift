@@ -9,6 +9,8 @@ import UIKit
 
 class RestarentDishViewController: UIViewController {
     
+    @IBOutlet weak var ratingLabel: UILabel!
+    @IBOutlet weak var reatingStackView: UIStackView!
     @IBOutlet weak var logoImage: UIImageView!
     @IBOutlet weak var timingLabel: UILabel!
     @IBOutlet weak var restaurantName: UILabel!
@@ -114,12 +116,35 @@ class RestarentDishViewController: UIViewController {
     }
     
     func setupValues() {
+        let startTime = self.restarentDishViewControllerVM?.shopDetailsModel?.restaurant?.availableTimeStarts ?? ""
+        let closingTime = self.restarentDishViewControllerVM?.shopDetailsModel?.restaurant?.availableTimeEnds ?? ""
+        
+        let dateAsString = closingTime
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "HH:mm"
+
+        let date = dateFormatter.date(from: dateAsString)
+        dateFormatter.dateFormat = "h:mm a"
+        let formattedClosingDate = dateFormatter.string(from: date!)
+        
+        self.timingLabel.text = "Timing \(startTime) AM to \(formattedClosingDate)"
         self.logoImage.loadImageUsingURL(self.restarentDishViewControllerVM?.shopDetailsModel?.restaurant?.applogo ?? "")
         self.restaurantName.text = self.restarentDishViewControllerVM?.shopDetailsModel?.restaurant?.name
         self.restaurantAddress.text = self.restarentDishViewControllerVM?.shopDetailsModel?.restaurant?.address
         self.buttonGoToCart.isHidden  = true
+        let ratingCount = self.restarentDishViewControllerVM?.shopDetailsModel?.restaurant?.avgRating ?? 0
+        if ratingCount > 0  {
+            self.ratingLabel.text = "Rating"
+            for i in 0..<ratingCount {
+            let imageStar = UIImageView()
+            imageStar.image = UIImage(systemName: "star.fill")
+            imageStar.tintColor = UIColor(red: 255/255, green: 215/255, blue: 0/255, alpha: 1)
+            self.reatingStackView.addArrangedSubview(imageStar)
+        }
+        } else {
+            self.ratingLabel.text = ""
+        }
     }
-    
 }
 
 extension RestarentDishViewController:UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {

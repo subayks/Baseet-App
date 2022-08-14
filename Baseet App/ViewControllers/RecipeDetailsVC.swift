@@ -9,6 +9,8 @@ import UIKit
 
 class RecipeDetailsVC: UIViewController {
 
+    @IBOutlet weak var quantityOverView: UIView!
+    @IBOutlet weak var pricingLabel: UILabel!
     @IBOutlet weak var labelCount: UILabel!
     @IBOutlet weak var addOnLbl: UILabel!
     @IBOutlet weak var productImage: UIImageView!
@@ -66,10 +68,15 @@ class RecipeDetailsVC: UIViewController {
     }
     
     func setupValues() {
+        self.quantityOverView.layer.borderWidth = 1
+        
+        self.quantityOverView.layer.borderColor = UIColor(red: 172/255, green: 37/255, blue: 23/255, alpha: 1).cgColor
+    
         self.productImage.loadImageUsingURL(self.recipeDetailsVCVM?.proDuctDetailsModel?.appimage ?? "")
         self.productName.text = self.recipeDetailsVCVM?.proDuctDetailsModel?.name ?? ""
         self.discriptionLabel.text = self.recipeDetailsVCVM?.proDuctDetailsModel?.description ?? ""
         self.labelCount.text = "\(self.recipeDetailsVCVM?.proDuctDetailsModel?.itemQuantity ?? 0)"
         self.itemCount = self.recipeDetailsVCVM?.proDuctDetailsModel?.itemQuantity ?? 0
+        self.pricingLabel.text = "QR \(self.recipeDetailsVCVM?.proDuctDetailsModel?.price ?? 0)"
     }
 }

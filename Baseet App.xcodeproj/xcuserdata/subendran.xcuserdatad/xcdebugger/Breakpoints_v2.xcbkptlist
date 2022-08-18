@@ -7,16 +7,32 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "858360C6-64A0-4871-A308-000A85AEF61F"
+            uuid = "E2849C1A-8523-4A47-9EEE-6CED2A0DE24C"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Baseet App/ViewControllers/ResDishCollectionViewCellTwo.swift"
+            filePath = "Baseet App/Api Service/HomeApiServices.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "41"
-            endingLineNumber = "41"
-            landmarkName = "setupValues()"
+            startingLineNumber = "27"
+            endingLineNumber = "27"
+            landmarkName = "placeOrderApi(finalURL:withParameters:completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "3004A8FF-95EF-47B6-B298-7C8642A4E9B1"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Baseet App/ViewModel/LocationDeliveryVCVM.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "53"
+            endingLineNumber = "53"
+            landmarkName = "getCartParam()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

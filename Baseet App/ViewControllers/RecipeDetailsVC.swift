@@ -63,7 +63,7 @@ class RecipeDetailsVC: UIViewController {
     }
     
     @IBAction func addToBasketBtn(_ sender: Any) {
-        self.itemAdded?(itemCount, self.recipeDetailsVCVM?.index ?? 0, self.recipeDetailsVCVM?.proDuctDetailsModel?.addOns ?? [AddOns()])
+        self.itemAdded?(itemCount, self.recipeDetailsVCVM?.index ?? 0, self.recipeDetailsVCVM?.setupAdons() ?? [AddOns()])
         self.dismiss(animated: true,completion: nil)
     }
     

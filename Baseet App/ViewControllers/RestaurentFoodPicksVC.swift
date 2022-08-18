@@ -51,6 +51,13 @@ class RestaurentFoodPicksVC: UIViewController {
             }
         }
         
+        self.restaurentFoodPicksVCVM?.reloadTableViewClosure = { [weak self] in
+            DispatchQueue.main.async {
+                guard let self = self else {return}
+                self.restFoodPick.reloadData()
+            }
+        }
+        
     }
     
     func setupValues() {
@@ -72,12 +79,14 @@ class RestaurentFoodPicksVC: UIViewController {
     }
     
     @objc func actionAddMore() {
+        self.dismiss(animated: true,completion: nil)
     }
     
     @objc func bucketButtonClicked() {
         let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
         let vc = storyboard.instantiateViewController(identifier: "LocationDeliveryVC") as! LocationDeliveryVC
         vc.modalTransitionStyle  = .crossDissolve
+        vc.locationDeliveryVCVM = self.restaurentFoodPicksVCVM?.getLocationDeliveryVCVM()
         //vc.modalPresentationStyle = .fullScreen
         self.present(vc, animated: true, completion: nil)
     }
@@ -96,7 +105,7 @@ extension RestaurentFoodPicksVC:UITableViewDelegate,UITableViewDataSource
         cell.buttonAdd.tag = indexPath.row
         cell.itemAdded  = { (itemCount, index) in
             DispatchQueue.main.async {
-                self.restaurentFoodPicksVCVM?.updateValues(itemCount: itemCount, index: index)
+                self.restaurentFoodPicksVCVM?.updateCartCall(itemCount: itemCount, index: index)
             }
         }
         return cell
@@ -107,11 +116,14 @@ extension RestaurentFoodPicksVC:UITableViewDelegate,UITableViewDataSource
         headerView.goToBasket.addTarget(self, action:#selector(self.bucketButtonClicked), for: .touchUpInside)
         
         headerView.addMoreItem.addTarget(self, action:#selector(self.actionAddMore), for: .touchUpInside)
+        headerView.itemTotalValue.text = "QR \(self.restaurentFoodPicksVCVM?.priceCalculation() ?? 0)"
+        headerView.taxValue.text = "QR \(self.restaurentFoodPicksVCVM?.taxCalculation() ?? 0)"
+        headerView.grandTotalValue.text = self.restaurentFoodPicksVCVM?.grandTotal()
 
         return headerView
     }
 
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-    return 343
+    return 383
     }
 }

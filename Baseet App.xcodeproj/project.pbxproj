@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		091E147528AAA4140011CCD1 /* AddToCartModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 091E147428AAA4140011CCD1 /* AddToCartModel.swift */; };
+		091E147728AAA5830011CCD1 /* UpdateCartModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 091E147628AAA5830011CCD1 /* UpdateCartModel.swift */; };
 		09266096289AD488003F50DB /* CategoryListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09266095289AD488003F50DB /* CategoryListModel.swift */; };
 		09266098289ADB3F003F50DB /* HomeCollectionViewCellVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09266097289ADB3F003F50DB /* HomeCollectionViewCellVM.swift */; };
 		0926609A289AE04E003F50DB /* ShopDetailsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09266099289AE04E003F50DB /* ShopDetailsModel.swift */; };
@@ -15,6 +17,8 @@
 		094AA39C289C45CC0032D4A5 /* AllRestaurentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 094AA39B289C45CC0032D4A5 /* AllRestaurentModel.swift */; };
 		094CCCC128A2BD4F0043EA18 /* RestaurentFoodPicksVCVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 094CCCC028A2BD4F0043EA18 /* RestaurentFoodPicksVCVM.swift */; };
 		094CCCC328A2C6500043EA18 /* ResDishCollectionViewCellTwoVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 094CCCC228A2C6500043EA18 /* ResDishCollectionViewCellTwoVM.swift */; };
+		0978BFCB28ACAB8A00298CD9 /* CartViewControllerVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0978BFCA28ACAB8A00298CD9 /* CartViewControllerVM.swift */; };
+		0978BFCD28ACABEE00298CD9 /* CartTableViewCellVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0978BFCC28ACABEE00298CD9 /* CartTableViewCellVM.swift */; };
 		09832AE02898366D00B99EAB /* HTTPClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09832ADD2898366D00B99EAB /* HTTPClass.swift */; };
 		09832AE12898366D00B99EAB /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09832ADE2898366D00B99EAB /* Reachability.swift */; };
 		09832AE22898366D00B99EAB /* NetworkAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09832ADF2898366D00B99EAB /* NetworkAdapter.swift */; };
@@ -29,6 +33,7 @@
 		0995BFC028A57C7B004F0EC5 /* RestFoodPickTableViewCellVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0995BFBF28A57C7B004F0EC5 /* RestFoodPickTableViewCellVM.swift */; };
 		0995BFC428A587EE004F0EC5 /* BasketFooterViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0995BFC328A587EE004F0EC5 /* BasketFooterViewCell.swift */; };
 		0995BFC628A594F3004F0EC5 /* BasketFooterViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0995BFC528A594F2004F0EC5 /* BasketFooterViewCell.xib */; };
+		09B4ADF428AEC95400744F9F /* LocationDeliveryVCVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09B4ADF328AEC95400744F9F /* LocationDeliveryVCVM.swift */; };
 		8807015D288FD2B8001B8907 /* MapkitViewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8807015C288FD2B8001B8907 /* MapkitViewVC.swift */; };
 		8807015F288FD4E7001B8907 /* DeliveredSucessViewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8807015E288FD4E7001B8907 /* DeliveredSucessViewVC.swift */; };
 		88149F88287ED49B00E57AC7 /* MyPlacesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88149F87287ED49B00E57AC7 /* MyPlacesViewController.swift */; };
@@ -116,6 +121,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		091E147428AAA4140011CCD1 /* AddToCartModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddToCartModel.swift; sourceTree = "<group>"; };
+		091E147628AAA5830011CCD1 /* UpdateCartModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateCartModel.swift; sourceTree = "<group>"; };
 		09266095289AD488003F50DB /* CategoryListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryListModel.swift; sourceTree = "<group>"; };
 		09266097289ADB3F003F50DB /* HomeCollectionViewCellVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCollectionViewCellVM.swift; sourceTree = "<group>"; };
 		09266099289AE04E003F50DB /* ShopDetailsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopDetailsModel.swift; sourceTree = "<group>"; };
@@ -124,6 +131,8 @@
 		094AA39B289C45CC0032D4A5 /* AllRestaurentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllRestaurentModel.swift; sourceTree = "<group>"; };
 		094CCCC028A2BD4F0043EA18 /* RestaurentFoodPicksVCVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurentFoodPicksVCVM.swift; sourceTree = "<group>"; };
 		094CCCC228A2C6500043EA18 /* ResDishCollectionViewCellTwoVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResDishCollectionViewCellTwoVM.swift; sourceTree = "<group>"; };
+		0978BFCA28ACAB8A00298CD9 /* CartViewControllerVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartViewControllerVM.swift; sourceTree = "<group>"; };
+		0978BFCC28ACABEE00298CD9 /* CartTableViewCellVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartTableViewCellVM.swift; sourceTree = "<group>"; };
 		09832ADD2898366D00B99EAB /* HTTPClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPClass.swift; sourceTree = "<group>"; };
 		09832ADE2898366D00B99EAB /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		09832ADF2898366D00B99EAB /* NetworkAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkAdapter.swift; sourceTree = "<group>"; };
@@ -138,6 +147,7 @@
 		0995BFBF28A57C7B004F0EC5 /* RestFoodPickTableViewCellVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestFoodPickTableViewCellVM.swift; sourceTree = "<group>"; };
 		0995BFC328A587EE004F0EC5 /* BasketFooterViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketFooterViewCell.swift; sourceTree = "<group>"; };
 		0995BFC528A594F2004F0EC5 /* BasketFooterViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BasketFooterViewCell.xib; sourceTree = "<group>"; };
+		09B4ADF328AEC95400744F9F /* LocationDeliveryVCVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDeliveryVCVM.swift; sourceTree = "<group>"; };
 		8807015C288FD2B8001B8907 /* MapkitViewVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapkitViewVC.swift; sourceTree = "<group>"; };
 		8807015E288FD4E7001B8907 /* DeliveredSucessViewVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveredSucessViewVC.swift; sourceTree = "<group>"; };
 		88149F87287ED49B00E57AC7 /* MyPlacesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPlacesViewController.swift; sourceTree = "<group>"; };
@@ -262,6 +272,8 @@
 				09266099289AE04E003F50DB /* ShopDetailsModel.swift */,
 				094AA399289C45740032D4A5 /* LatestRestaurentModel.swift */,
 				094AA39B289C45CC0032D4A5 /* AllRestaurentModel.swift */,
+				091E147428AAA4140011CCD1 /* AddToCartModel.swift */,
+				091E147628AAA5830011CCD1 /* UpdateCartModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -279,6 +291,9 @@
 				094CCCC028A2BD4F0043EA18 /* RestaurentFoodPicksVCVM.swift */,
 				094CCCC228A2C6500043EA18 /* ResDishCollectionViewCellTwoVM.swift */,
 				0995BFBF28A57C7B004F0EC5 /* RestFoodPickTableViewCellVM.swift */,
+				0978BFCA28ACAB8A00298CD9 /* CartViewControllerVM.swift */,
+				0978BFCC28ACABEE00298CD9 /* CartTableViewCellVM.swift */,
+				09B4ADF328AEC95400744F9F /* LocationDeliveryVCVM.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -589,6 +604,7 @@
 				88FDAB292881B55E006F06D0 /* MyPastOrderVC.swift in Sources */,
 				885B5DFB287C5DE1006A7044 /* CartTableViewCell.swift in Sources */,
 				09832AE5289837EF00B99EAB /* HomeApiServices.swift in Sources */,
+				091E147728AAA5830011CCD1 /* UpdateCartModel.swift in Sources */,
 				88FDAB2B2881B58F006F06D0 /* MyOrderVC.swift in Sources */,
 				8807015D288FD2B8001B8907 /* MapkitViewVC.swift in Sources */,
 				883ED5962877E9EA00F06F22 /* OtpViewController.swift in Sources */,
@@ -605,6 +621,7 @@
 				883901A7287DA8A100C85BE2 /* AddCardViewController.swift in Sources */,
 				883C8A98287DF4210077A8F5 /* SearchCollectionViewCell.swift in Sources */,
 				885A7D7B288981D300801D50 /* UISupportFile.swift in Sources */,
+				0978BFCB28ACAB8A00298CD9 /* CartViewControllerVM.swift in Sources */,
 				883ED5A82878946800F06F22 /* CartViewController.swift in Sources */,
 				883C8A9A287DFA7B0077A8F5 /* PopularResCollectionViewCell.swift in Sources */,
 				88C44F432877309F00D31258 /* LoginViewController.swift in Sources */,
@@ -621,6 +638,7 @@
 				88C44F412877309F00D31258 /* SceneDelegate.swift in Sources */,
 				0995BFC028A57C7B004F0EC5 /* RestFoodPickTableViewCellVM.swift in Sources */,
 				88FDAB232881882C006F06D0 /* ResDishCollectionViewCell.swift in Sources */,
+				091E147528AAA4140011CCD1 /* AddToCartModel.swift in Sources */,
 				887487F828843383004F8C3B /* AddNoteVC.swift in Sources */,
 				88FDAB33288304F3006F06D0 /* OrderDetailsVC.swift in Sources */,
 				883ED5AA2878948700F06F22 /* ProfileViewController.swift in Sources */,
@@ -632,10 +650,12 @@
 				09832AF02898523500B99EAB /* HomeCollectionViewDownCellVM.swift in Sources */,
 				88FDAB25288189BA006F06D0 /* ResDishCollectionViewCellTwo.swift in Sources */,
 				8859B5A1288BE8B000555C05 /* HomeCollectionViewDownCell.swift in Sources */,
+				0978BFCD28ACABEE00298CD9 /* CartTableViewCellVM.swift in Sources */,
 				8833E134288437CE001B704B /* CancelOrderVC.swift in Sources */,
 				883ED59A287814A600F06F22 /* HomeViewController.swift in Sources */,
 				883ED5A42878942A00F06F22 /* OffersViewController.swift in Sources */,
 				88149F8C287EFC8000E57AC7 /* MyFavoritesViewController.swift in Sources */,
+				09B4ADF428AEC95400744F9F /* LocationDeliveryVCVM.swift in Sources */,
 				883901A3287D64A200C85BE2 /* NotificationsViewController.swift in Sources */,
 				09832AE828983C9D00B99EAB /* ShopListModel.swift in Sources */,
 				885AB290288ACFDD0041AE74 /* LocationAccessVC.swift in Sources */,

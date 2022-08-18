@@ -13,6 +13,11 @@ class CartTableViewCell: UITableViewCell {
     @IBOutlet weak var cartLbl: UILabel!
     @IBOutlet weak var percentLbl: UILabel!
     @IBOutlet weak var moneyLbl: UILabel!
+    var CartTableViewCellVM: CartTableViewCellVM? {
+        didSet {
+            self.setupValues()
+        }
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -24,6 +29,10 @@ class CartTableViewCell: UITableViewCell {
 
     }
     
-    
+    func setupValues() {
+        self.cartImage.loadImageUsingURL(self.CartTableViewCellVM?.foodItems?.appimage)
+        self.cartLbl.text = self.CartTableViewCellVM?.foodItems?.name
+        self.moneyLbl.text = "\(self.CartTableViewCellVM?.foodItems?.price ?? 0)"
+    }
 
 }

@@ -8,6 +8,9 @@
 import UIKit
 
 class RestFoodPickTableViewCell: UITableViewCell {
+    
+    @IBOutlet weak var countOverView: UIView!
+    
     @IBOutlet weak var buttonAdd: UIButton!
     @IBOutlet weak var itemCount: UILabel!
     @IBOutlet weak var qrCodeLabel: UILabel!
@@ -33,23 +36,26 @@ class RestFoodPickTableViewCell: UITableViewCell {
     }
     
     func setupValues() {
+        self.countOverView.layer.cornerRadius = 5
+        self.countOverView.layer.borderWidth = 1
+        self.countOverView.layer.borderColor = UIColor(red: 172/255, green: 37/255, blue: 23/255, alpha: 1).cgColor
         self.itemName.text = self.RestFoodPickTableViewCellVM?.foodItems?.name
         self.itemCount.text = "\(self.RestFoodPickTableViewCellVM?.foodItems?.itemQuantity ?? 0)"
         self.itemCountValue = self.RestFoodPickTableViewCellVM?.foodItems?.itemQuantity ?? 0
-        self.qrCodeLabel.text = "Empty"
+        self.qrCodeLabel.text = "QR \(self.RestFoodPickTableViewCellVM?.foodItems?.price ?? 0)"
         self.itemImage.loadImageUsingURL(self.RestFoodPickTableViewCellVM?.foodItems?.appimage)
     }
 
     @IBAction func reduceQuantity(_ sender: Any) {
         if self.itemCountValue > 1 {
             self.itemCountValue = self.itemCountValue - 1
-            self.itemCount.text = "\(self.itemCountValue)"
+        //    self.itemCount.text = "\(self.itemCountValue)"
         }
     }
     
     @IBAction func addQuantity(_ sender: Any) {
         self.itemCountValue = self.itemCountValue  + 1
-        self.itemCount.text = "\(self.itemCountValue)"
+      //  self.itemCount.text = "\(self.itemCountValue)"
         self.itemAdded?(self.itemCountValue, buttonAdd.tag)
     }
     

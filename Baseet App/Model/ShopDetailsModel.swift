@@ -48,7 +48,8 @@ struct ShopDetailsModel: Codable {
 }
 
 struct FoodItems: Codable {
-  var itemQuantity: Int = 0
+    var cartId: Int? = nil
+  var itemQuantity: Int? = nil
   var id                    : Int?             = nil
   var name                  : String?          = nil
   var appimage              : String?          = nil
@@ -114,7 +115,8 @@ struct FoodItems: Codable {
     case restaurantOpeningTime = "restaurant_opening_time"
     case restaurantClosingTime = "restaurant_closing_time"
     case scheduleOrder         = "schedule_order"
-  
+  case itemQuantity = "itemQuantity"
+      case cartId = "cartId"
   }
 
   init(from decoder: Decoder) throws {
@@ -151,6 +153,9 @@ struct FoodItems: Codable {
     restaurantOpeningTime = try values.decodeIfPresent(String.self          , forKey: .restaurantOpeningTime )
     restaurantClosingTime = try values.decodeIfPresent(String.self          , forKey: .restaurantClosingTime )
     scheduleOrder         = try values.decodeIfPresent(Bool.self            , forKey: .scheduleOrder         )
+    itemQuantity = try values.decodeIfPresent(Int.self          , forKey: .itemQuantity )
+      cartId = try values.decodeIfPresent(Int.self          , forKey: .cartId )
+
  
   }
 
@@ -313,7 +318,7 @@ struct Restaurant: Codable {
 }
 
 struct AddOns: Codable {
-  var itemQuantity: Int = 0
+  var itemQuantity: Int? = nil
   var id           : Int?    = nil
   var name         : String? = nil
   var price        : Int?    = nil
@@ -331,7 +336,7 @@ struct AddOns: Codable {
     case updatedAt    = "updated_at"
     case restaurantId = "restaurant_id"
     case status       = "status"
-  
+    case itemQuantity = "itemQuantity"
   }
 
   init(from decoder: Decoder) throws {
@@ -344,7 +349,7 @@ struct AddOns: Codable {
     updatedAt    = try values.decodeIfPresent(String.self , forKey: .updatedAt    )
     restaurantId = try values.decodeIfPresent(Int.self    , forKey: .restaurantId )
     status       = try values.decodeIfPresent(Int.self    , forKey: .status       )
- 
+    itemQuantity       = try values.decodeIfPresent(Int.self    , forKey: .itemQuantity )
   }
 
   init() {

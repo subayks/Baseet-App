@@ -28,7 +28,7 @@ class ResDishCollectionViewCellTwo: UICollectionViewCell {
     func setupValues() {
         self.itemImage.loadImageUsingURL(self.resDishCollectionViewCellTwoVM?.foodItems?.appimage)
         self.itemName.text = self.resDishCollectionViewCellTwoVM?.foodItems?.name
-        if self.resDishCollectionViewCellTwoVM?.foodItems?.itemQuantity == 0 {
+        if self.resDishCollectionViewCellTwoVM?.foodItems?.itemQuantity == 0 ||  self.resDishCollectionViewCellTwoVM?.foodItems?.itemQuantity == nil {
             self.buttonAdd.isHidden = false
             self.countView.isHidden = true
         } else {
@@ -52,7 +52,7 @@ class ResDishCollectionViewCellTwo: UICollectionViewCell {
     
     @IBAction func actionIncrease(_ sender: Any) {
         self.itemCount = self.itemCount  + 1
-        self.itemCountLabel.text = "\(self.itemCount)"
+    //    self.itemCountLabel.text = "\(self.itemCount)"
         self.itemAdded?(self.itemCount, buttonAdd.tag)
     }
     
@@ -63,7 +63,7 @@ class ResDishCollectionViewCellTwo: UICollectionViewCell {
             self.countView.isHidden = true
         } else {
             self.itemCount = self.itemCount - 1
-            self.itemCountLabel.text = "\(self.itemCount)"
+        //    self.itemCountLabel.text = "\(self.itemCount)"
         }
         self.itemAdded?(self.itemCount, buttonAdd.tag)
     }

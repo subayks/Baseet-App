@@ -66,7 +66,8 @@ class RestarentDishViewController: UIViewController {
              //   vc.recipeDetailsVCVM = self.restarentDishViewControllerVM?.getRecipeDetailsVCVM(index: <#Int#>)
                 vc.itemAdded  = { (itemCount, index, addOns) in
                     DispatchQueue.main.async {
-                        self.restarentDishViewControllerVM?.updateValues(itemCount: itemCount, index: index, addOns: addOns)
+                //        self.restarentDishViewControllerVM?.updateValues(itemCount: itemCount, index: index, addOns: addOns)
+                        self.restarentDishViewControllerVM?.decideFlow(itemCount: itemCount, index: index, addOns: addOns)
                     }
                 }
                 vc.modalTransitionStyle = .coverVertical
@@ -108,6 +109,9 @@ class RestarentDishViewController: UIViewController {
     }
     
     @IBAction func actionGoToBasket(_ sender: Any) {
+//        self.restarentDishViewControllerVM?.priceCalculation()
+//        print(self.restarentDishViewControllerVM?.priceCalculation())
+//        return
         let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
         let vc = storyboard.instantiateViewController(identifier: "RestaurentFoodPicksVC") as! RestaurentFoodPicksVC
         vc.restaurentFoodPicksVCVM = self.restarentDishViewControllerVM?.getRestaurentFoodPicksVCVM()
@@ -167,7 +171,8 @@ extension RestarentDishViewController:UICollectionViewDelegate,UICollectionViewD
             cellC.buttonAdd.tag = indexPath.row
             cellC.itemAdded  = { (itemCount, index) in
                 DispatchQueue.main.async {
-                    self.restarentDishViewControllerVM?.updateValues(itemCount: itemCount, index: index)
+                   // self.restarentDishViewControllerVM?.updateValues(itemCount: itemCount, index: index)
+                  self.restarentDishViewControllerVM?.decideFlow(itemCount: itemCount, index: index)
                 }
             }
             return cellC
@@ -207,7 +212,8 @@ extension RestarentDishViewController:UICollectionViewDelegate,UICollectionViewD
         vc.recipeDetailsVCVM = self.restarentDishViewControllerVM?.getRecipeDetailsVCVM(index: indexPath.row)
         vc.itemAdded  = { (itemCount, index, addOns) in
             DispatchQueue.main.async {
-                self.restarentDishViewControllerVM?.updateValues(itemCount: itemCount, index: index, addOns: addOns)
+            //    self.restarentDishViewControllerVM?.updateValues(itemCount: itemCount, index: index, addOns: addOns)
+                self.restarentDishViewControllerVM?.decideFlow(itemCount: itemCount, index: index, addOns: addOns)
             }
         }
         vc.modalTransitionStyle = .coverVertical

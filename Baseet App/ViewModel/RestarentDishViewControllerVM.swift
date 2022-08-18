@@ -29,6 +29,8 @@ class RestarentDishViewControllerVM {
     var proDuctDetailsModel: FoodItems?
     var navigateToDetailsClosure:(()->())?
     var selectedIndex: Int?
+    var addToCartModel: AddToCartModel?
+    var updateCartModel: UpdateCartModel?
     var limit = 5
     var foodItems: [FoodItems]? {
         didSet {
@@ -47,6 +49,7 @@ class RestarentDishViewControllerVM {
     
     func setUpItemsList() {
         self.foodItems = self.shopDetailsModel?.products
+        UserDefaults.standard.set(self.shopDetailsModel?.restaurant?.id, forKey: "RestaurentId")
     }
     
 //    func setUpItemsList() {
@@ -55,7 +58,7 @@ class RestarentDishViewControllerVM {
     
     func isItemAvailable() ->Bool {
         if let items = self.foodItems {
-            let itemAvailable = items.filter{$0.itemQuantity > 0}
+            let itemAvailable = items.filter{$0.itemQuantity ?? 0 > 0}
             if itemAvailable.count == 0 {
                 return false
             } else {
@@ -65,15 +68,19 @@ class RestarentDishViewControllerVM {
         return false
     }
     
-    func updateValues(itemCount: Int, index: Int, addOns: [AddOns]? = nil) {
+    func updateValues(itemCount: Int, index: Int, addOns: [AddOns]? = nil, cartId: Int? = nil) {
         var item = self.foodItems?[index]
         item?.itemQuantity = itemCount
-        if addOns != nil {
+        if cartId != nil {
+        item?.cartId = cartId
+        }
+        if addOns != nil && addOns?.count != 0{
         item?.addOns = addOns
         }
         self.foodItems?.remove(at: index)
         self.foodItems?.insert(item ?? FoodItems(), at: index)
         self.reloadRecipieCollectionView?()
+        self.setupValuesInUserDefaults()
     }
     
     func getRecipeDetailsVCVM(index: Int) ->RecipeDetailsVCVM {
@@ -127,7 +134,7 @@ class RestarentDishViewControllerVM {
     }
     
     func getSelectedFood() ->[FoodItems] {
-        let selectedItems = self.foodItems?.filter{$0.itemQuantity > 0} ?? [FoodItems()]
+        let selectedItems = self.foodItems?.filter{$0.itemQuantity ?? 0 > 0} ?? [FoodItems()]
         return selectedItems
     }
     
@@ -140,4 +147,165 @@ class RestarentDishViewControllerVM {
             self.makeShopDetailsCall(limit: limit+10, id: self.shopDetailsModel?.restaurant?.id ?? 0)
         }
     }
+    
+    func setupValuesInUserDefaults() {
+        let foodData = self.foodItems?.filter{$0.itemQuantity ?? 0 > 0} ?? [FoodItems()]
+        if foodData.count > 0 {
+        do {
+            // Create JSON Encoder
+            let encoder = JSONEncoder()
+
+            // Encode Note
+            let data = try encoder.encode(foodData)
+
+            // Write/Set Data
+            UserDefaults.standard.set(data, forKey: "CartFoodData")
+
+        } catch {
+            print("Unable to Encode Note (\(error))")
+        }
+        }
+    }
+    
+    func getCartFoodData() ->[FoodItems] {
+        if let data = UserDefaults.standard.data(forKey: "CartFoodData") {
+            do {
+                // Create JSON Decoder
+                let decoder = JSONDecoder()
+                // Decode Note
+                let cartInfo = try decoder.decode([FoodItems].self, from: data)
+                return cartInfo
+            } catch {
+                print("Unable to Decode Note (\(error))")
+            }
+        }
+        return [FoodItems]()
+    }
+    
+    func decideFlow(itemCount: Int, index: Int, addOns: [AddOns]? = nil) {
+        if self.foodItems?[index].cartId != nil {
+            self.updateCartCall(itemCount: itemCount, index: index, addOns: addOns)
+        } else {
+            if itemCount > 0 {
+            self.createCartCall(itemCount: itemCount, index: index, addOns: addOns)
+            }
+        }
+    }
+    
+    func createCartCall(itemCount: Int, index: Int, addOns: [AddOns]? = nil) {
+        if Reachability.isConnectedToNetwork() {
+            self.showLoadingIndicatorClosure?()
+            let queryParam = self.getCartParam(itemCount: itemCount, index: index, addOns: addOns)
+            self.apiServices?.addToCartApi(finalURL: "\(Constants.Common.finalURL)/products/cart", withParameters: queryParam, completion:  { (status: Bool? , errorCode: String?,result: AnyObject?, errorMessage: String?) -> Void in
+            DispatchQueue.main.async {
+                self.hideLoadingIndicatorClosure?()
+                if status == true {
+                    self.addToCartModel = result as? AddToCartModel
+                    self.updateValues(itemCount: itemCount, index: index, addOns: addOns,cartId: self.addToCartModel?.data?[0].id ?? 0)
+                } else {
+                    self.alertClosure?(errorMessage ?? "Some Technical problem")
+                }
+            }
+        })
+        } else {
+            self.alertClosure?("No Internet Availabe")
+        }
+    }
+    
+    func updateCartCall(itemCount: Int, index: Int, addOns: [AddOns]? = nil) {
+        if Reachability.isConnectedToNetwork() {
+            self.showLoadingIndicatorClosure?()
+            let queryParam = self.getCartParam(itemCount: itemCount, index: index, addOns: addOns)
+            self.apiServices?.updateCartApi(finalURL: "\(Constants.Common.finalURL)/products/update_cart", withParameters: queryParam, completion:  { (status: Bool? , errorCode: String?,result: AnyObject?, errorMessage: String?) -> Void in
+            DispatchQueue.main.async {
+                self.hideLoadingIndicatorClosure?()
+                if status == true {
+                    self.updateCartModel = result as? UpdateCartModel
+                    self.updateValues(itemCount: itemCount, index: index, addOns: addOns)
+                } else {
+                   self.alertClosure?("Some technical problem")
+                }
+            }
+        })
+        } else {
+            self.alertClosure?("No Internet Availabe")
+        }
+    }
+    
+    func getCartParam(itemCount: Int, index: Int, addOns: [AddOns]? = nil) -> String {
+        let item = self.foodItems?[index]
+        var jsonToReturn: NSDictionary = NSDictionary()
+        var addOnsArray = [NSDictionary]()
+
+        if let addOns = addOns, addOns.count > 0 {
+            for item in (addOns) {
+                addOnsArray.append(["addonname": item.name ?? "", "addonprice": item.price ?? "", "addonquantity": item.itemQuantity ?? ""])
+            }
+        }
+
+        if item?.cartId != nil {
+            jsonToReturn = ["food_id": "\(item?.id ?? 0)", "food_qty": "\(itemCount)", "addon": "\(addOnsArray)", "cart_id": "\(item?.cartId ?? 0)"]
+
+            } else {
+                jsonToReturn =  ["food_id": "\(item?.id ?? 0)", "food_qty": "\(itemCount)", "addon": "\(addOnsArray)", "user_id": "\(2)"]
+            }
+        return self.convertDictionaryToJsonString(dict: jsonToReturn)!
+
+    }
+
+    func convertDictionaryToJsonString(dict: NSDictionary) -> String? {
+        do {
+            let jsonData = try JSONSerialization.data(withJSONObject:dict, options:[])
+            let jsonDataString = String(data: jsonData, encoding: String.Encoding.utf8)!
+            return jsonDataString
+        } catch {
+            print("JSON serialization failed:  \(error)")
+        }
+        return nil
+    }
+    
+    func getCartCall() {
+        if Reachability.isConnectedToNetwork() {
+            let headers = [
+                "Authorization": "\(Constants.Common.authKEy)",
+                "cart_id": "\(self.addToCartModel?.data?[0].userId ?? "")"
+                ]
+            self.showLoadingIndicatorClosure?()
+            let id = self.addToCartModel?.data?[0].id
+            self.apiServices?.getCartApi(finalURL: "\(Constants.Common.finalURL)/products/get_cart?user_id=\(id ?? 0)", httpHeaders: headers, completion: { (status: Bool? , errorCode: String?,result: AnyObject?, errorMessage: String?) -> Void in
+            
+            DispatchQueue.main.async {
+                self.hideLoadingIndicatorClosure?()
+                if status == true {
+                    self.updateCartModel = result as? UpdateCartModel
+                    self.reloadRecipieCollectionView?()
+                } else {
+                   self.alertClosure?("Some technical problem")
+                }
+            }
+        })
+        } else {
+            self.alertClosure?("No Internet Availabe")
+        }
+    }
+    
+    func priceCalculation() ->Int {
+        var priceArray = [Int]()
+        let selectedFoodItems = self.getSelectedFood()
+        for item in selectedFoodItems {
+            priceArray.append((item.price ?? 0) * (item.itemQuantity ?? 0))
+            if let adOnItem = item.addOns, adOnItem.count > 0 {
+            for adOn in adOnItem {
+                if adOn.itemQuantity != nil && adOn.itemQuantity ?? 0 > 0 {
+                    priceArray.append((adOn.price ?? 0) * (adOn.itemQuantity ?? 0))
+                }
+            }
+            }
+        }
+        return priceArray.sum()
+    }
 }
+extension Sequence where Element: AdditiveArithmetic {
+    func sum() -> Element { reduce(.zero, +) }
+}
+

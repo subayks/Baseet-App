@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 class RecipeDetailsVCVM {
     var proDuctDetailsModel: FoodItems?
@@ -24,5 +25,8 @@ class RecipeDetailsVCVM {
         self.proDuctDetailsModel?.addOns = addOns
     }
     
-    
+    func setupAdons() ->[AddOns]{
+        let adOns = self.proDuctDetailsModel?.addOns?.filter{$0.itemQuantity ?? 0 > 0}
+        return adOns ?? [AddOns()]
+    }
 }

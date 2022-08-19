@@ -14,7 +14,7 @@ protocol HomeApiServicesProtocol {
     func addToCartApi(finalURL: String, withParameters: String, completion: @escaping(_ status: Bool?, _ code: String?, _ response: AnyObject?, _ error: String?)-> Void)
     func updateCartApi(finalURL: String, withParameters: String, completion: @escaping(_ status: Bool?, _ code: String?, _ response: AnyObject?, _ error: String?)-> Void)
     func deleteCartApi(finalURL: String, withParameters: String, completion: @escaping(_ status: Bool?, _ code: String?, _ response: AnyObject?, _ error: String?)-> Void)
-    func getCartApi(finalURL: String, httpHeaders: [String: String], completion: @escaping(_ status: Bool?, _ code: String?, _ response: AnyObject?, _ error: String?)-> Void)
+    func getCartApi(finalURL: String, completion: @escaping(_ status: Bool?, _ code: String?, _ response: AnyObject?, _ error: String?)-> Void)
     func placeOrderApi(finalURL: String, withParameters: String, completion: @escaping(_ status: Bool?, _ code: String?, _ response: AnyObject?, _ error: String?)-> Void)
 }
 
@@ -58,9 +58,9 @@ class HomeApiServices: HomeApiServicesProtocol {
     }
     
     
-    func getCartApi(finalURL: String, httpHeaders:  [String: String],  completion: @escaping(_ status: Bool?, _ code: String?, _ response: AnyObject?, _ error: String?)-> Void) {
+    func getCartApi(finalURL: String,  completion: @escaping(_ status: Bool?, _ code: String?, _ response: AnyObject?, _ error: String?)-> Void) {
        
-        NetworkAdapter.clientNetworkRequestCodable(withBaseURL: finalURL, withParameters:   "", withHttpMethod: "GET", withContentType: "Application/json", withHeaders: httpHeaders, completionHandler: { (result: Data?, showPopUp: Bool?, error: String?, errorCode: String?)  -> Void in
+        NetworkAdapter.clientNetworkRequestCodable(withBaseURL: finalURL, withParameters:   "", withHttpMethod: "GET", withContentType: "Application/json", withHeaders: [String: String](), completionHandler: { (result: Data?, showPopUp: Bool?, error: String?, errorCode: String?)  -> Void in
             
             if let error = error {
                 completion(false,errorCode,nil,error)
@@ -76,7 +76,7 @@ class HomeApiServices: HomeApiServicesProtocol {
                         completion(false,errorCode,nil,"Unhandled Error")
                         return
                     }
-                    let values = try decoder.decode(UpdateCartModel.self, from: result!)
+                    let values = try decoder.decode(GetCartModel.self, from: result!)
                     if values.errors != nil {
                         completion(false,errorCode,nil,values.errors?[0].message)
                     } else {

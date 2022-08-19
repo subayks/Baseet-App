@@ -31,6 +31,8 @@ class RestarentDishViewControllerVM {
     var selectedIndex: Int?
     var addToCartModel: AddToCartModel?
     var updateCartModel: UpdateCartModel?
+    var getCartModel: GetCartModel?
+    var navigateToCartViewClosure:(()->())?
     var limit = 5
     var foodItems: [FoodItems]? {
         didSet {
@@ -80,7 +82,6 @@ class RestarentDishViewControllerVM {
         self.foodItems?.remove(at: index)
         self.foodItems?.insert(item ?? FoodItems(), at: index)
         self.reloadRecipieCollectionView?()
-        self.setupValuesInUserDefaults()
     }
     
     func getRecipeDetailsVCVM(index: Int) ->RecipeDetailsVCVM {
@@ -138,6 +139,11 @@ class RestarentDishViewControllerVM {
         return selectedItems
     }
     
+    func getSelectedFood() ->[CartDataModel] {
+        let selectedItems = self.getCartModel?.data ?? [CartDataModel()]
+        return selectedItems
+    }
+    
     func getRestaurentFoodPicksVCVM() ->RestaurentFoodPicksVCVM {
         return RestaurentFoodPicksVCVM(foodOrderItems: FoodOrderItems(shopName: self.shopDetailsModel?.restaurant?.name, icon: self.shopDetailsModel?.restaurant?.applogo, foodItems: getSelectedFood()))
     }
@@ -146,40 +152,6 @@ class RestarentDishViewControllerVM {
         if self.shopDetailsModel?.totalSize ?? 0 > limit {
             self.makeShopDetailsCall(limit: limit+10, id: self.shopDetailsModel?.restaurant?.id ?? 0)
         }
-    }
-    
-    func setupValuesInUserDefaults() {
-        let foodData = self.foodItems?.filter{$0.itemQuantity ?? 0 > 0} ?? [FoodItems()]
-        if foodData.count > 0 {
-        do {
-            // Create JSON Encoder
-            let encoder = JSONEncoder()
-
-            // Encode Note
-            let data = try encoder.encode(foodData)
-
-            // Write/Set Data
-            UserDefaults.standard.set(data, forKey: "CartFoodData")
-
-        } catch {
-            print("Unable to Encode Note (\(error))")
-        }
-        }
-    }
-    
-    func getCartFoodData() ->[FoodItems] {
-        if let data = UserDefaults.standard.data(forKey: "CartFoodData") {
-            do {
-                // Create JSON Decoder
-                let decoder = JSONDecoder()
-                // Decode Note
-                let cartInfo = try decoder.decode([FoodItems].self, from: data)
-                return cartInfo
-            } catch {
-                print("Unable to Decode Note (\(error))")
-            }
-        }
-        return [FoodItems]()
     }
     
     func decideFlow(itemCount: Int, index: Int, addOns: [AddOns]? = nil) {
@@ -247,6 +219,7 @@ class RestarentDishViewControllerVM {
             jsonToReturn = ["food_id": "\(item?.id ?? 0)", "food_qty": "\(itemCount)", "addon": "\(addOnsArray)", "cart_id": "\(item?.cartId ?? 0)"]
 
             } else {
+                //Create Cart
                 jsonToReturn =  ["food_id": "\(item?.id ?? 0)", "food_qty": "\(itemCount)", "addon": "\(addOnsArray)", "user_id": "\(2)"]
             }
         return self.convertDictionaryToJsonString(dict: jsonToReturn)!
@@ -266,19 +239,16 @@ class RestarentDishViewControllerVM {
     
     func getCartCall() {
         if Reachability.isConnectedToNetwork() {
-            let headers = [
-                "Authorization": "\(Constants.Common.authKEy)",
-                "cart_id": "\(self.addToCartModel?.data?[0].userId ?? "")"
-                ]
+
             self.showLoadingIndicatorClosure?()
-            let id = self.addToCartModel?.data?[0].id
-            self.apiServices?.getCartApi(finalURL: "\(Constants.Common.finalURL)/products/get_cart?user_id=\(id ?? 0)", httpHeaders: headers, completion: { (status: Bool? , errorCode: String?,result: AnyObject?, errorMessage: String?) -> Void in
+            let id = self.addToCartModel?.data?[0].userId
+            self.apiServices?.getCartApi(finalURL: "\(Constants.Common.finalURL)/products/get_cart?user_id=\(id ?? "")", completion: { (status: Bool? , errorCode: String?,result: AnyObject?, errorMessage: String?) -> Void in
             
             DispatchQueue.main.async {
                 self.hideLoadingIndicatorClosure?()
                 if status == true {
-                    self.updateCartModel = result as? UpdateCartModel
-                    self.reloadRecipieCollectionView?()
+                    self.getCartModel = result as? GetCartModel
+                    self.navigateToCartViewClosure?()
                 } else {
                    self.alertClosure?("Some technical problem")
                 }
@@ -289,22 +259,19 @@ class RestarentDishViewControllerVM {
         }
     }
     
-    func priceCalculation() ->Int {
-        var priceArray = [Int]()
-        let selectedFoodItems = self.getSelectedFood()
-        for item in selectedFoodItems {
-            priceArray.append((item.price ?? 0) * (item.itemQuantity ?? 0))
-            if let adOnItem = item.addOns, adOnItem.count > 0 {
-            for adOn in adOnItem {
-                if adOn.itemQuantity != nil && adOn.itemQuantity ?? 0 > 0 {
-                    priceArray.append((adOn.price ?? 0) * (adOn.itemQuantity ?? 0))
-                }
-            }
-            }
-        }
-        return priceArray.sum()
+    func updateCurrentCount(itemId: [Int], itemCount: [Int]) {
+        for i in 0..<itemId.count {
+        if  let index = self.foodItems?.firstIndex(where: {$0.id == itemId[i]}) {
+        var item = self.foodItems?[index]
+        item?.itemQuantity = itemCount[i]
+        self.foodItems?.remove(at: index)
+        self.foodItems?.insert(item ?? FoodItems(), at: index)
+        self.reloadRecipieCollectionView?()
+    }
+    }
     }
 }
+
 extension Sequence where Element: AdditiveArithmetic {
     func sum() -> Element { reduce(.zero, +) }
 }

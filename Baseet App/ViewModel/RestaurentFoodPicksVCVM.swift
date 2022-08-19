@@ -10,7 +10,7 @@ import Foundation
 struct FoodOrderItems {
     var shopName: String?
     var icon: String?
-    var foodItems: [FoodItems]?
+    var foodItems: [CartDataModel]?
     
 }
 
@@ -24,7 +24,9 @@ class RestaurentFoodPicksVCVM {
     var showLoadingIndicatorClosure:(()->())?
     var hideLoadingIndicatorClosure:(()->())?
     var updateCartModel: UpdateCartModel?
-
+    var itemId = [Int]()
+    var itemCount = [Int]()
+    
     init(foodOrderItems: FoodOrderItems, apiServices: HomeApiServicesProtocol = HomeApiServices()) {
         self.foodOrderItems = foodOrderItems
         self.apiServices = apiServices
@@ -35,7 +37,7 @@ class RestaurentFoodPicksVCVM {
     }
     
     func getRestFoodPickTableViewCellVM(index: Int) ->RestFoodPickTableViewCellVM {
-        return RestFoodPickTableViewCellVM(foodItems: self.foodOrderItems?.foodItems?[index] ?? FoodItems())
+        return RestFoodPickTableViewCellVM(foodItems: self.foodOrderItems?.foodItems?[index] ?? CartDataModel())
     }
     
     func updateCartCall(itemCount: Int, index: Int, addOns: [AddOns]? = nil) {
@@ -60,36 +62,18 @@ class RestaurentFoodPicksVCVM {
     
     func updateValues(itemCount: Int, index: Int, addOns: [AddOns]? = nil, cartId: Int? = nil) {
         var item = self.foodOrderItems?.foodItems?[index]
-        item?.itemQuantity = itemCount
-        if cartId != nil {
-        item?.cartId = cartId
-        }
-        if addOns != nil && addOns?.count != 0{
-        item?.addOns = addOns
-        }
+        self.itemId.append(Int(item?.id ?? "") ?? 0)
+        self.itemCount.append(itemCount)
+        item?.foodQty = "\(itemCount)"
+//        if cartId != nil {
+//        item?.cartId = cartId
+//        }
+//        if addOns != nil && addOns?.count != 0{
+//        item?.addOns = addOns
+//        }
         self.foodOrderItems?.foodItems?.remove(at: index)
-        self.foodOrderItems?.foodItems?.insert(item ?? FoodItems(), at: index)
+        self.foodOrderItems?.foodItems?.insert(item ?? CartDataModel(), at: index)
         self.reloadTableViewClosure?()
-        self.setupValuesInUserDefaults()
-    }
-    
-    func setupValuesInUserDefaults() {
-        let foodData = self.foodOrderItems?.foodItems?.filter{$0.itemQuantity ?? 0 > 0} ?? [FoodItems()]
-        if foodData.count > 0 {
-        do {
-            // Create JSON Encoder
-            let encoder = JSONEncoder()
-
-            // Encode Note
-            let data = try encoder.encode(foodData)
-
-            // Write/Set Data
-            UserDefaults.standard.set(data, forKey: "CartFoodData")
-
-        } catch {
-            print("Unable to Encode Note (\(error))")
-        }
-        }
     }
     
     func getCartParam(itemCount: Int, index: Int, addOns: [AddOns]? = nil) -> String {
@@ -102,13 +86,9 @@ class RestaurentFoodPicksVCVM {
                 addOnsArray.append(["addonname": item.name ?? "", "addonprice": item.price ?? "", "addonquantity": item.itemQuantity ?? ""])
             }
         }
+            jsonToReturn = ["food_id": "\(item?.id ?? "")", "food_qty": "\(itemCount)", "addon": "\(addOnsArray)", "cart_id": "\(item?.cartid ?? "")"]
 
-        if item?.cartId != nil {
-            jsonToReturn = ["food_id": "\(item?.id ?? 0)", "food_qty": "\(itemCount)", "addon": "\(addOnsArray)", "cart_id": "\(item?.cartId ?? 0)"]
-
-            } else {
-                jsonToReturn =  ["food_id": "\(item?.id ?? 0)", "food_qty": "\(itemCount)", "addon": "\(addOnsArray)", "user_id": "\(2)"]
-            }
+            
         return self.convertDictionaryToJsonString(dict: jsonToReturn)!
 
     }
@@ -132,14 +112,14 @@ class RestaurentFoodPicksVCVM {
         var priceArray = [Int]()
         if let selectedFoodItems = self.foodOrderItems?.foodItems {
             for item in selectedFoodItems {
-            priceArray.append((item.price ?? 0) * (item.itemQuantity ?? 0))
-            if let adOnItem = item.addOns, adOnItem.count > 0 {
-            for adOn in adOnItem {
-                if adOn.itemQuantity != nil && adOn.itemQuantity ?? 0 > 0 {
-                    priceArray.append((adOn.price ?? 0) * (adOn.itemQuantity ?? 0))
-                }
-            }
-            }
+            priceArray.append((item.tprice ?? 0) * (Int(item.foodQty ?? "") ?? 0))
+//            if let adOnItem = item.addOns, adOnItem.count > 0 {
+//            for adOn in adOnItem {
+//                if adOn.itemQuantity != nil && adOn.itemQuantity ?? 0 > 0 {
+//                    priceArray.append((adOn.price ?? 0) * (adOn.itemQuantity ?? 0))
+//                }
+//            }
+//            }
         }
             return priceArray.sum()
         }

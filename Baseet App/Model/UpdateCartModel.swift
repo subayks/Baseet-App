@@ -29,6 +29,5 @@ struct UpdateCartModel: Codable {
         order_id    = try values.decodeIfPresent(Int.self    , forKey: .order_id    )
         total_ammount    = try values.decodeIfPresent(Int.self    , forKey: .total_ammount    )
         errors   = try values.decodeIfPresent([ErrorMap].self , forKey: .errors   )
-
     }
 }

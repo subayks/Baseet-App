@@ -52,7 +52,7 @@ class LocationDeliveryVCVM {
     func getCartParam() -> String {
         var jsonToReturn: NSDictionary = NSDictionary()
         let resID =  Int((UserDefaults.standard.string(forKey: "RestaurentId") ?? "") as String)
-        jsonToReturn =  ["order_amount": "\(self.totalPrice ?? "")", "payment_method": "cash_on_delivery", "order_type": "take_away", "order_time": self.currentTime(), "address": "Financial Street HYD", "latitude": "\(latitude ?? 0.0)", "longitude": "\(logitude ?? 0.0)", "contact_person_name": "Subay", "contact_person_number": "9489588595",  "restaurant_id": "\(String(describing: resID))"]
+        jsonToReturn =  ["order_amount": "\(self.totalPrice ?? "")", "payment_method": "cash_on_delivery", "order_type": "take_away", "order_time": self.currentTime(), "address": "Financial Street HYD", "latitude": "\(latitude ?? 0.0)", "longitude": "\(logitude ?? 0.0)", "contact_person_name": "Subay", "contact_person_number": "9489588595",  "restaurant_id": "\(resID ?? 0)", "user_id": "\(2)"]
         return self.convertDictionaryToJsonString(dict: jsonToReturn)!
     }
     

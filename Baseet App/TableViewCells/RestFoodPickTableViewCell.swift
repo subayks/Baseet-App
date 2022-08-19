@@ -40,9 +40,9 @@ class RestFoodPickTableViewCell: UITableViewCell {
         self.countOverView.layer.borderWidth = 1
         self.countOverView.layer.borderColor = UIColor(red: 172/255, green: 37/255, blue: 23/255, alpha: 1).cgColor
         self.itemName.text = self.RestFoodPickTableViewCellVM?.foodItems?.name
-        self.itemCount.text = "\(self.RestFoodPickTableViewCellVM?.foodItems?.itemQuantity ?? 0)"
-        self.itemCountValue = self.RestFoodPickTableViewCellVM?.foodItems?.itemQuantity ?? 0
-        self.qrCodeLabel.text = "QR \(self.RestFoodPickTableViewCellVM?.foodItems?.price ?? 0)"
+        self.itemCount.text = self.RestFoodPickTableViewCellVM?.foodItems?.foodQty
+        self.itemCountValue = Int(self.RestFoodPickTableViewCellVM?.foodItems?.foodQty ?? "") ?? 0
+        self.qrCodeLabel.text = "QR \(self.RestFoodPickTableViewCellVM?.foodItems?.price ?? "")"
         self.itemImage.loadImageUsingURL(self.RestFoodPickTableViewCellVM?.foodItems?.appimage)
     }
 

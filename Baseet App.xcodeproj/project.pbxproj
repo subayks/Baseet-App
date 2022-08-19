@@ -34,6 +34,7 @@
 		0995BFC028A57C7B004F0EC5 /* RestFoodPickTableViewCellVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0995BFBF28A57C7B004F0EC5 /* RestFoodPickTableViewCellVM.swift */; };
 		0995BFC428A587EE004F0EC5 /* BasketFooterViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0995BFC328A587EE004F0EC5 /* BasketFooterViewCell.swift */; };
 		0995BFC628A594F3004F0EC5 /* BasketFooterViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0995BFC528A594F2004F0EC5 /* BasketFooterViewCell.xib */; };
+		09A0D05C28AFF4160015FC4C /* GetCartModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09A0D05B28AFF4160015FC4C /* GetCartModel.swift */; };
 		09B4ADF428AEC95400744F9F /* LocationDeliveryVCVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09B4ADF328AEC95400744F9F /* LocationDeliveryVCVM.swift */; };
 		8807015D288FD2B8001B8907 /* MapkitViewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8807015C288FD2B8001B8907 /* MapkitViewVC.swift */; };
 		8807015F288FD4E7001B8907 /* DeliveredSucessViewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8807015E288FD4E7001B8907 /* DeliveredSucessViewVC.swift */; };
@@ -149,6 +150,7 @@
 		0995BFBF28A57C7B004F0EC5 /* RestFoodPickTableViewCellVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestFoodPickTableViewCellVM.swift; sourceTree = "<group>"; };
 		0995BFC328A587EE004F0EC5 /* BasketFooterViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketFooterViewCell.swift; sourceTree = "<group>"; };
 		0995BFC528A594F2004F0EC5 /* BasketFooterViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BasketFooterViewCell.xib; sourceTree = "<group>"; };
+		09A0D05B28AFF4160015FC4C /* GetCartModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCartModel.swift; sourceTree = "<group>"; };
 		09B4ADF328AEC95400744F9F /* LocationDeliveryVCVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDeliveryVCVM.swift; sourceTree = "<group>"; };
 		8807015C288FD2B8001B8907 /* MapkitViewVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapkitViewVC.swift; sourceTree = "<group>"; };
 		8807015E288FD4E7001B8907 /* DeliveredSucessViewVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveredSucessViewVC.swift; sourceTree = "<group>"; };
@@ -276,6 +278,7 @@
 				094AA39B289C45CC0032D4A5 /* AllRestaurentModel.swift */,
 				091E147428AAA4140011CCD1 /* AddToCartModel.swift */,
 				091E147628AAA5830011CCD1 /* UpdateCartModel.swift */,
+				09A0D05B28AFF4160015FC4C /* GetCartModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -656,6 +659,7 @@
 				8859B5A1288BE8B000555C05 /* HomeCollectionViewDownCell.swift in Sources */,
 				0978BFCD28ACABEE00298CD9 /* CartTableViewCellVM.swift in Sources */,
 				8833E134288437CE001B704B /* CancelOrderVC.swift in Sources */,
+				09A0D05C28AFF4160015FC4C /* GetCartModel.swift in Sources */,
 				883ED59A287814A600F06F22 /* HomeViewController.swift in Sources */,
 				883ED5A42878942A00F06F22 /* OffersViewController.swift in Sources */,
 				88149F8C287EFC8000E57AC7 /* MyFavoritesViewController.swift in Sources */,

@@ -15,7 +15,7 @@ class RestaurentFoodPicksVC: UIViewController {
     @IBOutlet weak var restaurentImage: UIImageView!
     @IBOutlet weak var restFoodPick: UITableView!
     @IBOutlet weak var addSpecialNotLbl: UILabel!
-    
+    var changedValues:(([Int], [Int])->())?
     var locatonDelivery_VC: LocationDeliveryVC!
     var restaurentFoodPicksVCVM: RestaurentFoodPicksVCVM?
     
@@ -79,6 +79,7 @@ class RestaurentFoodPicksVC: UIViewController {
     }
     
     @objc func actionAddMore() {
+        self.changedValues?(self.restaurentFoodPicksVCVM?.itemId ?? [Int](), self.restaurentFoodPicksVCVM?.itemCount ?? [Int]())
         self.dismiss(animated: true,completion: nil)
     }
     

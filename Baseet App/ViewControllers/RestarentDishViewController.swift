@@ -92,6 +92,22 @@ class RestarentDishViewController: UIViewController {
                 self.present(alert, animated: true, completion: nil)
             }
         }
+        
+        self.restarentDishViewControllerVM?.navigateToCartViewClosure = { [weak self] in
+            DispatchQueue.main.async {
+                guard let self = self else {return}
+                let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
+                let vc = storyboard.instantiateViewController(identifier: "RestaurentFoodPicksVC") as! RestaurentFoodPicksVC
+                vc.restaurentFoodPicksVCVM = self.restarentDishViewControllerVM?.getRestaurentFoodPicksVCVM()
+                vc.changedValues  = { (itemCount, index) in
+                    DispatchQueue.main.async {
+                        self.restarentDishViewControllerVM?.updateCurrentCount(itemId: itemCount, itemCount: index)
+                    }
+                }
+                vc.modalPresentationStyle = .fullScreen
+                self.present(vc, animated: true, completion: nil)
+            }
+        }
     }
     
     func checkForCartButton() {
@@ -109,14 +125,7 @@ class RestarentDishViewController: UIViewController {
     }
     
     @IBAction func actionGoToBasket(_ sender: Any) {
-//        self.restarentDishViewControllerVM?.priceCalculation()
-//        print(self.restarentDishViewControllerVM?.priceCalculation())
-//        return
-        let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
-        let vc = storyboard.instantiateViewController(identifier: "RestaurentFoodPicksVC") as! RestaurentFoodPicksVC
-        vc.restaurentFoodPicksVCVM = self.restarentDishViewControllerVM?.getRestaurentFoodPicksVCVM()
-        vc.modalPresentationStyle = .fullScreen
-        self.present(vc, animated: true, completion: nil)
+       self.restarentDishViewControllerVM?.getCartCall()
     }
     
     func setupValues() {

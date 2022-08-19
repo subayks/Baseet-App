@@ -64,6 +64,15 @@ class LocationDeliveryVC: UIViewController, CLLocationManagerDelegate {
             }
         }
         
+        self.locationDeliveryVCVM?.alertClosure = { [weak self] (error) in
+            DispatchQueue.main.async {
+                guard let self = self else {return}
+                let alert = UIAlertController(title: "Alert", message: error, preferredStyle: UIAlertController.Style.alert)
+                alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+            }
+        }
+        
         self.locationDeliveryVCVM?.navigationClosure = { [weak self] in
             DispatchQueue.main.async {
                 guard let self = self else {return}
@@ -73,6 +82,7 @@ class LocationDeliveryVC: UIViewController, CLLocationManagerDelegate {
                 let vc = storyboard.instantiateViewController(identifier: "OrderSucessViewVC") as! OrderSucessViewVC
                 vc.modalTransitionStyle = .coverVertical
                 vc.modalPresentationStyle = .fullScreen
+                vc.orderSucessViewVCVM = self.locationDeliveryVCVM?.getOrderSucessViewVCVM()
                 self.present(vc, animated: true, completion: nil)
             }
         }
@@ -113,6 +123,7 @@ class LocationDeliveryVC: UIViewController, CLLocationManagerDelegate {
         vc.modalPresentationStyle = .fullScreen
         self.present(vc, animated: true, completion: nil)
     }
+    
     @IBAction func backBtn(_ sender: Any) {
         self.dismiss(animated: true,completion: nil)
     }

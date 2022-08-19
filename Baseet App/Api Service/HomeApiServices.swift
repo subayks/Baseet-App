@@ -41,7 +41,11 @@ class HomeApiServices: HomeApiServicesProtocol {
                         return
                     }
                     let values = try decoder.decode(UpdateCartModel.self, from: result!)
+                    if values.errors != nil {
+                        completion(false,errorCode,nil,values.errors?[0].message)
+                    } else {
                     completion(true,errorCode,values as AnyObject?,error)
+                    }
                     
                 } catch let error as NSError {
                     //do something with error

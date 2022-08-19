@@ -17,6 +17,7 @@ class LocationDeliveryVCVM {
     var hideLoadingIndicatorClosure:(()->())?
     var latitude: Double?
     var logitude: Double?
+    var placeOrderModel: UpdateCartModel?
     
     init(totalPrice: String, apiServices: HomeApiServicesProtocol = HomeApiServices()) {
         self.totalPrice = totalPrice
@@ -35,9 +36,11 @@ class LocationDeliveryVCVM {
             DispatchQueue.main.async {
                 self.hideLoadingIndicatorClosure?()
                 if status == true {
+                    self.placeOrderModel = result as? UpdateCartModel
                     self.navigationClosure?()
                 } else {
-                   self.alertClosure?(errorMessage ?? "Some technical problem")
+
+                self.alertClosure?(errorMessage ?? "Some technical problem")
                 }
             }
         })
@@ -70,5 +73,9 @@ class LocationDeliveryVCVM {
             print("JSON serialization failed:  \(error)")
         }
         return nil
+    }
+    
+    func getOrderSucessViewVCVM() ->OrderSucessViewVCVM {
+        return OrderSucessViewVCVM(orderId: "\(self.placeOrderModel?.order_id ?? 12345)")
     }
 }

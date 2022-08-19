@@ -13,6 +13,7 @@
 		09266098289ADB3F003F50DB /* HomeCollectionViewCellVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09266097289ADB3F003F50DB /* HomeCollectionViewCellVM.swift */; };
 		0926609A289AE04E003F50DB /* ShopDetailsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09266099289AE04E003F50DB /* ShopDetailsModel.swift */; };
 		0926609C289AE16B003F50DB /* RestarentDishViewControllerVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0926609B289AE16B003F50DB /* RestarentDishViewControllerVM.swift */; };
+		0948465C28AF5BD0008E03BC /* OrderSucessViewVCVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0948465B28AF5BD0008E03BC /* OrderSucessViewVCVM.swift */; };
 		094AA39A289C45740032D4A5 /* LatestRestaurentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 094AA399289C45740032D4A5 /* LatestRestaurentModel.swift */; };
 		094AA39C289C45CC0032D4A5 /* AllRestaurentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 094AA39B289C45CC0032D4A5 /* AllRestaurentModel.swift */; };
 		094CCCC128A2BD4F0043EA18 /* RestaurentFoodPicksVCVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 094CCCC028A2BD4F0043EA18 /* RestaurentFoodPicksVCVM.swift */; };
@@ -127,6 +128,7 @@
 		09266097289ADB3F003F50DB /* HomeCollectionViewCellVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCollectionViewCellVM.swift; sourceTree = "<group>"; };
 		09266099289AE04E003F50DB /* ShopDetailsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopDetailsModel.swift; sourceTree = "<group>"; };
 		0926609B289AE16B003F50DB /* RestarentDishViewControllerVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestarentDishViewControllerVM.swift; sourceTree = "<group>"; };
+		0948465B28AF5BD0008E03BC /* OrderSucessViewVCVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderSucessViewVCVM.swift; sourceTree = "<group>"; };
 		094AA399289C45740032D4A5 /* LatestRestaurentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LatestRestaurentModel.swift; sourceTree = "<group>"; };
 		094AA39B289C45CC0032D4A5 /* AllRestaurentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllRestaurentModel.swift; sourceTree = "<group>"; };
 		094CCCC028A2BD4F0043EA18 /* RestaurentFoodPicksVCVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurentFoodPicksVCVM.swift; sourceTree = "<group>"; };
@@ -294,6 +296,7 @@
 				0978BFCA28ACAB8A00298CD9 /* CartViewControllerVM.swift */,
 				0978BFCC28ACABEE00298CD9 /* CartTableViewCellVM.swift */,
 				09B4ADF328AEC95400744F9F /* LocationDeliveryVCVM.swift */,
+				0948465B28AF5BD0008E03BC /* OrderSucessViewVCVM.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -639,6 +642,7 @@
 				0995BFC028A57C7B004F0EC5 /* RestFoodPickTableViewCellVM.swift in Sources */,
 				88FDAB232881882C006F06D0 /* ResDishCollectionViewCell.swift in Sources */,
 				091E147528AAA4140011CCD1 /* AddToCartModel.swift in Sources */,
+				0948465C28AF5BD0008E03BC /* OrderSucessViewVCVM.swift in Sources */,
 				887487F828843383004F8C3B /* AddNoteVC.swift in Sources */,
 				88FDAB33288304F3006F06D0 /* OrderDetailsVC.swift in Sources */,
 				883ED5AA2878948700F06F22 /* ProfileViewController.swift in Sources */,

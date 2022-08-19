@@ -8,7 +8,9 @@
 import UIKit
 
 class OrderSucessViewVC: UIViewController {
-
+    var orderSucessViewVCVM: OrderSucessViewVCVM?
+    
+    @IBOutlet weak var orderPlacedLabel: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -19,6 +21,15 @@ class OrderSucessViewVC: UIViewController {
 //        self.present(vc, animated: true, completion: nil)
 
         // Do any additional setup after loading the view.
+        let orderId = self.orderSucessViewVCVM?.orderId ?? "12345"
+        let stringOne = "ORDER \(orderId) PLACED SUCESSSFULLY"
+        let stringTwo = "\(orderId)"
+
+        let range = (stringOne as NSString).range(of: stringTwo)
+
+        let attributedText = NSMutableAttributedString.init(string: stringOne)
+        attributedText.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.red , range: range)
+        self.orderPlacedLabel.attributedText = attributedText
     }
     
  

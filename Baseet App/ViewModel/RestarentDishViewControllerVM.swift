@@ -54,10 +54,6 @@ class RestarentDishViewControllerVM {
         UserDefaults.standard.set(self.shopDetailsModel?.restaurant?.id, forKey: "RestaurentId")
     }
     
-//    func setUpItemsList() {
-//        foodItems = [FoodItems(itemNo: 1,itemName: "Pizza Roll", itemImage: "http://baseet.thedemostore.in/storage/app/public/product/2022-07-01-62bea4d30e769.png", itemQuantity: 0, qrCode: "QR1", rating: "5"), FoodItems(itemNo: 2,itemName: "Mutton Burger", itemImage: "http://baseet.thedemostore.in/storage/app/public/product/2022-07-14-62d011ecb0c5d.png", itemQuantity: 0, qrCode: "QR2", rating: "4"), FoodItems(itemNo: 3,itemName: "Pizza", itemImage:"http://baseet.thedemostore.in/storage/app/public/product/2022-07-29-62e4cb66b70fa.png", itemQuantity: 0, qrCode: "QR3", rating: "3"), FoodItems(itemNo: 4,itemName: "Double Roll", itemImage: "http://baseet.thedemostore.in/storage/app/public/product/2022-07-29-62e4cc1af2bd8.png", itemQuantity: 0, qrCode: "QR4", rating: "2"), FoodItems(itemNo: 5,itemName: "Prawns Biryani", itemImage: "http://baseet.thedemostore.in/storage/app/public/product/2022-08-02-62e94eeba156d.png", itemQuantity: 0, qrCode: "QR5", rating: "1")]
-//    }
-    
     func isItemAvailable() ->Bool {
         if let items = self.foodItems {
             let itemAvailable = items.filter{$0.itemQuantity ?? 0 > 0}
@@ -208,22 +204,29 @@ class RestarentDishViewControllerVM {
         let item = self.foodItems?[index]
         var jsonToReturn: NSDictionary = NSDictionary()
         var addOnsArray = [NSDictionary]()
-
+        
         if let addOns = addOns, addOns.count > 0 {
             for item in (addOns) {
-                addOnsArray.append(["addonname": item.name ?? "", "addonprice": item.price ?? "", "addonquantity": item.itemQuantity ?? ""])
+                addOnsArray.append(["addonname": "\(item.name ?? "")", "addonprice": "\(item.price ?? 0)", "addonquantity": "\(item.itemQuantity ?? 0)", "id": "\(item.id ?? 0)"])
             }
         }
-
+        
         if item?.cartId != nil {
-            jsonToReturn = ["food_id": "\(item?.id ?? 0)", "food_qty": "\(itemCount)", "addon": "\(addOnsArray)", "cart_id": "\(item?.cartId ?? 0)"]
-
+            if addOnsArray.count > 0 {
+                jsonToReturn = ["food_id": "\(item?.id ?? 0)", "food_qty": "\(itemCount)", "addon": addOnsArray, "cart_id": "\(item?.cartId ?? 0)"]
             } else {
-                //Create Cart
-                jsonToReturn =  ["food_id": "\(item?.id ?? 0)", "food_qty": "\(itemCount)", "addon": "\(addOnsArray)", "user_id": "\(2)"]
+                jsonToReturn = ["food_id": "\(item?.id ?? 0)", "food_qty": "\(itemCount)", "addon": "\([])", "cart_id": "\(item?.cartId ?? 0)"]
             }
+            
+        } else {
+            //Create Cart
+            if addOnsArray.count > 0 {
+                jsonToReturn =  ["food_id": "\(item?.id ?? 0)", "food_qty": "\(itemCount)", "addon": addOnsArray, "user_id": "\(2)"]
+            } else {
+                jsonToReturn =  ["food_id": "\(item?.id ?? 0)", "food_qty": "\(itemCount)", "addon": "\([])", "user_id": "\(2)"]
+            }
+        }
         return self.convertDictionaryToJsonString(dict: jsonToReturn)!
-
     }
 
     func convertDictionaryToJsonString(dict: NSDictionary) -> String? {

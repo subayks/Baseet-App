@@ -50,6 +50,7 @@ class RestFoodPickTableViewCell: UITableViewCell {
         if self.itemCountValue > 1 {
             self.itemCountValue = self.itemCountValue - 1
         //    self.itemCount.text = "\(self.itemCountValue)"
+            self.itemAdded?(self.itemCountValue, buttonAdd.tag)
         }
     }
     

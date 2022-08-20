@@ -42,8 +42,8 @@ class ResDishCollectionViewCellTwo: UICollectionViewCell {
     }
     
     @IBAction func actionAdd(_ sender: Any) {
-        self.buttonAdd.isHidden = true
-        self.countView.isHidden = false
+      //  self.buttonAdd.isHidden = true
+      //  self.countView.isHidden = false
         if itemCount == 0 {
             self.itemCount = 1
         }

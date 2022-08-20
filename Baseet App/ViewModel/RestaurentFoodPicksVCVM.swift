@@ -43,7 +43,7 @@ class RestaurentFoodPicksVCVM {
     func updateCartCall(itemCount: Int, index: Int, addOns: [AddOns]? = nil) {
         if Reachability.isConnectedToNetwork() {
             self.showLoadingIndicatorClosure?()
-            let queryParam = self.getCartParam(itemCount: itemCount, index: index, addOns: addOns)
+            let queryParam = self.getCartParam(itemCount: itemCount, index: index)
             self.apiServices?.updateCartApi(finalURL: "\(Constants.Common.finalURL)/products/update_cart", withParameters: queryParam, completion:  { (status: Bool? , errorCode: String?,result: AnyObject?, errorMessage: String?) -> Void in
             DispatchQueue.main.async {
                 self.hideLoadingIndicatorClosure?()
@@ -76,21 +76,23 @@ class RestaurentFoodPicksVCVM {
         self.reloadTableViewClosure?()
     }
     
-    func getCartParam(itemCount: Int, index: Int, addOns: [AddOns]? = nil) -> String {
+    func getCartParam(itemCount: Int, index: Int) -> String {
         let item = self.foodOrderItems?.foodItems?[index]
         var jsonToReturn: NSDictionary = NSDictionary()
         var addOnsArray = [NSDictionary]()
 
-        if let addOns = addOns, addOns.count > 0 {
-            for item in (addOns) {
-                addOnsArray.append(["addonname": item.name ?? "", "addonprice": item.price ?? "", "addonquantity": item.itemQuantity ?? ""])
+        if let addOns = item?.addon, addOns.count > 0 {
+            for addonItem in (addOns) {
+                addOnsArray.append(["addonname": "\(addonItem.addonname ?? "")", "addonprice": "\(addonItem.addonprice ?? "")", "addonquantity": "\(addonItem.addonquantity ?? "")", "id": "\(addonItem.id ?? "")"])
             }
         }
-            jsonToReturn = ["food_id": "\(item?.id ?? "")", "food_qty": "\(itemCount)", "addon": "\(addOnsArray)", "cart_id": "\(item?.cartid ?? "")"]
-
-            
+        
+        if addOnsArray.count > 0 {
+            jsonToReturn = ["food_id": "\(item?.id ?? "")", "food_qty": "\(itemCount)", "addon": addOnsArray, "cart_id": "\(item?.cartid ?? "")"]
+        } else {
+            jsonToReturn = ["food_id": "\(item?.id ?? "")", "food_qty": "\(itemCount)", "addon": [], "cart_id": "\(item?.cartid ?? "")"]
+        }
         return self.convertDictionaryToJsonString(dict: jsonToReturn)!
-
     }
     
     func convertDictionaryToJsonString(dict: NSDictionary) -> String? {
@@ -112,14 +114,14 @@ class RestaurentFoodPicksVCVM {
         var priceArray = [Int]()
         if let selectedFoodItems = self.foodOrderItems?.foodItems {
             for item in selectedFoodItems {
-            priceArray.append((item.tprice ?? 0) * (Int(item.foodQty ?? "") ?? 0))
-//            if let adOnItem = item.addOns, adOnItem.count > 0 {
-//            for adOn in adOnItem {
-//                if adOn.itemQuantity != nil && adOn.itemQuantity ?? 0 > 0 {
-//                    priceArray.append((adOn.price ?? 0) * (adOn.itemQuantity ?? 0))
-//                }
-//            }
-//            }
+                priceArray.append((item.price! as NSString).integerValue * (Int(item.foodQty ?? "") ?? 0))
+            if let adOnItem = item.addon, adOnItem.count > 0 {
+            for adOn in adOnItem {
+                if adOn.addonquantity != nil && (Int(adOn.addonquantity ?? "") ?? 0) > 0 {
+                    priceArray.append((Int(adOn.addonprice ?? "") ?? 0) * (Int(adOn.addonquantity ?? "") ?? 0))
+                }
+            }
+            }
         }
             return priceArray.sum()
         }

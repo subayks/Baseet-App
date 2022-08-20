@@ -39,7 +39,7 @@ struct CartDataModel: Codable {
     var cartfoodid          : String?        = nil
     var foodQty             : String?        = nil
     var cartuserid          : String?        = nil
-    var addon               : [CartAddOn]?      = []
+    var addon               : [CartAddOn]?       = []
     var id                  : String?        = nil
     var name                : String?        = nil
     var appimage            : String?        = nil
@@ -114,7 +114,7 @@ struct CartDataModel: Codable {
       cartfoodid          = try values.decodeIfPresent(String.self        , forKey: .cartfoodid          )
       foodQty             = try values.decodeIfPresent(String.self        , forKey: .foodQty             )
       cartuserid          = try values.decodeIfPresent(String.self        , forKey: .cartuserid          )
-      addon               = try values.decodeIfPresent([CartAddOn].self      , forKey: .addon               )
+      addon               = try values.decodeIfPresent([CartAddOn].self       , forKey: .addon               )
       id                  = try values.decodeIfPresent(String.self        , forKey: .id                  )
       name                = try values.decodeIfPresent(String.self        , forKey: .name                )
       appimage            = try values.decodeIfPresent(String.self        , forKey: .appimage            )
@@ -153,31 +153,33 @@ struct CartDataModel: Codable {
   }
 
 struct CartAddOn: Codable {
-
-  var addonname  : String? = nil
-  var addonprice : String?    = nil
-    var addonquantity: String? = nil
-    var id: String? = nil
     
-  enum CodingKeys: String, CodingKey {
-    case addonname  = "addonname"
-    case addonprice = "addonprice"
+    var addonname     : String? = nil
+    var addonprice    : String? = nil
+    var addonquantity : String? = nil
+    var id            : String? = nil
+
+    enum CodingKeys: String, CodingKey {
+
+      case addonname     = "addonname"
+      case addonprice    = "addonprice"
       case addonquantity = "addonquantity"
-      case id = "id"
+      case id            = "id"
+    
+    }
+
+    init(from decoder: Decoder) throws {
+      let values = try decoder.container(keyedBy: CodingKeys.self)
+
+      addonname     = try values.decodeIfPresent(String.self , forKey: .addonname     )
+      addonprice    = try values.decodeIfPresent(String.self , forKey: .addonprice    )
+      addonquantity = try values.decodeIfPresent(String.self , forKey: .addonquantity )
+      id            = try values.decodeIfPresent(String.self , forKey: .id            )
+   
+    }
+
+    init() {
+
+    }
+
   }
-
-  init(from decoder: Decoder) throws {
-    let values = try decoder.container(keyedBy: CodingKeys.self)
-
-      addonname  = try values.decodeIfPresent(String.self , forKey: .addonname  )
-      addonprice = try values.decodeIfPresent(String.self    , forKey: .addonprice )
-      addonquantity = try values.decodeIfPresent(String.self    , forKey: .addonquantity )
-      id = try values.decodeIfPresent(String.self    , forKey: .id )
-
-  }
-
-  init() {
-
-  }
-
-}

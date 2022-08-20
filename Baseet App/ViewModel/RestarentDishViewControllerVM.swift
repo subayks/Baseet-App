@@ -215,7 +215,7 @@ class RestarentDishViewControllerVM {
             if addOnsArray.count > 0 {
                 jsonToReturn = ["food_id": "\(item?.id ?? 0)", "food_qty": "\(itemCount)", "addon": addOnsArray, "cart_id": "\(item?.cartId ?? 0)"]
             } else {
-                jsonToReturn = ["food_id": "\(item?.id ?? 0)", "food_qty": "\(itemCount)", "addon": "\([])", "cart_id": "\(item?.cartId ?? 0)"]
+                jsonToReturn = ["food_id": "\(item?.id ?? 0)", "food_qty": "\(itemCount)", "addon": [], "cart_id": "\(item?.cartId ?? 0)"]
             }
             
         } else {
@@ -223,7 +223,7 @@ class RestarentDishViewControllerVM {
             if addOnsArray.count > 0 {
                 jsonToReturn =  ["food_id": "\(item?.id ?? 0)", "food_qty": "\(itemCount)", "addon": addOnsArray, "user_id": "\(2)"]
             } else {
-                jsonToReturn =  ["food_id": "\(item?.id ?? 0)", "food_qty": "\(itemCount)", "addon": "\([])", "user_id": "\(2)"]
+                jsonToReturn =  ["food_id": "\(item?.id ?? 0)", "food_qty": "\(itemCount)", "addon": [], "user_id": "\(2)"]
             }
         }
         return self.convertDictionaryToJsonString(dict: jsonToReturn)!

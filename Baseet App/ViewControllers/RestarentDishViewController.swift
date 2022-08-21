@@ -9,6 +9,7 @@ import UIKit
 
 class RestarentDishViewController: UIViewController {
     
+    @IBOutlet weak var cartCountBadge: UIButton!
     @IBOutlet weak var ratingLabel: UILabel!
     @IBOutlet weak var reatingStackView: UIStackView!
     @IBOutlet weak var logoImage: UIImageView!
@@ -33,6 +34,7 @@ class RestarentDishViewController: UIViewController {
         
         menu_vc1 = self.storyboard?.instantiateViewController(withIdentifier: "RecipeDetailsVC") as? RecipeDetailsVC
         setupValues()
+
         self.restarentDishViewControllerVM?.setUpItemsList()
         //        let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(self.respondToGesture))
         //        swipeRight.direction = UISwipeGestureRecognizer.Direction.right
@@ -44,6 +46,14 @@ class RestarentDishViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool)
     {
+        self.buttonGoToCart.layer.cornerRadius = buttonGoToCart.frame.height/2
+        self.buttonGoToCart.clipsToBounds = true
+        buttonGoToCart.layer.borderWidth = 2
+        buttonGoToCart.layer.borderColor = UIColor.gray.cgColor
+        
+        self.cartCountBadge.layer.cornerRadius = cartCountBadge.frame.height/2
+        self.cartCountBadge.clipsToBounds = true
+        
         self.restarentDishViewControllerVM?.showLoadingIndicatorClosure = { [weak self] in
             DispatchQueue.main.async {
                 guard let self = self else {return}
@@ -113,9 +123,12 @@ class RestarentDishViewController: UIViewController {
     func checkForCartButton() {
         let showButton = self.restarentDishViewControllerVM?.isItemAvailable()
         self.buttonGoToCart.isHidden = !showButton!
+        self.cartCountBadge.isHidden = !showButton!
         if showButton == false {
             self.collectionViewBottomConstraint.constant = 66
         } else {
+            let cartCount = "\(self.restarentDishViewControllerVM?.getCartModel?.data?.count ?? 0)"
+            self.cartCountBadge.setTitle(cartCount, for: .normal)
             self.collectionViewBottomConstraint.constant = 130
         }
     }
@@ -125,7 +138,16 @@ class RestarentDishViewController: UIViewController {
     }
     
     @IBAction func actionGoToBasket(_ sender: Any) {
-       self.restarentDishViewControllerVM?.getCartCall()
+        let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewController(identifier: "RestaurentFoodPicksVC") as! RestaurentFoodPicksVC
+        vc.restaurentFoodPicksVCVM = self.restarentDishViewControllerVM?.getRestaurentFoodPicksVCVM()
+        vc.changedValues  = { (itemCount, index) in
+            DispatchQueue.main.async {
+                self.restarentDishViewControllerVM?.updateCurrentCount(itemId: itemCount, itemCount: index)
+            }
+        }
+        vc.modalPresentationStyle = .fullScreen
+        self.present(vc, animated: true, completion: nil)
     }
     
     func setupValues() {
@@ -145,6 +167,7 @@ class RestarentDishViewController: UIViewController {
         self.restaurantName.text = self.restarentDishViewControllerVM?.shopDetailsModel?.restaurant?.name
         self.restaurantAddress.text = self.restarentDishViewControllerVM?.shopDetailsModel?.restaurant?.address
         self.buttonGoToCart.isHidden  = true
+        self.cartCountBadge.isHidden = true
         let ratingCount = self.restarentDishViewControllerVM?.shopDetailsModel?.restaurant?.avgRating ?? 0
         if ratingCount > 0  {
             self.ratingLabel.text = "Rating"

@@ -26,10 +26,13 @@ class RestaurentFoodPicksVCVM {
     var updateCartModel: UpdateCartModel?
     var itemId = [Int]()
     var itemCount = [Int]()
-    
+    var userID = String()
+    var getCartModel: GetCartModel?
+
     init(foodOrderItems: FoodOrderItems, apiServices: HomeApiServicesProtocol = HomeApiServices()) {
         self.foodOrderItems = foodOrderItems
         self.apiServices = apiServices
+        self.userID = self.foodOrderItems?.foodItems?[0].cartuserid ?? ""
     }
     
     init(apiServices: HomeApiServicesProtocol = HomeApiServices()) {
@@ -49,7 +52,11 @@ class RestaurentFoodPicksVCVM {
                 self.hideLoadingIndicatorClosure?()
                 if status == true {
                     self.updateCartModel = result as? UpdateCartModel
-                    self.updateValues(itemCount: itemCount, index: index, addOns: addOns)
+                    let item = self.foodOrderItems?.foodItems?[index]
+                    self.itemId.append(Int(item?.id ?? "") ?? 0)
+                    self.itemCount.append(itemCount)
+                    self.getCartCall()
+              //      self.updateValues(itemCount: itemCount, index: index, addOns: addOns)
                 } else {
                    self.alertClosure?("Some technical problem")
                 }
@@ -60,21 +67,43 @@ class RestaurentFoodPicksVCVM {
         }
     }
     
-    func updateValues(itemCount: Int, index: Int, addOns: [AddOns]? = nil, cartId: Int? = nil) {
-        var item = self.foodOrderItems?.foodItems?[index]
-        self.itemId.append(Int(item?.id ?? "") ?? 0)
-        self.itemCount.append(itemCount)
-        item?.foodQty = "\(itemCount)"
-//        if cartId != nil {
-//        item?.cartId = cartId
-//        }
-//        if addOns != nil && addOns?.count != 0{
-//        item?.addOns = addOns
-//        }
-        self.foodOrderItems?.foodItems?.remove(at: index)
-        self.foodOrderItems?.foodItems?.insert(item ?? CartDataModel(), at: index)
-        self.reloadTableViewClosure?()
+    func getCartCall() {
+        if Reachability.isConnectedToNetwork() {
+
+            self.showLoadingIndicatorClosure?()
+            self.apiServices?.getCartApi(finalURL: "\(Constants.Common.finalURL)/products/get_cart?user_id=\(self.userID)", completion: { (status: Bool? , errorCode: String?,result: AnyObject?, errorMessage: String?) -> Void in
+            
+            DispatchQueue.main.async {
+                self.hideLoadingIndicatorClosure?()
+                if status == true {
+                    self.getCartModel = result as? GetCartModel
+                    self.foodOrderItems?.foodItems = self.getCartModel?.data
+                    self.reloadTableViewClosure?()
+                } else {
+                   self.alertClosure?("Some technical problem")
+                }
+            }
+        })
+        } else {
+            self.alertClosure?("No Internet Availabe")
+        }
     }
+    
+//    func updateValues(itemCount: Int, index: Int, addOns: [AddOns]? = nil, cartId: Int? = nil) {
+//        var item = self.foodOrderItems?.foodItems?[index]
+//        self.itemId.append(Int(item?.id ?? "") ?? 0)
+//        self.itemCount.append(itemCount)
+//        item?.foodQty = "\(itemCount)"
+////        if cartId != nil {
+////        item?.cartId = cartId
+////        }
+////        if addOns != nil && addOns?.count != 0{
+////        item?.addOns = addOns
+////        }
+//        self.foodOrderItems?.foodItems?.remove(at: index)
+//        self.foodOrderItems?.foodItems?.insert(item ?? CartDataModel(), at: index)
+//        self.reloadTableViewClosure?()
+//    }
     
     func getCartParam(itemCount: Int, index: Int) -> String {
         let item = self.foodOrderItems?.foodItems?[index]

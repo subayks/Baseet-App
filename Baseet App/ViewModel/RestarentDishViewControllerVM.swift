@@ -77,7 +77,8 @@ class RestarentDishViewControllerVM {
         }
         self.foodItems?.remove(at: index)
         self.foodItems?.insert(item ?? FoodItems(), at: index)
-        self.reloadRecipieCollectionView?()
+        getCartCall()
+      //  self.reloadRecipieCollectionView?()
     }
     
     func getRecipeDetailsVCVM(index: Int) ->RecipeDetailsVCVM {
@@ -251,7 +252,7 @@ class RestarentDishViewControllerVM {
                 self.hideLoadingIndicatorClosure?()
                 if status == true {
                     self.getCartModel = result as? GetCartModel
-                    self.navigateToCartViewClosure?()
+                    self.reloadRecipieCollectionView?()
                 } else {
                    self.alertClosure?("Some technical problem")
                 }
@@ -264,14 +265,14 @@ class RestarentDishViewControllerVM {
     
     func updateCurrentCount(itemId: [Int], itemCount: [Int]) {
         for i in 0..<itemId.count {
-        if  let index = self.foodItems?.firstIndex(where: {$0.id == itemId[i]}) {
-        var item = self.foodItems?[index]
-        item?.itemQuantity = itemCount[i]
-        self.foodItems?.remove(at: index)
-        self.foodItems?.insert(item ?? FoodItems(), at: index)
-        self.reloadRecipieCollectionView?()
-    }
-    }
+            if  let index = self.foodItems?.firstIndex(where: {$0.id == itemId[i]}) {
+                var item = self.foodItems?[index]
+                item?.itemQuantity = itemCount[i]
+                self.foodItems?.remove(at: index)
+                self.foodItems?.insert(item ?? FoodItems(), at: index)
+                getCartCall()
+            }
+        }
     }
 }
 

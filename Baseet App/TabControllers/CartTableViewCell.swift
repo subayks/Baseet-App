@@ -32,7 +32,7 @@ class CartTableViewCell: UITableViewCell {
     func setupValues() {
         self.cartImage.loadImageUsingURL(self.CartTableViewCellVM?.foodItems?.appimage)
         self.cartLbl.text = self.CartTableViewCellVM?.foodItems?.name
-        self.moneyLbl.text = "\(self.CartTableViewCellVM?.foodItems?.price ?? 0)"
+        self.moneyLbl.text = "\(self.CartTableViewCellVM?.foodItems?.tprice ?? 0)"
     }
 
 }

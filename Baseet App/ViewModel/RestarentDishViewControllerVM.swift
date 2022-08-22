@@ -55,8 +55,8 @@ class RestarentDishViewControllerVM {
     }
     
     func isItemAvailable() ->Bool {
-        if let items = self.foodItems {
-            let itemAvailable = items.filter{$0.itemQuantity ?? 0 > 0}
+        if let items = self.getCartModel?.data {
+            let itemAvailable = items.filter{(Int($0.foodQty ?? "")  ?? 0) > 0}
             if itemAvailable.count == 0 {
                 return false
             } else {
@@ -173,6 +173,7 @@ class RestarentDishViewControllerVM {
                     self.updateValues(itemCount: itemCount, index: index, addOns: addOns,cartId: self.addToCartModel?.data?[0].id ?? 0)
                 } else {
                     self.alertClosure?(errorMessage ?? "Some Technical problem")
+                    self.getCartCall()
                 }
             }
         })
@@ -192,7 +193,7 @@ class RestarentDishViewControllerVM {
                     self.updateCartModel = result as? UpdateCartModel
                     self.updateValues(itemCount: itemCount, index: index, addOns: addOns)
                 } else {
-                   self.alertClosure?("Some technical problem")
+                   self.alertClosure?( errorMessage ?? "Some technical problem")
                 }
             }
         })
@@ -245,8 +246,8 @@ class RestarentDishViewControllerVM {
         if Reachability.isConnectedToNetwork() {
 
             self.showLoadingIndicatorClosure?()
-            let id = self.addToCartModel?.data?[0].userId
-            self.apiServices?.getCartApi(finalURL: "\(Constants.Common.finalURL)/products/get_cart?user_id=\(id ?? "")", completion: { (status: Bool? , errorCode: String?,result: AnyObject?, errorMessage: String?) -> Void in
+           // let id = self.addToCartModel?.data?[0].userId
+            self.apiServices?.getCartApi(finalURL: "\(Constants.Common.finalURL)/products/get_cart?user_id=\(2)", completion: { (status: Bool? , errorCode: String?,result: AnyObject?, errorMessage: String?) -> Void in
             
             DispatchQueue.main.async {
                 self.hideLoadingIndicatorClosure?()

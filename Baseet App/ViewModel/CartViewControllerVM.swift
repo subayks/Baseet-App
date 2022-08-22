@@ -9,26 +9,45 @@ import Foundation
 
 class CartViewControllerVM {
     
-    
-    func getCartFoodData() ->[FoodItems] {
-        if let data = UserDefaults.standard.data(forKey: "CartFoodData") {
-            do {
-                // Create JSON Decoder
-                let decoder = JSONDecoder()
-                // Decode Note
-                let cartInfo = try decoder.decode([FoodItems].self, from: data)
-                return cartInfo
-            } catch {
-                print("Unable to Decode Note (\(error))")
-            }
+    var apiServices: HomeApiServicesProtocol?
+    var navigationClosure:(()->())?
+    var alertClosure:((String)->())?
+    var errorClosure:((String)->())?
+    var reloadRecipieCollectionView:(()->())?
+    var showLoadingIndicatorClosure:(()->())?
+    var hideLoadingIndicatorClosure:(()->())?
+    var getCartModel: GetCartModel? {
+        didSet {
+            self.reloadRecipieCollectionView?()
         }
-        return [FoodItems]()
+    }
+    
+    init(apiServices: HomeApiServicesProtocol = HomeApiServices()) {
+        self.apiServices = apiServices
+    }
+    
+    func getCartCall() {
+        if Reachability.isConnectedToNetwork() {
+
+            self.showLoadingIndicatorClosure?()
+            self.apiServices?.getCartApi(finalURL: "\(Constants.Common.finalURL)/products/get_cart?user_id=\(2)", completion: { (status: Bool? , errorCode: String?,result: AnyObject?, errorMessage: String?) -> Void in
+            
+            DispatchQueue.main.async {
+                self.hideLoadingIndicatorClosure?()
+                if status == true {
+                    self.getCartModel = result as? GetCartModel
+                } else {
+                   self.alertClosure?("Some technical problem")
+                }
+            }
+        })
+        } else {
+            self.alertClosure?("No Internet Availabe")
+        }
     }
     
     func getCartTableViewCellVM(index: Int) ->CartTableViewCellVM {
-        let foorArray = self.getCartFoodData()
-        return CartTableViewCellVM(foodItems: foorArray[index])
+        let foodArray = self.getCartModel?.data
+        return CartTableViewCellVM(foodItems: foodArray?[index] ?? CartDataModel())
     }
-    
-    
 }

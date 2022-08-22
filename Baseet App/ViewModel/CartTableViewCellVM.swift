@@ -8,9 +8,9 @@
 import Foundation
 
 class CartTableViewCellVM {
-    var foodItems: FoodItems?
+    var foodItems: CartDataModel?
     
-    init(foodItems: FoodItems) {
+    init(foodItems: CartDataModel) {
         self.foodItems = foodItems
     }
 }

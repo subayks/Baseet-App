@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		09157CB028B3CE0E0038AD93 /* EmptyCartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09157CAF28B3CE0E0038AD93 /* EmptyCartCell.swift */; };
 		091E147528AAA4140011CCD1 /* AddToCartModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 091E147428AAA4140011CCD1 /* AddToCartModel.swift */; };
 		091E147728AAA5830011CCD1 /* UpdateCartModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 091E147628AAA5830011CCD1 /* UpdateCartModel.swift */; };
 		09266096289AD488003F50DB /* CategoryListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09266095289AD488003F50DB /* CategoryListModel.swift */; };
@@ -123,6 +124,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		09157CAF28B3CE0E0038AD93 /* EmptyCartCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyCartCell.swift; sourceTree = "<group>"; };
 		091E147428AAA4140011CCD1 /* AddToCartModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddToCartModel.swift; sourceTree = "<group>"; };
 		091E147628AAA5830011CCD1 /* UpdateCartModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateCartModel.swift; sourceTree = "<group>"; };
 		09266095289AD488003F50DB /* CategoryListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryListModel.swift; sourceTree = "<group>"; };
@@ -388,6 +390,7 @@
 				88FDAB2E2881B5F1006F06D0 /* MyPastOrderTableViewCell.swift */,
 				8821EAA52885446200B32EF5 /* RestFoodPickTableViewCell.swift */,
 				8821EAA928855A6C00B32EF5 /* AddOnTableViewCell.swift */,
+				09157CAF28B3CE0E0038AD93 /* EmptyCartCell.swift */,
 			);
 			path = TableViewCells;
 			sourceTree = "<group>";
@@ -609,6 +612,7 @@
 				0986D5FC289EE83F00214056 /* RecipeDetailsVCVM.swift in Sources */,
 				88FDAB292881B55E006F06D0 /* MyPastOrderVC.swift in Sources */,
 				885B5DFB287C5DE1006A7044 /* CartTableViewCell.swift in Sources */,
+				09157CB028B3CE0E0038AD93 /* EmptyCartCell.swift in Sources */,
 				09832AE5289837EF00B99EAB /* HomeApiServices.swift in Sources */,
 				091E147728AAA5830011CCD1 /* UpdateCartModel.swift in Sources */,
 				88FDAB2B2881B58F006F06D0 /* MyOrderVC.swift in Sources */,

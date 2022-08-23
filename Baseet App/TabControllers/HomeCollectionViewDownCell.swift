@@ -28,6 +28,7 @@ class HomeCollectionViewDownCell: UICollectionViewCell {
         self.bannerImage.loadImageUsingURL(self.homeCollectionViewDownCellVM?.restaurantsModel?.appcoverlogo ?? "")
         self.hotelLogo.loadImageUsingURL(self.homeCollectionViewDownCellVM?.restaurantsModel?.applogo ?? "")
         
+        
         self.salonName.text = self.homeCollectionViewDownCellVM?.restaurantsModel?.name
         //self.distanceButton.setTitle((self.homeCollectionViewDownCellVM?.restaurantsModel?.distance ?? ""), for: .normal)
         self.distanceButton.titleLabel?.numberOfLines = 1

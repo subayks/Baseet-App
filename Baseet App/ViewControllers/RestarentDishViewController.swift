@@ -213,19 +213,18 @@ extension RestarentDishViewController:UICollectionViewDelegate,UICollectionViewD
         }
     }
     
-    //    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-    //           let padding: CGFloat =  50
-    //           let collectionViewSize = collectionView.frame.size.width - padding
-    //
-    //           return CGSize(width: collectionViewSize/2, height: collectionViewSize/2)
-    //       }
-    
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//        let yourWidth = collectionView.bounds.width/3.0
-//        let yourHeight = yourWidth
+//        func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+//               let padding: CGFloat =  50
+//               let collectionViewSize = collectionView.frame.size.width - padding
 //
-//        return CGSize(width: yourWidth, height: yourHeight)
-//    }
+//               return CGSize(width: collectionViewSize/2, height: collectionViewSize/2)
+//           }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let yourWidth = collectionView.bounds.width/2.0
+
+        return CGSize(width: yourWidth, height: 320)
+    }
     
 //    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
 //        return UIEdgeInsets.zero

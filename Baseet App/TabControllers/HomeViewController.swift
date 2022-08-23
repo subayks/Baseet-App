@@ -143,7 +143,7 @@ class HomeViewController: UIViewController {
 }
 
 
-extension HomeViewController:UICollectionViewDelegate,UICollectionViewDataSource
+extension HomeViewController:UICollectionViewDelegate,UICollectionViewDataSource, UICollectionViewDelegateFlowLayout
 {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == self.collectionViewTop
@@ -200,6 +200,15 @@ extension HomeViewController:UICollectionViewDelegate,UICollectionViewDataSource
             self.homeViewControllerVM.makeShopDetailsCall(id: self.homeViewControllerVM.shopListModel?.restaurants?[indexPath.row].id ?? 0)
         }
     }
+    
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+//        if collectionView == self.collectionviewDown {
+//        let yourWidth = collectionView.bounds.width
+//
+//        return CGSize(width: yourWidth, height: 262)
+//        }
+//        return CGSize(width: collectionView.bounds.width, height: 158)
+//    }
     
     
 }

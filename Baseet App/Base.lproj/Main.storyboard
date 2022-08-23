@@ -1071,14 +1071,14 @@ Oatar.</string>
                                                                 <constraint firstAttribute="width" constant="100" id="mSl-Dc-jXS"/>
                                                             </constraints>
                                                         </imageView>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Chicken Biryani" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EuP-D2-Mq2">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Chicken Biryani" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EuP-D2-Mq2">
                                                             <rect key="frame" x="120" y="45" width="117" height="20.5"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <color key="textColor" red="0.80784313730000001" green="0.2470588235" blue="0.1960784314" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="25% off" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wlO-Qa-nzc">
-                                                            <rect key="frame" x="120" y="78.5" width="117" height="19.5"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="25% off" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wlO-Qa-nzc">
+                                                            <rect key="frame" x="120" y="70.5" width="117" height="20.5"/>
                                                             <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -1101,6 +1101,8 @@ Oatar.</string>
                                                         <constraint firstItem="jki-GD-QWj" firstAttribute="leading" secondItem="FUu-pH-hAR" secondAttribute="leading" constant="10" id="Iwb-jw-6dT"/>
                                                         <constraint firstItem="wlO-Qa-nzc" firstAttribute="leading" secondItem="EuP-D2-Mq2" secondAttribute="leading" id="MVK-iz-DwK"/>
                                                         <constraint firstItem="MeN-d7-8Jb" firstAttribute="centerY" secondItem="FUu-pH-hAR" secondAttribute="centerY" id="cR4-Vg-iif"/>
+                                                        <constraint firstItem="wlO-Qa-nzc" firstAttribute="top" secondItem="EuP-D2-Mq2" secondAttribute="bottom" constant="5" id="ja3-QZ-Eov"/>
+                                                        <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="wlO-Qa-nzc" secondAttribute="bottom" constant="10" id="lvd-PX-aUY"/>
                                                         <constraint firstItem="EuP-D2-Mq2" firstAttribute="leading" secondItem="jki-GD-QWj" secondAttribute="trailing" constant="10" id="sCn-SG-e3K"/>
                                                         <constraint firstAttribute="bottom" secondItem="jki-GD-QWj" secondAttribute="bottom" constant="15" id="uoq-7B-Zkx"/>
                                                     </constraints>

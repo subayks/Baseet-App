@@ -9,6 +9,7 @@ import UIKit
 
 class RestaurentFoodPicksVC: UIViewController {
 
+    @IBOutlet weak var savingsOverView: UIView!
     @IBOutlet weak var addSpecialNote: UIImageView!
     @IBOutlet weak var totalSavingsAmountLabel: UILabel!
     @IBOutlet weak var restaurentName: UILabel!
@@ -63,6 +64,8 @@ class RestaurentFoodPicksVC: UIViewController {
     func setupValues() {
         self.restaurentName.text = self.restaurentFoodPicksVCVM?.foodOrderItems?.shopName
         self.restaurentImage.loadImageUsingURL(self.restaurentFoodPicksVCVM?.foodOrderItems?.icon)
+        self.savingsOverView.layer.borderWidth = 2
+        self.savingsOverView.layer.borderColor = UIColor(red: 239/255, green: 250/255, blue: 255/255, alpha: 1).cgColor
     }
     
     @objc func tapFunction(sender:UITapGestureRecognizer) {

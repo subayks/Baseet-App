@@ -35,6 +35,7 @@ class AddOnTableViewCell: UITableViewCell {
         self.addOnView.layer.borderWidth = 1
         self.addOnView.layer.borderColor = UIColor.white.cgColor
         self.addOnView.layer.cornerRadius = 15
+        self.adOnImage.layer.cornerRadius = 15
         self.adOnImage.loadImageUsingURL("")
         self.titleLabel.text = self.addOnTableViewCellVM?.addOn?.name
         self.QuantityCount.text = "\(self.addOnTableViewCellVM?.addOn?.itemQuantity ?? 0)"

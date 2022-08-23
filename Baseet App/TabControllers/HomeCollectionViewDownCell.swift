@@ -22,6 +22,9 @@ class HomeCollectionViewDownCell: UICollectionViewCell {
     }
     
     func setupValues() {
+        self.bannerImage.layer.cornerRadius = 10
+        self.hotelLogo.layer.cornerRadius = 10
+
         self.bannerImage.loadImageUsingURL(self.homeCollectionViewDownCellVM?.restaurantsModel?.appcoverlogo ?? "")
         self.hotelLogo.loadImageUsingURL(self.homeCollectionViewDownCellVM?.restaurantsModel?.applogo ?? "")
         

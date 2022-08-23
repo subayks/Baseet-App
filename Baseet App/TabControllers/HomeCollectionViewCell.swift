@@ -17,6 +17,7 @@ class HomeCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var homeTopimageview: UIImageView!
     
     func setupValues() {
+        self.homeTopimageview.layer.cornerRadius = 10
         self.homeTopimageview.loadImageUsingURL(self.homeCollectionViewCellVM?.categoryListModel?.appimage ?? "")
     }
 }

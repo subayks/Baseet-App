@@ -163,6 +163,8 @@ class RestarentDishViewController: UIViewController {
         let formattedClosingDate = dateFormatter.string(from: date!)
         
         self.timingLabel.text = "Timing \(startTime) AM to \(formattedClosingDate)"
+        self.logoImage.layer.cornerRadius = 20
+        self.logoImage.clipsToBounds = true
         self.logoImage.loadImageUsingURL(self.restarentDishViewControllerVM?.shopDetailsModel?.restaurant?.applogo ?? "")
         self.restaurantName.text = self.restarentDishViewControllerVM?.shopDetailsModel?.restaurant?.name
         self.restaurantAddress.text = self.restarentDishViewControllerVM?.shopDetailsModel?.restaurant?.address

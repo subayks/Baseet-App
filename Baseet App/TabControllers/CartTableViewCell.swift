@@ -30,9 +30,10 @@ class CartTableViewCell: UITableViewCell {
     }
     
     func setupValues() {
+        self.cartImage.layer.cornerRadius = 15
         self.cartImage.loadImageUsingURL(self.CartTableViewCellVM?.foodItems?.appimage)
         self.cartLbl.text = self.CartTableViewCellVM?.foodItems?.name
-        self.moneyLbl.text = "\(self.CartTableViewCellVM?.foodItems?.tprice ?? 0)"
+        self.moneyLbl.text = "QR \(self.CartTableViewCellVM?.foodItems?.tprice ?? 0)"
     }
 
 }

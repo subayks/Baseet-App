@@ -36,6 +36,7 @@ class RestFoodPickTableViewCell: UITableViewCell {
     }
     
     func setupValues() {
+        self.itemImage.layer.cornerRadius = 15
         self.countOverView.layer.cornerRadius = 5
         self.countOverView.layer.borderWidth = 1
         self.countOverView.layer.borderColor = UIColor(red: 172/255, green: 37/255, blue: 23/255, alpha: 1).cgColor

@@ -26,6 +26,7 @@ class ResDishCollectionViewCellTwo: UICollectionViewCell {
     var itemCount = 0
     
     func setupValues() {
+        self.itemImage.layer.cornerRadius = 10
         self.itemImage.loadImageUsingURL(self.resDishCollectionViewCellTwoVM?.foodItems?.appimage)
         self.itemName.text = self.resDishCollectionViewCellTwoVM?.foodItems?.name
         if self.resDishCollectionViewCellTwoVM?.foodItems?.itemQuantity == 0 ||  self.resDishCollectionViewCellTwoVM?.foodItems?.itemQuantity == nil {

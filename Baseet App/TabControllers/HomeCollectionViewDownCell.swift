@@ -8,6 +8,8 @@
 import UIKit
 
 class HomeCollectionViewDownCell: UICollectionViewCell {
+    
+    @IBOutlet weak var timingButton: UIButton!
     @IBOutlet weak var bannerImage: UIImageView!
     @IBOutlet weak var hotelLogo: UIImageView!
     @IBOutlet weak var salonName: UILabel!
@@ -24,11 +26,11 @@ class HomeCollectionViewDownCell: UICollectionViewCell {
     func setupValues() {
         self.bannerImage.layer.cornerRadius = 10
         self.hotelLogo.layer.cornerRadius = 10
-
+        self.timingButton.layer.cornerRadius = 10
         self.bannerImage.loadImageUsingURL(self.homeCollectionViewDownCellVM?.restaurantsModel?.appcoverlogo ?? "")
         self.hotelLogo.loadImageUsingURL(self.homeCollectionViewDownCellVM?.restaurantsModel?.applogo ?? "")
-        
-        
+        self.timingButton.subtitleLabel?.text = "\(self.homeCollectionViewDownCellVM?.restaurantsModel?.deliveryTime ?? "")  \n Min"
+        self.timingButton.subtitleLabel?.textAlignment = .center
         self.salonName.text = self.homeCollectionViewDownCellVM?.restaurantsModel?.name
         //self.distanceButton.setTitle((self.homeCollectionViewDownCellVM?.restaurantsModel?.distance ?? ""), for: .normal)
         self.distanceButton.titleLabel?.numberOfLines = 1

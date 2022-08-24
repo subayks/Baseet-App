@@ -201,14 +201,14 @@ extension HomeViewController:UICollectionViewDelegate,UICollectionViewDataSource
         }
     }
     
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//        if collectionView == self.collectionviewDown {
-//        let yourWidth = collectionView.bounds.width
-//
-//        return CGSize(width: yourWidth, height: 262)
-//        }
-//        return CGSize(width: collectionView.bounds.width, height: 158)
-//    }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        if collectionView == self.collectionviewDown {
+        let yourWidth = collectionView.bounds.width
+
+        return CGSize(width: yourWidth, height: 262)
+        }
+        return CGSize(width: collectionView.bounds.width, height: 158)
+    }
     
     
 }

@@ -12,6 +12,9 @@ class HomeViewController: UIViewController {
     
     var menu_vc: MenuVC!
     
+    @IBOutlet weak var cartButton: UIButton!
+    @IBOutlet weak var cartCount: UIButton!
+    @IBOutlet weak var cartView: UIView!
     @IBOutlet weak var searchTF: UITextField!
     @IBOutlet weak var collectionViewTop: UICollectionView!
     @IBOutlet weak var collectionviewSec: UICollectionView!
@@ -27,16 +30,13 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
         homeViewControllerVM.makeCategoryListCall()
         homeViewControllerVM.makeShopNearyByCall()
-        
+        self.cartView.isHidden = true
         //        searchTF.addTarget(self, action: #selector(HomeViewController.textViewShouldBeginEditing(_:)), for: .editingChanged)
         
         //        searchTF.addTarget(self, action: #selector(HomeViewController.textFieldDidBeginEditing), for: UIControl.Event.touchDown)
         
         let tabBar = self.tabBarController!.tabBar
         tabBar.selectionIndicatorImage = UIImage().createSelectionIndicator(color: UIColor.gray, size: CGSize(width: tabBar.frame.width/CGFloat(tabBar.items!.count), height: tabBar.frame.height), lineWidth: 5.0)
-        
-        
-        
         
         menu_vc = self.storyboard?.instantiateViewController(withIdentifier: "MenuVC") as? MenuVC
         let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(self.respondToGesture))
@@ -46,10 +46,19 @@ class HomeViewController: UIViewController {
         self.view.addGestureRecognizer(swipeLeft)
         self.view.addGestureRecognizer(swipeRight)
         
+        cartView.layer.cornerRadius = 30
+        cartButton.layer.cornerRadius = 30
+        cartCount.layer.cornerRadius = cartCount.frame.height/2
+        self.cartCount.clipsToBounds = true
         
+        cartView.layer.borderWidth = 2
+        cartView.layer.borderColor = UIColor.systemGray6.cgColor
     }
     
-    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.homeViewControllerVM.getCartCall()
+    }
     
     
     
@@ -106,6 +115,18 @@ class HomeViewController: UIViewController {
                 self.present(alert, animated: true, completion: nil)
             }
         }
+        
+        self.homeViewControllerVM.getCartCountClosure = { [weak self]  in
+            DispatchQueue.main.async {
+                guard let self = self else {return}
+                if let cartCountValue = self.homeViewControllerVM.getCartModel?.data?.count, cartCountValue > 0 {
+                    self.cartView.isHidden = false
+                self.cartCount.setTitle("\(cartCountValue)", for: .normal)
+                } else {
+                    self.cartView.isHidden = true
+                }
+            }
+        }
     }
     
     @objc func respondToGesture(gesture: UISwipeGestureRecognizer)
@@ -120,9 +141,6 @@ class HomeViewController: UIViewController {
         }
     }
     
-    
-    
-    
     func show_menu()
     {
         let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
@@ -134,6 +152,20 @@ class HomeViewController: UIViewController {
     func close_menu()
     {
         self.dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func actionCart(_ sender: Any) {
+        let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewController(identifier: "RestaurentFoodPicksVC") as! RestaurentFoodPicksVC
+        vc.restaurentFoodPicksVCVM = self.homeViewControllerVM.getRestaurentFoodPicksVCVM()
+        vc.changedValues  = { (itemCount, index) in
+            DispatchQueue.main.async {
+                //   self.restarentDishViewControllerVM?.getCartCall(isFromCartScreen: true)
+                //  self.restarentDishViewControllerVM?.updateCurrentCount(itemId: itemCount, itemCount: index)
+            }
+        }
+        vc.modalPresentationStyle = .fullScreen
+        self.present(vc, animated: true, completion: nil)
     }
     
     @IBAction func menubtnAct(_ sender: Any)

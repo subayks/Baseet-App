@@ -19,6 +19,12 @@ class HomeViewControllerVM {
     var reloadCollectionViewTop:(()->())?
     var shopDetailsModel: ShopDetailsModel?
     var navigateToDetailsClosure:(()->())?
+    var getCartCountClosure:(()->())?
+    var getCartModel: GetCartModel? {
+        didSet {
+            self.getCartCountClosure?()
+        }
+    }
 
     init(apiServices: HomeApiServicesProtocol = HomeApiServices()) {
         self.apiServices = apiServices
@@ -89,6 +95,27 @@ class HomeViewControllerVM {
         }
     }
     
+    func getCartCall() {
+        if Reachability.isConnectedToNetwork() {
+
+            self.showLoadingIndicatorClosure?()
+           // let id = self.addToCartModel?.data?[0].userId
+            self.apiServices?.getCartApi(finalURL: "\(Constants.Common.finalURL)/products/get_cart?user_id=\(2)", completion: { (status: Bool? , errorCode: String?,result: AnyObject?, errorMessage: String?) -> Void in
+            
+            DispatchQueue.main.async {
+                self.hideLoadingIndicatorClosure?()
+                if status == true {
+                    self.getCartModel = result as? GetCartModel
+                } else {
+                   self.alertClosure?("Some technical problem")
+                }
+            }
+        })
+        } else {
+            self.alertClosure?("No Internet Availabe")
+        }
+    }
+    
     func getHomeCollectionViewDownCellVM(index: Int) ->HomeCollectionViewDownCellVM {
         if self.shopListModel?.restaurants?.count != nil {
             return HomeCollectionViewDownCellVM(restaurantsModel: (self.shopListModel?.restaurants?[index])!)
@@ -105,5 +132,14 @@ class HomeViewControllerVM {
     
     func getRestarentDishViewControllerVM() ->RestarentDishViewControllerVM {
         return RestarentDishViewControllerVM(shopDetailsModel: self.shopDetailsModel!)
+    }
+    
+    func getRestaurentFoodPicksVCVM() ->RestaurentFoodPicksVCVM {
+        return RestaurentFoodPicksVCVM(foodOrderItems: FoodOrderItems(shopName: "Api Pending", icon: "", foodItems: getSelectedFood()))
+    }
+    
+    func getSelectedFood() ->[CartDataModel] {
+        let selectedItems = self.getCartModel?.data ?? [CartDataModel()]
+        return selectedItems
     }
 }

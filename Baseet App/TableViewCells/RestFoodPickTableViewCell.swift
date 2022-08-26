@@ -48,7 +48,7 @@ class RestFoodPickTableViewCell: UITableViewCell {
     }
 
     @IBAction func reduceQuantity(_ sender: Any) {
-        if self.itemCountValue > 1 {
+        if self.itemCountValue >= 0 {
             self.itemCountValue = self.itemCountValue - 1
         //    self.itemCount.text = "\(self.itemCountValue)"
             self.itemAdded?(self.itemCountValue, buttonAdd.tag)

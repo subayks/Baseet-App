@@ -34,7 +34,6 @@ class RestarentDishViewController: UIViewController {
         
         menu_vc1 = self.storyboard?.instantiateViewController(withIdentifier: "RecipeDetailsVC") as? RecipeDetailsVC
         setupValues()
-
         self.restarentDishViewControllerVM?.setUpItemsList()
         //        let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(self.respondToGesture))
         //        swipeRight.direction = UISwipeGestureRecognizer.Direction.right
@@ -111,7 +110,8 @@ class RestarentDishViewController: UIViewController {
                 vc.restaurentFoodPicksVCVM = self.restarentDishViewControllerVM?.getRestaurentFoodPicksVCVM()
                 vc.changedValues  = { (itemCount, index) in
                     DispatchQueue.main.async {
-                        self.restarentDishViewControllerVM?.updateCurrentCount(itemId: itemCount, itemCount: index)
+                        self.restarentDishViewControllerVM?.getCartCall(isFromCartScreen: true)
+                     //   self.restarentDishViewControllerVM?.updateCurrentCount(itemId: itemCount, itemCount: index)
                     }
                 }
                 vc.modalPresentationStyle = .fullScreen
@@ -143,7 +143,8 @@ class RestarentDishViewController: UIViewController {
         vc.restaurentFoodPicksVCVM = self.restarentDishViewControllerVM?.getRestaurentFoodPicksVCVM()
         vc.changedValues  = { (itemCount, index) in
             DispatchQueue.main.async {
-                self.restarentDishViewControllerVM?.updateCurrentCount(itemId: itemCount, itemCount: index)
+                self.restarentDishViewControllerVM?.getCartCall(isFromCartScreen: true)
+              //  self.restarentDishViewControllerVM?.updateCurrentCount(itemId: itemCount, itemCount: index)
             }
         }
         vc.modalPresentationStyle = .fullScreen

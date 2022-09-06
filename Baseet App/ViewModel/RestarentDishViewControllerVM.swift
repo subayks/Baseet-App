@@ -233,9 +233,9 @@ class RestarentDishViewControllerVM {
         } else {
             //Create Cart
             if addOnsArray.count > 0 {
-                jsonToReturn =  ["food_id": "\(item?.id ?? 0)", "food_qty": "\(itemCount)", "addon": addOnsArray, "user_id": "\(2)"]
+                jsonToReturn =  ["food_id": "\(item?.id ?? 0)", "food_qty": "\(itemCount)", "addon": addOnsArray, "user_id": "\(((UserDefaults.standard.string(forKey: "User_Id") ?? "") as String))"]
             } else {
-                jsonToReturn =  ["food_id": "\(item?.id ?? 0)", "food_qty": "\(itemCount)", "addon": [], "user_id": "\(2)"]
+                jsonToReturn =  ["food_id": "\(item?.id ?? 0)", "food_qty": "\(itemCount)", "addon": [], "user_id": "\(((UserDefaults.standard.string(forKey: "User_Id") ?? "") as String))"]
             }
         }
         return self.convertDictionaryToJsonString(dict: jsonToReturn)!
@@ -257,7 +257,7 @@ class RestarentDishViewControllerVM {
 
             self.showLoadingIndicatorClosure?()
            // let id = self.addToCartModel?.data?[0].userId
-            self.apiServices?.getCartApi(finalURL: "\(Constants.Common.finalURL)/products/get_cart?user_id=\(2)", completion: { (status: Bool? , errorCode: String?,result: AnyObject?, errorMessage: String?) -> Void in
+            self.apiServices?.getCartApi(finalURL: "\(Constants.Common.finalURL)/products/get_cart?user_id=\(((UserDefaults.standard.string(forKey: "User_Id") ?? "") as String))", completion: { (status: Bool? , errorCode: String?,result: AnyObject?, errorMessage: String?) -> Void in
             
             DispatchQueue.main.async {
                 self.hideLoadingIndicatorClosure?()

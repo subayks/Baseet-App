@@ -45,7 +45,6 @@ class LocationAccessVC: UIViewController,CLLocationManagerDelegate,MKMapViewDele
             }
         }
     
-    
     func locationManager(_ manager: CLLocationManager, didUpdateLocations
         locations: [CLLocation]) {
         let locValue:CLLocationCoordinate2D = manager.location!.coordinate
@@ -101,15 +100,8 @@ class LocationAccessVC: UIViewController,CLLocationManagerDelegate,MKMapViewDele
     
     @IBAction func locationConfirmBtn(_ sender: Any) {
         let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
-        let vc = storyboard.instantiateViewController(identifier: "tabVC")
+        let vc = storyboard.instantiateViewController(identifier: "LoginViewController")
         vc.modalPresentationStyle = .fullScreen
         self.present(vc, animated: true, completion: nil)
     }
-    
-    
-  
-    
-    
-    
-
 }

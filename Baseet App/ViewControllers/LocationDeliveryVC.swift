@@ -7,6 +7,7 @@
 
 import UIKit
 import CoreLocation
+import SadadPaymentSDK
 
 class LocationDeliveryVC: UIViewController, CLLocationManagerDelegate {
 
@@ -15,6 +16,7 @@ class LocationDeliveryVC: UIViewController, CLLocationManagerDelegate {
     var menu_vcOrder: OrderSucessViewVC!
     var locationDeliveryVCVM: LocationDeliveryVCVM?
     var locationManager: CLLocationManager?
+    var strAccessToken:String = ""
 
     
     override func viewDidLoad()
@@ -87,6 +89,38 @@ class LocationDeliveryVC: UIViewController, CLLocationManagerDelegate {
             }
         }
         
+        self.locationDeliveryVCVM?.navigateToPaymentVC = { [weak self] (token) in
+            DispatchQueue.main.async {
+                guard let self = self else {return}
+
+                let arrProduct:NSMutableArray = NSMutableArray()
+                 let productDIC = NSMutableDictionary()
+                 productDIC.setValue("GUCCI Perfume", forKey: "itemname")
+                 productDIC.setValue(1, forKey: "quantity")
+                 productDIC.setValue(100, forKey: "amount")
+                 arrProduct.add(productDIC)
+                 arrProduct.add(productDIC)
+                
+               // self.locationDeliveryVCVM?.placeOrderApi()
+                
+                let podBundle = Bundle(for: SelectPaymentMethodVC.self)
+
+                let storyboard = UIStoryboard(name: "mainStoryboard", bundle: podBundle)
+
+                let vc = storyboard.instantiateViewController(withIdentifier: "SelectPaymentMethodVC") as! SelectPaymentMethodVC
+
+                vc.delegate = self
+                vc.isSandbox = false
+                vc.strMobile = "7080618000"
+                vc.strEmail = "test@gmail.com"
+                vc.strAccessToken = token
+                vc.amount = 100
+                vc.arrProductDetails = arrProduct
+                vc.modalPresentationStyle = .overCurrentContext
+                let navigationController = UINavigationController(rootViewController: vc)
+                self.present(navigationController, animated: true, completion: nil)
+            }
+        }
     }
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
@@ -97,25 +131,12 @@ class LocationDeliveryVC: UIViewController, CLLocationManagerDelegate {
         }
         
     }
-        
     
-    @IBAction func payNow(_ sender: Any)
-    {
-//        let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
-//        let vc = storyboard.instantiateViewController(identifier: "OrderSucessViewVC") as! OrderSucessViewVC
-//
-//        vc.modalPresentationStyle = .fullScreen
-//        self.present(vc, animated: true, completion: nil)
-        self.locationDeliveryVCVM?.placeOrderApi()
-        
-        
-        
+    @IBAction func payNow(_ sender: Any) {
+        self.locationDeliveryVCVM?.accessToken()
     }
     
-    
-    
-    @objc func imageTapped(tapGestureRecognizer: UITapGestureRecognizer)
-    {
+    @objc func imageTapped(tapGestureRecognizer: UITapGestureRecognizer) {
         let tappedImage = tapGestureRecognizer.view as! UIImageView
         let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
         let vc = storyboard.instantiateViewController(identifier: "PayWithVC") as! PayWithVC
@@ -129,4 +150,19 @@ class LocationDeliveryVC: UIViewController, CLLocationManagerDelegate {
     }
     
 
+}
+
+extension LocationDeliveryVC: SelectCardReponseDelegate {
+    func ResponseData(DataDIC: NSMutableDictionary) {
+        DispatchQueue.main.async {
+            let statusCode = DataDIC.value(forKey: "statusCode") as! Int
+            if statusCode == 200 {
+            self.locationDeliveryVCVM?.placeOrderApi()
+            } else {
+                let alert = UIAlertController(title: "Alert", message: DataDIC.value(forKey: "message") as? String, preferredStyle: UIAlertController.Style.alert)
+                alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+            }
+        }
+    }
 }

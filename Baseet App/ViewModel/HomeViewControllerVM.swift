@@ -100,7 +100,7 @@ class HomeViewControllerVM {
 
             self.showLoadingIndicatorClosure?()
            // let id = self.addToCartModel?.data?[0].userId
-            self.apiServices?.getCartApi(finalURL: "\(Constants.Common.finalURL)/products/get_cart?user_id=\(2)", completion: { (status: Bool? , errorCode: String?,result: AnyObject?, errorMessage: String?) -> Void in
+            self.apiServices?.getCartApi(finalURL: "\(Constants.Common.finalURL)/products/get_cart?user_id=\(((UserDefaults.standard.string(forKey: "User_Id") ?? "") as String))", completion: { (status: Bool? , errorCode: String?,result: AnyObject?, errorMessage: String?) -> Void in
             
             DispatchQueue.main.async {
                 self.hideLoadingIndicatorClosure?()

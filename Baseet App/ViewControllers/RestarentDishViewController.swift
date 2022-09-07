@@ -161,7 +161,7 @@ class RestarentDishViewController: UIViewController {
 
         let date = dateFormatter.date(from: dateAsString)
         dateFormatter.dateFormat = "h:mm a"
-        let formattedClosingDate = dateFormatter.string(from: date!)
+        let formattedClosingDate = dateFormatter.string(from: date ?? Date())
         
         self.timingLabel.text = "Timing \(startTime) AM to \(formattedClosingDate)"
         self.logoImage.layer.cornerRadius = 20

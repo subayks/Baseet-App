@@ -95,9 +95,9 @@ class LocationDeliveryVC: UIViewController, CLLocationManagerDelegate {
 
                 let arrProduct:NSMutableArray = NSMutableArray()
                  let productDIC = NSMutableDictionary()
-                 productDIC.setValue("GUCCI Perfume", forKey: "itemname")
-                 productDIC.setValue(1, forKey: "quantity")
-                 productDIC.setValue(100, forKey: "amount")
+            //     productDIC.setValue("GUCCI Perfume", forKey: "itemname")
+              //   productDIC.setValue(1, forKey: "quantity")
+                productDIC.setValue(Double(self.locationDeliveryVCVM?.totalPrice ?? "") ?? 0.00, forKey: "amount")
                  arrProduct.add(productDIC)
                  arrProduct.add(productDIC)
                 
@@ -114,7 +114,7 @@ class LocationDeliveryVC: UIViewController, CLLocationManagerDelegate {
                 vc.strMobile = "7080618000"
                 vc.strEmail = "test@gmail.com"
                 vc.strAccessToken = token
-                vc.amount = 100
+                vc.amount = Double(self.locationDeliveryVCVM?.totalPrice ?? "") ?? 0.00
                 vc.arrProductDetails = arrProduct
                 vc.modalPresentationStyle = .overCurrentContext
                 let navigationController = UINavigationController(rootViewController: vc)

@@ -20,9 +20,14 @@ class LocationDeliveryVCVM {
     var placeOrderModel: UpdateCartModel?
     var accessTokenModel: AccessTokenModel?
     var navigateToPaymentVC:((String)->())?
-
-    init(totalPrice: String, apiServices: HomeApiServicesProtocol = HomeApiServices()) {
+    var paymentType: PaymentType = .cash
+    var discountAmount: String?
+    var taxAmount: String?
+    
+    init(totalPrice: String, discountAmount: String, taxAmount: String, apiServices: HomeApiServicesProtocol = HomeApiServices()) {
         self.totalPrice = totalPrice
+        self.taxAmount = taxAmount
+        self.discountAmount = discountAmount
         self.apiServices = apiServices
     }
     
@@ -53,8 +58,14 @@ class LocationDeliveryVCVM {
     
     func getCartParam() -> String {
         var jsonToReturn: NSDictionary = NSDictionary()
+        var paymentMode = ""
+        if paymentType == .cash {
+            paymentMode = "cash_on_delivery"
+        } else if paymentType == .card {
+            paymentMode = "card"
+        }
         let resID =  Int((UserDefaults.standard.string(forKey: "RestaurentId") ?? "") as String)
-        jsonToReturn =  ["order_amount": "\(self.totalPrice ?? "")", "payment_method": "cash_on_delivery", "order_type": "take_away", "order_time": self.currentTime(), "address": "Financial Street HYD", "latitude": "\(latitude ?? 0.0)", "longitude": "\(logitude ?? 0.0)", "contact_person_name": "Subay", "contact_person_number": "9489588595",  "restaurant_id": "\(resID ?? 0)", "user_id": "\(((UserDefaults.standard.string(forKey: "User_Id") ?? "") as String))"]
+        jsonToReturn =  ["order_amount": "\(self.totalPrice ?? "")", "payment_method": paymentMode, "order_type": "take_away", "order_time": self.currentTime(), "address": "Financial Street HYD", "latitude": "\(latitude ?? 0.0)", "longitude": "\(logitude ?? 0.0)", "contact_person_name": "Subay", "contact_person_number": "9489588595",  "restaurant_id": "\(resID ?? 0)", "user_id": "\(((UserDefaults.standard.string(forKey: "User_Id") ?? "") as String))","tax_amount": self.taxAmount ?? "", "discount_amount": self.discountAmount ?? ""]
         return self.convertDictionaryToJsonString(dict: jsonToReturn)!
     }
     

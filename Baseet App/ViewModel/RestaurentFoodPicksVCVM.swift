@@ -136,37 +136,58 @@ class RestaurentFoodPicksVCVM {
     }
     
     func getLocationDeliveryVCVM() ->LocationDeliveryVCVM {
-        return LocationDeliveryVCVM(totalPrice: "\(self.priceCalculation() + self.taxCalculation())")
+        return LocationDeliveryVCVM(totalPrice: "\(self.priceCalculation() + self.taxCalculation())",discountAmount: String(self.totalSaving()), taxAmount: String(self.taxCalculation()) )
     }
+    
+//    func priceCalculation() ->Int {
+//        var priceArray = [Int]()
+//        if let selectedFoodItems = self.foodOrderItems?.foodItems {
+//            for item in selectedFoodItems {
+//                priceArray.append((item.price! as NSString).integerValue * (Int(item.foodQty ?? "") ?? 0))
+//            if let adOnItem = item.addon, adOnItem.count > 0 {
+//            for adOn in adOnItem {
+//                if adOn.addonquantity != nil && (Int(adOn.addonquantity ?? "") ?? 0) > 0 {
+//                    priceArray.append((Int(adOn.addonprice ?? "") ?? 0) * (Int(adOn.addonquantity ?? "") ?? 0))
+//                }
+//            }
+//            }
+//        }
+//            return priceArray.sum()
+//        }
+//        return 0
+//    }
     
     func priceCalculation() ->Int {
         var priceArray = [Int]()
         if let selectedFoodItems = self.foodOrderItems?.foodItems {
             for item in selectedFoodItems {
-                priceArray.append((item.price! as NSString).integerValue * (Int(item.foodQty ?? "") ?? 0))
-            if let adOnItem = item.addon, adOnItem.count > 0 {
-            for adOn in adOnItem {
-                if adOn.addonquantity != nil && (Int(adOn.addonquantity ?? "") ?? 0) > 0 {
-                    priceArray.append((Int(adOn.addonprice ?? "") ?? 0) * (Int(adOn.addonquantity ?? "") ?? 0))
-                }
+                priceArray.append(item.tprice ?? 0)
             }
-            }
-        }
             return priceArray.sum()
         }
         return 0
     }
     
-    func taxCalculation() ->Int {
-        let value = calculatePercentage(value: Double(priceCalculation()),percentageVal: 10)
-         print(value)
-        return Int(value)
+    func totalSaving() ->Double {
+        var discount = [Double]()
+        if let selectedFoodItems = self.foodOrderItems?.foodItems {
+            for item in selectedFoodItems {
+                discount.append(Double(item.discount ?? "") ?? 0.00)
+            }
+            return discount.sum()
+        }
+        return 0
     }
     
-    //Calucate percentage based on given values
-    public func calculatePercentage(value:Double,percentageVal:Double)->Double{
-        let val = value * percentageVal
-        return val / 100.0
+    func taxCalculation() ->Int {
+        var taxArray = [Int]()
+        if let selectedFoodItems = self.foodOrderItems?.foodItems {
+            for item in selectedFoodItems {
+                taxArray.append(Int(item.tax ?? "") ?? 0)
+            }
+            return taxArray.sum()
+        }
+        return 0
     }
     
     func grandTotal() ->String {

@@ -40,6 +40,11 @@ class ResDishCollectionViewCellTwo: UICollectionViewCell {
         self.itemCount = self.resDishCollectionViewCellTwoVM?.getItemQuantity() ?? 0
         self.ratingLabel.text = "⭑ \(self.resDishCollectionViewCellTwoVM?.foodItems?.avgRating ?? 0)"
         self.qrCodeLabel.text = "QR \(self.resDishCollectionViewCellTwoVM?.foodItems?.price ?? 0)"
+        if self.resDishCollectionViewCellTwoVM?.foodItems?.veg == 1 {
+            self.buttonVegOrNV.setImage(UIImage(named: "Veg"), for: .normal)
+        } else {
+            self.buttonVegOrNV.setImage(UIImage(named: "Non-Veg"), for: .normal)
+        }
     }
     
     @IBAction func actionAdd(_ sender: Any) {

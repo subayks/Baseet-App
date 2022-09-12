@@ -3110,7 +3110,7 @@ Oatar.</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YYH-81-iTQ">
-                                <rect key="frame" x="0.0" y="-22" width="414" height="100"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="100"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="koj-nS-A0E">
                                         <rect key="frame" x="8" y="52" width="204.66666666666666" height="35"/>
@@ -3145,13 +3145,13 @@ Oatar.</string>
                                 </constraints>
                             </view>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="tge-9n-1On">
-                                <rect key="frame" x="0.0" y="78" width="414" height="515"/>
+                                <rect key="frame" x="0.0" y="100" width="414" height="515"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="515" id="ftV-u1-6KN"/>
                                 </constraints>
                             </mapView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SELECT DELIVERY LOCATION" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rLV-tW-uGq">
-                                <rect key="frame" x="5" y="598" width="404" height="20"/>
+                                <rect key="frame" x="5" y="620" width="404" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="20" id="1cy-yB-mwL"/>
                                 </constraints>
@@ -3160,14 +3160,14 @@ Oatar.</string>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pin" translatesAutoresizingMaskIntoConstraints="NO" id="6pu-Bt-HAc">
-                                <rect key="frame" x="10" y="637" width="30" height="30"/>
+                                <rect key="frame" x="10" y="659" width="30" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="NDJ-2A-hlM"/>
                                     <constraint firstAttribute="width" constant="30" id="yK9-mv-nJ2"/>
                                 </constraints>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="top" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="DzW-hd-OZR">
-                                <rect key="frame" x="57.000000000000014" y="637" width="236.33333333333337" height="80"/>
+                                <rect key="frame" x="57.000000000000014" y="659" width="236.33333333333337" height="80"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="DOHA" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T6d-p0-e6f">
                                         <rect key="frame" x="0.0" y="0.0" width="48.666666666666664" height="27"/>
@@ -3189,7 +3189,7 @@ Oatar.</string>
                                 </constraints>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LMl-fi-YV9">
-                                <rect key="frame" x="5" y="747" width="404" height="60"/>
+                                <rect key="frame" x="5" y="769" width="404" height="60"/>
                                 <color key="backgroundColor" red="0.76862745099999996" green="0.16078431369999999" blue="0.16078431369999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="kHo-yk-faq"/>
@@ -3215,7 +3215,7 @@ Oatar.</string>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WWY-hF-Io9">
-                                <rect key="frame" x="337.66666666666669" y="637" width="66.333333333333314" height="22"/>
+                                <rect key="frame" x="337.66666666666669" y="659" width="66.333333333333314" height="22"/>
                                 <color key="backgroundColor" red="0.85022259782312182" green="0.85022259782312182" blue="0.85022259782312182" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="22" id="gth-ep-kH7"/>
@@ -4397,7 +4397,7 @@ will be return with in 5 days.</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ScV-CS-EFr">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="100"/>
+                                <rect key="frame" x="0.0" y="0.0" width="419" height="100"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="kYZ-Qp-TaU">
                                         <rect key="frame" x="8" y="52" width="182.33333333333334" height="35"/>
@@ -4426,7 +4426,7 @@ will be return with in 5 days.</string>
                                         </constraints>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="kpO-D4-aHr">
-                                        <rect key="frame" x="275.33333333333331" y="57" width="109.66666666666669" height="24"/>
+                                        <rect key="frame" x="280.33333333333331" y="57" width="109.66666666666669" height="24"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ahnaf" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bc8-BW-1ox">
                                                 <rect key="frame" x="0.0" y="0.0" width="53.666666666666664" height="24"/>
@@ -4456,10 +4456,10 @@ will be return with in 5 days.</string>
                                 </constraints>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="47" translatesAutoresizingMaskIntoConstraints="NO" id="GyG-IB-3KC">
-                                <rect key="frame" x="20" y="150" width="374" height="29"/>
+                                <rect key="frame" x="20" y="150" width="379" height="29"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hWn-KN-mrX">
-                                        <rect key="frame" x="0.0" y="0.0" width="93.333333333333329" height="29"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="95" height="29"/>
                                         <color key="tintColor" red="0.80000000000000004" green="0.22352941179999999" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain">
@@ -4473,7 +4473,7 @@ will be return with in 5 days.</string>
                                         </buttonConfiguration>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" Recarding" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IKy-k4-xRT">
-                                        <rect key="frame" x="140.33333333333334" y="0.0" width="93.333333333333343" height="29"/>
+                                        <rect key="frame" x="142" y="0.0" width="95" height="29"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="70" id="XME-RE-ePA"/>
                                         </constraints>
@@ -4482,7 +4482,7 @@ will be return with in 5 days.</string>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bDn-LJ-6r6">
-                                        <rect key="frame" x="280.66666666666669" y="0.0" width="93.333333333333314" height="29"/>
+                                        <rect key="frame" x="284" y="0.0" width="95" height="29"/>
                                         <color key="backgroundColor" red="0.80000000000000004" green="0.22352941179999999" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <state key="normal" title="Button"/>
@@ -4511,7 +4511,7 @@ will be return with in 5 days.</string>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ADD NOTE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="20D-V4-MnW">
-                                <rect key="frame" x="42" y="438" width="330" height="21"/>
+                                <rect key="frame" x="42" y="438" width="335" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="btj-si-7nq"/>
                                 </constraints>
@@ -4520,7 +4520,7 @@ will be return with in 5 days.</string>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Y5J-Jt-kSg">
-                                <rect key="frame" x="30" y="479" width="354" height="128"/>
+                                <rect key="frame" x="30" y="479" width="359" height="128"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <string key="text">Lorem Ipsum is simply dummy text ikfgdfkkrtkrkj
 of the printing and typesetting industry</string>
@@ -4529,24 +4529,24 @@ of the printing and typesetting industry</string>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="y0x-2a-LG5">
-                                <rect key="frame" x="20" y="632" width="374" height="78"/>
+                                <rect key="frame" x="20" y="632" width="379" height="78"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="34" translatesAutoresizingMaskIntoConstraints="NO" id="4cL-Te-RVg">
-                                        <rect key="frame" x="20" y="25" width="334" height="28"/>
+                                        <rect key="frame" x="20" y="25" width="339" height="28"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RL5-po-u3R">
-                                                <rect key="frame" x="0.0" y="0.0" width="56.333333333333336" height="28"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="61.333333333333336" height="28"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" image="stopbtn"/>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="24P-Ph-U6v">
-                                                <rect key="frame" x="90.333333333333343" y="0.0" width="35.666666666666657" height="28"/>
+                                                <rect key="frame" x="95.333333333333343" y="0.0" width="35.666666666666657" height="28"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="musicwaw" translatesAutoresizingMaskIntoConstraints="NO" id="pBo-gt-9UN">
-                                                <rect key="frame" x="160" y="0.0" width="174" height="28"/>
+                                                <rect key="frame" x="165" y="0.0" width="174" height="28"/>
                                             </imageView>
                                         </subviews>
                                     </stackView>
@@ -4566,7 +4566,7 @@ of the printing and typesetting industry</string>
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dLK-rx-NrO">
-                                <rect key="frame" x="166" y="736" width="82" height="79"/>
+                                <rect key="frame" x="166" y="736" width="87" height="79"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="79" id="1ml-Bx-YBX"/>
                                     <constraint firstAttribute="width" constant="87" id="vNg-lo-W5c"/>
@@ -5672,7 +5672,7 @@ of the printing and typesetting industry</string>
                                                                         <constraint firstAttribute="width" constant="20" id="r8I-Xb-XJY"/>
                                                                     </constraints>
                                                                     <state key="normal" title="Button"/>
-                                                                    <buttonConfiguration key="configuration" style="plain" image="selct">
+                                                                    <buttonConfiguration key="configuration" style="plain" image="Veg">
                                                                         <attributedString key="attributedTitle"/>
                                                                     </buttonConfiguration>
                                                                 </button>
@@ -5715,8 +5715,26 @@ of the printing and typesetting industry</string>
                                                                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="gYU-7R-e4o">
                                                                             <rect key="frame" x="0.0" y="0.0" width="163" height="40"/>
                                                                             <subviews>
-                                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b9v-0b-J8A">
+                                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RfP-BT-dg1">
                                                                                     <rect key="frame" x="0.0" y="0.0" width="41" height="40"/>
+                                                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                                    <color key="tintColor" red="1" green="0.84313725490196079" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                                    <state key="normal" title="Button"/>
+                                                                                    <buttonConfiguration key="configuration" style="plain" image="Delete-Item">
+                                                                                        <attributedString key="attributedTitle"/>
+                                                                                    </buttonConfiguration>
+                                                                                    <connections>
+                                                                                        <action selector="actionReduce:" destination="nAY-4d-CgS" eventType="touchUpInside" id="Qi6-Id-FJa"/>
+                                                                                    </connections>
+                                                                                </button>
+                                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ias-s0-CED">
+                                                                                    <rect key="frame" x="61" y="0.0" width="41" height="40"/>
+                                                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                                    <nil key="highlightedColor"/>
+                                                                                </label>
+                                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b9v-0b-J8A">
+                                                                                    <rect key="frame" x="122" y="0.0" width="41" height="40"/>
                                                                                     <color key="tintColor" red="1" green="0.84313725490000002" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                     <state key="normal" title="Button"/>
                                                                                     <buttonConfiguration key="configuration" style="plain">
@@ -5730,31 +5748,6 @@ of the printing and typesetting industry</string>
                                                                                     </buttonConfiguration>
                                                                                     <connections>
                                                                                         <action selector="actionIncrease:" destination="nAY-4d-CgS" eventType="touchUpInside" id="jJy-bN-l87"/>
-                                                                                    </connections>
-                                                                                </button>
-                                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ias-s0-CED">
-                                                                                    <rect key="frame" x="61" y="0.0" width="41" height="40"/>
-                                                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                                    <nil key="highlightedColor"/>
-                                                                                </label>
-                                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RfP-BT-dg1">
-                                                                                    <rect key="frame" x="122" y="0.0" width="41" height="40"/>
-                                                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                                    <color key="tintColor" red="1" green="0.84313725490196079" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                                    <state key="normal" title="Button"/>
-                                                                                    <buttonConfiguration key="configuration" style="plain">
-                                                                                        <attributedString key="attributedTitle">
-                                                                                            <fragment content="-">
-                                                                                                <attributes>
-                                                                                                    <font key="NSFont" size="36" name="Arial-BoldMT"/>
-                                                                                                    <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                                                                                </attributes>
-                                                                                            </fragment>
-                                                                                        </attributedString>
-                                                                                    </buttonConfiguration>
-                                                                                    <connections>
-                                                                                        <action selector="actionReduce:" destination="nAY-4d-CgS" eventType="touchUpInside" id="Qi6-Id-FJa"/>
                                                                                     </connections>
                                                                                 </button>
                                                                             </subviews>
@@ -8504,21 +8497,42 @@ logout from this application.es</string>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="60" translatesAutoresizingMaskIntoConstraints="NO" id="ujd-Lx-qlq">
+                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ujd-Lx-qlq">
                                         <rect key="frame" x="40" y="180.66666666666663" width="334" height="40"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pay with" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MkP-Xy-Iw8">
-                                                <rect key="frame" x="0.0" y="0.0" width="85.333333333333329" height="40"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="100.33333333333333" height="40"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="locationDelivery" translatesAutoresizingMaskIntoConstraints="NO" id="32Z-uh-CXs">
-                                                <rect key="frame" x="145.33333333333337" y="0.0" width="188.66666666666663" height="40"/>
-                                            </imageView>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9bK-b7-1iW">
+                                                <rect key="frame" x="100.33333333333336" y="0.0" width="223.66666666666663" height="40"/>
+                                                <color key="backgroundColor" systemColor="systemGray6Color"/>
+                                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" image="locationDelivery" title="Cash" imagePadding="10"/>
+                                                <connections>
+                                                    <action selector="actionPaymentType:" destination="trE-2X-Y4Q" eventType="touchUpInside" id="xyW-q9-vTw"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WuX-hj-Vkl">
+                                                <rect key="frame" x="324" y="0.0" width="10" height="40"/>
+                                                <color key="backgroundColor" systemColor="systemGray6Color"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="10" id="aug-55-fN6"/>
+                                                </constraints>
+                                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" image="chevron.down.circle" catalog="system"/>
+                                                <connections>
+                                                    <action selector="actionPaymentType:" destination="trE-2X-Y4Q" eventType="touchUpInside" id="YNV-op-Hkq"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="uSU-Fh-FuZ"/>
+                                            <constraint firstItem="MkP-Xy-Iw8" firstAttribute="width" secondItem="ujd-Lx-qlq" secondAttribute="width" multiplier="0.3" id="x7a-VJ-zjT"/>
                                         </constraints>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="78" translatesAutoresizingMaskIntoConstraints="NO" id="6gp-Hf-Ksg">
@@ -8615,8 +8629,8 @@ logout from this application.es</string>
                     </view>
                     <size key="freeformSize" width="414" height="896"/>
                     <connections>
-                        <outlet property="cashimage" destination="32Z-uh-CXs" id="T6l-9x-SAg"/>
                         <outlet property="labelPrice" destination="7O3-5B-Uro" id="n6W-nU-Qym"/>
+                        <outlet property="paymentIMage" destination="9bK-b7-1iW" id="nxp-wB-sfI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mfv-TU-sEb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -8672,12 +8686,17 @@ logout from this application.es</string>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UtC-Aa-L7u">
                                                 <rect key="frame" x="0.0" y="150" width="140" height="60"/>
+                                                <color key="backgroundColor" systemColor="systemGray6Color"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="60" id="9lg-ai-O8z"/>
                                                     <constraint firstAttribute="width" constant="140" id="KxN-P8-sDT"/>
                                                 </constraints>
+                                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="plain" image="debitCard"/>
+                                                <buttonConfiguration key="configuration" style="plain" image="locationDelivery" title="Cash"/>
+                                                <connections>
+                                                    <action selector="actionCash:" destination="FvB-o1-74c" eventType="touchUpInside" id="pnp-dy-V6A"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
@@ -8695,12 +8714,17 @@ logout from this application.es</string>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FEq-qS-KdT">
                                                 <rect key="frame" x="0.0" y="75" width="140" height="60"/>
+                                                <color key="backgroundColor" systemColor="systemGray6Color"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="140" id="NeR-9O-qLM"/>
                                                     <constraint firstAttribute="height" constant="60" id="evR-T3-5ng"/>
                                                 </constraints>
+                                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="plain" image="debitCard"/>
+                                                <buttonConfiguration key="configuration" style="plain" image="debitCard" title="Card" imagePadding="10"/>
+                                                <connections>
+                                                    <action selector="actionDebitCard:" destination="FvB-o1-74c" eventType="touchUpInside" id="I5v-V7-5Pk"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QbM-0A-Gb4">
                                                 <rect key="frame" x="0.0" y="150" width="140" height="60"/>
@@ -8938,11 +8962,13 @@ logout from this application.es</string>
         <image name="Biryani-1" width="436" height="240"/>
         <image name="Cart" width="80" height="80"/>
         <image name="Checkin" width="65" height="68"/>
+        <image name="Delete-Item" width="17" height="20"/>
         <image name="Gpay-1" width="126" height="60"/>
         <image name="Offer Coupen" width="363" height="82"/>
         <image name="Popular Res" width="75" height="70"/>
         <image name="SUCESS" width="100" height="137"/>
         <image name="Screenshot 2022-07-11 at 8.08.51 PM" width="361" height="85"/>
+        <image name="Veg" width="20" height="20"/>
         <image name="add comment" width="146" height="28"/>
         <image name="add new Card" width="125" height="57"/>
         <image name="ae" width="40.666667938232422" height="40.333332061767578"/>
@@ -8960,8 +8986,9 @@ logout from this application.es</string>
         <image name="cashC" width="292" height="126"/>
         <image name="change_password" width="186" height="166"/>
         <image name="checkmark" width="25" height="25"/>
+        <image name="chevron.down.circle" catalog="system" width="128" height="121"/>
         <image name="clock" width="23.333333969116211" height="23.333333969116211"/>
-        <image name="debitCard" width="124" height="58"/>
+        <image name="debitCard" width="40" height="39"/>
         <image name="deletImg" width="25" height="31"/>
         <image name="didsele" width="20" height="18"/>
         <image name="edit_profile_img" width="121.33333587646484" height="121.33333587646484"/>
@@ -8977,7 +9004,7 @@ logout from this application.es</string>
         <image name="loc" width="56" height="64"/>
         <image name="locate" width="32" height="36"/>
         <image name="location" width="20.666666030883789" height="27.666666030883789"/>
-        <image name="locationDelivery" width="154" height="36"/>
+        <image name="locationDelivery" width="50" height="39"/>
         <image name="locationPing" width="14" height="20"/>
         <image name="location_smalll" width="19" height="19"/>
         <image name="logo_small" width="222.66667175292969" height="74.333335876464844"/>
@@ -8993,8 +9020,8 @@ logout from this application.es</string>
         <image name="otp" width="159.33332824707031" height="159.33332824707031"/>
         <image name="paytm" width="48" height="19"/>
         <image name="pedit" width="17" height="17"/>
-        <image name="person" catalog="system" width="128" height="117"/>
         <image name="person" width="153" height="138"/>
+        <image name="person" catalog="system" width="128" height="117"/>
         <image name="person Logo" width="92" height="93"/>
         <image name="person.fill" catalog="system" width="128" height="120"/>
         <image name="phone.arrow.down.left.fill" catalog="system" width="128" height="115"/>
@@ -9051,6 +9078,9 @@ logout from this application.es</string>
         </systemColor>
         <systemColor name="systemGray5Color">
             <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemGray6Color">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGreenColor">
             <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

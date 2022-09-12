@@ -9,29 +9,26 @@ import UIKit
 import CoreLocation
 import SadadPaymentSDK
 
+enum PaymentType {
+    case cash
+    case card
+}
+
 class LocationDeliveryVC: UIViewController, CLLocationManagerDelegate {
 
     @IBOutlet weak var labelPrice: UILabel!
-    @IBOutlet weak var cashimage: UIImageView!
+    @IBOutlet weak var paymentIMage: UIButton!
     var menu_vcOrder: OrderSucessViewVC!
     var locationDeliveryVCVM: LocationDeliveryVCVM?
     var locationManager: CLLocationManager?
     var strAccessToken:String = ""
-
     
     override func viewDidLoad()
     {
         super.viewDidLoad()
         
-        self.labelPrice.text = self.locationDeliveryVCVM?.totalPrice
-        
-        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageTapped(tapGestureRecognizer:)))
-        cashimage.isUserInteractionEnabled = true
-        cashimage.addGestureRecognizer(tapGestureRecognizer)
-        
-
+        self.labelPrice.text = "QR \(self.locationDeliveryVCVM?.totalPrice ?? "")"
         locationPermissions()
-        
     }
     
     //setup location properties
@@ -133,17 +130,51 @@ class LocationDeliveryVC: UIViewController, CLLocationManagerDelegate {
     }
     
     @IBAction func payNow(_ sender: Any) {
-        self.locationDeliveryVCVM?.accessToken()
+        if  self.locationDeliveryVCVM?.paymentType == .cash {
+            self.locationDeliveryVCVM?.placeOrderApi()
+        } else if  self.locationDeliveryVCVM?.paymentType == .card {
+            self.locationDeliveryVCVM?.accessToken()
+        }
     }
     
-    @objc func imageTapped(tapGestureRecognizer: UITapGestureRecognizer) {
-        let tappedImage = tapGestureRecognizer.view as! UIImageView
+    @IBAction func actionPaymentType(_ sender: Any) {
         let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
         let vc = storyboard.instantiateViewController(identifier: "PayWithVC") as! PayWithVC
+        vc.paymentType = { [weak self] (paymentType) in
+            DispatchQueue.main.async {
+                guard let self = self else {return}
+                self.locationDeliveryVCVM?.paymentType = paymentType
+                if paymentType == .card {
+                    self.paymentIMage.setImage(UIImage(named: "debitCard"), for: .normal)
+                } else if paymentType == .cash {
+                    self.paymentIMage.setImage(UIImage(named: "locationDelivery"), for: .normal)
+                }
+            }
+        }
         vc.modalTransitionStyle = .coverVertical
         vc.modalPresentationStyle = .fullScreen
         self.present(vc, animated: true, completion: nil)
     }
+    
+//    @objc func imageTapped(tapGestureRecognizer: UITapGestureRecognizer) {
+//        let tappedImage = tapGestureRecognizer.view as! UIImageView
+//        let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
+//        let vc = storyboard.instantiateViewController(identifier: "PayWithVC") as! PayWithVC
+//        vc.paymentType = { [weak self] (paymentType) in
+//            DispatchQueue.main.async {
+//                guard let self = self else {return}
+//                self.locationDeliveryVCVM?.paymentType = paymentType
+//                if paymentType == .card {
+//                    self.cashimage.image = UIImage(named: "debitCard")
+//                } else if paymentType == .cash {
+//                self.cashimage.image = UIImage(named: "locationDelivery")
+//                }
+//            }
+//        }
+//        vc.modalTransitionStyle = .coverVertical
+//        vc.modalPresentationStyle = .fullScreen
+//        self.present(vc, animated: true, completion: nil)
+//    }
     
     @IBAction func backBtn(_ sender: Any) {
         self.dismiss(animated: true,completion: nil)

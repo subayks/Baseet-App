@@ -8,7 +8,10 @@
 import UIKit
 
 class PayWithVC: UIViewController {
+    
+    var paymentType:((PaymentType)->())?
 
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -18,6 +21,16 @@ class PayWithVC: UIViewController {
 
     @IBAction func backbtn(_ sender: Any) {
         self.dismiss(animated: true,completion: nil)
+    }
+    
+    @IBAction func actionDebitCard(_ sender: Any) {
+        self.dismiss(animated: true,completion: nil)
+        self.paymentType?(.card)
+    }
+    
+    @IBAction func actionCash(_ sender: Any) {
+        self.dismiss(animated: true,completion: nil)
+        self.paymentType?(.cash)
     }
     
     @IBAction func addBtnn(_ sender: Any) {

@@ -34,6 +34,7 @@ class RestaurentFoodPicksVC: UIViewController {
         self.restaurentFoodPicksVCVM?.reloadTableViewClosure = { [weak self] in
             DispatchQueue.main.async {
                 guard let self = self else {return}
+                self.totalSavingsAmountLabel.text = "QR \(Double(self.restaurentFoodPicksVCVM?.totalSaving() ?? 0))"
                 self.restFoodPick.reloadData()
             }
         }
@@ -66,6 +67,7 @@ class RestaurentFoodPicksVC: UIViewController {
         self.restaurentImage.loadImageUsingURL(self.restaurentFoodPicksVCVM?.foodOrderItems?.icon)
         self.savingsOverView.layer.borderWidth = 2
         self.savingsOverView.layer.borderColor = UIColor(red: 239/255, green: 250/255, blue: 255/255, alpha: 1).cgColor
+        self.totalSavingsAmountLabel.text = "QR \(Double(self.restaurentFoodPicksVCVM?.totalSaving() ?? 0))"
     }
     
     @objc func tapFunction(sender:UITapGestureRecognizer) {

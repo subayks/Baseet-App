@@ -46,7 +46,7 @@
                             <constraints>
                                 <constraint firstAttribute="width" constant="45" id="wJF-qc-BWi"/>
                             </constraints>
-                            <imageReference key="image" image="offers" symbolScale="small"/>
+                            <imageReference key="image" image="Offer Percentage" symbolScale="small"/>
                         </imageView>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tbb-1L-o7d">
                             <rect key="frame" x="55" y="0.0" width="294" height="41"/>
@@ -62,8 +62,8 @@
                                 </attributedString>
                             </buttonConfiguration>
                         </button>
-                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ticket" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="DkN-6t-TCs">
-                            <rect key="frame" x="359" y="1.5" width="150" height="37.5"/>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Ticket_Coupon" translatesAutoresizingMaskIntoConstraints="NO" id="DkN-6t-TCs">
+                            <rect key="frame" x="359" y="0.0" width="150" height="41"/>
                             <color key="tintColor" systemColor="systemTealColor"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="150" id="ark-l0-OrS"/>
@@ -201,9 +201,9 @@
         </view>
     </objects>
     <resources>
+        <image name="Offer Percentage" width="23" height="25"/>
+        <image name="Ticket_Coupon" width="132" height="59"/>
         <image name="chevron.right" catalog="system" width="96" height="128"/>
-        <image name="offers" width="27.5" height="27.5"/>
-        <image name="ticket" catalog="system" width="128" height="84"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

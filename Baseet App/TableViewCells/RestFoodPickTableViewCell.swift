@@ -43,7 +43,8 @@ class RestFoodPickTableViewCell: UITableViewCell {
         self.itemName.text = self.RestFoodPickTableViewCellVM?.foodItems?.name
         self.itemCount.text = self.RestFoodPickTableViewCellVM?.foodItems?.foodQty
         self.itemCountValue = Int(self.RestFoodPickTableViewCellVM?.foodItems?.foodQty ?? "") ?? 0
-        self.qrCodeLabel.text = "QR \(self.RestFoodPickTableViewCellVM?.foodItems?.price ?? "")"
+        let itemPrice = self.RestFoodPickTableViewCellVM?.foodItems?.tprice ?? 0 - (Int(self.RestFoodPickTableViewCellVM?.foodItems?.discount ?? "") ?? 0)
+        self.qrCodeLabel.text = "QR \(itemPrice)"
         self.itemImage.loadImageUsingURL(self.RestFoodPickTableViewCellVM?.foodItems?.appimage)
     }
 

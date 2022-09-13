@@ -145,8 +145,10 @@ class LocationDeliveryVC: UIViewController, CLLocationManagerDelegate {
                 guard let self = self else {return}
                 self.locationDeliveryVCVM?.paymentType = paymentType
                 if paymentType == .card {
+                    self.paymentIMage.setTitle("Card", for: .normal)
                     self.paymentIMage.setImage(UIImage(named: "debitCard"), for: .normal)
                 } else if paymentType == .cash {
+                    self.paymentIMage.setTitle("Cash", for: .normal)
                     self.paymentIMage.setImage(UIImage(named: "locationDelivery"), for: .normal)
                 }
             }

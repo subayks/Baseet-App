@@ -195,6 +195,8 @@ class RestaurentFoodPicksVCVM {
         return "QR \(self.priceCalculation() + self.taxCalculation())"
     }
     
-    
+    func getAddNoteVCVM() ->AddNoteVCVM {
+        return AddNoteVCVM(notes: self.notes ?? "", voiceRecord: "")
+    }
     
 }

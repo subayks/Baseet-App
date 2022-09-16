@@ -7,10 +7,10 @@
 
 import UIKit
 import AVFoundation
-import CoreData
 
 class AddNoteVC: UIViewController {
     
+    @IBOutlet weak var timingLabel: UILabel!
     @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var recordButton: UIButton!
     @IBOutlet weak var pauseButton: UIButton!
@@ -18,20 +18,31 @@ class AddNoteVC: UIViewController {
     @IBOutlet weak var notesTextView: UITextView!
     var notes:((String, String)->())?
     @IBOutlet weak var playButton: UIButton!
-    var soundPlayer:AVAudioPlayer?
-
+    
     var soundRecorder:AVAudioRecorder?
-var filename = "audio.m4a"
+    var soundPlayer: AVAudioPlayer!
+    var addNotesVM = AddNoteVCVM()
+    var filename = "audio.m4a"
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.setupRecorder()
         let disMissKeyboardTap = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
         view.addGestureRecognizer(disMissKeyboardTap)
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
-               
+        
+        pauseButton.layer.borderWidth = 2
+        pauseButton.layer.borderColor = UIColor.gray.cgColor
+        pauseButton.layer.cornerRadius = pauseButton.frame.height/2
+        pauseButton.clipsToBounds = true
+        self.pauseButton.isEnabled = false
+        self.playButton.isEnabled = false
+        
+        if self.addNotesVM.notes?.count ?? 0 > 0 {
+        self.notesTextView.text = self.addNotesVM.notes
+        }
     }
     
     func isPermissonGranted() ->Bool{
@@ -58,9 +69,24 @@ var filename = "audio.m4a"
     }
     
     @IBAction func buttonPlay(_ sender: UIButton) {
-        self.recordButton.isEnabled = false
-        preparePlayer()
-        soundPlayer?.play()
+        if self.recordButton.isEnabled {
+            self.recordButton.isEnabled = false
+            preparePlayer()
+            soundPlayer?.play()
+            self.playButton.tintColor = UIColor.red
+            self.playButton.setImage(UIImage(systemName: "stop.fill"), for: .normal)
+            self.pauseButton.tintColor = UIColor.red
+            pauseButton.layer.borderColor = UIColor.red.cgColor
+            self.pauseButton.setImage(UIImage(systemName: "pause"), for: .normal)
+        } else {
+            self.recordButton.isEnabled = true
+            soundPlayer?.stop()
+            self.playButton.tintColor = UIColor.systemGreen
+            self.playButton.setImage(UIImage(systemName: "play.fill"), for: .normal)
+            self.pauseButton.tintColor = UIColor.systemGreen
+            pauseButton.layer.borderColor = UIColor.systemGreen.cgColor
+            self.pauseButton.setImage(UIImage(systemName: "play.fill"), for: .normal)
+        }
     }
     
     func preparePlayer() {
@@ -69,37 +95,65 @@ var filename = "audio.m4a"
             soundPlayer?.delegate = self
             soundPlayer?.prepareToPlay()
             soundPlayer?.volume = 1
-
-           } catch {
-              
-           }
+            
+        } catch {
+            print("error in loading ")
+        }
     }
     
-    @IBAction func buttonPause(_ sender: Any) {
-        soundPlayer?.stop()
+    @IBAction func buttonPause(_ sender: UIButton) {
+        if sender.currentImage == UIImage(systemName: "play.fill") || sender.currentImage == nil {
+           if sender.currentImage == nil {
+            preparePlayer()
+            }
+            soundPlayer?.play()
+            pauseButton.layer.borderWidth = 2
+            pauseButton.layer.borderColor = UIColor.red.cgColor
+            pauseButton.layer.cornerRadius = pauseButton.frame.height/2
+            pauseButton.clipsToBounds = true
+            self.pauseButton.tintColor = UIColor.red
+            self.pauseButton.setImage(UIImage(systemName: "pause"), for: .normal)
+        } else {
+            soundPlayer?.pause()
+            pauseButton.layer.borderWidth = 2
+            pauseButton.layer.borderColor = UIColor.green.cgColor
+            pauseButton.layer.cornerRadius = pauseButton.frame.height/2
+            pauseButton.clipsToBounds = true
+            self.pauseButton.tintColor = UIColor.systemGreen
+            self.pauseButton.setImage(UIImage(systemName: "play.fill"), for: .normal)
+            
         }
-    
+    }
     
     @IBAction func backBtn(_ sender: Any) {
         self.dismiss(animated: true,completion: nil)
     }
     
     @IBAction func actionClose(_ sender: Any) {
+        self.dismiss(animated: true,completion: nil)
     }
     
     @IBAction func actionRecord(_ sender: UIButton) {
         if self.isPermissonGranted() {
-        if sender.titleLabel?.text == "Record" {
-            soundRecorder?.record()
-            sender.setTitle("Stop", for: .normal)
-            self.playButton.isEnabled = false
-            self.pauseButton.isEnabled = false
-        } else {
-            soundRecorder?.stop()
-            sender.setTitle("Record", for: .normal)
-            self.playButton.isEnabled = true
-            self.pauseButton.isEnabled = true
-        }
+            self.timingLabel.text = "0.00"
+            if sender.titleLabel?.text == "Record" {
+                soundRecorder?.record()
+                sender.setImage(UIImage(systemName: "circle.fill"), for: .normal)
+                sender.tintColor = .red
+                sender.configuration?.imagePadding = 5
+                sender.setTitle("Recording", for: .normal)
+                self.playButton.isEnabled = false
+                self.pauseButton.isEnabled = false
+                self.pauseButton.isEnabled = false
+            } else {
+                soundRecorder?.stop()
+                sender.setImage(UIImage(), for: .normal)
+                sender.configuration?.imagePadding = 0
+                sender.setTitle("Record", for: .normal)
+                self.playButton.isEnabled = true
+                self.pauseButton.isEnabled = true
+                self.pauseButton.isEnabled = true
+            }
         }
     }
     
@@ -128,16 +182,17 @@ var filename = "audio.m4a"
     func setupRecorder() {
         let recordSettings =  [AVFormatIDKey: kAudioFormatAppleLossless, AVEncoderAudioQualityKey: AVAudioQuality.max.rawValue, AVEncoderBitRateKey: 320000, AVNumberOfChannelsKey: 2, AVSampleRateKey: 44100.0 ]
         as [String : Any]
-      //  var error: NSError?
+        //   var error: NSError?
         do {
             soundRecorder = try AVAudioRecorder(url: self.getFinalURL() as URL, settings: recordSettings as [String: Any])
             
             soundRecorder?.delegate = self
             soundRecorder?.prepareToRecord()
-           } catch {
-              //hanldle error
-           }
-       
+        } catch {
+            //hanldle error
+            print("not recorder")
+        }
+        
     }
     
     func getCacheDirect() ->String {
@@ -164,34 +219,44 @@ extension AddNoteVC: UITextViewDelegate {
 }
 
 extension AddNoteVC:  AVAudioRecorderDelegate, AVAudioPlayerDelegate {
-    // Microphone Access
-        func checkMicrophoneAccess() {
-            // Check Microphone Authorization
-           
-        }
     
     fileprivate func convertFromAVAudioSessionCategory(_ input: AVAudioSession.Category) -> String {
         return input.rawValue
     }
-
+    
     // Helper function inserted by Swift migrator.
     fileprivate func convertToUIApplicationOpenExternalURLOptionsKeyDictionary(_ input: [String: Any]) -> [UIApplication.OpenExternalURLOptionsKey: Any] {
         return Dictionary(uniqueKeysWithValues: input.map { key, value in (UIApplication.OpenExternalURLOptionsKey(rawValue: key), value)})
     }
     
     // completion of recording
-       func audioRecorderDidFinishRecording(_ recorder: AVAudioRecorder, successfully flag: Bool) {
-           if flag {
-               
-               self.playButton.isEnabled = true
-               
-           }
-       }
+    func audioRecorderDidFinishRecording(_ recorder: AVAudioRecorder, successfully flag: Bool) {
+        if flag {
+            self.playButton.isEnabled = true
+            self.pauseButton.isEnabled = true
+            let asset = AVAsset(url: self.getFinalURL() as URL)
+            
+            let duration = asset.duration
+            let durationTime = CMTimeGetSeconds(duration)
+            print(durationTime)
+            let timingString = secondsToHoursMinutesSeconds(seconds: durationTime)
+            self.timingLabel.text = "\(timingString.1):\(timingString.2)"
+        }
+    }
     
     func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
-            
         self.recordButton.isEnabled = true
-            
-        }
+        self.playButton.tintColor = UIColor.systemGreen
+        self.playButton.setImage(UIImage(systemName: "play.fill"), for: .normal)
+        self.pauseButton.tintColor = UIColor.systemGreen
+        self.pauseButton.layer.borderColor = UIColor.systemGreen.cgColor
+        self.pauseButton.setImage(UIImage(systemName: "play.fill"), for: .normal)
+    }
+    
+    func secondsToHoursMinutesSeconds(seconds: Double) -> (Int, Int, Int) {
+        let (hr,  minf) = modf(seconds / 3600)
+        let (min, secf) = modf(60 * minf)
+        return (Int(hr), Int(min), Int(60 * secf))
+    }
 }
 

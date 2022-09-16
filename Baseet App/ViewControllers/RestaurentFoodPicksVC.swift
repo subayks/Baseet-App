@@ -74,6 +74,7 @@ class RestaurentFoodPicksVC: UIViewController {
             let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
             let vc = storyboard.instantiateViewController(identifier: "AddNoteVC") as! AddNoteVC
            // vc.modalTransitionStyle  = .crossDissolve
+        vc.addNotesVM = self.restaurentFoodPicksVCVM?.getAddNoteVCVM() ?? AddNoteVCVM()
         vc.notes = {  (notes, recording) in
             DispatchQueue.main.async {
                 self.restaurentFoodPicksVCVM?.notes = notes

@@ -38,6 +38,7 @@
 		0995BFC028A57C7B004F0EC5 /* RestFoodPickTableViewCellVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0995BFBF28A57C7B004F0EC5 /* RestFoodPickTableViewCellVM.swift */; };
 		0995BFC428A587EE004F0EC5 /* BasketFooterViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0995BFC328A587EE004F0EC5 /* BasketFooterViewCell.swift */; };
 		0995BFC628A594F3004F0EC5 /* BasketFooterViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0995BFC528A594F2004F0EC5 /* BasketFooterViewCell.xib */; };
+		099B107D28D4982900340AA1 /* AddNoteVCVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 099B107C28D4982800340AA1 /* AddNoteVCVM.swift */; };
 		099E9B5228C1C93B00BD1724 /* LoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 099E9B5128C1C93B00BD1724 /* LoginModel.swift */; };
 		099E9B5428C1CCA400BD1724 /* LoginViewControllerVm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 099E9B5328C1CCA400BD1724 /* LoginViewControllerVm.swift */; };
 		09A0D05C28AFF4160015FC4C /* GetCartModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09A0D05B28AFF4160015FC4C /* GetCartModel.swift */; };
@@ -175,6 +176,7 @@
 		0995BFBF28A57C7B004F0EC5 /* RestFoodPickTableViewCellVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestFoodPickTableViewCellVM.swift; sourceTree = "<group>"; };
 		0995BFC328A587EE004F0EC5 /* BasketFooterViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketFooterViewCell.swift; sourceTree = "<group>"; };
 		0995BFC528A594F2004F0EC5 /* BasketFooterViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BasketFooterViewCell.xib; sourceTree = "<group>"; };
+		099B107C28D4982800340AA1 /* AddNoteVCVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNoteVCVM.swift; sourceTree = "<group>"; };
 		099E9B5128C1C93B00BD1724 /* LoginModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginModel.swift; sourceTree = "<group>"; };
 		099E9B5328C1CCA400BD1724 /* LoginViewControllerVm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewControllerVm.swift; sourceTree = "<group>"; };
 		09A0D05B28AFF4160015FC4C /* GetCartModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCartModel.swift; sourceTree = "<group>"; };
@@ -334,6 +336,7 @@
 				09B4ADF328AEC95400744F9F /* LocationDeliveryVCVM.swift */,
 				0948465B28AF5BD0008E03BC /* OrderSucessViewVCVM.swift */,
 				099E9B5328C1CCA400BD1724 /* LoginViewControllerVm.swift */,
+				099B107C28D4982800340AA1 /* AddNoteVCVM.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -717,6 +720,7 @@
 				88FDAB2B2881B58F006F06D0 /* MyOrderVC.swift in Sources */,
 				8807015D288FD2B8001B8907 /* MapkitViewVC.swift in Sources */,
 				883ED5962877E9EA00F06F22 /* OtpViewController.swift in Sources */,
+				099B107D28D4982900340AA1 /* AddNoteVCVM.swift in Sources */,
 				094AA39C289C45CC0032D4A5 /* AllRestaurentModel.swift in Sources */,
 				094CCCC328A2C6500043EA18 /* ResDishCollectionViewCellTwoVM.swift in Sources */,
 				09832AEB28983D2300B99EAB /* HomeViewControllerVM.swift in Sources */,

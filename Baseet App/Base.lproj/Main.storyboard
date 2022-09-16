@@ -4453,11 +4453,11 @@ will be return with in 5 days.</string>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5Eu-Oe-dUi">
                                         <rect key="frame" x="0.0" y="0.0" width="419" height="705"/>
                                         <subviews>
-                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="47" translatesAutoresizingMaskIntoConstraints="NO" id="GyG-IB-3KC">
-                                                <rect key="frame" x="40" y="20" width="339" height="29"/>
+                                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GyG-IB-3KC">
+                                                <rect key="frame" x="15" y="20" width="389" height="29"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hWn-KN-mrX">
-                                                        <rect key="frame" x="0.0" y="0.0" width="81.666666666666671" height="29"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="103.66666666666667" height="29"/>
                                                         <color key="tintColor" red="0.80000000000000004" green="0.22352941179999999" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                         <state key="normal" title="Button"/>
                                                         <buttonConfiguration key="configuration" style="plain">
@@ -4474,7 +4474,7 @@ will be return with in 5 days.</string>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y8g-9H-UVn">
-                                                        <rect key="frame" x="128.66666666666666" y="0.0" width="81.666666666666657" height="29"/>
+                                                        <rect key="frame" x="103.66666666666667" y="0.0" width="155.66666666666663" height="29"/>
                                                         <color key="tintColor" red="0.80000000000000004" green="0.22352941179999999" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                         <state key="normal" title="Button"/>
                                                         <buttonConfiguration key="configuration" style="plain">
@@ -4491,8 +4491,8 @@ will be return with in 5 days.</string>
                                                             <action selector="actionRecord:" destination="enZ-mg-VDB" eventType="touchUpInside" id="dW5-oy-zca"/>
                                                         </connections>
                                                     </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bDn-LJ-6r6">
-                                                        <rect key="frame" x="257.33333333333331" y="0.0" width="81.666666666666686" height="29"/>
+                                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bDn-LJ-6r6">
+                                                        <rect key="frame" x="259.33333333333331" y="0.0" width="129.66666666666669" height="29"/>
                                                         <color key="backgroundColor" red="0.80000000000000004" green="0.22352941179999999" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <state key="normal" title="Button"/>
@@ -4515,6 +4515,9 @@ will be return with in 5 days.</string>
                                                         </connections>
                                                     </button>
                                                 </subviews>
+                                                <constraints>
+                                                    <constraint firstItem="y8g-9H-UVn" firstAttribute="width" secondItem="GyG-IB-3KC" secondAttribute="width" multiplier="0.4" id="gsy-rh-Dr5"/>
+                                                </constraints>
                                             </stackView>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person" translatesAutoresizingMaskIntoConstraints="NO" id="8N6-RR-xCf">
                                                 <rect key="frame" x="129.66666666666666" y="79" width="149.99999999999997" height="150"/>
@@ -4532,14 +4535,12 @@ will be return with in 5 days.</string>
                                                 <color key="textColor" systemColor="systemOrangeColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Y5J-Jt-kSg">
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Add your comments here" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Y5J-Jt-kSg">
                                                 <rect key="frame" x="30" y="349" width="359" height="128"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="128" id="DmX-ld-EQz"/>
                                                 </constraints>
-                                                <string key="text">Lorem Ipsum is simply dummy text ikfgdfkkrtkrkj
-of the printing and typesetting industry</string>
                                                 <color key="textColor" systemColor="labelColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -4550,25 +4551,32 @@ of the printing and typesetting industry</string>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="y0x-2a-LG5">
                                                 <rect key="frame" x="15" y="502" width="389" height="78"/>
                                                 <subviews>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="34" translatesAutoresizingMaskIntoConstraints="NO" id="4cL-Te-RVg">
+                                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="4cL-Te-RVg">
                                                         <rect key="frame" x="20" y="25" width="349" height="28"/>
                                                         <subviews>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RL5-po-u3R">
-                                                                <rect key="frame" x="0.0" y="0.0" width="71.333333333333329" height="28"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="28" height="28"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" constant="28" id="EZX-LE-k5d"/>
+                                                                </constraints>
+                                                                <color key="tintColor" red="0.0" green="0.50196078430000002" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <state key="normal" title="Button"/>
-                                                                <buttonConfiguration key="configuration" style="plain" image="stopbtn"/>
+                                                                <buttonConfiguration key="configuration" style="plain" image="play.fill" catalog="system"/>
                                                                 <connections>
                                                                     <action selector="buttonPlay:" destination="enZ-mg-VDB" eventType="touchUpInside" id="LyY-IV-dkD"/>
                                                                 </connections>
                                                             </button>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="24P-Ph-U6v">
-                                                                <rect key="frame" x="105.33333333333334" y="0.0" width="35.666666666666657" height="28"/>
+                                                                <rect key="frame" x="30" y="0.0" width="60" height="28"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" constant="60" id="ola-LL-xiH"/>
+                                                                </constraints>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="musicwaw" translatesAutoresizingMaskIntoConstraints="NO" id="pBo-gt-9UN">
-                                                                <rect key="frame" x="175" y="0.0" width="174" height="28"/>
+                                                                <rect key="frame" x="92" y="0.0" width="257" height="28"/>
                                                             </imageView>
                                                         </subviews>
                                                     </stackView>
@@ -4588,13 +4596,14 @@ of the printing and typesetting industry</string>
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dLK-rx-NrO">
-                                                <rect key="frame" x="166" y="606" width="87" height="79"/>
+                                                <rect key="frame" x="166" y="606" width="87" height="87"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="79" id="1ml-Bx-YBX"/>
+                                                    <constraint firstAttribute="height" constant="87" id="1ml-Bx-YBX"/>
                                                     <constraint firstAttribute="width" constant="87" id="vNg-lo-W5c"/>
                                                 </constraints>
+                                                <color key="tintColor" red="0.0" green="0.50196078430000002" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="plain" image="pushBtn"/>
+                                                <buttonConfiguration key="configuration" style="plain" image="play.fill" catalog="system"/>
                                                 <connections>
                                                     <action selector="buttonPause:" destination="enZ-mg-VDB" eventType="touchUpInside" id="pHJ-kT-Q9g"/>
                                                 </connections>
@@ -4606,7 +4615,7 @@ of the printing and typesetting industry</string>
                                             <constraint firstAttribute="trailing" secondItem="y0x-2a-LG5" secondAttribute="trailing" constant="15" id="Hv8-mO-yn2"/>
                                             <constraint firstAttribute="trailing" secondItem="20D-V4-MnW" secondAttribute="trailing" constant="42" id="Qbo-xO-S8I"/>
                                             <constraint firstItem="y0x-2a-LG5" firstAttribute="top" secondItem="Y5J-Jt-kSg" secondAttribute="bottom" constant="25" id="Sug-4M-Hpc"/>
-                                            <constraint firstAttribute="trailing" secondItem="GyG-IB-3KC" secondAttribute="trailing" constant="40" id="ZE6-f8-RAi"/>
+                                            <constraint firstAttribute="trailing" secondItem="GyG-IB-3KC" secondAttribute="trailing" constant="15" id="ZE6-f8-RAi"/>
                                             <constraint firstItem="20D-V4-MnW" firstAttribute="leading" secondItem="5Eu-Oe-dUi" secondAttribute="leading" constant="42" id="bt7-mJ-KsH"/>
                                             <constraint firstItem="dLK-rx-NrO" firstAttribute="centerX" secondItem="5Eu-Oe-dUi" secondAttribute="centerX" id="c9b-2g-Ifh"/>
                                             <constraint firstItem="GyG-IB-3KC" firstAttribute="top" secondItem="5Eu-Oe-dUi" secondAttribute="top" constant="20" id="dLB-Wv-5mk"/>
@@ -4614,7 +4623,7 @@ of the printing and typesetting industry</string>
                                             <constraint firstItem="8N6-RR-xCf" firstAttribute="centerX" secondItem="5Eu-Oe-dUi" secondAttribute="centerX" constant="-4.8333333333333712" id="hAQ-6B-aAa"/>
                                             <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="dLK-rx-NrO" secondAttribute="bottom" constant="10" id="i16-4v-k3M"/>
                                             <constraint firstAttribute="trailing" secondItem="Y5J-Jt-kSg" secondAttribute="trailing" constant="30" id="kpZ-ws-FQ6"/>
-                                            <constraint firstItem="GyG-IB-3KC" firstAttribute="leading" secondItem="5Eu-Oe-dUi" secondAttribute="leading" constant="40" id="ozU-e9-eVt"/>
+                                            <constraint firstItem="GyG-IB-3KC" firstAttribute="leading" secondItem="5Eu-Oe-dUi" secondAttribute="leading" constant="15" id="ozU-e9-eVt"/>
                                             <constraint firstItem="Y5J-Jt-kSg" firstAttribute="leading" secondItem="5Eu-Oe-dUi" secondAttribute="leading" constant="30" id="vmv-pg-df3"/>
                                             <constraint firstAttribute="width" constant="419" id="wTD-iA-hd7"/>
                                             <constraint firstItem="y0x-2a-LG5" firstAttribute="leading" secondItem="5Eu-Oe-dUi" secondAttribute="leading" constant="15" id="wfe-TO-rl1"/>
@@ -4652,6 +4661,7 @@ of the printing and typesetting industry</string>
                         <outlet property="personIMage" destination="8N6-RR-xCf" id="wuy-hg-gyW"/>
                         <outlet property="playButton" destination="RL5-po-u3R" id="G5G-Bm-qLS"/>
                         <outlet property="recordButton" destination="y8g-9H-UVn" id="dQm-WM-qoe"/>
+                        <outlet property="timingLabel" destination="24P-Ph-U6v" id="RzO-P3-o3H"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vLe-PA-orm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -7706,7 +7716,7 @@ printing and typesetting industry.</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zHT-eT-XXl">
-                                <rect key="frame" x="0.0" y="53" width="414" height="100"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="100"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="IbE-6j-lHp">
                                         <rect key="frame" x="8" y="52" width="219" height="35"/>
@@ -7741,10 +7751,10 @@ printing and typesetting industry.</string>
                                 </constraints>
                             </view>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="splash" translatesAutoresizingMaskIntoConstraints="NO" id="wEt-iG-Qpw">
-                                <rect key="frame" x="0.0" y="153" width="414" height="743"/>
+                                <rect key="frame" x="0.0" y="100" width="414" height="743"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gjb-3w-Ug8">
-                                <rect key="frame" x="20" y="535" width="374" height="41"/>
+                                <rect key="frame" x="20" y="482" width="374" height="41"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="41" id="PUA-jQ-mbZ"/>
                                 </constraints>
@@ -7755,7 +7765,7 @@ printing and typesetting industry.</string>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Forgot Your Password ?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OUz-Nl-L0r">
-                                <rect key="frame" x="120" y="447" width="174" height="70"/>
+                                <rect key="frame" x="120" y="394" width="174" height="70"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="70" id="m67-1e-Ifh"/>
                                 </constraints>
@@ -7764,14 +7774,14 @@ printing and typesetting industry.</string>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="forgot_password" translatesAutoresizingMaskIntoConstraints="NO" id="IU2-5I-h0d">
-                                <rect key="frame" x="107" y="223" width="200" height="200"/>
+                                <rect key="frame" x="107" y="170" width="200" height="200"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="200" id="cSU-SQ-0hd"/>
                                     <constraint firstAttribute="height" constant="200" id="fqf-mq-Isb"/>
                                 </constraints>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="26" translatesAutoresizingMaskIntoConstraints="NO" id="00K-Cr-YU6">
-                                <rect key="frame" x="20" y="666" width="374" height="146"/>
+                                <rect key="frame" x="20" y="613" width="374" height="146"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder=" Type your Mobile Number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7f3-29-9mz">
                                         <rect key="frame" x="0.0" y="0.0" width="374" height="60"/>
@@ -8974,8 +8984,8 @@ logout from this application.es</string>
         <image name="bestbir" width="109" height="130"/>
         <image name="bg" width="480" height="221.66667175292969"/>
         <image name="biryanippng" width="216" height="176"/>
-        <image name="cart" width="27.666666030883789" height="27.666666030883789"/>
         <image name="cart" catalog="system" width="128" height="102"/>
+        <image name="cart" width="27.666666030883789" height="27.666666030883789"/>
         <image name="cashC" width="292" height="126"/>
         <image name="change_password" width="186" height="166"/>
         <image name="checkmark" width="25" height="25"/>
@@ -9021,11 +9031,11 @@ logout from this application.es</string>
         <image name="phonepay" width="42" height="45"/>
         <image name="pin" width="18" height="18"/>
         <image name="piza" width="109" height="87"/>
+        <image name="play.fill" catalog="system" width="116" height="128"/>
         <image name="plus" catalog="system" width="128" height="113"/>
         <image name="poweroff" catalog="system" width="128" height="121"/>
         <image name="profile" width="27.666666030883789" height="27.666666030883789"/>
         <image name="profile_bg" width="478.66665649414062" height="349.66665649414062"/>
-        <image name="pushBtn" width="63" height="65"/>
         <image name="rightMark" width="29" height="28"/>
         <image name="ryt" width="23" height="21"/>
         <image name="salaad" width="90" height="68"/>
@@ -9036,7 +9046,6 @@ logout from this application.es</string>
         <image name="simage" width="402" height="198"/>
         <image name="splash" width="480" height="853.33331298828125"/>
         <image name="star.fill" catalog="system" width="128" height="116"/>
-        <image name="stopbtn" width="15" height="17"/>
         <image name="time" width="30.666666030883789" height="28.666666030883789"/>
         <image name="unselect" width="22" height="21"/>
         <image name="visa" width="35.666667938232422" height="40.333332061767578"/>

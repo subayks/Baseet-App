@@ -24,11 +24,20 @@ class LogoutVC: UIViewController {
     }
     
     @IBAction func Logout(_ sender: Any) {
-        let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
-        let vc = storyboard.instantiateViewController(identifier: "LoginViewController") as! LoginViewController
+        UserDefaults.resetStandardUserDefaults()
+        if let bundleID = Bundle.main.bundleIdentifier {
+            UserDefaults.standard.removePersistentDomain(forName: bundleID)
+        }
+        let viewController = self.storyboard?.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
+        let navigationController = UINavigationController(rootViewController: viewController )
+        self.view.window?.rootViewController = viewController
+        self.view.window?.makeKeyAndVisible()
         
-        vc.modalPresentationStyle = .fullScreen
-        self.present(vc, animated: true, completion: nil)
+//        let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
+//        let vc = storyboard.instantiateViewController(identifier: "LoginViewController") as! LoginViewController
+//
+//        vc.modalPresentationStyle = .fullScreen
+//        self.present(vc, animated: true, completion: nil)
         
     }
     

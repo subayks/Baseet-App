@@ -12,10 +12,13 @@ import SadadPaymentSDK
 enum PaymentType {
     case cash
     case card
+    case none
 }
 
 class LocationDeliveryVC: UIViewController, CLLocationManagerDelegate {
-
+    @IBOutlet weak var nameLabel: UILabel!
+    
+    @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var labelPrice: UILabel!
     @IBOutlet weak var paymentIMage: UIButton!
     var menu_vcOrder: OrderSucessViewVC!
@@ -29,6 +32,8 @@ class LocationDeliveryVC: UIViewController, CLLocationManagerDelegate {
         
         self.labelPrice.text = "QR \(self.locationDeliveryVCVM?.totalPrice ?? "")"
         locationPermissions()
+        self.locationLabel.text = UserDefaults.standard.string(forKey: "Location_Info")
+        self.paymentIMage.layer.cornerRadius = 10
     }
     
     //setup location properties
@@ -125,8 +130,37 @@ class LocationDeliveryVC: UIViewController, CLLocationManagerDelegate {
             guard let locValue: CLLocationCoordinate2D = manager.location?.coordinate else { return }
             self.locationDeliveryVCVM?.latitude = locValue.latitude
             self.locationDeliveryVCVM?.logitude = locValue.longitude
+            
+            guard let locValue:CLLocation = manager.location else {return}
+
+            
+            CLGeocoder().reverseGeocodeLocation(locValue, completionHandler: {(placemarks, error) -> Void in
+                    print(locValue)
+                    guard error == nil else {
+                        print("Reverse geocoder failed with error")
+                        return
+                    }
+                guard placemarks!.count > 0 else {
+                        print("Problem with the data received from geocoder")
+                        return
+                    }
+                let pm = placemarks?[0]
+                print(pm!.locality as Any)
+                print(pm!.administrativeArea!)
+                print(pm!.country!)
+                print(pm!.subLocality!)
+                print(pm!.postalCode!)
+            
+                
+                let locationDashBord = "\(pm!.locality!), \(pm!.subLocality!),\(pm!.administrativeArea!) \(pm!.country!),\(pm!.postalCode!)"
+               print(locationDashBord)
+                UserDefaults.standard.set(locationDashBord, forKey: "Location_Info")
+                self.locationLabel.text = UserDefaults.standard.string(forKey: "Location_Info")
+            })
+        } else if status == .denied {
+            //show error screen
         }
-        
+
     }
     
     @IBAction func payNow(_ sender: Any) {
@@ -134,6 +168,10 @@ class LocationDeliveryVC: UIViewController, CLLocationManagerDelegate {
             self.locationDeliveryVCVM?.placeOrderApi()
         } else if  self.locationDeliveryVCVM?.paymentType == .card {
             self.locationDeliveryVCVM?.accessToken()
+        } else {
+            let alert = UIAlertController(title: "Alert", message: "Please select payment type", preferredStyle: UIAlertController.Style.alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
         }
     }
     

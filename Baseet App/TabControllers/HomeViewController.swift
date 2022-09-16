@@ -8,10 +8,11 @@
 import UIKit
 import CoreLocation
 
-class HomeViewController: UIViewController {
+class HomeViewController: UIViewController, CLLocationManagerDelegate {
     
     var menu_vc: MenuVC!
     
+    @IBOutlet weak var locationInfo: UILabel!
     @IBOutlet weak var cartButton: UIButton!
     @IBOutlet weak var cartCount: UIButton!
     @IBOutlet weak var cartView: UIView!
@@ -20,7 +21,8 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var collectionviewSec: UICollectionView!
     @IBOutlet weak var collectionviewThird: UICollectionView!
     @IBOutlet weak var collectionviewDown: UICollectionView!
-    
+    var locationManager: CLLocationManager?
+
     @IBOutlet weak var menuBtn: UIButton!
     var homeViewControllerVM = HomeViewControllerVM()
     
@@ -30,6 +32,7 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
         homeViewControllerVM.makeCategoryListCall()
         homeViewControllerVM.makeShopNearyByCall()
+        locationPermissions()
         self.cartView.isHidden = true
         //        searchTF.addTarget(self, action: #selector(HomeViewController.textViewShouldBeginEditing(_:)), for: .editingChanged)
         
@@ -53,6 +56,8 @@ class HomeViewController: UIViewController {
         
         cartView.layer.borderWidth = 2
         cartView.layer.borderColor = UIColor.systemGray6.cgColor
+        
+        self.locationInfo.text = UserDefaults.standard.string(forKey: "Location_Info")
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -60,7 +65,21 @@ class HomeViewController: UIViewController {
         self.homeViewControllerVM.getCartCall()
     }
     
-    
+    //setup location properties
+    func locationPermissions() {
+        //Get Location Permission
+        locationManager = CLLocationManager()
+        locationManager?.requestAlwaysAuthorization()
+        locationManager?.requestWhenInUseAuthorization()
+        locationManager?.delegate = self
+        locationManager?.startUpdatingHeading()
+        
+        if CLLocationManager.locationServicesEnabled()  {
+            locationManager?.delegate = self
+            locationManager?.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+            locationManager?.startUpdatingHeading()
+        }
+    }
     
     override func viewWillAppear(_ animated: Bool)
     {
@@ -171,6 +190,41 @@ class HomeViewController: UIViewController {
     @IBAction func menubtnAct(_ sender: Any)
     {
         self.show_menu()
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        if status == .authorizedAlways || status == .authorizedWhenInUse {
+            guard let locValue:CLLocation = manager.location else {return}
+
+            
+            CLGeocoder().reverseGeocodeLocation(locValue, completionHandler: {(placemarks, error) -> Void in
+                    print(locValue)
+                    guard error == nil else {
+                        print("Reverse geocoder failed with error")
+                        return
+                    }
+                guard placemarks!.count > 0 else {
+                        print("Problem with the data received from geocoder")
+                        return
+                    }
+                let pm = placemarks?[0]
+                print(pm!.locality as Any)
+                print(pm!.administrativeArea!)
+                print(pm!.country!)
+                print(pm!.subLocality!)
+                print(pm!.postalCode!)
+            
+                
+                let locationDashBord = "\(pm!.locality!), \(pm!.subLocality!),\(pm!.administrativeArea!) \(pm!.country!),\(pm!.postalCode!)"
+               print(locationDashBord)
+                UserDefaults.standard.set(locationDashBord, forKey: "Location_Info")
+            })
+            self.locationInfo.text = UserDefaults.standard.string(forKey: "Location_Info")
+        } else if status == .denied {
+            //Show Error Screen
+        }
+     
+
     }
 }
 

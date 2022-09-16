@@ -21,9 +21,9 @@ class RestaurentFoodPicksVC: UIViewController {
     var restaurentFoodPicksVCVM: RestaurentFoodPicksVCVM?
     
     override func viewDidLoad() {
+        super.viewDidLoad()
         self.setupValues()
         locatonDelivery_VC = self.storyboard?.instantiateViewController(withIdentifier: "LocationDeliveryVC") as? LocationDeliveryVC
-        super.viewDidLoad()
         let tap = UITapGestureRecognizer(target: self, action: #selector(RestaurentFoodPicksVC.tapFunction))
         addSpecialNotLbl.isUserInteractionEnabled = true
         addSpecialNotLbl.addGestureRecognizer(tap)
@@ -74,6 +74,11 @@ class RestaurentFoodPicksVC: UIViewController {
             let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
             let vc = storyboard.instantiateViewController(identifier: "AddNoteVC") as! AddNoteVC
            // vc.modalTransitionStyle  = .crossDissolve
+        vc.notes = {  (notes, recording) in
+            DispatchQueue.main.async {
+                self.restaurentFoodPicksVCVM?.notes = notes
+            }
+        }
             vc.modalPresentationStyle = .fullScreen
             self.present(vc, animated: true, completion: nil)
         }

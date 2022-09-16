@@ -28,7 +28,8 @@ class RestaurentFoodPicksVCVM {
     var itemCount = [Int]()
     var userID = String()
     var getCartModel: GetCartModel?
-
+    var notes: String?
+    
     init(foodOrderItems: FoodOrderItems, apiServices: HomeApiServicesProtocol = HomeApiServices()) {
         self.foodOrderItems = foodOrderItems
         self.apiServices = apiServices
@@ -136,7 +137,7 @@ class RestaurentFoodPicksVCVM {
     }
     
     func getLocationDeliveryVCVM() ->LocationDeliveryVCVM {
-        return LocationDeliveryVCVM(totalPrice: "\(self.priceCalculation() + self.taxCalculation())",discountAmount: String(self.totalSaving()), taxAmount: String(self.taxCalculation()) )
+        return LocationDeliveryVCVM(totalPrice: "\(self.priceCalculation() + self.taxCalculation())",discountAmount: String(self.totalSaving()), taxAmount: String(self.taxCalculation()), notes: self.notes ?? "")
     }
     
 //    func priceCalculation() ->Int {

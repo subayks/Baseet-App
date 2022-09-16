@@ -45,12 +45,11 @@ class LoginViewController: UIViewController {
         
         self.loginVM.navigationClosure = { [weak self] in
             DispatchQueue.main.async {
-                guard let self = self else {return}
 
                 let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
                 let vc = storyboard.instantiateViewController(identifier: "tabVC")
                 vc.modalPresentationStyle = .fullScreen
-                self.present(vc, animated: true, completion: nil)
+                (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(vc)
                 
 //                let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
 //                let vc = storyboard.instantiateViewController(identifier: "OtpViewController") as! OtpViewController

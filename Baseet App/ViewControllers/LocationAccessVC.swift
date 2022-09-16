@@ -89,7 +89,7 @@ class LocationAccessVC: UIViewController,CLLocationManagerDelegate,MKMapViewDele
            print(locationDashBord)
             self.mainAreaLbl.text = (pm!.locality!)
             self.localArea.text = "\(String(describing: pm!.administrativeArea!)),\(pm!.country!)\(pm!.subLocality!) \(pm!.postalCode!)"
-            
+            UserDefaults.standard.set(locationDashBord, forKey: "Location_Info")
             })
     }
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error)

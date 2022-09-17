@@ -45,26 +45,30 @@ class AddNoteVC: UIViewController {
         }
     }
     
-    func isPermissonGranted() ->Bool{
+    func checkForMicroPhonePermisson(sender: UIButton) {
         switch AVAudioSession.sharedInstance().recordPermission {
         case .granted:
-            return true
+            self.actionForRecord(sender: sender)
         case .denied:
-            return false
+            let alert = UIAlertController(title: "Alert", message: "Please enable access for microphone from settings", preferredStyle: UIAlertController.Style.alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
         case .undetermined:
             print("Request permission here")
-            var isGranted = Bool()
             AVAudioSession.sharedInstance().requestRecordPermission({ granted in
                 // Handle granted
-                isGranted = granted
+                if granted {
+                    self.actionForRecord(sender: sender)
+                } else {
+                    let alert = UIAlertController(title: "Alert", message: "Please enable access for microphone from settings", preferredStyle: UIAlertController.Style.alert)
+                    alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: nil))
+                    self.present(alert, animated: true, completion: nil)
+                }
             })
-            if isGranted {
-                return true
-            } else {
-                return false
-            }
         @unknown default:
-            return false
+            let alert = UIAlertController(title: "Alert", message: "Please enable access for microphone from settings", preferredStyle: UIAlertController.Style.alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
         }
     }
     
@@ -134,10 +138,23 @@ class AddNoteVC: UIViewController {
     }
     
     @IBAction func actionRecord(_ sender: UIButton) {
-        if self.isPermissonGranted() {
-            self.timingLabel.text = "0.00"
-            if sender.titleLabel?.text == "Record" {
-                soundRecorder?.record()
+        self.timingLabel.text = "0.00"
+        if sender.titleLabel?.text == "Record" {
+        self.checkForMicroPhonePermisson(sender: sender)
+        } else {
+            self.soundRecorder?.stop()
+            sender.setImage(UIImage(), for: .normal)
+            sender.configuration?.imagePadding = 0
+            sender.setTitle("Record", for: .normal)
+            self.playButton.isEnabled = true
+            self.pauseButton.isEnabled = true
+            self.pauseButton.isEnabled = true
+        }
+    }
+    
+    func actionForRecord(sender: UIButton) {
+        DispatchQueue.main.async {
+                self.soundRecorder?.record()
                 sender.setImage(UIImage(systemName: "circle.fill"), for: .normal)
                 sender.tintColor = .red
                 sender.configuration?.imagePadding = 5
@@ -145,15 +162,6 @@ class AddNoteVC: UIViewController {
                 self.playButton.isEnabled = false
                 self.pauseButton.isEnabled = false
                 self.pauseButton.isEnabled = false
-            } else {
-                soundRecorder?.stop()
-                sender.setImage(UIImage(), for: .normal)
-                sender.configuration?.imagePadding = 0
-                sender.setTitle("Record", for: .normal)
-                self.playButton.isEnabled = true
-                self.pauseButton.isEnabled = true
-                self.pauseButton.isEnabled = true
-            }
         }
     }
     

@@ -26,7 +26,7 @@ class AddNoteVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.setupRecorder()
+        self.setupRecord()
         let disMissKeyboardTap = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
         view.addGestureRecognizer(disMissKeyboardTap)
         
@@ -120,7 +120,7 @@ class AddNoteVC: UIViewController {
         } else {
             soundPlayer?.pause()
             pauseButton.layer.borderWidth = 2
-            pauseButton.layer.borderColor = UIColor.green.cgColor
+            pauseButton.layer.borderColor = UIColor.systemGreen.cgColor
             pauseButton.layer.cornerRadius = pauseButton.frame.height/2
             pauseButton.clipsToBounds = true
             self.pauseButton.tintColor = UIColor.systemGreen
@@ -185,6 +185,34 @@ class AddNoteVC: UIViewController {
     @objc func dismissKeyboard() {
         //Causes the view (or one of its embedded text fields) to resign the first responder status.
         view.endEditing(true)
+    }
+    
+    func setupRecord() {
+        let audioSession = AVAudioSession.sharedInstance()
+               do {
+                   try audioSession.setCategory(AVAudioSession.Category.playAndRecord)
+               } catch let error as NSError {
+                   print(error.description)
+               }
+        do {
+            try audioSession.overrideOutputAudioPort(AVAudioSession.PortOverride.speaker)
+        } catch let error as NSError {
+            print("audioSession error: \(error.localizedDescription)")
+        }
+
+        let recordSettings = [AVSampleRateKey : NSNumber(value: Float(44100.0)),
+                                AVFormatIDKey : NSNumber(value: Int32(kAudioFormatMPEG4AAC)),
+                        AVNumberOfChannelsKey : NSNumber(value: 1),
+                     AVEncoderAudioQualityKey : NSNumber(value: Int32(AVAudioQuality.max.rawValue))]
+
+               do{
+                   try soundRecorder = AVAudioRecorder(url: self.getFinalURL() as URL, settings: recordSettings)
+                   soundRecorder?.delegate = self
+                   soundRecorder?.prepareToRecord()
+               }
+               catch let error as NSError {
+                   error.description
+               }
     }
     
     func setupRecorder() {

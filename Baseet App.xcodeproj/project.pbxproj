@@ -980,7 +980,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.7;
+				MARKETING_VERSION = 0.11;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.Amtech.Baseet-App";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -1019,10 +1019,11 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.7;
+				MARKETING_VERSION = 0.11;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.Amtech.Baseet-App";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};

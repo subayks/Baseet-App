@@ -26,9 +26,7 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate {
     @IBOutlet weak var menuBtn: UIButton!
     var homeViewControllerVM = HomeViewControllerVM()
     
-    override func viewDidLoad()
-    
-    {
+    override func viewDidLoad() {
         super.viewDidLoad()
         homeViewControllerVM.makeCategoryListCall()
         homeViewControllerVM.makeShopNearyByCall()

@@ -40,12 +40,13 @@ class NetworkAdapter {
             
 
         } else if contentType == "application/hal+json" || contentType == "Application/json" {
-       
+            if parameters != "" {
             do {
                 let dictObject = self.convertToDictionary(parameters: parameters)
                 urlRequest?.httpBody = try JSONSerialization.data(withJSONObject: dictObject ?? "Empty Dictionary", options: .prettyPrinted)
             } catch let error {
                 print(error.localizedDescription)
+            }
             }
         }
         }

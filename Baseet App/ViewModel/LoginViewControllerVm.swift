@@ -31,7 +31,27 @@ class LoginViewControllerVm {
                     self.loginModel = result as? LoginModel
                     let token = "Bearer " + (self.loginModel?.token ?? "")
                     UserDefaults.standard.set(token, forKey: "AuthToken")
+                    self.replceUserId()
+                } else {
+                   self.alertClosure?("Some technical problem")
+                }
+            }
+        })
+        } else {
+            self.alertClosure?("No Internet Availabe")
+        }
+    }
+    
+    func replceUserId() {
+        if Reachability.isConnectedToNetwork() {
+            self.showLoadingIndicatorClosure?()
+         //   let param = self.getLoginParam(phoneNumber: phoneNumber)
+            self.apiServices?.replaceUser(finalURL: "\(Constants.Common.finalURL)/products/update_ucart?user_id=\(self.loginModel?.user_id ?? 0)&guest_id=\(((UserDefaults.standard.string(forKey: "User_Id") ?? "") as String))", withParameters: "", completion: { (status: Bool? , errorCode: String?,result: AnyObject?, errorMessage: String?) -> Void in
+            DispatchQueue.main.async {
+                self.hideLoadingIndicatorClosure?()
+                if status == true {
                     UserDefaults.standard.set(self.loginModel?.user_id, forKey: "User_Id")
+                    UserDefaults.standard.set(true, forKey: "isLoggedIn")
                     self.navigationClosure?()
                 } else {
                    self.alertClosure?("Some technical problem")

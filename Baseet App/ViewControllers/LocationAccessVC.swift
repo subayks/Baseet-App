@@ -64,7 +64,12 @@ class LocationAccessVC: UIViewController,CLLocationManagerDelegate,MKMapViewDele
 
         print("user latitude = \(userLocation.coordinate.latitude)")
         print("user longitude = \(userLocation.coordinate.longitude)")
-        
+        //Launch App first Time
+        if UserDefaults.standard.string(forKey: "User_Id") == nil {
+        UserDefaults.standard.set((Int(String(userLocation.coordinate.latitude).replacingOccurrences(of: ".", with: ""))), forKey: "User_Id")
+        UserDefaults.standard.set(false, forKey: "isLoggedIn")
+        }
+
         
         CLGeocoder().reverseGeocodeLocation(userLocation, completionHandler: {(placemarks, error) -> Void in
                 print(userLocation)
@@ -99,9 +104,13 @@ class LocationAccessVC: UIViewController,CLLocationManagerDelegate,MKMapViewDele
    
     
     @IBAction func locationConfirmBtn(_ sender: Any) {
+//        let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
+//        let vc = storyboard.instantiateViewController(identifier: "LoginViewController")
+//        vc.modalPresentationStyle = .fullScreen
+//        self.present(vc, animated: true, completion: nil)
         let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
-        let vc = storyboard.instantiateViewController(identifier: "LoginViewController")
+        let vc = storyboard.instantiateViewController(identifier: "tabVC")
         vc.modalPresentationStyle = .fullScreen
-        self.present(vc, animated: true, completion: nil)
+        (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(vc)
     }
 }

@@ -20,6 +20,7 @@
 		094AA39C289C45CC0032D4A5 /* AllRestaurentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 094AA39B289C45CC0032D4A5 /* AllRestaurentModel.swift */; };
 		094CCCC128A2BD4F0043EA18 /* RestaurentFoodPicksVCVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 094CCCC028A2BD4F0043EA18 /* RestaurentFoodPicksVCVM.swift */; };
 		094CCCC328A2C6500043EA18 /* ResDishCollectionViewCellTwoVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 094CCCC228A2C6500043EA18 /* ResDishCollectionViewCellTwoVM.swift */; };
+		09650C3928D7824F00FC8FDF /* ReplaceUserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09650C3828D7824F00FC8FDF /* ReplaceUserModel.swift */; };
 		0977AC4E28BF528C002E6805 /* SadadPaymentSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0977AC4C28BF5272002E6805 /* SadadPaymentSDK.framework */; platformFilter = ios; };
 		0977AC4F28BF528C002E6805 /* SadadPaymentSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0977AC4C28BF5272002E6805 /* SadadPaymentSDK.framework */; platformFilter = ios; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0978BFCB28ACAB8A00298CD9 /* CartViewControllerVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0978BFCA28ACAB8A00298CD9 /* CartViewControllerVM.swift */; };
@@ -159,6 +160,7 @@
 		094AA39B289C45CC0032D4A5 /* AllRestaurentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllRestaurentModel.swift; sourceTree = "<group>"; };
 		094CCCC028A2BD4F0043EA18 /* RestaurentFoodPicksVCVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurentFoodPicksVCVM.swift; sourceTree = "<group>"; };
 		094CCCC228A2C6500043EA18 /* ResDishCollectionViewCellTwoVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResDishCollectionViewCellTwoVM.swift; sourceTree = "<group>"; };
+		09650C3828D7824F00FC8FDF /* ReplaceUserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplaceUserModel.swift; sourceTree = "<group>"; };
 		0977AC4C28BF5272002E6805 /* SadadPaymentSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SadadPaymentSDK.framework; sourceTree = SOURCE_ROOT; };
 		0978BFCA28ACAB8A00298CD9 /* CartViewControllerVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartViewControllerVM.swift; sourceTree = "<group>"; };
 		0978BFCC28ACABEE00298CD9 /* CartTableViewCellVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartTableViewCellVM.swift; sourceTree = "<group>"; };
@@ -314,6 +316,7 @@
 				09A0D05B28AFF4160015FC4C /* GetCartModel.swift */,
 				099E9B5128C1C93B00BD1724 /* LoginModel.swift */,
 				0943A61128C76B0F0042B0DC /* AccessTokenModel.swift */,
+				09650C3828D7824F00FC8FDF /* ReplaceUserModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -778,6 +781,7 @@
 				0986D5FE289EF71E00214056 /* AddOnViewControllerVM.swift in Sources */,
 				885B5DFF287C73F9006A7044 /* SettingsTableViewCell.swift in Sources */,
 				88FDAB2F2881B5F1006F06D0 /* MyPastOrderTableViewCell.swift in Sources */,
+				09650C3928D7824F00FC8FDF /* ReplaceUserModel.swift in Sources */,
 				88DBC1E9288EC78400A5E514 /* PayWithVC.swift in Sources */,
 				88FDAB1D2881497F006F06D0 /* OrderOnTableViewCell.swift in Sources */,
 				885B5DF32879733B006A7044 /* MenuTableViewCell.swift in Sources */,

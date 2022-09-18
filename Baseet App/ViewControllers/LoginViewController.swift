@@ -17,7 +17,8 @@ class LoginViewController: UIViewController {
             numberTF.leftImage(UIImage(named: "rightMark"), imageWidth: 10, padding: 20)
         }
     }
-    
+    var navigationClosure:(()->())?
+
     override func viewDidLoad() {
         super.viewDidLoad()
         let tap = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
@@ -45,11 +46,9 @@ class LoginViewController: UIViewController {
         
         self.loginVM.navigationClosure = { [weak self] in
             DispatchQueue.main.async {
-
-                let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
-                let vc = storyboard.instantiateViewController(identifier: "tabVC")
-                vc.modalPresentationStyle = .fullScreen
-                (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(vc)
+                guard let self = self else {return}
+                self.navigationClosure?()
+                self.dismiss(animated: true, completion: nil)
                 
 //                let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
 //                let vc = storyboard.instantiateViewController(identifier: "OtpViewController") as! OtpViewController

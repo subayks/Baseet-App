@@ -95,12 +95,30 @@ class RestaurentFoodPicksVC: UIViewController {
     }
     
     @objc func bucketButtonClicked() {
+        if UserDefaults.standard.bool(forKey: "isLoggedIn") == false {
         let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
-        let vc = storyboard.instantiateViewController(identifier: "LocationDeliveryVC") as! LocationDeliveryVC
-        vc.modalTransitionStyle  = .crossDissolve
-        vc.locationDeliveryVCVM = self.restaurentFoodPicksVCVM?.getLocationDeliveryVCVM()
-        //vc.modalPresentationStyle = .fullScreen
+        let vc = storyboard.instantiateViewController(identifier: "LoginViewController") as! LoginViewController
+        vc.modalPresentationStyle = .fullScreen
+        vc.navigationClosure =  { [weak self] in
+            DispatchQueue.main.async {
+                guard let self = self else {return}
+                let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
+                let vc = storyboard.instantiateViewController(identifier: "LocationDeliveryVC") as! LocationDeliveryVC
+                vc.modalTransitionStyle  = .crossDissolve
+                vc.locationDeliveryVCVM = self.restaurentFoodPicksVCVM?.getLocationDeliveryVCVM()
+                //vc.modalPresentationStyle = .fullScreen
+                self.present(vc, animated: true, completion: nil)
+            }
+        }
         self.present(vc, animated: true, completion: nil)
+        } else {
+            let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
+            let vc = storyboard.instantiateViewController(identifier: "LocationDeliveryVC") as! LocationDeliveryVC
+            vc.modalTransitionStyle  = .crossDissolve
+            vc.locationDeliveryVCVM = self.restaurentFoodPicksVCVM?.getLocationDeliveryVCVM()
+            //vc.modalPresentationStyle = .fullScreen
+            self.present(vc, animated: true, completion: nil)
+        }
     }
     
 }
@@ -131,6 +149,7 @@ extension RestaurentFoodPicksVC:UITableViewDelegate,UITableViewDataSource
         headerView.itemTotalValue.text = "QR \(self.restaurentFoodPicksVCVM?.priceCalculation() ?? 0)"
         headerView.taxValue.text = "QR \(self.restaurentFoodPicksVCVM?.taxCalculation() ?? 0)"
         headerView.grandTotalValue.text = self.restaurentFoodPicksVCVM?.grandTotal()
+        self.totalSavingsAmountLabel.text = "QR \(Double(self.restaurentFoodPicksVCVM?.totalSaving() ?? 0))"
 
         return headerView
     }

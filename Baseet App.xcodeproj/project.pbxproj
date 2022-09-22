@@ -38,6 +38,9 @@
 		0967E58D28DC318F00D6B141 /* NoCoupsAvailableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0967E58C28DC318F00D6B141 /* NoCoupsAvailableCell.swift */; };
 		0967E58F28DC3C5600D6B141 /* ZoneModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0967E58E28DC3C5600D6B141 /* ZoneModel.swift */; };
 		0967E59128DC3DBA00D6B141 /* LocationAccessVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0967E59028DC3DBA00D6B141 /* LocationAccessVM.swift */; };
+		0967E59328DC67C900D6B141 /* FoodItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0967E59228DC67C800D6B141 /* FoodItemTableViewCell.swift */; };
+		0967E59528DC687800D6B141 /* FoodItemTableViewCellVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0967E59428DC687800D6B141 /* FoodItemTableViewCellVM.swift */; };
+		0967E59728DC89E800D6B141 /* AddMoreItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0967E59628DC89E700D6B141 /* AddMoreItemCell.swift */; };
 		0977AC4E28BF528C002E6805 /* SadadPaymentSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0977AC4C28BF5272002E6805 /* SadadPaymentSDK.framework */; platformFilter = ios; };
 		0977AC4F28BF528C002E6805 /* SadadPaymentSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0977AC4C28BF5272002E6805 /* SadadPaymentSDK.framework */; platformFilter = ios; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0978BFCB28ACAB8A00298CD9 /* CartViewControllerVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0978BFCA28ACAB8A00298CD9 /* CartViewControllerVM.swift */; };
@@ -195,6 +198,9 @@
 		0967E58C28DC318F00D6B141 /* NoCoupsAvailableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoCoupsAvailableCell.swift; sourceTree = "<group>"; };
 		0967E58E28DC3C5600D6B141 /* ZoneModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZoneModel.swift; sourceTree = "<group>"; };
 		0967E59028DC3DBA00D6B141 /* LocationAccessVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationAccessVM.swift; sourceTree = "<group>"; };
+		0967E59228DC67C800D6B141 /* FoodItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodItemTableViewCell.swift; sourceTree = "<group>"; };
+		0967E59428DC687800D6B141 /* FoodItemTableViewCellVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodItemTableViewCellVM.swift; sourceTree = "<group>"; };
+		0967E59628DC89E700D6B141 /* AddMoreItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMoreItemCell.swift; sourceTree = "<group>"; };
 		0977AC4C28BF5272002E6805 /* SadadPaymentSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SadadPaymentSDK.framework; sourceTree = SOURCE_ROOT; };
 		0978BFCA28ACAB8A00298CD9 /* CartViewControllerVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartViewControllerVM.swift; sourceTree = "<group>"; };
 		0978BFCC28ACABEE00298CD9 /* CartTableViewCellVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartTableViewCellVM.swift; sourceTree = "<group>"; };
@@ -385,6 +391,7 @@
 				0967E58828DC27C500D6B141 /* OffersViewVM.swift */,
 				0967E58A28DC2BF800D6B141 /* CouponCellVM.swift */,
 				0967E59028DC3DBA00D6B141 /* LocationAccessVM.swift */,
+				0967E59428DC687800D6B141 /* FoodItemTableViewCellVM.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -497,6 +504,8 @@
 				092875FD28DB6238000BE890 /* NoResultFoundCell.swift */,
 				0967E58628DC26C300D6B141 /* CouponCell.swift */,
 				0967E58C28DC318F00D6B141 /* NoCoupsAvailableCell.swift */,
+				0967E59228DC67C800D6B141 /* FoodItemTableViewCell.swift */,
+				0967E59628DC89E700D6B141 /* AddMoreItemCell.swift */,
 			);
 			path = TableViewCells;
 			sourceTree = "<group>";
@@ -758,6 +767,7 @@
 				8821EAA82885570300B32EF5 /* AddOnViewController.swift in Sources */,
 				88149F94287F30FC00E57AC7 /* LogoutVC.swift in Sources */,
 				88FDAB1F2881854F006F06D0 /* RestarentDishViewController.swift in Sources */,
+				0967E59328DC67C900D6B141 /* FoodItemTableViewCell.swift in Sources */,
 				092875F428DAE1BF000BE890 /* EmptyFavCell.swift in Sources */,
 				88FDAB272881B53E006F06D0 /* MyCurrentOrderVC.swift in Sources */,
 				8821EAAA28855A6C00B32EF5 /* AddOnTableViewCell.swift in Sources */,
@@ -803,6 +813,7 @@
 				88C44F3F2877309F00D31258 /* AppDelegate.swift in Sources */,
 				88FDAB1B288148D7006F06D0 /* OrderOntheWayVC.swift in Sources */,
 				8821EAA428853CC000B32EF5 /* RestaurentFoodPicksVC.swift in Sources */,
+				0967E59528DC687800D6B141 /* FoodItemTableViewCellVM.swift in Sources */,
 				88FDAB312882FFF8006F06D0 /* OrderModifyVC.swift in Sources */,
 				0926609A289AE04E003F50DB /* ShopDetailsModel.swift in Sources */,
 				0967E58728DC26C400D6B141 /* CouponCell.swift in Sources */,
@@ -845,6 +856,7 @@
 				885AB290288ACFDD0041AE74 /* LocationAccessVC.swift in Sources */,
 				0986D5FE289EF71E00214056 /* AddOnViewControllerVM.swift in Sources */,
 				0934E63D28D995D5005276A5 /* CouponModel.swift in Sources */,
+				0967E59728DC89E800D6B141 /* AddMoreItemCell.swift in Sources */,
 				885B5DFF287C73F9006A7044 /* SettingsTableViewCell.swift in Sources */,
 				092875F628DB28BE000BE890 /* SearchRestaurentVC.swift in Sources */,
 				88FDAB2F2881B5F1006F06D0 /* MyPastOrderTableViewCell.swift in Sources */,
@@ -1052,7 +1064,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.12;
+				MARKETING_VERSION = 0.13;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.Amtech.Baseet-App";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -1091,7 +1103,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.12;
+				MARKETING_VERSION = 0.13;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.Amtech.Baseet-App";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

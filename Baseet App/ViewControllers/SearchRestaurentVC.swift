@@ -12,6 +12,7 @@ class SearchRestaurentVC: UIViewController {
     @IBOutlet weak var searchBarField: UISearchBar!
     var searchRestaurentVM = SearchRestaurentVM()
     var query = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -59,32 +60,88 @@ class SearchRestaurentVC: UIViewController {
                 self.present(vc, animated: true, completion: nil)
             }
         }
+        
+        if query != "" {
+            self.searchBarField.text = query
+            self.searchRestaurentVM.getSearchItem(query: query)
+        }
     }
-
+    
     @IBAction func actionBack(_ sender: Any) {
         self.dismiss(animated: true)
     }
 }
 
 extension SearchRestaurentVC: UITableViewDelegate, UITableViewDataSource {
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        
+        if (self.searchRestaurentVM.searchModel?.restaurants?.count != nil && self.searchRestaurentVM.searchModel?.restaurants?.count != 0) && (self.searchRestaurentVM.searchModel?.products?.count != nil && self.searchRestaurentVM.searchModel?.products?.count != 0) {
+            return 2
+        } else {
+            return 1
+        }
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.searchRestaurentVM.searchModel?.restaurants?.count == 0 ? 1: self.searchRestaurentVM.searchModel?.restaurants?.count ?? 1
+        if numberOfSections(in: tableView) == 2 {
+            if section == 1 {
+                return 1
+            } else {
+                return self.searchRestaurentVM.searchModel?.restaurants?.count ?? 0
+            }
+        } else {
+            if self.searchRestaurentVM.searchModel?.products?.count ?? 0 > 0 {
+                return  1
+            } else {
+                return self.searchRestaurentVM.searchModel?.restaurants?.count == 0 ? 1: self.searchRestaurentVM.searchModel?.restaurants?.count ?? 1
+            }
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if self.searchRestaurentVM.searchModel?.restaurants?.count == 0 ||  self.searchRestaurentVM.searchModel?.restaurants?.count == nil {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "NoResultFoundCell", for: indexPath) as! NoResultFoundCell
-            if self.query == "" {
-                cell.noResultLabel.text = "Please search with restaurent name"
+        if numberOfSections(in: tableView) == 1 {
+            if (self.searchRestaurentVM.searchModel?.restaurants?.count != 0 &&  self.searchRestaurentVM.searchModel?.restaurants?.count != nil) {
+                let cell = tableView.dequeueReusableCell(withIdentifier: "RestaurentCell", for: indexPath) as! RestaurentCell
+                cell.homeCollectionViewDownCellVM = self.searchRestaurentVM.getMyFevTableViewCellVM(index: indexPath.row)
+                return cell
+            } else if  (self.searchRestaurentVM.searchModel?.products?.count != 0 &&  self.searchRestaurentVM.searchModel?.products?.count != nil) {
+                let cell = tableView.dequeueReusableCell(withIdentifier: "FoodItemTableViewCell", for: indexPath) as! FoodItemTableViewCell
+                cell.itemId = { (id) in
+                    DispatchQueue.main.async {
+                        self.searchRestaurentVM.makeShopDetailsCall(id: id)
+                    }
+                }
+                cell.foodItemTableViewCellVM = self.searchRestaurentVM.getFoodItemTableViewCellVM()
+                return cell
             } else {
-                cell.noResultLabel.text = "No Result Found"
+                if (self.searchRestaurentVM.searchModel?.restaurants?.count == 0 ||  self.searchRestaurentVM.searchModel?.restaurants?.count == nil) ||  (self.searchRestaurentVM.searchModel?.products?.count == 0 ||  self.searchRestaurentVM.searchModel?.products?.count == nil) {
+                    let cell = tableView.dequeueReusableCell(withIdentifier: "NoResultFoundCell", for: indexPath) as! NoResultFoundCell
+                    if self.query == "" {
+                        cell.noResultLabel.text = "Please search with Restaurent/Food name"
+                    } else {
+                        cell.noResultLabel.text = "No Result Found"
+                    }
+                    return cell
+                }
             }
-            return cell
         } else {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "RestaurentCell", for: indexPath) as! RestaurentCell
-        cell.homeCollectionViewDownCellVM = self.searchRestaurentVM.getMyFevTableViewCellVM(index: indexPath.row)
-        return cell
+            if indexPath.section == 0 {
+                let cell = tableView.dequeueReusableCell(withIdentifier: "FoodItemTableViewCell", for: indexPath) as! FoodItemTableViewCell
+                cell.foodItemTableViewCellVM = self.searchRestaurentVM.getFoodItemTableViewCellVM()
+                cell.itemId = { (id) in
+                    DispatchQueue.main.async {
+                        self.searchRestaurentVM.makeShopDetailsCall(id: id)
+                    }
+                }
+                return cell
+            } else {
+                let cell = tableView.dequeueReusableCell(withIdentifier: "RestaurentCell", for: indexPath) as! RestaurentCell
+                cell.homeCollectionViewDownCellVM = self.searchRestaurentVM.getMyFevTableViewCellVM(index: indexPath.row)
+                return cell
+            }
         }
+        return UITableViewCell()
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

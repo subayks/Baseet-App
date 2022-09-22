@@ -88,6 +88,7 @@ class RestaurentFoodPicksVC: UIViewController {
     
     
     @IBAction func backBtn(_ sender: Any) {
+        self.changedValues?(self.restaurentFoodPicksVCVM?.itemId ?? [Int](), self.restaurentFoodPicksVCVM?.itemCount ?? [Int]())
         self.dismiss(animated: true,completion: nil)
     }
     
@@ -122,16 +123,20 @@ class RestaurentFoodPicksVC: UIViewController {
             self.present(vc, animated: true, completion: nil)
         }
     }
-    
 }
 
 extension RestaurentFoodPicksVC:UITableViewDelegate,UITableViewDataSource
 {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.restaurentFoodPicksVCVM?.foodOrderItems?.foodItems?.count ?? 0
+        return self.restaurentFoodPicksVCVM?.foodOrderItems?.foodItems?.count == 0 ? 1: self.restaurentFoodPicksVCVM?.foodOrderItems?.foodItems?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if self.restaurentFoodPicksVCVM?.foodOrderItems?.foodItems?.count == 0 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "AddMoreItemCell", for: indexPath) as! AddMoreItemCell
+            self.totalSavingsAmountLabel.text = "0.0"
+            return cell
+        } else {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! RestFoodPickTableViewCell
         cell.RestFoodPickTableViewCellVM = self.restaurentFoodPicksVCVM?.getRestFoodPickTableViewCellVM(index: indexPath.row)
         cell.buttonAdd.tag = indexPath.row
@@ -140,10 +145,12 @@ extension RestaurentFoodPicksVC:UITableViewDelegate,UITableViewDataSource
                 self.restaurentFoodPicksVCVM?.updateCartCall(itemCount: itemCount, index: index)
             }
         }
-        return cell
+            return cell
+        }
     }
     
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        if (self.restaurentFoodPicksVCVM?.foodOrderItems?.foodItems?.count ?? 0) > 0 {
         let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: "BasketFooterViewCell") as! BasketFooterViewCell
         headerView.goToBasket.addTarget(self, action:#selector(self.bucketButtonClicked), for: .touchUpInside)
         
@@ -154,6 +161,8 @@ extension RestaurentFoodPicksVC:UITableViewDelegate,UITableViewDataSource
         self.totalSavingsAmountLabel.text = "QR \(Double(self.restaurentFoodPicksVCVM?.totalSaving() ?? 0))"
 
         return headerView
+        }
+        return UIView()
     }
 
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {

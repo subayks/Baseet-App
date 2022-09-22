@@ -13,6 +13,7 @@ struct SearchModel: Codable {
   var limit     : Int?        = nil
   var offset    : Int?        = nil
   var restaurants  : [RestaurantsModel]? = []
+  var products: [FoodItems]? = []
   var errors : [ErrorMap]? = nil
 
   enum CodingKeys: String, CodingKey {
@@ -21,6 +22,7 @@ struct SearchModel: Codable {
     case limit     = "limit"
     case offset    = "offset"
     case restaurants  = "restaurants"
+      case products = "products"
       case errors = "errors"
   }
 
@@ -30,6 +32,7 @@ struct SearchModel: Codable {
     totalSize = try values.decodeIfPresent(Int.self        , forKey: .totalSize )
     limit     = try values.decodeIfPresent(Int.self        , forKey: .limit     )
     offset    = try values.decodeIfPresent(Int.self        , forKey: .offset    )
+    products = try values.decodeIfPresent([FoodItems].self , forKey: .products )
     restaurants  = try values.decodeIfPresent([RestaurantsModel].self , forKey: .restaurants )
     errors   = try values.decodeIfPresent([ErrorMap].self , forKey: .errors)
   }

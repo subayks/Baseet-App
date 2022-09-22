@@ -79,7 +79,9 @@ class SearchViewController: UIViewController {
                 self.present(vc, animated: true, completion: nil)
             }
         }
+        if self.searchBarVM.iconArray.count == 0 {
         self.searchBarVM.makeShopNearyByCall()
+        }
     }
     
     @IBAction func actionSearch(_ sender: Any) {
@@ -127,6 +129,12 @@ extension SearchViewController:UICollectionViewDelegate,UICollectionViewDataSour
         if collectionView == self.popularResCV {
             guard let id = self.searchBarVM.shopListModel?.restaurants?[indexPath.row].id else { return }
             self.searchBarVM.makeShopDetailsCall(id: id)
+        } else {
+            let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
+            let vc = storyboard.instantiateViewController(identifier: "SearchRestaurentVC") as! SearchRestaurentVC
+            vc.modalPresentationStyle = .fullScreen
+            vc.query = searchNamesArray[indexPath.row]
+            self.present(vc, animated: true, completion: nil)
         }
     }
     

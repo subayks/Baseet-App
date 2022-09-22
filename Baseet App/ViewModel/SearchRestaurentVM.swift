@@ -71,4 +71,8 @@ class SearchRestaurentVM {
         return HomeCollectionViewDownCellVM(restaurantsModel: self.searchModel?.restaurants?[index] ?? RestaurantsModel())
     }
     
+    func getFoodItemTableViewCellVM() ->FoodItemTableViewCellVM {
+        return FoodItemTableViewCellVM(products: self.searchModel?.products ?? [FoodItems]())
+    }
+    
 }

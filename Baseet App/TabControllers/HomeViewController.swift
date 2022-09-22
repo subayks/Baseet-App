@@ -9,9 +9,9 @@ import UIKit
 import CoreLocation
 
 class HomeViewController: UIViewController, CLLocationManagerDelegate {
-    
     var menu_vc: MenuVC!
-    
+
+    @IBOutlet weak var searchAction: UIButton!
     @IBOutlet weak var locationInfo: UILabel!
     @IBOutlet weak var cartButton: UIButton!
     @IBOutlet weak var cartCount: UIButton!
@@ -79,8 +79,8 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate {
         }
     }
     
-    override func viewWillAppear(_ animated: Bool)
-    {
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         let tabBar = self.tabBarController!.tabBar
         tabBar.selectionIndicatorImage = UIImage().createSelectionIndicator(color: UIColor.gray, size: CGSize(width: tabBar.frame.width/CGFloat(tabBar.items!.count), height: tabBar.frame.height), lineWidth: 5.0)
         
@@ -193,7 +193,16 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         if status == .authorizedAlways || status == .authorizedWhenInUse {
             guard let locValue:CLLocation = manager.location else {return}
-
+            
+      //      let lat = locValue.coordinate.latitude
+      //      let long = locValue.coordinate.longitude
+            
+            let lat = 17.380281
+            let long = 78.4732695
+            
+            UserDefaults.standard.set(lat, forKey: "lat")
+            UserDefaults.standard.set(long, forKey: "long")
+            self.homeViewControllerVM.changeZoneId()
             
             CLGeocoder().reverseGeocodeLocation(locValue, completionHandler: {(placemarks, error) -> Void in
                     print(locValue)
@@ -221,8 +230,15 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate {
         } else if status == .denied {
             //Show Error Screen
         }
-     
-
+    }
+    
+    @IBAction func actionSearch(_ sender: Any) {
+        let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewController(identifier: "SearchRestaurentVC") as! SearchRestaurentVC
+        // vc.modalTransitionStyle = .coverVertical
+      //  vc.restarentDishViewControllerVM = self.homeViewControllerVM.getRestarentDishViewControllerVM()
+        vc.modalPresentationStyle = .fullScreen
+        self.present(vc, animated: true, completion: nil)
     }
 }
 

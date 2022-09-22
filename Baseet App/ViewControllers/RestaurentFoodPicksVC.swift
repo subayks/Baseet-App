@@ -31,6 +31,8 @@ class RestaurentFoodPicksVC: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
         self.restaurentFoodPicksVCVM?.reloadTableViewClosure = { [weak self] in
             DispatchQueue.main.async {
                 guard let self = self else {return}

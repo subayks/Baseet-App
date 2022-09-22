@@ -9,6 +9,8 @@ import UIKit
 
 class RestarentDishViewController: UIViewController {
     
+    @IBOutlet weak var buttonFavourite: UIButton!
+    @IBOutlet weak var buttonShare: UIButton!
     @IBOutlet weak var cartCountBadge: UIButton!
     @IBOutlet weak var ratingLabel: UILabel!
     @IBOutlet weak var reatingStackView: UIStackView!
@@ -27,6 +29,8 @@ class RestarentDishViewController: UIViewController {
     @IBOutlet weak var collectionViewBottomConstraint: NSLayoutConstraint!
     
     var restarentDishViewControllerVM: RestarentDishViewControllerVM?
+    var previousIndex: IndexPath?
+    var isSelected = false
     
     override func viewDidLoad()
     {
@@ -43,8 +47,8 @@ class RestarentDishViewController: UIViewController {
         //        self.view.addGestureRecognizer(swipeRight)
     }
     
-    override func viewWillAppear(_ animated: Bool)
-    {
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         self.buttonGoToCart.layer.cornerRadius = buttonGoToCart.frame.height/2
         self.buttonGoToCart.clipsToBounds = true
         buttonGoToCart.layer.borderWidth = 2
@@ -89,6 +93,7 @@ class RestarentDishViewController: UIViewController {
             DispatchQueue.main.async {
                 guard let self = self else {return}
                 self.resDishTB.reloadData()
+                self.resDishCV.reloadData()
                 self.checkForCartButton()
             }
         }
@@ -116,6 +121,20 @@ class RestarentDishViewController: UIViewController {
                 }
                 vc.modalPresentationStyle = .fullScreen
                 self.present(vc, animated: true, completion: nil)
+            }
+        }
+        
+        self.restarentDishViewControllerVM?.addFavouriteClosure = { [weak self] in
+            DispatchQueue.main.async {
+                guard let self = self else {return}
+                self.buttonFavourite.setImage(UIImage(named: "Favourite"), for: .normal)
+            }
+        }
+        
+        self.restarentDishViewControllerVM?.removeFavClosure = { [weak self] in
+            DispatchQueue.main.async {
+                guard let self = self else {return}
+                self.buttonFavourite.setImage(UIImage(named: "UnFavourite"), for: .normal)
             }
         }
     }
@@ -184,12 +203,31 @@ class RestarentDishViewController: UIViewController {
             self.ratingLabel.text = ""
         }
     }
+    
+    @IBAction func actionFavourite(_ sender: UIButton) {
+        if UserDefaults.standard.bool(forKey: "isLoggedIn") {
+        if sender.currentImage == UIImage(named: "Favourite") {
+            self.restarentDishViewControllerVM?.removeFavouriteCall()
+        } else {
+            self.restarentDishViewControllerVM?.addToFavouriteCall()
+        }
+        } else {
+            let alert = UIAlertController(title: "Alert", message: "Please login for adding item to favourites", preferredStyle: UIAlertController.Style.alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        }
+    }
+    
+    @IBAction func actionShare(_ sender: Any) {
+        
+    }
+    
 }
 
 extension RestarentDishViewController:UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == self.resDishCV {
-            return 8
+            return self.restarentDishViewControllerVM?.foodItemList().count ?? 0
         }
         return self.restarentDishViewControllerVM?.foodItems?.count ?? 0
     }
@@ -197,7 +235,9 @@ extension RestarentDishViewController:UICollectionViewDelegate,UICollectionViewD
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         if collectionView == self.resDishCV {
-            let cellA = resDishCV.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! ResDishCollectionViewCell
+            let cellA = resDishCV.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! HomeCollectionViewSecCell
+            cellA.lbl.text = self.restarentDishViewControllerVM?.foodItemList()[indexPath.row]
+            cellA.lblview.layer.borderColor = UIColor.clear.cgColor
             return cellA
         } else {
             let cellC = resDishTB.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! ResDishCollectionViewCellTwo
@@ -241,6 +281,24 @@ extension RestarentDishViewController:UICollectionViewDelegate,UICollectionViewD
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
        // self.restarentDishViewControllerVM?.makeProductDetailsCall(item: indexPath.row)
+        if collectionView == self.resDishCV {
+            let cell: HomeCollectionViewSecCell = resDishCV.cellForItem(at: indexPath) as! HomeCollectionViewSecCell
+            cell.lblview.backgroundColor = UIColor(red: 199/255, green: 48/255, blue: 41/255, alpha: 1)
+            cell.lbl.textColor = .white
+            if previousIndex !=  nil  {
+                let previousCell: HomeCollectionViewSecCell = resDishCV.cellForItem(at: previousIndex ?? IndexPath()) as! HomeCollectionViewSecCell
+                previousCell.lblview.backgroundColor = UIColor.systemGray6
+                previousCell.lbl.textColor = .black
+            }
+            if previousIndex == indexPath {
+                isSelected = false
+                previousIndex = nil
+            } else {
+                isSelected = true
+                self.previousIndex = indexPath
+            }
+            return
+        }
         let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
         let vc = storyboard.instantiateViewController(identifier: "RecipeDetailsVC") as! RecipeDetailsVC
         vc.recipeDetailsVCVM = self.restarentDishViewControllerVM?.getRecipeDetailsVCVM(index: indexPath.row)

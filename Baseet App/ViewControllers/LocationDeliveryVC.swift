@@ -53,7 +53,7 @@ class LocationDeliveryVC: UIViewController, CLLocationManagerDelegate {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        
+        super.viewWillAppear(animated)
         self.locationDeliveryVCVM?.showLoadingIndicatorClosure = { [weak self] in
             DispatchQueue.main.async {
                 guard let self = self else {return}
@@ -132,7 +132,16 @@ class LocationDeliveryVC: UIViewController, CLLocationManagerDelegate {
             self.locationDeliveryVCVM?.logitude = locValue.longitude
             
             guard let locValue:CLLocation = manager.location else {return}
-
+            
+//            let lat = locValue.coordinate.latitude
+//            let long = locValue.coordinate.longitude
+            
+            let lat = 17.380281
+            let long = 78.4732695
+            
+            UserDefaults.standard.set(lat, forKey: "lat")
+            UserDefaults.standard.set(long, forKey: "long")
+            self.locationDeliveryVCVM?.changeZoneId()
             
             CLGeocoder().reverseGeocodeLocation(locValue, completionHandler: {(placemarks, error) -> Void in
                     print(locValue)

@@ -24,7 +24,8 @@ class LocationDeliveryVCVM {
     var discountAmount: String?
     var taxAmount: String?
     var notes: String?
-    
+    var zoneModel: ZoneModel?
+
     init(totalPrice: String, discountAmount: String, taxAmount: String, notes: String, apiServices: HomeApiServicesProtocol = HomeApiServices()) {
         self.totalPrice = totalPrice
         self.taxAmount = taxAmount
@@ -112,6 +113,27 @@ class LocationDeliveryVCVM {
                 } else {
 
                 self.alertClosure?(errorMessage ?? "Some technical problem")
+                }
+            }
+        })
+        } else {
+            self.alertClosure?("No Internet Availabe")
+        }
+    }
+    
+    func changeZoneId() {
+        if Reachability.isConnectedToNetwork() {
+          //  self.showLoadingIndicatorClosure?()
+            let lat = UserDefaults.standard.string(forKey: "lat")
+            let long = UserDefaults.standard.string(forKey: "long")
+            self.apiServices?.getZoneID(finalURL: "\(Constants.Common.finalURL)/config/get-zone-id?lat=\(lat ?? "")&lng=\(long ?? "")",  completion: { (status: Bool? , errorCode: String?,result: AnyObject?, errorMessage: String?) -> Void in
+            DispatchQueue.main.async {
+          //      self.hideLoadingIndicatorClosure?()
+                if status == true {
+                    self.zoneModel = result as? ZoneModel
+                    UserDefaults.standard.set(self.zoneModel?.zoneId, forKey: "zoneID")
+                } else {
+                   self.alertClosure?("Some technical problem")
                 }
             }
         })

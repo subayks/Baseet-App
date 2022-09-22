@@ -9,6 +9,19 @@ import UIKit
 
 class MyFevTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var orderNowButton: UIButton!
+    @IBOutlet weak var buttonFav: UIButton!
+    @IBOutlet weak var timingButton: UIButton!
+    @IBOutlet weak var ratingButton: UIButton!
+    @IBOutlet weak var couponCode: UILabel!
+    @IBOutlet weak var restaurentName: UILabel!
+    @IBOutlet weak var restaurentIcon: UIImageView!
+    var myFevTableViewCellVM: MyFevTableViewCellVM? {
+        didSet {
+            self.setupValues()
+        }
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -18,6 +31,13 @@ class MyFevTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+    }
+    
+    func setupValues() {
+        self.restaurentName.text = self.myFevTableViewCellVM?.restaurent?.name
+        self.restaurentIcon.loadImageUsingURL(self.myFevTableViewCellVM?.restaurent?.applogo ?? "")
+        self.ratingButton.setTitle(String(self.myFevTableViewCellVM?.restaurent?.avgRating ?? 0), for: .normal)
+        self.timingButton.setTitle(self.myFevTableViewCellVM?.restaurent?.deliveryTime, for: .normal)
     }
 
 }

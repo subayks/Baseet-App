@@ -19,9 +19,271 @@ protocol HomeApiServicesProtocol {
     func getCartApi(finalURL: String, completion: @escaping(_ status: Bool?, _ code: String?, _ response: AnyObject?, _ error: String?)-> Void)
     func placeOrderApi(finalURL: String, withParameters: String, completion: @escaping(_ status: Bool?, _ code: String?, _ response: AnyObject?, _ error: String?)-> Void)
     func accessTokenSADAD(finalURL: String, withParameters: String, completion: @escaping(_ status: Bool?, _ code: String?, _ response: AnyObject?, _ error: String?)-> Void)
+    func getFavouriteList(finalURL: String, completion: @escaping(_ status: Bool?, _ code: String?, _ response: AnyObject?, _ error: String?)-> Void)
+    func addWishList(finalURL: String, withParameters: String, completion: @escaping(_ status: Bool?, _ code: String?, _ response: AnyObject?, _ error: String?)-> Void)
+    func removeWishList(finalURL: String, withParameters: String, completion: @escaping(_ status: Bool?, _ code: String?, _ response: AnyObject?, _ error: String?)-> Void)
+    func getCouponList(finalURL: String, completion: @escaping(_ status: Bool?, _ code: String?, _ response: AnyObject?, _ error: String?)-> Void)
+    func getSearchList(finalURL: String, completion: @escaping(_ status: Bool?, _ code: String?, _ response: AnyObject?, _ error: String?)-> Void)
+    func searchProductList(finalURL: String, completion: @escaping(_ status: Bool?, _ code: String?, _ response: AnyObject?, _ error: String?)-> Void)
+    func getZoneID(finalURL: String, completion: @escaping(_ status: Bool?, _ code: String?, _ response: AnyObject?, _ error: String?)-> Void)
 }
 
 class HomeApiServices: HomeApiServicesProtocol {
+    func getZoneID(finalURL: String, completion: @escaping (Bool?, String?, AnyObject?, String?) -> Void) {
+       
+        NetworkAdapter.clientNetworkRequestCodable(withBaseURL: finalURL, withParameters:   "", withHttpMethod: "GET", withContentType: "Application/json", withHeaders: [String : String](), completionHandler: { (result: Data?, showPopUp: Bool?, error: String?, errorCode: String?)  -> Void in
+            
+            if let error = error {
+                completion(false,errorCode,nil,error)
+                return
+            }
+            
+            DispatchQueue.main.async {
+                
+                do {
+                    let decoder = JSONDecoder()
+                    if result == nil {
+                        completion(false,errorCode,nil,"Unhandled Error")
+                        return
+                    }
+                    let values = try decoder.decode(ZoneModel.self, from: result!)
+                    if values.errors != nil {
+                        completion(false,errorCode,nil,values.errors?[0].message)
+                    } else {
+                    completion(true,errorCode,values as AnyObject?,error)
+                    }
+                    
+                } catch let error as NSError {
+                    //do something with error
+                    completion(false,errorCode,nil,error.localizedDescription)
+                }
+                
+            }
+        }
+        )
+    }
+    
+    func searchProductList(finalURL: String, completion: @escaping (Bool?, String?, AnyObject?, String?) -> Void) {
+        let zoneId = UserDefaults.standard.string(forKey: "zoneID")
+        let headers = [
+            "zoneId": "\(zoneId ?? "")",
+            ]
+        NetworkAdapter.clientNetworkRequestCodable(withBaseURL: finalURL, withParameters:   "", withHttpMethod: "GET", withContentType: "Application/json", withHeaders: headers, completionHandler: { (result: Data?, showPopUp: Bool?, error: String?, errorCode: String?)  -> Void in
+            
+            if let error = error {
+                completion(false,errorCode,nil,error)
+                return
+            }
+            
+            DispatchQueue.main.async {
+                
+                do {
+                    let decoder = JSONDecoder()
+                    if result == nil {
+                        completion(false,errorCode,nil,"Unhandled Error")
+                        return
+                    }
+                    let values = try decoder.decode(SearchModel.self, from: result!)
+                    if values.errors != nil {
+                        completion(false,errorCode,nil,values.errors?[0].message)
+                    } else {
+                    completion(true,errorCode,values as AnyObject?,error)
+                    }
+                    
+                } catch let error as NSError {
+                    //do something with error
+                    completion(false,errorCode,nil,error.localizedDescription)
+                }
+                
+            }
+        }
+        )
+    }
+    
+    func getSearchList(finalURL: String, completion: @escaping (Bool?, String?, AnyObject?, String?) -> Void) {
+        let zoneId = UserDefaults.standard.string(forKey: "zoneID")
+        let headers = [
+            "zoneId": "\(zoneId ?? "")",
+            ]
+        NetworkAdapter.clientNetworkRequestCodable(withBaseURL: finalURL, withParameters:   "", withHttpMethod: "GET", withContentType: "Application/json", withHeaders: headers, completionHandler: { (result: Data?, showPopUp: Bool?, error: String?, errorCode: String?)  -> Void in
+            
+            if let error = error {
+                completion(false,errorCode,nil,error)
+                return
+            }
+            
+            DispatchQueue.main.async {
+                
+                do {
+                    let decoder = JSONDecoder()
+                    if result == nil {
+                        completion(false,errorCode,nil,"Unhandled Error")
+                        return
+                    }
+                    let values = try decoder.decode(SearchModel.self, from: result!)
+                    if values.errors != nil {
+                        completion(false,errorCode,nil,values.errors?[0].message)
+                    } else {
+                    completion(true,errorCode,values as AnyObject?,error)
+                    }
+                    
+                } catch let error as NSError {
+                    //do something with error
+                    completion(false,errorCode,nil,error.localizedDescription)
+                }
+                
+            }
+        }
+        )
+    }
+    
+    func getCouponList(finalURL: String, completion: @escaping (Bool?, String?, AnyObject?, String?) -> Void) {
+        let zoneId = UserDefaults.standard.string(forKey: "zoneID")
+        let headers = [
+            "Authorization": "\(((UserDefaults.standard.string(forKey: "AuthToken") ?? "") as String))",
+            "zoneId": "\(zoneId ?? "")",
+            ]
+        NetworkAdapter.clientNetworkRequestCodable(withBaseURL: finalURL, withParameters:   "", withHttpMethod: "GET", withContentType: "Application/json", withHeaders: headers, completionHandler: { (result: Data?, showPopUp: Bool?, error: String?, errorCode: String?)  -> Void in
+            
+            if let error = error {
+                completion(false,errorCode,nil,error)
+                return
+            }
+            
+            DispatchQueue.main.async {
+                
+                do {
+                    let decoder = JSONDecoder()
+                    if result == nil {
+                        completion(false,errorCode,nil,"Unhandled Error")
+                        return
+                    }
+                    let values = try decoder.decode(CouponModel.self, from: result!)
+                    if values.errors != nil {
+                        completion(false,errorCode,nil,values.errors?[0].message)
+                    } else {
+                    completion(true,errorCode,values as AnyObject?,error)
+                    }
+                    
+                } catch let error as NSError {
+                    //do something with error
+                    completion(false,errorCode,nil,error.localizedDescription)
+                }
+                
+            }
+        }
+        )
+    }
+    
+    func removeWishList(finalURL: String, withParameters: String, completion: @escaping (Bool?, String?, AnyObject?, String?) -> Void) {
+        let headers = [
+            "Authorization": "\(((UserDefaults.standard.string(forKey: "AuthToken") ?? "") as String))",
+            ]
+        NetworkAdapter.clientNetworkRequestCodable(withBaseURL: finalURL, withParameters: withParameters, withHttpMethod: "DELETE", withContentType: "Application/json", withHeaders: headers, completionHandler: { (result: Data?, showPopUp: Bool?, error: String?, errorCode: String?)  -> Void in
+            
+            if let error = error {
+                completion(false,errorCode,nil,error)
+                
+                return
+            }
+            
+            DispatchQueue.main.async {
+                
+                do {
+                    let decoder = JSONDecoder()
+                    if result == nil {
+                        completion(false,errorCode,nil,"Unhandled Error")
+                        return
+                    }
+                    let values = try decoder.decode(ReplaceUserModel.self, from: result!)
+                    if values.errors != nil {
+                        completion(false,errorCode,nil,values.errors?[0].message)
+                    } else {
+                    completion(true,errorCode,values as AnyObject?,error)
+                    }
+                    
+                } catch let error as NSError {
+                    //do something with error
+                    completion(false,errorCode,nil,error.localizedDescription)
+                }
+            }
+        })
+    }
+    
+    func addWishList(finalURL: String, withParameters: String, completion: @escaping (Bool?, String?, AnyObject?, String?) -> Void) {
+        let headers = [
+            "Authorization": "\(((UserDefaults.standard.string(forKey: "AuthToken") ?? "") as String))",
+            ]
+        NetworkAdapter.clientNetworkRequestCodable(withBaseURL: finalURL, withParameters: withParameters, withHttpMethod: "POST", withContentType: "Application/json", withHeaders: headers, completionHandler: { (result: Data?, showPopUp: Bool?, error: String?, errorCode: String?)  -> Void in
+            
+            if let error = error {
+                completion(false,errorCode,nil,error)
+                
+                return
+            }
+            
+            DispatchQueue.main.async {
+                
+                do {
+                    let decoder = JSONDecoder()
+                    if result == nil {
+                        completion(false,errorCode,nil,"Unhandled Error")
+                        return
+                    }
+                    let values = try decoder.decode(ReplaceUserModel.self, from: result!)
+                    if values.errors != nil {
+                        completion(false,errorCode,nil,values.errors?[0].message)
+                    } else {
+                    completion(true,errorCode,values as AnyObject?,error)
+                    }
+                    
+                } catch let error as NSError {
+                    //do something with error
+                    completion(false,errorCode,nil,error.localizedDescription)
+                }
+            }
+        })
+    }
+    
+    
+    func getFavouriteList(finalURL: String, completion: @escaping (Bool?, String?, AnyObject?, String?) -> Void) {
+        let zoneId = UserDefaults.standard.string(forKey: "zoneID")
+        let headers = [
+            "Authorization": "\(((UserDefaults.standard.string(forKey: "AuthToken") ?? "") as String))",
+            "zoneId": "\(zoneId ?? "")",
+            ]
+        NetworkAdapter.clientNetworkRequestCodable(withBaseURL: finalURL, withParameters:   "", withHttpMethod: "GET", withContentType: "Application/json", withHeaders: headers, completionHandler: { (result: Data?, showPopUp: Bool?, error: String?, errorCode: String?)  -> Void in
+            
+            if let error = error {
+                completion(false,errorCode,nil,error)
+                return
+            }
+            
+            DispatchQueue.main.async {
+                
+                do {
+                    let decoder = JSONDecoder()
+                    if result == nil {
+                        completion(false,errorCode,nil,"Unhandled Error")
+                        return
+                    }
+                    let values = try decoder.decode(FavouriteModel.self, from: result!)
+                    if values.errors != nil {
+                        completion(false,errorCode,nil,values.errors?[0].message)
+                    } else {
+                    completion(true,errorCode,values as AnyObject?,error)
+                    }
+                    
+                } catch let error as NSError {
+                    //do something with error
+                    completion(false,errorCode,nil,error.localizedDescription)
+                }
+                
+            }
+        }
+        )
+    }
+    
     func replaceUser(finalURL: String, withParameters: String, completion: @escaping (Bool?, String?, AnyObject?, String?) -> Void)  {
         let headers = [
             "Authorization": "\(((UserDefaults.standard.string(forKey: "AuthToken") ?? "") as String))",

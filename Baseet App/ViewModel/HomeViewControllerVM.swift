@@ -25,6 +25,7 @@ class HomeViewControllerVM {
             self.getCartCountClosure?()
         }
     }
+    var zoneModel: ZoneModel?
 
     init(apiServices: HomeApiServicesProtocol = HomeApiServices()) {
         self.apiServices = apiServices
@@ -33,12 +34,12 @@ class HomeViewControllerVM {
     func makeShopNearyByCall() {
         if Reachability.isConnectedToNetwork() {
             self.showLoadingIndicatorClosure?()
-            let lat = 17.380281
-            let long =  78.4732695
+            let lat = UserDefaults.standard.string(forKey: "lat")
+            let long = UserDefaults.standard.string(forKey: "long")
            let httpHeaders =  [
            "Content-Type": "application/json",
-             "latitude": "\(lat)",
-             "longitude": "\(long)",
+             "latitude": "\(lat ?? "")",
+             "longitude": "\(long ?? "")",
              "radius": "50"
            ]
             self.apiServices?.getShopNearBy(finalURL: "\(Constants.Common.finalURL)/restaurants/get-nearby", httpHeaders: httpHeaders, completion: { (status: Bool? , errorCode: String?,result: AnyObject?, errorMessage: String?) -> Void in
@@ -106,6 +107,27 @@ class HomeViewControllerVM {
                 self.hideLoadingIndicatorClosure?()
                 if status == true {
                     self.getCartModel = result as? GetCartModel
+                } else {
+                   self.alertClosure?("Some technical problem")
+                }
+            }
+        })
+        } else {
+            self.alertClosure?("No Internet Availabe")
+        }
+    }
+    
+    func changeZoneId() {
+        if Reachability.isConnectedToNetwork() {
+          //  self.showLoadingIndicatorClosure?()
+            let lat = UserDefaults.standard.string(forKey: "lat")
+            let long = UserDefaults.standard.string(forKey: "long")
+            self.apiServices?.getZoneID(finalURL: "\(Constants.Common.finalURL)/config/get-zone-id?lat=\(lat ?? "")&lng=\(long ?? "")",  completion: { (status: Bool? , errorCode: String?,result: AnyObject?, errorMessage: String?) -> Void in
+            DispatchQueue.main.async {
+          //      self.hideLoadingIndicatorClosure?()
+                if status == true {
+                    self.zoneModel = result as? ZoneModel
+                    UserDefaults.standard.set(self.zoneModel?.zoneId, forKey: "zoneID")
                 } else {
                    self.alertClosure?("Some technical problem")
                 }

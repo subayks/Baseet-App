@@ -12,7 +12,7 @@ class SearchViewController: UIViewController {
     @IBOutlet weak var searchCV: UICollectionView!
     
     @IBOutlet weak var popularResCV: UICollectionView!
-    
+    var searchBarVM = SearchBarVM()
     let searchNamesArray = ["Biryani","Mandi","Pizza","Burger","Sawarma","Rumali","pasta","Rumali","Rumali"]
     
     let searchimageArray = [
@@ -30,12 +30,63 @@ class SearchViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         searchCV.reloadData()
-
-        
         let tabBar = self.tabBarController!.tabBar
         tabBar.selectionIndicatorImage = UIImage().createSelectionIndicator(color: UIColor.gray, size: CGSize(width: tabBar.frame.width/CGFloat(tabBar.items!.count), height: tabBar.frame.height), lineWidth: 5.0)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.searchBarVM.reloadClosure = { [weak self] in
+            DispatchQueue.main.async {
+                guard let self = self else {return}
+                self.popularResCV.reloadData()
+            }
+        }
+        
+        self.searchBarVM.showLoadingIndicatorClosure = { [weak self] in
+            DispatchQueue.main.async {
+                guard let self = self else {return}
+                self.showLoadingView()
+            }
+        }
+        
+        self.searchBarVM.hideLoadingIndicatorClosure = { [weak self] in
+            DispatchQueue.main.async {
+                guard let self = self else {return}
+                self.hideLoadingView()
+            }
+        }
+        
+        self.searchBarVM.alertClosure = { [weak self] (error) in
+            DispatchQueue.main.async {
+                guard let self = self else {return}
+                let alert = UIAlertController(title: "Alert", message: error, preferredStyle: UIAlertController.Style.alert)
+                alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+            }
+        }
+        
+        self.searchBarVM.navigateToDetailsClosure = { [weak self] in
+            DispatchQueue.main.async {
+                guard let self = self else {return}
+                let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
+                let vc = storyboard.instantiateViewController(identifier: "RestarentDishViewController") as! RestarentDishViewController
+                // vc.modalTransitionStyle = .coverVertical
+                vc.restarentDishViewControllerVM = self.searchBarVM.getRestarentDishViewControllerVM()
+                vc.modalPresentationStyle = .fullScreen
+                self.present(vc, animated: true, completion: nil)
+            }
+        }
+        self.searchBarVM.makeShopNearyByCall()
+    }
+    
+    @IBAction func actionSearch(_ sender: Any) {
+        let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewController(identifier: "SearchRestaurentVC") as! SearchRestaurentVC
+        vc.modalPresentationStyle = .fullScreen
+        self.present(vc, animated: true, completion: nil)
     }
 
 }
@@ -47,7 +98,7 @@ extension SearchViewController:UICollectionViewDelegate,UICollectionViewDataSour
                return 7
            }
 
-           return 11
+        return self.searchBarVM.iconArray.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -66,18 +117,18 @@ extension SearchViewController:UICollectionViewDelegate,UICollectionViewDataSour
 
             else {
                 let cellB = popularResCV.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! PopularResCollectionViewCell
-
-                cellB.restpopularImage.image = searchimageArray[indexPath.row]
-
+                cellB.restpopularImage.loadImageUsingURL(self.searchBarVM.iconArray[indexPath.row])
                 return cellB
             }
     }
     
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
+        if collectionView == self.popularResCV {
+            guard let id = self.searchBarVM.shopListModel?.restaurants?[indexPath.row].id else { return }
+            self.searchBarVM.makeShopDetailsCall(id: id)
+        }
     }
-    
     
 //    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
 //            let xPadding = 10

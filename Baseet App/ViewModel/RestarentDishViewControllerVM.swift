@@ -40,6 +40,9 @@ class RestarentDishViewControllerVM {
             self.reloadRecipieCollectionView?()
         }
     }
+    var removeFavClosure:(()->())?
+    var addFavouriteClosure:(()->())?
+
     
     init(shopDetailsModel: ShopDetailsModel, apiServices: HomeApiServicesProtocol = HomeApiServices()) {
         self.shopDetailsModel = shopDetailsModel
@@ -362,6 +365,62 @@ class RestarentDishViewControllerVM {
     
     func resetAll() {
         
+    }
+}
+
+extension RestarentDishViewControllerVM {
+    func addToFavouriteCall() {
+        if Reachability.isConnectedToNetwork() {
+            self.showLoadingIndicatorClosure?()
+            let queryParam = self.favPostParam()
+            self.apiServices?.addWishList(finalURL: "\(Constants.Common.finalURL)/customer/wish-list/add", withParameters: queryParam, completion:  { (status: Bool? , errorCode: String?,result: AnyObject?, errorMessage: String?) -> Void in
+            DispatchQueue.main.async {
+                self.hideLoadingIndicatorClosure?()
+                if status == true {
+                    self.addFavouriteClosure?()
+                } else {
+                   self.alertClosure?( errorMessage ?? "Some technical problem")
+                }
+            }
+        })
+        } else {
+            self.alertClosure?("No Internet Availabe")
+        }
+    }
+    
+    func removeFavouriteCall() {
+        if Reachability.isConnectedToNetwork() {
+            self.showLoadingIndicatorClosure?()
+            let queryParam = ""
+            let id = self.shopDetailsModel?.restaurant?.id ?? 0
+            self.apiServices?.removeWishList(finalURL: "\(Constants.Common.finalURL)/customer/wish-list/remove?restaurant_id=\(id)", withParameters: queryParam, completion:  { (status: Bool? , errorCode: String?,result: AnyObject?, errorMessage: String?) -> Void in
+            DispatchQueue.main.async {
+                self.hideLoadingIndicatorClosure?()
+                if status == true {
+                    self.removeFavClosure?()
+                } else {
+                   self.alertClosure?( errorMessage ?? "Some technical problem")
+                }
+            }
+        })
+        } else {
+            self.alertClosure?("No Internet Availabe")
+        }
+    }
+    
+    func favPostParam() ->String {
+        let jsonToReturn: NSDictionary = ["restaurant_id": "\(self.shopDetailsModel?.restaurant?.id ?? 0)"]
+    return self.convertDictionaryToJsonString(dict: jsonToReturn)!
+    }
+    
+    func foodItemList() ->[String] {
+        var foodName = [String]()
+        if let products = self.shopDetailsModel?.products {
+        for item in products {
+            foodName.append(item.name ?? "")
+        }
+        }
+        return foodName
     }
 }
 

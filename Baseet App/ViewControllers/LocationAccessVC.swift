@@ -17,9 +17,7 @@ class LocationAccessVC: UIViewController,CLLocationManagerDelegate,MKMapViewDele
     @IBOutlet weak var mapView: MKMapView!
     
     let locationManager = CLLocationManager()
-    
-  
-   
+    let locationAccessVM = LocationAccessVM()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -64,6 +62,10 @@ class LocationAccessVC: UIViewController,CLLocationManagerDelegate,MKMapViewDele
 
         print("user latitude = \(userLocation.coordinate.latitude)")
         print("user longitude = \(userLocation.coordinate.longitude)")
+        let lat = 17.380281
+        let long = 78.4732695
+        UserDefaults.standard.set(lat, forKey: "lat")
+        UserDefaults.standard.set(long, forKey: "long")
         //Launch App first Time
         if UserDefaults.standard.string(forKey: "User_Id") == nil {
         UserDefaults.standard.set((Int(String(userLocation.coordinate.latitude).replacingOccurrences(of: ".", with: ""))), forKey: "User_Id")
@@ -97,6 +99,43 @@ class LocationAccessVC: UIViewController,CLLocationManagerDelegate,MKMapViewDele
             UserDefaults.standard.set(locationDashBord, forKey: "Location_Info")
             })
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.locationAccessVM.showLoadingIndicatorClosure = { [weak self] in
+            DispatchQueue.main.async {
+                guard let self = self else {return}
+                self.showLoadingView()
+            }
+        }
+        
+        self.locationAccessVM.hideLoadingIndicatorClosure = { [weak self] in
+            DispatchQueue.main.async {
+                guard let self = self else {return}
+                self.hideLoadingView()
+            }
+        }
+        
+        self.locationAccessVM.alertClosure = { [weak self] (error) in
+            DispatchQueue.main.async {
+                guard let self = self else {return}
+                let alert = UIAlertController(title: "Alert", message: error, preferredStyle: UIAlertController.Style.alert)
+                alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+            }
+        }
+        
+        self.locationAccessVM.navigateToDetailsClosure = { [weak self] in
+            DispatchQueue.main.async {
+                let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
+                let vc = storyboard.instantiateViewController(identifier: "tabVC")
+                vc.modalPresentationStyle = .fullScreen
+                (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(vc)
+            }
+        }
+    }
+    
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error)
     {
         print("Error \(error)")
@@ -108,9 +147,7 @@ class LocationAccessVC: UIViewController,CLLocationManagerDelegate,MKMapViewDele
 //        let vc = storyboard.instantiateViewController(identifier: "LoginViewController")
 //        vc.modalPresentationStyle = .fullScreen
 //        self.present(vc, animated: true, completion: nil)
-        let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
-        let vc = storyboard.instantiateViewController(identifier: "tabVC")
-        vc.modalPresentationStyle = .fullScreen
-        (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(vc)
+        self.locationAccessVM.changeZoneId()
+       
     }
 }

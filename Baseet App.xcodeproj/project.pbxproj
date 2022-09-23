@@ -63,6 +63,11 @@
 		099E9B5228C1C93B00BD1724 /* LoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 099E9B5128C1C93B00BD1724 /* LoginModel.swift */; };
 		099E9B5428C1CCA400BD1724 /* LoginViewControllerVm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 099E9B5328C1CCA400BD1724 /* LoginViewControllerVm.swift */; };
 		09A0D05C28AFF4160015FC4C /* GetCartModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09A0D05B28AFF4160015FC4C /* GetCartModel.swift */; };
+		09A5B49928DE154400D341B8 /* ProfileNameCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09A5B49828DE154400D341B8 /* ProfileNameCell.swift */; };
+		09B469DD28DD70F6008C9E78 /* EditProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09B469DC28DD70F6008C9E78 /* EditProfileViewModel.swift */; };
+		09B469DF28DD7A41008C9E78 /* CustomerInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09B469DE28DD7A41008C9E78 /* CustomerInfoModel.swift */; };
+		09B469E128DD7AE5008C9E78 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09B469E028DD7AE5008C9E78 /* ProfileViewModel.swift */; };
+		09B469E328DD7FAC008C9E78 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09B469E228DD7FAC008C9E78 /* SettingsViewModel.swift */; };
 		09B4ADF428AEC95400744F9F /* LocationDeliveryVCVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09B4ADF328AEC95400744F9F /* LocationDeliveryVCVM.swift */; };
 		7F983EFC06E9D786530EAB21 /* Pods_Baseet_App.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC7749E854FB59993E41DD91 /* Pods_Baseet_App.framework */; };
 		8807015D288FD2B8001B8907 /* MapkitViewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8807015C288FD2B8001B8907 /* MapkitViewVC.swift */; };
@@ -222,6 +227,11 @@
 		099E9B5128C1C93B00BD1724 /* LoginModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginModel.swift; sourceTree = "<group>"; };
 		099E9B5328C1CCA400BD1724 /* LoginViewControllerVm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewControllerVm.swift; sourceTree = "<group>"; };
 		09A0D05B28AFF4160015FC4C /* GetCartModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCartModel.swift; sourceTree = "<group>"; };
+		09A5B49828DE154400D341B8 /* ProfileNameCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileNameCell.swift; sourceTree = "<group>"; };
+		09B469DC28DD70F6008C9E78 /* EditProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewModel.swift; sourceTree = "<group>"; };
+		09B469DE28DD7A41008C9E78 /* CustomerInfoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerInfoModel.swift; sourceTree = "<group>"; };
+		09B469E028DD7AE5008C9E78 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
+		09B469E228DD7FAC008C9E78 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		09B4ADF328AEC95400744F9F /* LocationDeliveryVCVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDeliveryVCVM.swift; sourceTree = "<group>"; };
 		8807015C288FD2B8001B8907 /* MapkitViewVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapkitViewVC.swift; sourceTree = "<group>"; };
 		8807015E288FD4E7001B8907 /* DeliveredSucessViewVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveredSucessViewVC.swift; sourceTree = "<group>"; };
@@ -361,6 +371,7 @@
 				0934E63C28D995D5005276A5 /* CouponModel.swift */,
 				092875FB28DB45CA000BE890 /* SearchModel.swift */,
 				0967E58E28DC3C5600D6B141 /* ZoneModel.swift */,
+				09B469DE28DD7A41008C9E78 /* CustomerInfoModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -392,6 +403,9 @@
 				0967E58A28DC2BF800D6B141 /* CouponCellVM.swift */,
 				0967E59028DC3DBA00D6B141 /* LocationAccessVM.swift */,
 				0967E59428DC687800D6B141 /* FoodItemTableViewCellVM.swift */,
+				09B469DC28DD70F6008C9E78 /* EditProfileViewModel.swift */,
+				09B469E028DD7AE5008C9E78 /* ProfileViewModel.swift */,
+				09B469E228DD7FAC008C9E78 /* SettingsViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -506,6 +520,7 @@
 				0967E58C28DC318F00D6B141 /* NoCoupsAvailableCell.swift */,
 				0967E59228DC67C800D6B141 /* FoodItemTableViewCell.swift */,
 				0967E59628DC89E700D6B141 /* AddMoreItemCell.swift */,
+				09A5B49828DE154400D341B8 /* ProfileNameCell.swift */,
 			);
 			path = TableViewCells;
 			sourceTree = "<group>";
@@ -764,6 +779,7 @@
 				883901A5287DA31700C85BE2 /* MyWalletViewController.swift in Sources */,
 				883ED5A62878944800F06F22 /* SearchViewController.swift in Sources */,
 				8821EAA62885446200B32EF5 /* RestFoodPickTableViewCell.swift in Sources */,
+				09B469E128DD7AE5008C9E78 /* ProfileViewModel.swift in Sources */,
 				8821EAA82885570300B32EF5 /* AddOnViewController.swift in Sources */,
 				88149F94287F30FC00E57AC7 /* LogoutVC.swift in Sources */,
 				88FDAB1F2881854F006F06D0 /* RestarentDishViewController.swift in Sources */,
@@ -815,6 +831,7 @@
 				8821EAA428853CC000B32EF5 /* RestaurentFoodPicksVC.swift in Sources */,
 				0967E59528DC687800D6B141 /* FoodItemTableViewCellVM.swift in Sources */,
 				88FDAB312882FFF8006F06D0 /* OrderModifyVC.swift in Sources */,
+				09A5B49928DE154400D341B8 /* ProfileNameCell.swift in Sources */,
 				0926609A289AE04E003F50DB /* ShopDetailsModel.swift in Sources */,
 				0967E58728DC26C400D6B141 /* CouponCell.swift in Sources */,
 				8859B5A3288C29D300555C05 /* RecipeDetailsVC.swift in Sources */,
@@ -825,6 +842,7 @@
 				88C44F412877309F00D31258 /* SceneDelegate.swift in Sources */,
 				0995BFC028A57C7B004F0EC5 /* RestFoodPickTableViewCellVM.swift in Sources */,
 				88FDAB232881882C006F06D0 /* ResDishCollectionViewCell.swift in Sources */,
+				09B469E328DD7FAC008C9E78 /* SettingsViewModel.swift in Sources */,
 				0928760028DB7B98000BE890 /* SearchBarVM.swift in Sources */,
 				091E147528AAA4140011CCD1 /* AddToCartModel.swift in Sources */,
 				0948465C28AF5BD0008E03BC /* OrderSucessViewVCVM.swift in Sources */,
@@ -833,6 +851,7 @@
 				883ED5AA2878948700F06F22 /* ProfileViewController.swift in Sources */,
 				885B5DF128795E8E006A7044 /* MenuVC.swift in Sources */,
 				8884E9932880994C00D6C9F2 /* FeedbackViewController.swift in Sources */,
+				09B469DF28DD7A41008C9E78 /* CustomerInfoModel.swift in Sources */,
 				885B5DF9287C5BAF006A7044 /* InviteFriendsViewController.swift in Sources */,
 				88149F92287F24EE00E57AC7 /* EditNotificationVC.swift in Sources */,
 				0934E63728D986B9005276A5 /* MyFavoritesVM.swift in Sources */,
@@ -842,6 +861,7 @@
 				092875FE28DB6238000BE890 /* NoResultFoundCell.swift in Sources */,
 				8859B5A1288BE8B000555C05 /* HomeCollectionViewDownCell.swift in Sources */,
 				0978BFCD28ACABEE00298CD9 /* CartTableViewCellVM.swift in Sources */,
+				09B469DD28DD70F6008C9E78 /* EditProfileViewModel.swift in Sources */,
 				8833E134288437CE001B704B /* CancelOrderVC.swift in Sources */,
 				0934E63B28D98E19005276A5 /* MyFevTableViewCellVM.swift in Sources */,
 				092875F828DB343D000BE890 /* RestaurentCell.swift in Sources */,

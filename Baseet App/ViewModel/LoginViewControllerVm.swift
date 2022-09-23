@@ -31,6 +31,7 @@ class LoginViewControllerVm {
                     self.loginModel = result as? LoginModel
                     let token = "Bearer " + (self.loginModel?.token ?? "")
                     UserDefaults.standard.set(token, forKey: "AuthToken")
+                    UserDefaults.standard.set(phoneNumber, forKey: "PhoneNumber")
                     self.replceUserId()
                 } else {
                    self.alertClosure?("Some technical problem")

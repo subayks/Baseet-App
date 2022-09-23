@@ -10,6 +10,9 @@ import AVFoundation
 
 class AddNoteVC: UIViewController {
     
+    @IBOutlet weak var profileIcon: UIImageView!
+    @IBOutlet weak var userName: UILabel!
+    @IBOutlet weak var locationName: UIButton!
     @IBOutlet weak var timingLabel: UILabel!
     @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var recordButton: UIButton!
@@ -42,6 +45,19 @@ class AddNoteVC: UIViewController {
         
         if self.addNotesVM.notes?.count ?? 0 > 0 {
         self.notesTextView.text = self.addNotesVM.notes
+        }
+        self.setupNavigationBar()
+    }
+    
+    func setupNavigationBar() {
+        self.locationName.setTitle(UserDefaults.standard.string(forKey: "City_Name"), for: .normal)
+        if UserDefaults.standard.bool(forKey: "isLoggedIn") == false {
+            self.profileIcon.isHidden = true
+            self.userName.isHidden = true
+        } else {
+            self.profileIcon.isHidden = false
+            self.userName.isHidden = false
+            self.userName.text = UserDefaults.standard.string(forKey: "Name") ?? "Unknown"
         }
     }
     

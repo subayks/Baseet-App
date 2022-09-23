@@ -225,6 +225,7 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate {
                 let locationDashBord = "\(pm!.locality!), \(pm!.subLocality!),\(pm!.administrativeArea!) \(pm!.country!),\(pm!.postalCode!)"
                print(locationDashBord)
                 UserDefaults.standard.set(locationDashBord, forKey: "Location_Info")
+                UserDefaults.standard.set((pm!.locality!), forKey: "City_Name")
             })
             self.locationInfo.text = UserDefaults.standard.string(forKey: "Location_Info")
         } else if status == .denied {

@@ -9,19 +9,19 @@ import UIKit
 
 class OrderOntheWayVC: UIViewController {
     
+    @IBOutlet weak var userName: UILabel!
+    @IBOutlet weak var locationName: UIButton!
     @IBOutlet weak var orderTB: UITableView!
-    
    
-    
-    override func viewDidLoad()
-    {
+    override func viewDidLoad(){
         super.viewDidLoad()
-        
+        self.setupNavigationBar()
      }
     
-
-    
-   
+    func setupNavigationBar() {
+        self.locationName.setTitle(UserDefaults.standard.string(forKey: "City_Name"), for: .normal)
+        self.userName.text = UserDefaults.standard.string(forKey: "Name") ?? "Unknown"
+    }
     
     @IBAction func trackOrderBtn(_ sender: Any) {
         let storyboard = UIStoryboard.init(name: "Main", bundle: nil)

@@ -8,7 +8,8 @@
 import UIKit
 
 class CartViewController: UIViewController {
-    
+    @IBOutlet weak var profileIcon: UIImageView!
+    @IBOutlet weak var userName: UILabel!
     @IBOutlet weak var cartTB: UITableView!
     var cartViewControllerVM = CartViewControllerVM()
     
@@ -16,6 +17,7 @@ class CartViewController: UIViewController {
         super.viewDidLoad()
         let tabBar = self.tabBarController!.tabBar
         tabBar.selectionIndicatorImage = UIImage().createSelectionIndicator(color: UIColor.gray, size: CGSize(width: tabBar.frame.width/CGFloat(tabBar.items!.count), height: tabBar.frame.height), lineWidth: 5.0)
+        setupNavigationBar()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -50,6 +52,17 @@ class CartViewController: UIViewController {
                 alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: nil))
                 self.present(alert, animated: true, completion: nil)
             }
+        }
+    }
+    
+    func setupNavigationBar() {
+        if UserDefaults.standard.bool(forKey: "isLoggedIn") == false {
+            self.profileIcon.isHidden = true
+            self.userName.isHidden = true
+        } else {
+            self.profileIcon.isHidden = false
+            self.userName.isHidden = false
+            self.userName.text = UserDefaults.standard.string(forKey: "Name") ?? "Unknown"
         }
     }
 }

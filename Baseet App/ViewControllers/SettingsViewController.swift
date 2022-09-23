@@ -11,6 +11,7 @@ class SettingsViewController: UIViewController {
 
     @IBOutlet weak var settingsTB: UITableView!
     
+    var settingsViewModel = SettingsViewModel()
     let settingnamesArray = ["Edit Profile","Security","Notifications","Change Location"]
     
     override func viewDidLoad() {
@@ -19,12 +20,46 @@ class SettingsViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.settingsViewModel.showLoadingIndicatorClosure = { [weak self] in
+            DispatchQueue.main.async {
+                guard let self = self else {return}
+                self.showLoadingView()
+            }
+        }
+        
+        self.settingsViewModel.hideLoadingIndicatorClosure = { [weak self] in
+            DispatchQueue.main.async {
+                guard let self = self else {return}
+                self.hideLoadingView()
+            }
+        }
+        
+        self.settingsViewModel.alertClosure = { [weak self] (error) in
+            DispatchQueue.main.async {
+                guard let self = self else {return}
+                let alert = UIAlertController(title: "Alert", message: error, preferredStyle: UIAlertController.Style.alert)
+                alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+            }
+        }
+        
+        self.settingsViewModel.navigationClosure = { [weak self] in
+            DispatchQueue.main.async {
+                guard let self = self else {return}
+                let vc = self.storyboard?.instantiateViewController(identifier: "EditProfileViewController") as! EditProfileViewController
+                vc.modalPresentationStyle = .fullScreen
+                vc.editProfileViewModel = self.settingsViewModel.getEditProfileViewModel()
+                self.present(vc, animated: true, completion: nil)
+            }
+        }
+    }
+    
     @IBAction func settingsBackBtn(_ sender: Any) {
         self.dismiss(animated: true,completion: nil)
     }
-    
-    
-
 }
 
 extension SettingsViewController: UITableViewDelegate,UITableViewDataSource{
@@ -46,9 +81,7 @@ extension SettingsViewController: UITableViewDelegate,UITableViewDataSource{
         
         if indexPath.row == 0
         {
-            let vc = self.storyboard?.instantiateViewController(identifier: "EditProfileViewController") as! EditProfileViewController
-            vc.modalPresentationStyle = .fullScreen
-            self.present(vc, animated: true, completion: nil)
+            self.settingsViewModel.getCustomerInfo()
         }
         if indexPath.row == 1{
 

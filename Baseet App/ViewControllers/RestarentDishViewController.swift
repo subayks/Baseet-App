@@ -9,6 +9,9 @@ import UIKit
 
 class RestarentDishViewController: UIViewController {
     
+    @IBOutlet weak var profileIcon: UIImageView!
+    @IBOutlet weak var userName: UILabel!
+    @IBOutlet weak var locationName: UIButton!
     @IBOutlet weak var buttonFavourite: UIButton!
     @IBOutlet weak var buttonShare: UIButton!
     @IBOutlet weak var cartCountBadge: UIButton!
@@ -39,6 +42,7 @@ class RestarentDishViewController: UIViewController {
         menu_vc1 = self.storyboard?.instantiateViewController(withIdentifier: "RecipeDetailsVC") as? RecipeDetailsVC
         setupValues()
         self.restarentDishViewControllerVM?.setUpItemsList()
+        self.setupNavigationBar()
         //        let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(self.respondToGesture))
         //        swipeRight.direction = UISwipeGestureRecognizer.Direction.right
         //        let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(self.respondToGesture))
@@ -136,6 +140,18 @@ class RestarentDishViewController: UIViewController {
                 guard let self = self else {return}
                 self.buttonFavourite.setImage(UIImage(named: "UnFavourite"), for: .normal)
             }
+        }
+    }
+    
+    func setupNavigationBar() {
+        self.locationName.setTitle(UserDefaults.standard.string(forKey: "City_Name"), for: .normal)
+        if UserDefaults.standard.bool(forKey: "isLoggedIn") == false {
+            self.profileIcon.isHidden = true
+            self.userName.isHidden = true
+        } else {
+            self.profileIcon.isHidden = false
+            self.userName.isHidden = false
+            self.userName.text = UserDefaults.standard.string(forKey: "Name") ?? "Unknown"
         }
     }
     

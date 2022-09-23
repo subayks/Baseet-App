@@ -16,8 +16,8 @@ enum PaymentType {
 }
 
 class LocationDeliveryVC: UIViewController, CLLocationManagerDelegate {
-    @IBOutlet weak var nameLabel: UILabel!
     
+    @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var labelPrice: UILabel!
     @IBOutlet weak var paymentIMage: UIButton!
@@ -34,6 +34,7 @@ class LocationDeliveryVC: UIViewController, CLLocationManagerDelegate {
         locationPermissions()
         self.locationLabel.text = UserDefaults.standard.string(forKey: "Location_Info")
         self.paymentIMage.layer.cornerRadius = 10
+        self.nameLabel.text = UserDefaults.standard.string(forKey: "Name") ?? "Unknown"
     }
     
     //setup location properties
@@ -164,6 +165,7 @@ class LocationDeliveryVC: UIViewController, CLLocationManagerDelegate {
                 let locationDashBord = "\(pm!.locality!), \(pm!.subLocality!),\(pm!.administrativeArea!) \(pm!.country!),\(pm!.postalCode!)"
                print(locationDashBord)
                 UserDefaults.standard.set(locationDashBord, forKey: "Location_Info")
+                UserDefaults.standard.set((pm!.locality!), forKey: "City_Name")
                 self.locationLabel.text = UserDefaults.standard.string(forKey: "Location_Info")
             })
         } else if status == .denied {

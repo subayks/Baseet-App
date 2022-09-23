@@ -8,7 +8,9 @@
 import UIKit
 
 class RestaurentFoodPicksVC: UIViewController {
-
+    @IBOutlet weak var profileIcon: UIImageView!
+    @IBOutlet weak var userName: UILabel!
+    @IBOutlet weak var locationName: UIButton!
     @IBOutlet weak var savingsOverView: UIView!
     @IBOutlet weak var addSpecialNote: UIImageView!
     @IBOutlet weak var totalSavingsAmountLabel: UILabel!
@@ -28,6 +30,7 @@ class RestaurentFoodPicksVC: UIViewController {
         addSpecialNotLbl.isUserInteractionEnabled = true
         addSpecialNotLbl.addGestureRecognizer(tap)
         restFoodPick.register(UINib(nibName: "BasketFooterViewCell", bundle: nil), forHeaderFooterViewReuseIdentifier: "BasketFooterViewCell")
+        self.setupNavigationBar()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -62,6 +65,18 @@ class RestaurentFoodPicksVC: UIViewController {
             }
         }
         
+    }
+    
+    func setupNavigationBar() {
+        self.locationName.setTitle(UserDefaults.standard.string(forKey: "City_Name"), for: .normal)
+        if UserDefaults.standard.bool(forKey: "isLoggedIn") == false {
+            self.profileIcon.isHidden = true
+            self.userName.isHidden = true
+        } else {
+            self.profileIcon.isHidden = false
+            self.userName.isHidden = false
+            self.userName.text = UserDefaults.standard.string(forKey: "Name") ?? "Unknown"
+        }
     }
     
     func setupValues() {

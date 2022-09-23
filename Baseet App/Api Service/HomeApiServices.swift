@@ -26,9 +26,113 @@ protocol HomeApiServicesProtocol {
     func getSearchList(finalURL: String, completion: @escaping(_ status: Bool?, _ code: String?, _ response: AnyObject?, _ error: String?)-> Void)
     func searchProductList(finalURL: String, completion: @escaping(_ status: Bool?, _ code: String?, _ response: AnyObject?, _ error: String?)-> Void)
     func getZoneID(finalURL: String, completion: @escaping(_ status: Bool?, _ code: String?, _ response: AnyObject?, _ error: String?)-> Void)
+    func uploadProfileApi(finalURL: String, withParameters: ImageRequestParam, completion: @escaping(_ status: Bool?, _ code: String?, _ response: AnyObject?, _ error: String?)-> Void)
+    func getCustomerInfo(finalURL: String, completion: @escaping(_ status: Bool?, _ code: String?, _ response: AnyObject?, _ error: String?)-> Void)
+    func updateProfileApi(finalURL: String, withParameters: String, completion: @escaping(_ status: Bool?, _ code: String?, _ response: AnyObject?, _ error: String?)-> Void)
 }
 
 class HomeApiServices: HomeApiServicesProtocol {
+    func updateProfileApi(finalURL: String, withParameters: String, completion: @escaping (Bool?, String?, AnyObject?, String?) -> Void) {
+        let headers = [
+            "Authorization": "\(((UserDefaults.standard.string(forKey: "AuthToken") ?? "") as String))",
+            ]
+        NetworkAdapter.clientNetworkRequestCodable(withBaseURL: finalURL, withParameters: withParameters, withHttpMethod: "POST", withContentType: "Application/json", withHeaders: headers, completionHandler: { (result: Data?, showPopUp: Bool?, error: String?, errorCode: String?)  -> Void in
+            
+            if let error = error {
+                completion(false,errorCode,nil,error)
+                
+                return
+            }
+            
+            DispatchQueue.main.async {
+                
+                do {
+                    let decoder = JSONDecoder()
+                    if result == nil {
+                        completion(false,errorCode,nil,"Unhandled Error")
+                        return
+                    }
+                    let values = try decoder.decode(ReplaceUserModel.self, from: result!)
+                    if values.errors != nil {
+                        completion(false,errorCode,nil,values.errors?[0].message)
+                    } else {
+                    completion(true,errorCode,values as AnyObject?,error)
+                    }
+                    
+                } catch let error as NSError {
+                    //do something with error
+                    completion(false,errorCode,nil,error.localizedDescription)
+                }
+            }
+        })
+    }
+    
+    func getCustomerInfo(finalURL: String, completion: @escaping (Bool?, String?, AnyObject?, String?) -> Void) {
+        let headers = [
+            "Authorization": "\(((UserDefaults.standard.string(forKey: "AuthToken") ?? "") as String))",
+            ]
+        NetworkAdapter.clientNetworkRequestCodable(withBaseURL: finalURL, withParameters:   "", withHttpMethod: "GET", withContentType: "Application/json", withHeaders: headers, completionHandler: { (result: Data?, showPopUp: Bool?, error: String?, errorCode: String?)  -> Void in
+            
+            if let error = error {
+                completion(false,errorCode,nil,error)
+                return
+            }
+            
+            DispatchQueue.main.async {
+                
+                do {
+                    let decoder = JSONDecoder()
+                    if result == nil {
+                        completion(false,errorCode,nil,"Unhandled Error")
+                        return
+                    }
+                    let values = try decoder.decode(CustomerInfoModel.self, from: result!)
+                    completion(true,errorCode,values as AnyObject?,error)
+                } catch let error as NSError {
+                    //do something with error
+                    completion(false,errorCode,nil,error.localizedDescription)
+                }
+                
+            }
+        }
+        )
+    }
+    
+    func uploadProfileApi(finalURL: String, withParameters: ImageRequestParam, completion: @escaping (Bool?, String?, AnyObject?, String?) -> Void) {
+        let headers = [
+            "Authorization": "\(((UserDefaults.standard.string(forKey: "AuthToken") ?? "") as String))",
+            ]
+        NetworkAdapter.uploadImage(withBaseURL: finalURL, withParameters: withParameters, withHeaders: headers,  withHttpMethod: "POST", completionHandler: { (result: Data?, showPopUp: Bool?, error: String?, errorCode: String?)  -> Void in
+            
+            if let error = error {
+                completion(false,errorCode,nil,error)
+                
+                return
+            }
+            
+            DispatchQueue.main.async {
+                
+                do {
+                    let decoder = JSONDecoder()
+                    if result == nil {
+                        completion(false,errorCode,nil,"Unhandled Error")
+                        return
+                    }
+                    let values = try decoder.decode(ReplaceUserModel.self, from: result!)
+                    if values.errors != nil {
+                        completion(false,errorCode,nil,values.errors?[0].message)
+                    } else {
+                    completion(true,errorCode,values as AnyObject?,error)
+                    }
+                    
+                } catch let error as NSError {
+                    //do something with error
+                    completion(false,errorCode,nil,error.localizedDescription)
+                }
+            }
+        })
+    }
+    
     func getZoneID(finalURL: String, completion: @escaping (Bool?, String?, AnyObject?, String?) -> Void) {
        
         NetworkAdapter.clientNetworkRequestCodable(withBaseURL: finalURL, withParameters:   "", withHttpMethod: "GET", withContentType: "Application/json", withHeaders: [String : String](), completionHandler: { (result: Data?, showPopUp: Bool?, error: String?, errorCode: String?)  -> Void in

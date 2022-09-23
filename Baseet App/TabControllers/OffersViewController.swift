@@ -9,6 +9,8 @@ import UIKit
 
 class OffersViewController: UIViewController {
 
+    @IBOutlet weak var profileIcon: UIImageView!
+    @IBOutlet weak var userName: UILabel!
     @IBOutlet weak var offersTableView: UITableView!
     var offersViewVM = OffersViewVM()
     
@@ -16,6 +18,7 @@ class OffersViewController: UIViewController {
         super.viewDidLoad()
         let tabBar = self.tabBarController!.tabBar
         tabBar.selectionIndicatorImage = UIImage().createSelectionIndicator(color: UIColor.gray, size: CGSize(width: tabBar.frame.width/CGFloat(tabBar.items!.count), height: tabBar.frame.height), lineWidth: 5.0)
+        setupNavigationBar()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -50,6 +53,17 @@ class OffersViewController: UIViewController {
             }
         }
         self.offersViewVM.makeCouponListCall()
+    }
+    
+    func setupNavigationBar() {
+        if UserDefaults.standard.bool(forKey: "isLoggedIn") == false {
+            self.profileIcon.isHidden = true
+            self.userName.isHidden = true
+        } else {
+            self.profileIcon.isHidden = false
+            self.userName.isHidden = false
+            self.userName.text = UserDefaults.standard.string(forKey: "Name") ?? "Unknown"
+        }
     }
 }
 

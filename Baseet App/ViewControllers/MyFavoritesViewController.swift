@@ -9,11 +9,14 @@ import UIKit
 
 class MyFavoritesViewController: UIViewController {
 
+    @IBOutlet weak var userName: UILabel!
+    @IBOutlet weak var profileIcon: UIImageView!
     @IBOutlet weak var myFevTB: UITableView!
     var myFavVM = MyFavoritesVM()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.setupNavigationBar()
         self.myFavVM.wishListCall()
     }
     
@@ -74,6 +77,10 @@ class MyFavoritesViewController: UIViewController {
     @IBAction func actionFav(_ sender: UIButton) {
         guard let id = self.myFavVM.favModel?.restaurant?[sender.tag].id else { return }
         self.myFavVM.removeFavouriteCall(id: id)
+    }
+    
+    func setupNavigationBar() {
+        self.userName.text = UserDefaults.standard.string(forKey: "Name") ?? "Unknown"
     }
     
 }

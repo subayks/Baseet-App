@@ -136,8 +136,8 @@ class RestaurentFoodPicksVCVM {
         return nil
     }
     
-    func getLocationDeliveryVCVM() ->LocationDeliveryVCVM {
-        return LocationDeliveryVCVM(totalPrice: "\(self.priceCalculation() + self.taxCalculation())",discountAmount: String(self.totalSaving()), taxAmount: String(self.taxCalculation()), notes: self.notes ?? "")
+    func getLocationDeliveryVCVM(orderType: String) ->LocationDeliveryVCVM {
+        return LocationDeliveryVCVM(totalPrice: "\(self.priceCalculation() + self.taxCalculation())",discountAmount: String(self.totalSaving()), taxAmount: String(self.taxCalculation()), notes: self.notes ?? "", orderType: orderType)
     }
     
 //    func priceCalculation() ->Int {

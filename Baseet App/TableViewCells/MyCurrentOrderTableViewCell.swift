@@ -13,7 +13,6 @@ class MyCurrentOrderTableViewCell: UITableViewCell {
     @IBOutlet weak var orderPrice: UILabel!
     @IBOutlet weak var timingLabel: UILabel!
     @IBOutlet weak var orderStatus: UILabel!
-    @IBOutlet weak var shopName: UILabel!
     @IBOutlet weak var itemName: UILabel!
     @IBOutlet weak var itemImage: UIImageView!
     @IBOutlet weak var orderDetailsBtn: UIButton!
@@ -36,8 +35,9 @@ class MyCurrentOrderTableViewCell: UITableViewCell {
     }
     
     func setupValues() {
+        self.itemImage.layer.cornerRadius = 10
         self.itemImage.loadImageUsingURL(self.myCurrentOrderTableViewCellVM?.myOrder?.restaurant?.applogo)
-        self.shopName.text = self.myCurrentOrderTableViewCellVM?.myOrder?.restaurant?.name
+        self.itemName.text = self.myCurrentOrderTableViewCellVM?.myOrder?.restaurant?.name
         self.orderId.text = "OrderID: \(self.myCurrentOrderTableViewCellVM?.myOrder?.id ?? 0)"
         self.orderPrice.text = "QR \(self.myCurrentOrderTableViewCellVM?.myOrder?.orderAmount ?? 0)"
 

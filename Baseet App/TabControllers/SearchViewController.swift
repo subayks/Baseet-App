@@ -120,6 +120,7 @@ extension SearchViewController:UICollectionViewDelegate,UICollectionViewDataSour
             else {
                 let cellB = popularResCV.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! PopularResCollectionViewCell
                 cellB.restpopularImage.loadImageUsingURL(self.searchBarVM.iconArray[indexPath.row])
+                cellB.restpopularImage.layer.cornerRadius = 5
                 return cellB
             }
     }

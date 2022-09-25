@@ -9,6 +9,8 @@ import UIKit
 
 class MyOrderVC: UIViewController {
     
+    @IBOutlet weak var profileIcon: UIImageView!
+    @IBOutlet weak var userName: UILabel!
     @IBOutlet weak var searchField: UISearchBar!
     @IBOutlet weak var myCurrentOrderTB: UITableView!
     var selectedIndex = 0
@@ -16,6 +18,7 @@ class MyOrderVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.setupNavigationBar()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -85,6 +88,10 @@ class MyOrderVC: UIViewController {
     
     @IBAction func orderDetails(_ sender: UIButton) {
         self.myOrderVM.getOrderTrack(index: sender.tag)
+    }
+    
+    func setupNavigationBar() {
+        self.userName.text = UserDefaults.standard.string(forKey: "Name") ?? "Unknown"
     }
     
 }

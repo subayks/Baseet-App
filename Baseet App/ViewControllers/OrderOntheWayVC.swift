@@ -57,6 +57,13 @@ class OrderOntheWayVC: UIViewController {
                 self.orderTB.reloadData()
             }
         }
+        
+        self.orderOntheWayVM?.successClosure = { [weak self] in
+            DispatchQueue.main.async {
+                guard let self = self else {return}
+                self.navigateToSuccessView()
+            }
+        }
     }
     
     func setupNavigationBar() {
@@ -71,16 +78,29 @@ class OrderOntheWayVC: UIViewController {
             vc.modalPresentationStyle = .fullScreen
             (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(vc)
         } else {
-        self.dismiss(animated: true,completion: nil)
+            self.dismiss(animated: true,completion: nil)
         }
     }
     
     @IBAction func trackOrderBtn(_ sender: Any) {
         let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
         let vc = storyboard.instantiateViewController(identifier: "MapkitViewVC") as! MapkitViewVC
-        
         vc.modalPresentationStyle = .fullScreen
+        vc.mapkitViewVM = self.orderOntheWayVM?.getMapkitViewVM()
         self.present(vc, animated: true, completion: nil)
+    }
+    
+    func navigateToSuccessView() {
+        if self.orderOntheWayVM?.isFromSuccessScreen == true {
+            let delay : Double = 5.0    // 5 seconds here
+            DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
+                let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
+                let vc = storyboard.instantiateViewController(identifier: "DeliveredSucessViewVC") as! DeliveredSucessViewVC
+                vc.deliveredSucessViewVM = self.orderOntheWayVM?.getDeliveredSucessViewVM()
+                vc.modalPresentationStyle = .fullScreen
+                self.present(vc, animated: true, completion: nil)
+            }
+        }
         
     }
 }
@@ -129,7 +149,7 @@ extension OrderOntheWayVC: UITableViewDelegate,UITableViewDataSource {
             return cell
         } else if  indexPath.section == 1 {
             if self.orderOntheWayVM?.orderTrackModel?.deliveryMan != nil {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "DeliveryDetailsCell", for: indexPath) as! DeliveryDetailsCell
+                let cell = tableView.dequeueReusableCell(withIdentifier: "DeliveryDetailsCell", for: indexPath) as! DeliveryDetailsCell
                 cell.deliveryDetailsCellVM = self.orderOntheWayVM?.getDeliveryManViewModel()
                 return cell
             } else {

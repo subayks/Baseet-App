@@ -72,6 +72,11 @@
 		09B469E128DD7AE5008C9E78 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09B469E028DD7AE5008C9E78 /* ProfileViewModel.swift */; };
 		09B469E328DD7FAC008C9E78 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09B469E228DD7FAC008C9E78 /* SettingsViewModel.swift */; };
 		09B4ADF428AEC95400744F9F /* LocationDeliveryVCVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09B4ADF328AEC95400744F9F /* LocationDeliveryVCVM.swift */; };
+		09C15F7428E0BD7A008C215B /* MapkitViewVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09C15F7328E0BD7A008C215B /* MapkitViewVM.swift */; };
+		09C15F7628E0D42F008C215B /* DeliveredSucessViewVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09C15F7528E0D42F008C215B /* DeliveredSucessViewVM.swift */; };
+		09C15F7828E0D8C1008C215B /* NotificationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09C15F7728E0D8C1008C215B /* NotificationModel.swift */; };
+		09C15F7A28E0DA72008C215B /* NotificationsViewControllerVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09C15F7928E0DA72008C215B /* NotificationsViewControllerVM.swift */; };
+		09C15F7C28E0E05C008C215B /* NotificationsTableViewCellVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09C15F7B28E0E05C008C215B /* NotificationsTableViewCellVM.swift */; };
 		09C3C63A28DF02220027D1A6 /* OrderTrackFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 09C3C63928DF02220027D1A6 /* OrderTrackFooterView.xib */; };
 		09C3C63C28DF083B0027D1A6 /* DeliveryDetailsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09C3C63B28DF083B0027D1A6 /* DeliveryDetailsCell.swift */; };
 		09C3C63E28DF08FB0027D1A6 /* OrderItemsListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09C3C63D28DF08FB0027D1A6 /* OrderItemsListCell.swift */; };
@@ -247,6 +252,11 @@
 		09B469E028DD7AE5008C9E78 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		09B469E228DD7FAC008C9E78 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		09B4ADF328AEC95400744F9F /* LocationDeliveryVCVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDeliveryVCVM.swift; sourceTree = "<group>"; };
+		09C15F7328E0BD7A008C215B /* MapkitViewVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapkitViewVM.swift; sourceTree = "<group>"; };
+		09C15F7528E0D42F008C215B /* DeliveredSucessViewVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveredSucessViewVM.swift; sourceTree = "<group>"; };
+		09C15F7728E0D8C1008C215B /* NotificationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationModel.swift; sourceTree = "<group>"; };
+		09C15F7928E0DA72008C215B /* NotificationsViewControllerVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsViewControllerVM.swift; sourceTree = "<group>"; };
+		09C15F7B28E0E05C008C215B /* NotificationsTableViewCellVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsTableViewCellVM.swift; sourceTree = "<group>"; };
 		09C3C63928DF02220027D1A6 /* OrderTrackFooterView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OrderTrackFooterView.xib; sourceTree = "<group>"; };
 		09C3C63B28DF083B0027D1A6 /* DeliveryDetailsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryDetailsCell.swift; sourceTree = "<group>"; };
 		09C3C63D28DF08FB0027D1A6 /* OrderItemsListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderItemsListCell.swift; sourceTree = "<group>"; };
@@ -396,6 +406,7 @@
 				09B469DE28DD7A41008C9E78 /* CustomerInfoModel.swift */,
 				09C3C64128DF13790027D1A6 /* OrderTrackModel.swift */,
 				09C3C64528DF1A730027D1A6 /* OrdersListModel.swift */,
+				09C15F7728E0D8C1008C215B /* NotificationModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -435,6 +446,10 @@
 				0909B67F28E028B4007D13CD /* MyCurrentOrderTableViewCellVM.swift */,
 				0909B68128E07D2C007D13CD /* DeliveryDetailsCellVM.swift */,
 				0909B68328E07F4E007D13CD /* OrderItemsListCellVM.swift */,
+				09C15F7328E0BD7A008C215B /* MapkitViewVM.swift */,
+				09C15F7528E0D42F008C215B /* DeliveredSucessViewVM.swift */,
+				09C15F7928E0DA72008C215B /* NotificationsViewControllerVM.swift */,
+				09C15F7B28E0E05C008C215B /* NotificationsTableViewCellVM.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -853,14 +868,17 @@
 				09832AE02898366D00B99EAB /* HTTPClass.swift in Sources */,
 				094CCCC128A2BD4F0043EA18 /* RestaurentFoodPicksVCVM.swift in Sources */,
 				09832AE22898366D00B99EAB /* NetworkAdapter.swift in Sources */,
+				09C15F7A28E0DA72008C215B /* NotificationsViewControllerVM.swift in Sources */,
 				0967E58D28DC318F00D6B141 /* NoCoupsAvailableCell.swift in Sources */,
 				099E9B5428C1CCA400BD1724 /* LoginViewControllerVm.swift in Sources */,
+				09C15F7828E0D8C1008C215B /* NotificationModel.swift in Sources */,
 				0995BFC428A587EE004F0EC5 /* BasketFooterViewCell.swift in Sources */,
 				883901A7287DA8A100C85BE2 /* AddCardViewController.swift in Sources */,
 				883C8A98287DF4210077A8F5 /* SearchCollectionViewCell.swift in Sources */,
 				885A7D7B288981D300801D50 /* UISupportFile.swift in Sources */,
 				0978BFCB28ACAB8A00298CD9 /* CartViewControllerVM.swift in Sources */,
 				883ED5A82878946800F06F22 /* CartViewController.swift in Sources */,
+				09C15F7628E0D42F008C215B /* DeliveredSucessViewVM.swift in Sources */,
 				883C8A9A287DFA7B0077A8F5 /* PopularResCollectionViewCell.swift in Sources */,
 				88C44F432877309F00D31258 /* LoginViewController.swift in Sources */,
 				09832AEE28983E9800B99EAB /* Constants.swift in Sources */,
@@ -884,6 +902,8 @@
 				0995BFC028A57C7B004F0EC5 /* RestFoodPickTableViewCellVM.swift in Sources */,
 				88FDAB232881882C006F06D0 /* ResDishCollectionViewCell.swift in Sources */,
 				09B469E328DD7FAC008C9E78 /* SettingsViewModel.swift in Sources */,
+				09C15F7428E0BD7A008C215B /* MapkitViewVM.swift in Sources */,
+				09C15F7C28E0E05C008C215B /* NotificationsTableViewCellVM.swift in Sources */,
 				0928760028DB7B98000BE890 /* SearchBarVM.swift in Sources */,
 				091E147528AAA4140011CCD1 /* AddToCartModel.swift in Sources */,
 				0948465C28AF5BD0008E03BC /* OrderSucessViewVCVM.swift in Sources */,
@@ -1117,6 +1137,7 @@
 				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "We need access to your location to show you relevant search results. With \"Always\" access we'll also send you some nice notifications";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "We need access to your location to show you relevant search results. ";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Record your notes and send it to the restaurent.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Please allow access to select photos";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -1128,7 +1149,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.13;
+				MARKETING_VERSION = 0.14;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.Amtech.Baseet-App";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -1156,6 +1177,7 @@
 				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "We need access to your location to show you relevant search results. With \"Always\" access we'll also send you some nice notifications";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "We need access to your location to show you relevant search results. ";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Record your notes and send it to the restaurent.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Please allow access to select photos";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -1167,7 +1189,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.13;
+				MARKETING_VERSION = 0.14;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.Amtech.Baseet-App";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

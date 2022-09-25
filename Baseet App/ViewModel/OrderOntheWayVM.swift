@@ -21,10 +21,11 @@ class OrderOntheWayVM {
     var navigateToDetailsClosure:(()->())?
     var showLoadingIndicatorClosure:(()->())?
     var hideLoadingIndicatorClosure:(()->())?
-    
+    var successClosure:(()->())?
+
     var orderTrackModel: OrderTrackModel?
-    let orderState = ["Order Processed", "Order On the Way", "Order Delivered"]
-    let imageNames = [String]()
+    let orderState = ["  Order Processed", "  Order On the Way", "Order Delivered"]
+    let imageNames = ["","OnTheWay",""]
     var orderInfoArray = [OrderInfo]()
     var originalOrderInfoArray = [OrderInfo]()
     var isFromSuccessScreen: Bool?
@@ -40,10 +41,10 @@ class OrderOntheWayVM {
     }
     
     func setupOrderInfo() {
-        for item in orderState {
+        for i in 0..<orderState.count {
             var orderInfo = OrderInfo()
-            orderInfo.title = item
-            orderInfo.image = ""
+            orderInfo.title = orderState[i]
+            orderInfo.image = imageNames[i]
             orderInfo.isSelected = false
             self.orderInfoArray.append(orderInfo)
             self.originalOrderInfoArray.append(orderInfo)
@@ -78,7 +79,9 @@ class OrderOntheWayVM {
             self.orderInfoArray.remove(at: 2)
             orderInfo.isSelected = true
             self.orderInfoArray.insert(orderInfo, at: 2)
+            self.successClosure?()
         }
+        self.reloadClosure?()
     }
     
     func getOrderTrack() {
@@ -90,7 +93,7 @@ class OrderOntheWayVM {
                 self.hideLoadingIndicatorClosure?()
                 if status == true {
                     self.orderTrackModel = result as? OrderTrackModel
-                    self.reloadClosure?()
+                    self.setupOderStatus()
                 } else {
                    self.alertClosure?("Some technical problem")
                 }
@@ -99,5 +102,13 @@ class OrderOntheWayVM {
         } else {
             self.alertClosure?("No Internet Availabe")
         }
+    }
+    
+    func getMapkitViewVM() ->MapkitViewVM {
+        return MapkitViewVM(orderTrackModel: self.orderTrackModel ?? OrderTrackModel())
+    }
+    
+    func getDeliveredSucessViewVM() ->DeliveredSucessViewVM {
+        return DeliveredSucessViewVM(orderTrackModel: self.orderTrackModel ?? OrderTrackModel())
     }
 }

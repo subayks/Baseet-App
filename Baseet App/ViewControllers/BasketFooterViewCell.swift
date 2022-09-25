@@ -13,5 +13,6 @@ class BasketFooterViewCell: UITableViewHeaderFooterView {
     @IBOutlet weak var itemTotalValue: UILabel!
     @IBOutlet weak var addMoreItem: UIButton!
     @IBOutlet weak var offerCodeImage: UIImageView!
-    @IBOutlet weak var goToBasket: UIButton!
+    @IBOutlet weak var takeAway: UIButton!
+    @IBOutlet weak var orderNow: UIButton!
 }

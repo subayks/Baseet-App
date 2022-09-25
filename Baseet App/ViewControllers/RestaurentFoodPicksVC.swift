@@ -35,7 +35,7 @@ class RestaurentFoodPicksVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-
+        
         self.restaurentFoodPicksVCVM?.reloadTableViewClosure = { [weak self] in
             DispatchQueue.main.async {
                 guard let self = self else {return}
@@ -88,18 +88,18 @@ class RestaurentFoodPicksVC: UIViewController {
     }
     
     @objc func tapFunction(sender:UITapGestureRecognizer) {
-            let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
-            let vc = storyboard.instantiateViewController(identifier: "AddNoteVC") as! AddNoteVC
-           // vc.modalTransitionStyle  = .crossDissolve
+        let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewController(identifier: "AddNoteVC") as! AddNoteVC
+        // vc.modalTransitionStyle  = .crossDissolve
         vc.addNotesVM = self.restaurentFoodPicksVCVM?.getAddNoteVCVM() ?? AddNoteVCVM()
         vc.notes = {  (notes, recording) in
             DispatchQueue.main.async {
                 self.restaurentFoodPicksVCVM?.notes = notes
             }
         }
-            vc.modalPresentationStyle = .fullScreen
-            self.present(vc, animated: true, completion: nil)
-        }
+        vc.modalPresentationStyle = .fullScreen
+        self.present(vc, animated: true, completion: nil)
+    }
     
     
     @IBAction func backBtn(_ sender: Any) {
@@ -111,29 +111,56 @@ class RestaurentFoodPicksVC: UIViewController {
         self.changedValues?(self.restaurentFoodPicksVCVM?.itemId ?? [Int](), self.restaurentFoodPicksVCVM?.itemCount ?? [Int]())
         self.dismiss(animated: true,completion: nil)
     }
-    
-    @objc func bucketButtonClicked() {
+            
+    @objc func actionTakeAway() {
         if UserDefaults.standard.bool(forKey: "isLoggedIn") == false {
-        let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
-        let vc = storyboard.instantiateViewController(identifier: "LoginViewController") as! LoginViewController
-        vc.modalPresentationStyle = .fullScreen
-        vc.navigationClosure =  { [weak self] in
-            DispatchQueue.main.async {
-                guard let self = self else {return}
-                let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
-                let vc = storyboard.instantiateViewController(identifier: "LocationDeliveryVC") as! LocationDeliveryVC
-                vc.modalTransitionStyle  = .crossDissolve
-                vc.locationDeliveryVCVM = self.restaurentFoodPicksVCVM?.getLocationDeliveryVCVM()
-                //vc.modalPresentationStyle = .fullScreen
-                self.present(vc, animated: true, completion: nil)
+            let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
+            let vc = storyboard.instantiateViewController(identifier: "LoginViewController") as! LoginViewController
+            vc.modalPresentationStyle = .fullScreen
+            vc.navigationClosure =  { [weak self] in
+                DispatchQueue.main.async {
+                    guard let self = self else {return}
+                    let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
+                    let vc = storyboard.instantiateViewController(identifier: "LocationDeliveryVC") as! LocationDeliveryVC
+                    vc.modalTransitionStyle  = .crossDissolve
+                    vc.locationDeliveryVCVM = self.restaurentFoodPicksVCVM?.getLocationDeliveryVCVM(orderType: "take_away")
+                    //vc.modalPresentationStyle = .fullScreen
+                    self.present(vc, animated: true, completion: nil)
+                }
             }
-        }
-        self.present(vc, animated: true, completion: nil)
+            self.present(vc, animated: true, completion: nil)
         } else {
             let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
             let vc = storyboard.instantiateViewController(identifier: "LocationDeliveryVC") as! LocationDeliveryVC
             vc.modalTransitionStyle  = .crossDissolve
-            vc.locationDeliveryVCVM = self.restaurentFoodPicksVCVM?.getLocationDeliveryVCVM()
+            vc.locationDeliveryVCVM = self.restaurentFoodPicksVCVM?.getLocationDeliveryVCVM(orderType: "take_away")
+            //vc.modalPresentationStyle = .fullScreen
+            self.present(vc, animated: true, completion: nil)
+        }
+    }
+    
+    @objc func actionOrderNow() {
+        if UserDefaults.standard.bool(forKey: "isLoggedIn") == false {
+            let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
+            let vc = storyboard.instantiateViewController(identifier: "LoginViewController") as! LoginViewController
+            vc.modalPresentationStyle = .fullScreen
+            vc.navigationClosure =  { [weak self] in
+                DispatchQueue.main.async {
+                    guard let self = self else {return}
+                    let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
+                    let vc = storyboard.instantiateViewController(identifier: "LocationDeliveryVC") as! LocationDeliveryVC
+                    vc.modalTransitionStyle  = .crossDissolve
+                    vc.locationDeliveryVCVM = self.restaurentFoodPicksVCVM?.getLocationDeliveryVCVM(orderType: "delivery")
+                    //vc.modalPresentationStyle = .fullScreen
+                    self.present(vc, animated: true, completion: nil)
+                }
+            }
+            self.present(vc, animated: true, completion: nil)
+        } else {
+            let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
+            let vc = storyboard.instantiateViewController(identifier: "LocationDeliveryVC") as! LocationDeliveryVC
+            vc.modalTransitionStyle  = .crossDissolve
+            vc.locationDeliveryVCVM = self.restaurentFoodPicksVCVM?.getLocationDeliveryVCVM(orderType: "delivery")
             //vc.modalPresentationStyle = .fullScreen
             self.present(vc, animated: true, completion: nil)
         }
@@ -152,35 +179,37 @@ extension RestaurentFoodPicksVC:UITableViewDelegate,UITableViewDataSource
             self.totalSavingsAmountLabel.text = "0.0"
             return cell
         } else {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! RestFoodPickTableViewCell
-        cell.RestFoodPickTableViewCellVM = self.restaurentFoodPicksVCVM?.getRestFoodPickTableViewCellVM(index: indexPath.row)
-        cell.buttonAdd.tag = indexPath.row
-        cell.itemAdded  = { (itemCount, index) in
-            DispatchQueue.main.async {
-                self.restaurentFoodPicksVCVM?.updateCartCall(itemCount: itemCount, index: index)
+            let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! RestFoodPickTableViewCell
+            cell.RestFoodPickTableViewCellVM = self.restaurentFoodPicksVCVM?.getRestFoodPickTableViewCellVM(index: indexPath.row)
+            cell.buttonAdd.tag = indexPath.row
+            cell.itemAdded  = { (itemCount, index) in
+                DispatchQueue.main.async {
+                    self.restaurentFoodPicksVCVM?.updateCartCall(itemCount: itemCount, index: index)
+                }
             }
-        }
             return cell
         }
     }
     
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         if (self.restaurentFoodPicksVCVM?.foodOrderItems?.foodItems?.count ?? 0) > 0 {
-        let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: "BasketFooterViewCell") as! BasketFooterViewCell
-        headerView.goToBasket.addTarget(self, action:#selector(self.bucketButtonClicked), for: .touchUpInside)
-        
-        headerView.addMoreItem.addTarget(self, action:#selector(self.actionAddMore), for: .touchUpInside)
-        headerView.itemTotalValue.text = "QR \(self.restaurentFoodPicksVCVM?.priceCalculation() ?? 0)"
-        headerView.taxValue.text = "QR \(self.restaurentFoodPicksVCVM?.taxCalculation() ?? 0)"
-        headerView.grandTotalValue.text = self.restaurentFoodPicksVCVM?.grandTotal()
-        self.totalSavingsAmountLabel.text = "QR \(Double(self.restaurentFoodPicksVCVM?.totalSaving() ?? 0))"
-
-        return headerView
+            let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: "BasketFooterViewCell") as! BasketFooterViewCell
+            headerView.takeAway.layer.cornerRadius = 10
+            headerView.orderNow.layer.cornerRadius = 10
+            headerView.takeAway.addTarget(self, action:#selector(self.actionTakeAway), for: .touchUpInside)
+            headerView.orderNow.addTarget(self, action:#selector(self.actionOrderNow), for: .touchUpInside)
+            headerView.addMoreItem.addTarget(self, action:#selector(self.actionAddMore), for: .touchUpInside)
+            headerView.itemTotalValue.text = "QR \(self.restaurentFoodPicksVCVM?.priceCalculation() ?? 0)"
+            headerView.taxValue.text = "QR \(self.restaurentFoodPicksVCVM?.taxCalculation() ?? 0)"
+            headerView.grandTotalValue.text = self.restaurentFoodPicksVCVM?.grandTotal()
+            self.totalSavingsAmountLabel.text = "QR \(Double(self.restaurentFoodPicksVCVM?.totalSaving() ?? 0))"
+            
+            return headerView
         }
         return UIView()
     }
-
+    
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-    return 383
+        return 383
     }
 }

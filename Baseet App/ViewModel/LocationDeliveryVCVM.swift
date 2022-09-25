@@ -25,12 +25,14 @@ class LocationDeliveryVCVM {
     var taxAmount: String?
     var notes: String?
     var zoneModel: ZoneModel?
-
-    init(totalPrice: String, discountAmount: String, taxAmount: String, notes: String, apiServices: HomeApiServicesProtocol = HomeApiServices()) {
+    var orderType: String?
+    
+    init(totalPrice: String, discountAmount: String, taxAmount: String, notes: String, orderType: String, apiServices: HomeApiServicesProtocol = HomeApiServices()) {
         self.totalPrice = totalPrice
         self.taxAmount = taxAmount
         self.discountAmount = discountAmount
         self.notes = notes
+        self.orderType = orderType
         self.apiServices = apiServices
     }
     
@@ -68,7 +70,7 @@ class LocationDeliveryVCVM {
             paymentMode =  "cash_on_delivery"
         }
         let resID =  Int((UserDefaults.standard.string(forKey: "RestaurentId") ?? "") as String)
-        jsonToReturn =  ["order_amount": "\(self.totalPrice ?? "")", "payment_method": paymentMode, "order_type": "delivery", "order_time": self.currentTime(), "address": "Financial Street HYD", "latitude": "\(latitude ?? 0.0)", "longitude": "\(logitude ?? 0.0)", "contact_person_name": UserDefaults.standard.string(forKey: "Name") ?? "Unknown", "contact_person_number": "9489588595",  "restaurant_id": "\(resID ?? 0)", "user_id": "\(((UserDefaults.standard.string(forKey: "User_Id") ?? "") as String))","tax_amount": self.taxAmount ?? "", "discount_amount": self.discountAmount ?? "", "order_note": self.notes ?? ""]
+        jsonToReturn =  ["order_amount": "\(self.totalPrice ?? "")", "payment_method": paymentMode, "order_type": self.orderType ?? "", "order_time": self.currentTime(), "address": "Financial Street HYD", "latitude": "\(latitude ?? 0.0)", "longitude": "\(logitude ?? 0.0)", "contact_person_name": UserDefaults.standard.string(forKey: "Name") ?? "Unknown", "contact_person_number": "9489588595",  "restaurant_id": "\(resID ?? 0)", "user_id": "\(((UserDefaults.standard.string(forKey: "User_Id") ?? "") as String))","tax_amount": self.taxAmount ?? "", "discount_amount": self.discountAmount ?? "", "order_note": self.notes ?? ""]
         return self.convertDictionaryToJsonString(dict: jsonToReturn)!
     }
     

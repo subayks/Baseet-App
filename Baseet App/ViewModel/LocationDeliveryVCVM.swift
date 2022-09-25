@@ -68,7 +68,7 @@ class LocationDeliveryVCVM {
             paymentMode =  "cash_on_delivery"
         }
         let resID =  Int((UserDefaults.standard.string(forKey: "RestaurentId") ?? "") as String)
-        jsonToReturn =  ["order_amount": "\(self.totalPrice ?? "")", "payment_method": paymentMode, "order_type": "take_away", "order_time": self.currentTime(), "address": "Financial Street HYD", "latitude": "\(latitude ?? 0.0)", "longitude": "\(logitude ?? 0.0)", "contact_person_name": UserDefaults.standard.string(forKey: "Name") ?? "Unknown", "contact_person_number": "9489588595",  "restaurant_id": "\(resID ?? 0)", "user_id": "\(((UserDefaults.standard.string(forKey: "User_Id") ?? "") as String))","tax_amount": self.taxAmount ?? "", "discount_amount": self.discountAmount ?? "", "order_note": self.notes ?? ""]
+        jsonToReturn =  ["order_amount": "\(self.totalPrice ?? "")", "payment_method": paymentMode, "order_type": "delivery", "order_time": self.currentTime(), "address": "Financial Street HYD", "latitude": "\(latitude ?? 0.0)", "longitude": "\(logitude ?? 0.0)", "contact_person_name": UserDefaults.standard.string(forKey: "Name") ?? "Unknown", "contact_person_number": "9489588595",  "restaurant_id": "\(resID ?? 0)", "user_id": "\(((UserDefaults.standard.string(forKey: "User_Id") ?? "") as String))","tax_amount": self.taxAmount ?? "", "discount_amount": self.discountAmount ?? "", "order_note": self.notes ?? ""]
         return self.convertDictionaryToJsonString(dict: jsonToReturn)!
     }
     

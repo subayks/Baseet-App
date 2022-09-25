@@ -9,6 +9,7 @@ import UIKit
 
 class OrderOnTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var orderStatus: UIButton!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

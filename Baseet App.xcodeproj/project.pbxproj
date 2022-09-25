@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0909B68028E028B5007D13CD /* MyCurrentOrderTableViewCellVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0909B67F28E028B4007D13CD /* MyCurrentOrderTableViewCellVM.swift */; };
+		0909B68228E07D2C007D13CD /* DeliveryDetailsCellVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0909B68128E07D2C007D13CD /* DeliveryDetailsCellVM.swift */; };
+		0909B68428E07F4E007D13CD /* OrderItemsListCellVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0909B68328E07F4E007D13CD /* OrderItemsListCellVM.swift */; };
 		09157CB028B3CE0E0038AD93 /* EmptyCartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09157CAF28B3CE0E0038AD93 /* EmptyCartCell.swift */; };
 		091E147528AAA4140011CCD1 /* AddToCartModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 091E147428AAA4140011CCD1 /* AddToCartModel.swift */; };
 		091E147728AAA5830011CCD1 /* UpdateCartModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 091E147628AAA5830011CCD1 /* UpdateCartModel.swift */; };
@@ -69,6 +72,14 @@
 		09B469E128DD7AE5008C9E78 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09B469E028DD7AE5008C9E78 /* ProfileViewModel.swift */; };
 		09B469E328DD7FAC008C9E78 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09B469E228DD7FAC008C9E78 /* SettingsViewModel.swift */; };
 		09B4ADF428AEC95400744F9F /* LocationDeliveryVCVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09B4ADF328AEC95400744F9F /* LocationDeliveryVCVM.swift */; };
+		09C3C63A28DF02220027D1A6 /* OrderTrackFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 09C3C63928DF02220027D1A6 /* OrderTrackFooterView.xib */; };
+		09C3C63C28DF083B0027D1A6 /* DeliveryDetailsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09C3C63B28DF083B0027D1A6 /* DeliveryDetailsCell.swift */; };
+		09C3C63E28DF08FB0027D1A6 /* OrderItemsListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09C3C63D28DF08FB0027D1A6 /* OrderItemsListCell.swift */; };
+		09C3C64028DF09760027D1A6 /* OrderTrackFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09C3C63F28DF09760027D1A6 /* OrderTrackFooterView.swift */; };
+		09C3C64228DF13790027D1A6 /* OrderTrackModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09C3C64128DF13790027D1A6 /* OrderTrackModel.swift */; };
+		09C3C64428DF143E0027D1A6 /* OrderOntheWayVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09C3C64328DF143E0027D1A6 /* OrderOntheWayVM.swift */; };
+		09C3C64628DF1A730027D1A6 /* OrdersListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09C3C64528DF1A730027D1A6 /* OrdersListModel.swift */; };
+		09C3C64828DF1B160027D1A6 /* MyOrderVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09C3C64728DF1B160027D1A6 /* MyOrderVM.swift */; };
 		7F983EFC06E9D786530EAB21 /* Pods_Baseet_App.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC7749E854FB59993E41DD91 /* Pods_Baseet_App.framework */; };
 		8807015D288FD2B8001B8907 /* MapkitViewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8807015C288FD2B8001B8907 /* MapkitViewVC.swift */; };
 		8807015F288FD4E7001B8907 /* DeliveredSucessViewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8807015E288FD4E7001B8907 /* DeliveredSucessViewVC.swift */; };
@@ -172,6 +183,9 @@
 
 /* Begin PBXFileReference section */
 		048022AC857A2B6DEE1BBCF8 /* Pods-Baseet App.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Baseet App.release.xcconfig"; path = "Target Support Files/Pods-Baseet App/Pods-Baseet App.release.xcconfig"; sourceTree = "<group>"; };
+		0909B67F28E028B4007D13CD /* MyCurrentOrderTableViewCellVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCurrentOrderTableViewCellVM.swift; sourceTree = "<group>"; };
+		0909B68128E07D2C007D13CD /* DeliveryDetailsCellVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryDetailsCellVM.swift; sourceTree = "<group>"; };
+		0909B68328E07F4E007D13CD /* OrderItemsListCellVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderItemsListCellVM.swift; sourceTree = "<group>"; };
 		09157CAF28B3CE0E0038AD93 /* EmptyCartCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyCartCell.swift; sourceTree = "<group>"; };
 		091E147428AAA4140011CCD1 /* AddToCartModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddToCartModel.swift; sourceTree = "<group>"; };
 		091E147628AAA5830011CCD1 /* UpdateCartModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateCartModel.swift; sourceTree = "<group>"; };
@@ -233,6 +247,14 @@
 		09B469E028DD7AE5008C9E78 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		09B469E228DD7FAC008C9E78 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		09B4ADF328AEC95400744F9F /* LocationDeliveryVCVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDeliveryVCVM.swift; sourceTree = "<group>"; };
+		09C3C63928DF02220027D1A6 /* OrderTrackFooterView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OrderTrackFooterView.xib; sourceTree = "<group>"; };
+		09C3C63B28DF083B0027D1A6 /* DeliveryDetailsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryDetailsCell.swift; sourceTree = "<group>"; };
+		09C3C63D28DF08FB0027D1A6 /* OrderItemsListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderItemsListCell.swift; sourceTree = "<group>"; };
+		09C3C63F28DF09760027D1A6 /* OrderTrackFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderTrackFooterView.swift; sourceTree = "<group>"; };
+		09C3C64128DF13790027D1A6 /* OrderTrackModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderTrackModel.swift; sourceTree = "<group>"; };
+		09C3C64328DF143E0027D1A6 /* OrderOntheWayVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderOntheWayVM.swift; sourceTree = "<group>"; };
+		09C3C64528DF1A730027D1A6 /* OrdersListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersListModel.swift; sourceTree = "<group>"; };
+		09C3C64728DF1B160027D1A6 /* MyOrderVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyOrderVM.swift; sourceTree = "<group>"; };
 		8807015C288FD2B8001B8907 /* MapkitViewVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapkitViewVC.swift; sourceTree = "<group>"; };
 		8807015E288FD4E7001B8907 /* DeliveredSucessViewVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveredSucessViewVC.swift; sourceTree = "<group>"; };
 		88149F87287ED49B00E57AC7 /* MyPlacesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPlacesViewController.swift; sourceTree = "<group>"; };
@@ -372,6 +394,8 @@
 				092875FB28DB45CA000BE890 /* SearchModel.swift */,
 				0967E58E28DC3C5600D6B141 /* ZoneModel.swift */,
 				09B469DE28DD7A41008C9E78 /* CustomerInfoModel.swift */,
+				09C3C64128DF13790027D1A6 /* OrderTrackModel.swift */,
+				09C3C64528DF1A730027D1A6 /* OrdersListModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -406,6 +430,11 @@
 				09B469DC28DD70F6008C9E78 /* EditProfileViewModel.swift */,
 				09B469E028DD7AE5008C9E78 /* ProfileViewModel.swift */,
 				09B469E228DD7FAC008C9E78 /* SettingsViewModel.swift */,
+				09C3C64328DF143E0027D1A6 /* OrderOntheWayVM.swift */,
+				09C3C64728DF1B160027D1A6 /* MyOrderVM.swift */,
+				0909B67F28E028B4007D13CD /* MyCurrentOrderTableViewCellVM.swift */,
+				0909B68128E07D2C007D13CD /* DeliveryDetailsCellVM.swift */,
+				0909B68328E07F4E007D13CD /* OrderItemsListCellVM.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -476,6 +505,8 @@
 				0995BFC328A587EE004F0EC5 /* BasketFooterViewCell.swift */,
 				0995BFC528A594F2004F0EC5 /* BasketFooterViewCell.xib */,
 				092875F528DB28BE000BE890 /* SearchRestaurentVC.swift */,
+				09C3C63928DF02220027D1A6 /* OrderTrackFooterView.xib */,
+				09C3C63F28DF09760027D1A6 /* OrderTrackFooterView.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -521,6 +552,8 @@
 				0967E59228DC67C800D6B141 /* FoodItemTableViewCell.swift */,
 				0967E59628DC89E700D6B141 /* AddMoreItemCell.swift */,
 				09A5B49828DE154400D341B8 /* ProfileNameCell.swift */,
+				09C3C63B28DF083B0027D1A6 /* DeliveryDetailsCell.swift */,
+				09C3C63D28DF08FB0027D1A6 /* OrderItemsListCell.swift */,
 			);
 			path = TableViewCells;
 			sourceTree = "<group>";
@@ -698,6 +731,7 @@
 				0995BFC628A594F3004F0EC5 /* BasketFooterViewCell.xib in Resources */,
 				88C44F4B287730A200D31258 /* LaunchScreen.storyboard in Resources */,
 				88C44F48287730A200D31258 /* Assets.xcassets in Resources */,
+				09C3C63A28DF02220027D1A6 /* OrderTrackFooterView.xib in Resources */,
 				88C44F462877309F00D31258 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -779,9 +813,13 @@
 				883901A5287DA31700C85BE2 /* MyWalletViewController.swift in Sources */,
 				883ED5A62878944800F06F22 /* SearchViewController.swift in Sources */,
 				8821EAA62885446200B32EF5 /* RestFoodPickTableViewCell.swift in Sources */,
+				09C3C64628DF1A730027D1A6 /* OrdersListModel.swift in Sources */,
 				09B469E128DD7AE5008C9E78 /* ProfileViewModel.swift in Sources */,
+				09C3C63E28DF08FB0027D1A6 /* OrderItemsListCell.swift in Sources */,
+				0909B68028E028B5007D13CD /* MyCurrentOrderTableViewCellVM.swift in Sources */,
 				8821EAA82885570300B32EF5 /* AddOnViewController.swift in Sources */,
 				88149F94287F30FC00E57AC7 /* LogoutVC.swift in Sources */,
+				09C3C64228DF13790027D1A6 /* OrderTrackModel.swift in Sources */,
 				88FDAB1F2881854F006F06D0 /* RestarentDishViewController.swift in Sources */,
 				0967E59328DC67C900D6B141 /* FoodItemTableViewCell.swift in Sources */,
 				092875F428DAE1BF000BE890 /* EmptyFavCell.swift in Sources */,
@@ -834,9 +872,12 @@
 				09A5B49928DE154400D341B8 /* ProfileNameCell.swift in Sources */,
 				0926609A289AE04E003F50DB /* ShopDetailsModel.swift in Sources */,
 				0967E58728DC26C400D6B141 /* CouponCell.swift in Sources */,
+				09C3C64428DF143E0027D1A6 /* OrderOntheWayVM.swift in Sources */,
+				0909B68228E07D2C007D13CD /* DeliveryDetailsCellVM.swift in Sources */,
 				8859B5A3288C29D300555C05 /* RecipeDetailsVC.swift in Sources */,
 				8884E99128808F8200D6C9F2 /* HomeCollectionViewThirdCell.swift in Sources */,
 				0967E58928DC27C500D6B141 /* OffersViewVM.swift in Sources */,
+				09C3C64828DF1B160027D1A6 /* MyOrderVM.swift in Sources */,
 				8807015F288FD4E7001B8907 /* DeliveredSucessViewVC.swift in Sources */,
 				885B5DF7287C5B8F006A7044 /* ContactUsViewController.swift in Sources */,
 				88C44F412877309F00D31258 /* SceneDelegate.swift in Sources */,
@@ -866,6 +907,8 @@
 				0934E63B28D98E19005276A5 /* MyFevTableViewCellVM.swift in Sources */,
 				092875F828DB343D000BE890 /* RestaurentCell.swift in Sources */,
 				09A0D05C28AFF4160015FC4C /* GetCartModel.swift in Sources */,
+				09C3C63C28DF083B0027D1A6 /* DeliveryDetailsCell.swift in Sources */,
+				09C3C64028DF09760027D1A6 /* OrderTrackFooterView.swift in Sources */,
 				883ED59A287814A600F06F22 /* HomeViewController.swift in Sources */,
 				883ED5A42878942A00F06F22 /* OffersViewController.swift in Sources */,
 				88149F8C287EFC8000E57AC7 /* MyFavoritesViewController.swift in Sources */,
@@ -878,6 +921,7 @@
 				0934E63D28D995D5005276A5 /* CouponModel.swift in Sources */,
 				0967E59728DC89E800D6B141 /* AddMoreItemCell.swift in Sources */,
 				885B5DFF287C73F9006A7044 /* SettingsTableViewCell.swift in Sources */,
+				0909B68428E07F4E007D13CD /* OrderItemsListCellVM.swift in Sources */,
 				092875F628DB28BE000BE890 /* SearchRestaurentVC.swift in Sources */,
 				88FDAB2F2881B5F1006F06D0 /* MyPastOrderTableViewCell.swift in Sources */,
 				09650C3928D7824F00FC8FDF /* ReplaceUserModel.swift in Sources */,

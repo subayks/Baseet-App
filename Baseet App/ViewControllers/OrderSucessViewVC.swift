@@ -11,16 +11,10 @@ class OrderSucessViewVC: UIViewController {
     var orderSucessViewVCVM: OrderSucessViewVCVM?
     
     @IBOutlet weak var orderPlacedLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-//        let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
-//        let vc = storyboard.instantiateViewController(identifier: "OrderOntheWayVC") as! OrderOntheWayVC
-//        vc.modalTransitionStyle = .coverVertical
-//        vc.modalPresentationStyle = .fullScreen
-//        self.present(vc, animated: true, completion: nil)
 
-        // Do any additional setup after loading the view.
         let orderId = self.orderSucessViewVCVM?.orderId ?? "12345"
         let stringOne = "ORDER \(orderId) PLACED SUCESSSFULLY"
         let stringTwo = "\(orderId)"
@@ -32,23 +26,48 @@ class OrderSucessViewVC: UIViewController {
         self.orderPlacedLabel.attributedText = attributedText
     }
     
- 
-    
-    @IBAction func backbtn(_ sender: Any) {
-        //self.dismiss(animated: true,completion: nil)
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
-        let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
-        let vc = storyboard.instantiateViewController(identifier: "OrderOntheWayVC") as! OrderOntheWayVC
-        vc.modalTransitionStyle = .coverVertical
-        vc.modalPresentationStyle = .fullScreen
-        self.present(vc, animated: true, completion: nil)
+        self.orderSucessViewVCVM?.showLoadingIndicatorClosure = { [weak self] in
+            DispatchQueue.main.async {
+                guard let self = self else {return}
+                self.showLoadingView()
+            }
+        }
         
-//        let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
-//        let vc = storyboard.instantiateViewController(identifier: "OrderOntheWayVC") as! OrderOntheWayVC
-//        vc.modalTransitionStyle = .coverVertical
-//        vc.modalPresentationStyle = .fullScreen
-//        self.present(vc, animated: true, completion: nil)
+        self.orderSucessViewVCVM?.hideLoadingIndicatorClosure = { [weak self] in
+            DispatchQueue.main.async {
+                guard let self = self else {return}
+                self.hideLoadingView()
+            }
+        }
+        
+        self.orderSucessViewVCVM?.alertClosure = { [weak self] (error) in
+            DispatchQueue.main.async {
+                guard let self = self else {return}
+                let alert = UIAlertController(title: "Alert", message: error, preferredStyle: UIAlertController.Style.alert)
+                alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+            }
+        }
+        
+        self.orderSucessViewVCVM?.navigationClosure = { [weak self] in
+            DispatchQueue.main.async {
+                guard let self = self else {return}
+               // self.dismiss(animated: true, completion: {
+                    let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
+                    let vc = storyboard.instantiateViewController(identifier: "OrderOntheWayVC") as! OrderOntheWayVC
+                    vc.modalTransitionStyle = .coverVertical
+                    vc.modalPresentationStyle = .fullScreen
+                    vc.orderOntheWayVM = self.orderSucessViewVCVM?.getOrderOntheWayVM()
+                    self.present(vc, animated: true, completion: nil)
+              //  })
+            }
+        }
     }
     
-
+    @IBAction func backbtn(_ sender: Any) {
+        self.orderSucessViewVCVM?.getOrderTrack()
+    }
 }

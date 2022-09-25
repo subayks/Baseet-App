@@ -9,8 +9,20 @@ import UIKit
 
 class MyCurrentOrderTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var orderId: UILabel!
+    @IBOutlet weak var orderPrice: UILabel!
+    @IBOutlet weak var timingLabel: UILabel!
+    @IBOutlet weak var orderStatus: UILabel!
+    @IBOutlet weak var shopName: UILabel!
+    @IBOutlet weak var itemName: UILabel!
+    @IBOutlet weak var itemImage: UIImageView!
     @IBOutlet weak var orderDetailsBtn: UIButton!
     @IBOutlet weak var modifyOrderBtn: UIButton!
+    var myCurrentOrderTableViewCellVM: MyCurrentOrderTableViewCellVM? {
+        didSet {
+            self.setupValues()
+        }
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -22,5 +34,53 @@ class MyCurrentOrderTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
+    
+    func setupValues() {
+        self.itemImage.loadImageUsingURL(self.myCurrentOrderTableViewCellVM?.myOrder?.restaurant?.applogo)
+        self.shopName.text = self.myCurrentOrderTableViewCellVM?.myOrder?.restaurant?.name
+        self.orderId.text = "OrderID: \(self.myCurrentOrderTableViewCellVM?.myOrder?.id ?? 0)"
+        self.orderPrice.text = "QR \(self.myCurrentOrderTableViewCellVM?.myOrder?.orderAmount ?? 0)"
 
+        if self.myCurrentOrderTableViewCellVM?.type == 0 {
+        self.timingLabel.text = "Expected Delivery Time \(self.myCurrentOrderTableViewCellVM?.myOrder?.restaurant?.deliveryTime ?? "") Min"
+        } else {
+            self.timingLabel.text = "Delivered at \(self.formattedTimeString(date: self.myCurrentOrderTableViewCellVM?.myOrder?.delivered ?? "")) on \((self.formattedDateString(date: self.myCurrentOrderTableViewCellVM?.myOrder?.delivered ?? "")))"
+        }
+        
+        if self.myCurrentOrderTableViewCellVM?.myOrder?.orderStatus == OrderStatus.delivered.rawValue {
+            self.orderStatus.text = "Your food has been \(self.myCurrentOrderTableViewCellVM?.myOrder?.orderStatus ?? "")"
+        } else if self.myCurrentOrderTableViewCellVM?.myOrder?.orderStatus == OrderStatus.canceled.rawValue {
+            self.orderStatus.text = "On request \(self.myCurrentOrderTableViewCellVM?.myOrder?.orderStatus ?? "") your order"
+        } else if self.myCurrentOrderTableViewCellVM?.myOrder?.orderStatus == OrderStatus.picked_up.rawValue {
+            self.orderStatus.text = "Your order is on the way"
+        } else if self.myCurrentOrderTableViewCellVM?.myOrder?.orderStatus == OrderStatus.processing.rawValue {
+            self.orderStatus.text = "Your oder has been placed"
+        } else if self.myCurrentOrderTableViewCellVM?.myOrder?.orderStatus == OrderStatus.refund_requested.rawValue {
+            self.orderStatus.text = "Your refund is initiated"
+        }
+    }
+    
+    func formattedTimeString(date: String) ->String{
+        let dateString = date
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd hh:mm:ss"
+        dateFormatter.locale = Locale.init(identifier: "en_GB")
+
+        let dateObj = dateFormatter.date(from: dateString) ?? Date()
+
+        dateFormatter.dateFormat = "h:mm a"
+        return (dateFormatter.string(from: dateObj))
+    }
+    
+    func formattedDateString(date: String) ->String{
+        let dateString = date
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd hh:mm:ss"
+        dateFormatter.locale = Locale.init(identifier: "en_GB")
+
+        let dateObj = dateFormatter.date(from: dateString)  ?? Date()
+
+        dateFormatter.dateFormat = "MMMM d, yyyy"
+        return (dateFormatter.string(from: dateObj))
+    }
 }

@@ -19,11 +19,9 @@ class FeedbackViewController: UIViewController {
     
     @IBAction func submitBtn(_ sender: Any) {
         let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
-        let vc = storyboard.instantiateViewController(identifier: "tabVC") 
-        
+        let vc = storyboard.instantiateViewController(identifier: "tabVC")
         vc.modalPresentationStyle = .fullScreen
-        self.present(vc, animated: true, completion: nil)
-        
+        (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(vc)
     }
     
 }

@@ -9,12 +9,14 @@ import UIKit
 
 class MyPlacesViewController: UIViewController {
     
+    @IBOutlet weak var profileIcon: UIImageView!
+    @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var myPlacesTB: UITableView!
     
     override func viewDidLoad()
     {
         super.viewDidLoad()
-
+        self.setupNavigationBar()
         
     }
     
@@ -22,7 +24,16 @@ class MyPlacesViewController: UIViewController {
         self.dismiss(animated: true,completion: nil)
     }
     
-   
+    func setupNavigationBar() {
+        if UserDefaults.standard.bool(forKey: "isLoggedIn") == false {
+            self.profileIcon.isHidden = true
+            self.nameLabel.isHidden = true
+        } else {
+            self.profileIcon.isHidden = false
+            self.nameLabel.isHidden = false
+            self.nameLabel.text = UserDefaults.standard.string(forKey: "Name") ?? "Unknown"
+        }
+    }
 
 }
 

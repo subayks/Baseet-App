@@ -9,12 +9,14 @@ import UIKit
 
 class MyWalletViewController: UIViewController {
     
+    @IBOutlet weak var profileIcon: UIImageView!
+    @IBOutlet weak var nameLabel: UILabel!
     var card_VC: MyWalletViewController!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
+        self.setupNavigationBar()
         
         card_VC = self.storyboard?.instantiateViewController(withIdentifier: "MyWalletViewController") as! MyWalletViewController
         let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(self.respondToGesture))
@@ -36,7 +38,16 @@ class MyWalletViewController: UIViewController {
         self.present(vc, animated: true, completion: nil)
     }
     
-    
+    func setupNavigationBar() {
+        if UserDefaults.standard.bool(forKey: "isLoggedIn") == false {
+            self.profileIcon.isHidden = true
+            self.nameLabel.isHidden = true
+        } else {
+            self.profileIcon.isHidden = false
+            self.nameLabel.isHidden = false
+            self.nameLabel.text = UserDefaults.standard.string(forKey: "Name") ?? "Unknown"
+        }
+    }
    
     
     func close_menu()

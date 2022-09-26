@@ -132,7 +132,7 @@ class EditProfileViewModel {
                 }
             })
         } else {
-            self.alertClosure?("Check ypur internet")
+            self.alertClosure?("Check your internet")
         }
     }
 }

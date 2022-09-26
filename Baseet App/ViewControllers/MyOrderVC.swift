@@ -91,7 +91,15 @@ class MyOrderVC: UIViewController {
     }
     
     func setupNavigationBar() {
-        self.userName.text = UserDefaults.standard.string(forKey: "Name") ?? "Unknown"
+        if UserDefaults.standard.bool(forKey: "isLoggedIn") == false {
+            self.profileIcon.isHidden = true
+            self.userName.isHidden = true
+        } else {
+            self.profileIcon.isHidden = false
+            self.userName.isHidden = false
+            self.userName.text = UserDefaults.standard.string(forKey: "Name") ?? "Unknown"
+            self.profileIcon.loadImageUsingURL(UserDefaults.standard.string(forKey: "ProfileImage"))
+        }
     }
     
 }

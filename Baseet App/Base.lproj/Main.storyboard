@@ -2237,6 +2237,10 @@
                         </constraints>
                     </view>
                     <size key="freeformSize" width="414" height="896"/>
+                    <connections>
+                        <outlet property="nameLabel" destination="Q73-ag-v1O" id="4Qv-En-QY5"/>
+                        <outlet property="profileIcon" destination="cFs-40-TmV" id="439-nW-mip"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jxY-1s-zoa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -2535,6 +2539,8 @@
                     </view>
                     <size key="freeformSize" width="414" height="896"/>
                     <connections>
+                        <outlet property="nameLabel" destination="T5T-fY-Xwv" id="ej5-Ir-8NO"/>
+                        <outlet property="profileImage" destination="7eE-9g-qOX" id="Fbv-y0-F0O"/>
                         <outlet property="settingsTB" destination="HCO-zQ-NME" id="p8x-q5-7IE"/>
                     </connections>
                 </viewController>
@@ -2751,6 +2757,10 @@
                         </constraints>
                     </view>
                     <size key="freeformSize" width="414" height="896"/>
+                    <connections>
+                        <outlet property="nameLabel" destination="UQz-b9-fV3" id="d88-uw-b3h"/>
+                        <outlet property="profileIcon" destination="oQI-by-3ad" id="ON8-Sc-gtz"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="e6N-2N-7iB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -2893,6 +2903,10 @@
                         </constraints>
                     </view>
                     <size key="freeformSize" width="414" height="896"/>
+                    <connections>
+                        <outlet property="nameLabel" destination="hxh-pY-GQq" id="RTr-eq-xqK"/>
+                        <outlet property="profileIcon" destination="NfJ-71-8Ne" id="u0J-Jx-wH6"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ewV-Ba-pBc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -6531,6 +6545,9 @@ will be return with in 5 days.</string>
                     <size key="freeformSize" width="414" height="896"/>
                     <connections>
                         <outlet property="menuTb" destination="JhN-eT-1Is" id="8OG-j8-ldk"/>
+                        <outlet property="nameLabel" destination="cog-SP-qz3" id="0Cr-lv-405"/>
+                        <outlet property="phonenumberLabel" destination="jeo-sG-AXp" id="UyX-H8-AJV"/>
+                        <outlet property="profileIcon" destination="Gu2-Dz-WT5" id="KJR-VF-ALp"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dQJ-TW-Dhg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -7280,6 +7297,8 @@ will be return with in 5 days.</string>
                     <size key="freeformSize" width="414" height="896"/>
                     <connections>
                         <outlet property="myPlacesTB" destination="pTI-79-Mpm" id="dXr-0z-6P7"/>
+                        <outlet property="nameLabel" destination="ora-86-HHW" id="Tqk-6u-lut"/>
+                        <outlet property="profileIcon" destination="44R-93-bAa" id="oqM-ty-p2w"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AgQ-ol-mxw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -8085,6 +8104,10 @@ printing and typesetting industry.</string>
                         </constraints>
                     </view>
                     <size key="freeformSize" width="414" height="896"/>
+                    <connections>
+                        <outlet property="nameLabel" destination="umG-3l-JRg" id="dfF-xg-SSC"/>
+                        <outlet property="profileIcon" destination="v9d-H6-DEq" id="CmC-et-H0e"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cHw-wt-yPc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -9907,8 +9930,8 @@ logout from this application.es</string>
         <image name="change_password" width="186" height="166"/>
         <image name="checkmark" width="25" height="25"/>
         <image name="chevron.down.circle" catalog="system" width="128" height="121"/>
-        <image name="clock" catalog="system" width="128" height="121"/>
         <image name="clock" width="23.333333969116211" height="23.333333969116211"/>
+        <image name="clock" catalog="system" width="128" height="121"/>
         <image name="debitCard" width="40" height="39"/>
         <image name="deletImg" width="25" height="31"/>
         <image name="didsele" width="20" height="18"/>

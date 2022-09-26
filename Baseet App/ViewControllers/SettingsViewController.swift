@@ -9,6 +9,8 @@ import UIKit
 
 class SettingsViewController: UIViewController {
 
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var settingsTB: UITableView!
     
     var settingsViewModel = SettingsViewModel()
@@ -16,8 +18,7 @@ class SettingsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        self.setupNavigationBar()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -59,6 +60,17 @@ class SettingsViewController: UIViewController {
     
     @IBAction func settingsBackBtn(_ sender: Any) {
         self.dismiss(animated: true,completion: nil)
+    }
+    
+    func setupNavigationBar() {
+        if UserDefaults.standard.bool(forKey: "isLoggedIn") == false {
+            self.profileImage.isHidden = true
+            self.nameLabel.isHidden = true
+        } else {
+            self.profileImage.isHidden = false
+            self.nameLabel.isHidden = false
+            self.nameLabel.text = UserDefaults.standard.string(forKey: "Name") ?? "Unknown"
+        }
     }
 }
 

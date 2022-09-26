@@ -28,7 +28,7 @@ class LogoutVC: UIViewController {
         if let bundleID = Bundle.main.bundleIdentifier {
             UserDefaults.standard.removePersistentDomain(forName: bundleID)
         }
-        let viewController = self.storyboard?.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
+        let viewController = self.storyboard?.instantiateViewController(withIdentifier: "LocationAccessVC") as! LocationAccessVC
         let navigationController = UINavigationController(rootViewController: viewController )
         self.view.window?.rootViewController = viewController
         self.view.window?.makeKeyAndVisible()

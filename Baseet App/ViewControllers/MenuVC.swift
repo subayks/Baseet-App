@@ -9,6 +9,9 @@ import UIKit
 
 class MenuVC: UIViewController {
     
+    @IBOutlet weak var profileIcon: UIImageView!
+    @IBOutlet weak var phonenumberLabel: UILabel!
+    @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var menuTb: UITableView!
     
     let sidenameArray = ["Home","My Orders","My Places","My Favorites","My Wallet","Invite Friend","Notifications","Settings","Contact Us","Join Us","LogOut"]
@@ -27,11 +30,9 @@ class MenuVC: UIViewController {
     UIImage(named: "conntect")]
     
 
-    override func viewDidLoad()
-    {
+    override func viewDidLoad() {
         super.viewDidLoad()
-
-       
+        self.setupNavigationBar()
     }
     
 
@@ -39,6 +40,19 @@ class MenuVC: UIViewController {
         self.dismiss(animated: true,completion: nil)
     }
     
+    func setupNavigationBar() {
+        if UserDefaults.standard.bool(forKey: "isLoggedIn") == false {
+            self.profileIcon.isHidden = true
+            self.nameLabel.isHidden = true
+            self.phonenumberLabel.isHidden = true
+        } else {
+            self.profileIcon.isHidden = false
+            self.nameLabel.isHidden = false
+            self.nameLabel.text = UserDefaults.standard.string(forKey: "Name") ?? "Unknown"
+            self.phonenumberLabel.text = UserDefaults.standard.string(forKey: "PhoneNumber")
+            self.profileIcon.loadImageUsingURL(UserDefaults.standard.string(forKey: "ProfileImage"))
+        }
+    }
 
 }
 
@@ -109,9 +123,15 @@ extension MenuVC :UITableViewDelegate,UITableViewDataSource {
           
         if indexPath.row == 7
         {
-         let vc = self.storyboard?.instantiateViewController(identifier: "SettingsViewController") as! SettingsViewController
-         vc.modalPresentationStyle = .fullScreen
-         self.present(vc, animated: true, completion: nil)
+            if UserDefaults.standard.bool(forKey: "isLoggedIn") == false {
+                let alert = UIAlertController(title: "Alert", message: "Please Login", preferredStyle: UIAlertController.Style.alert)
+                alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+            } else {
+                let vc = self.storyboard?.instantiateViewController(identifier: "SettingsViewController") as! SettingsViewController
+                vc.modalPresentationStyle = .fullScreen
+                self.present(vc, animated: true, completion: nil)
+            }
         }
         
         

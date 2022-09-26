@@ -42,7 +42,7 @@ class SearchBarVM {
                         self.shopListModel = result as? ShopListModel
                         self.imageArray()
                     } else {
-                        self.alertClosure?("Some technical problem")
+                        self.alertClosure?(errorMessage ?? "Some Technical Problem")
                     }
                 }
             })
@@ -70,7 +70,7 @@ class SearchBarVM {
                     self.shopDetailsModel = result as? ShopDetailsModel
                     self.navigateToDetailsClosure?()
                 } else {
-                   self.alertClosure?("Some technical problem")
+                   self.alertClosure?(errorMessage ?? "Some Technical Problem")
                 }
             }
         })

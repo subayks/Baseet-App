@@ -49,7 +49,7 @@ class HomeViewControllerVM {
                     self.shopListModel = result as? ShopListModel
                     self.reloadCollectionViewDown?()
                 } else {
-                   self.alertClosure?("Some technical problem")
+                    self.alertClosure?(errorMessage ?? "Some Technical Problem")
                 }
             }
         })
@@ -68,7 +68,7 @@ class HomeViewControllerVM {
                     self.categoryList = result as? [CategoryListModel]
                     self.reloadCollectionViewTop?()
                 } else {
-                   self.alertClosure?("Some technical problem")
+                   self.alertClosure?(errorMessage ?? "Some Technical Problem")
                 }
             }
         })
@@ -87,7 +87,7 @@ class HomeViewControllerVM {
                     self.shopDetailsModel = result as? ShopDetailsModel
                     self.navigateToDetailsClosure?()
                 } else {
-                   self.alertClosure?("Some technical problem")
+                   self.alertClosure?(errorMessage ?? "Some Technical Problem")
                 }
             }
         })
@@ -108,7 +108,7 @@ class HomeViewControllerVM {
                 if status == true {
                     self.getCartModel = result as? GetCartModel
                 } else {
-                   self.alertClosure?("Some technical problem")
+                   self.alertClosure?(errorMessage ?? "Some Technical Problem")
                 }
             }
         })
@@ -129,7 +129,7 @@ class HomeViewControllerVM {
                     self.zoneModel = result as? ZoneModel
                     UserDefaults.standard.set(self.zoneModel?.zoneId, forKey: "zoneID")
                 } else {
-                   self.alertClosure?("Some technical problem")
+                   self.alertClosure?(errorMessage ?? "Some Technical Problem")
                 }
             }
         })

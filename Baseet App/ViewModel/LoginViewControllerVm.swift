@@ -34,7 +34,7 @@ class LoginViewControllerVm {
                     UserDefaults.standard.set(phoneNumber, forKey: "PhoneNumber")
                     self.replceUserId()
                 } else {
-                   self.alertClosure?("Some technical problem")
+                   self.alertClosure?(errorMessage ?? "Some Technical Problem")
                 }
             }
         })
@@ -55,7 +55,7 @@ class LoginViewControllerVm {
                     UserDefaults.standard.set(true, forKey: "isLoggedIn")
                     self.navigationClosure?()
                 } else {
-                   self.alertClosure?("Some technical problem")
+                   self.alertClosure?(errorMessage ?? "Some Technical Problem")
                 }
             }
         })

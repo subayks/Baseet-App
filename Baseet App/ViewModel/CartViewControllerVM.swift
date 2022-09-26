@@ -37,7 +37,7 @@ class CartViewControllerVM {
                 if status == true {
                     self.getCartModel = result as? GetCartModel
                 } else {
-                   self.alertClosure?("Some technical problem")
+                   self.alertClosure?(errorMessage ?? "Some Technical Problem")
                 }
             }
         })

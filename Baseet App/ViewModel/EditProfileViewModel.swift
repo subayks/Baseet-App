@@ -50,7 +50,7 @@ class EditProfileViewModel {
                     self.replaceUserModel = result as? ReplaceUserModel
                     self.navigationClosure?()
                 } else {
-                    self.alertClosure?(errorMessage ?? "")
+                    self.alertClosure?(errorMessage ?? "Some Technical Problem")
                 }
             }
         })
@@ -127,7 +127,7 @@ class EditProfileViewModel {
                        // self.imageModel = result as? ImageModel
                      
                     } else {
-                        self.alertClosure?("Some technical problem")
+                        self.alertClosure?(errorMessage ?? "Some Technical Problem")
                     }
                 }
             })

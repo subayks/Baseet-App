@@ -1,15 +1,15 @@
 //
-//  SettingsViewModel.swift
+//  MenuVM.swift
 //  Baseet App
 //
-//  Created by Subendran on 23/09/22.
+//  Created by Subendran on 26/09/22.
 //
 
 import Foundation
 
-class SettingsViewModel {
+class MenuVM {
     var apiServices: HomeApiServicesProtocol?
-    var navigationClosure:(()->())?
+    var reloadClosure:(()->())?
     var alertClosure:((String)->())?
     var errorClosure:((String)->())?
     var showLoadingIndicatorClosure:(()->())?
@@ -28,7 +28,9 @@ class SettingsViewModel {
                 self.hideLoadingIndicatorClosure?()
                 if status == true {
                     self.customerInfoModel = result as? CustomerInfoModel
-                    self.navigationClosure?()
+                    UserDefaults.standard.set(self.customerInfoModel?.fName, forKey: "Name")
+                    UserDefaults.standard.set(self.customerInfoModel?.image, forKey: "ProfileImage")
+                    self.reloadClosure?()
                 } else {
                    self.alertClosure?(errorMessage ?? "Some Technical Problem")
                 }
@@ -38,9 +40,4 @@ class SettingsViewModel {
             self.alertClosure?("No Internet Availabe")
         }
     }
-    
-    func getEditProfileViewModel() ->EditProfileViewModel {
-        return EditProfileViewModel(customerInfoModel: self.customerInfoModel ?? CustomerInfoModel())
-    }
-    
 }

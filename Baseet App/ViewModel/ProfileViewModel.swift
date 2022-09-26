@@ -32,7 +32,7 @@ class ProfileViewModel {
                     UserDefaults.standard.set(self.customerInfoModel?.image, forKey: "ProfileImage")
                     self.setupValuesClosure?()
                 } else {
-                   self.alertClosure?("Some technical problem")
+                   self.alertClosure?(errorMessage ?? "Some Technical Problem")
                 }
             }
         })

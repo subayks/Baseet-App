@@ -67,6 +67,7 @@
 		099E9B5428C1CCA400BD1724 /* LoginViewControllerVm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 099E9B5328C1CCA400BD1724 /* LoginViewControllerVm.swift */; };
 		09A0D05C28AFF4160015FC4C /* GetCartModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09A0D05B28AFF4160015FC4C /* GetCartModel.swift */; };
 		09A5B49928DE154400D341B8 /* ProfileNameCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09A5B49828DE154400D341B8 /* ProfileNameCell.swift */; };
+		09B25F5728E1D48900C2D17C /* MenuVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09B25F5628E1D48900C2D17C /* MenuVM.swift */; };
 		09B469DD28DD70F6008C9E78 /* EditProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09B469DC28DD70F6008C9E78 /* EditProfileViewModel.swift */; };
 		09B469DF28DD7A41008C9E78 /* CustomerInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09B469DE28DD7A41008C9E78 /* CustomerInfoModel.swift */; };
 		09B469E128DD7AE5008C9E78 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09B469E028DD7AE5008C9E78 /* ProfileViewModel.swift */; };
@@ -247,6 +248,7 @@
 		099E9B5328C1CCA400BD1724 /* LoginViewControllerVm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewControllerVm.swift; sourceTree = "<group>"; };
 		09A0D05B28AFF4160015FC4C /* GetCartModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCartModel.swift; sourceTree = "<group>"; };
 		09A5B49828DE154400D341B8 /* ProfileNameCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileNameCell.swift; sourceTree = "<group>"; };
+		09B25F5628E1D48900C2D17C /* MenuVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuVM.swift; sourceTree = "<group>"; };
 		09B469DC28DD70F6008C9E78 /* EditProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewModel.swift; sourceTree = "<group>"; };
 		09B469DE28DD7A41008C9E78 /* CustomerInfoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerInfoModel.swift; sourceTree = "<group>"; };
 		09B469E028DD7AE5008C9E78 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
@@ -450,6 +452,7 @@
 				09C15F7528E0D42F008C215B /* DeliveredSucessViewVM.swift */,
 				09C15F7928E0DA72008C215B /* NotificationsViewControllerVM.swift */,
 				09C15F7B28E0E05C008C215B /* NotificationsTableViewCellVM.swift */,
+				09B25F5628E1D48900C2D17C /* MenuVM.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -869,6 +872,7 @@
 				094CCCC128A2BD4F0043EA18 /* RestaurentFoodPicksVCVM.swift in Sources */,
 				09832AE22898366D00B99EAB /* NetworkAdapter.swift in Sources */,
 				09C15F7A28E0DA72008C215B /* NotificationsViewControllerVM.swift in Sources */,
+				09B25F5728E1D48900C2D17C /* MenuVM.swift in Sources */,
 				0967E58D28DC318F00D6B141 /* NoCoupsAvailableCell.swift in Sources */,
 				099E9B5428C1CCA400BD1724 /* LoginViewControllerVm.swift in Sources */,
 				09C15F7828E0D8C1008C215B /* NotificationModel.swift in Sources */,
@@ -1149,7 +1153,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.14;
+				MARKETING_VERSION = 0.15;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.Amtech.Baseet-App";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -1189,7 +1193,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.14;
+				MARKETING_VERSION = 0.15;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.Amtech.Baseet-App";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

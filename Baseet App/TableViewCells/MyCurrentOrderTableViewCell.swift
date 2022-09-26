@@ -8,7 +8,7 @@
 import UIKit
 
 class MyCurrentOrderTableViewCell: UITableViewCell {
-
+    @IBOutlet weak var overView: UIView!
     @IBOutlet weak var orderId: UILabel!
     @IBOutlet weak var orderPrice: UILabel!
     @IBOutlet weak var timingLabel: UILabel!
@@ -35,14 +35,20 @@ class MyCurrentOrderTableViewCell: UITableViewCell {
     }
     
     func setupValues() {
+        self.overView.layer.cornerRadius = 10
+        self.overView.layer.borderWidth = 1
+        self.overView.layer.borderColor = UIColor.gray.cgColor
+        
         self.itemImage.layer.cornerRadius = 10
         self.itemImage.loadImageUsingURL(self.myCurrentOrderTableViewCellVM?.myOrder?.restaurant?.applogo)
         self.itemName.text = self.myCurrentOrderTableViewCellVM?.myOrder?.restaurant?.name
-        self.orderId.text = "OrderID: \(self.myCurrentOrderTableViewCellVM?.myOrder?.id ?? 0)"
+        self.orderId.text = "Order ID: \(self.myCurrentOrderTableViewCellVM?.myOrder?.id ?? 0)"
         self.orderPrice.text = "QR \(self.myCurrentOrderTableViewCellVM?.myOrder?.orderAmount ?? 0)"
-
+        orderDetailsBtn.titleLabel?.numberOfLines = 1
+        orderDetailsBtn.titleLabel?.adjustsFontSizeToFitWidth = true
+        orderDetailsBtn.titleLabel?.lineBreakMode = .byClipping
         if self.myCurrentOrderTableViewCellVM?.type == 0 {
-        self.timingLabel.text = "Expected Delivery Time \(self.myCurrentOrderTableViewCellVM?.myOrder?.restaurant?.deliveryTime ?? "") Min"
+        self.timingLabel.text = "Expected Delivery at \(self.myCurrentOrderTableViewCellVM?.myOrder?.restaurant?.deliveryTime ?? "") Min"
         } else {
             self.timingLabel.text = "Delivered at \(self.formattedTimeString(date: self.myCurrentOrderTableViewCellVM?.myOrder?.delivered ?? "")) on \((self.formattedDateString(date: self.myCurrentOrderTableViewCellVM?.myOrder?.delivered ?? "")))"
         }

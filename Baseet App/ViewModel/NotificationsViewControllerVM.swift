@@ -30,7 +30,7 @@ class NotificationsViewControllerVM {
                     self.notificationModel = result as? [NotificationModel]
                     self.reloadClosure?()
                 } else {
-                   self.alertClosure?("Some technical problem")
+                   self.alertClosure?(errorMessage ?? "Some Technical Problem")
                 }
             }
         })

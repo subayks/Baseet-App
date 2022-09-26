@@ -35,7 +35,7 @@ class SearchRestaurentVM {
                         self.searchModel = result as? SearchModel
                         self.reloadClosure?()
                     } else {
-                        self.alertClosure?("Some technical problem")
+                        self.alertClosure?(errorMessage ?? "Some Technical Problem")
                     }
                 }
             })
@@ -54,7 +54,7 @@ class SearchRestaurentVM {
                     self.shopDetailsModel = result as? ShopDetailsModel
                     self.navigateToDetailsClosure?()
                 } else {
-                   self.alertClosure?("Some technical problem")
+                   self.alertClosure?(errorMessage ?? "Some Technical Problem")
                 }
             }
         })

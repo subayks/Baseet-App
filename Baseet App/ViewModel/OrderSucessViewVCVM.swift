@@ -36,7 +36,7 @@ class OrderSucessViewVCVM {
                     self.orderTrackModel = result as? OrderTrackModel
                     self.navigationClosure?()
                 } else {
-                   self.alertClosure?("Some technical problem")
+                   self.alertClosure?(errorMessage ?? "Some Technical Problem")
                 }
             }
         })

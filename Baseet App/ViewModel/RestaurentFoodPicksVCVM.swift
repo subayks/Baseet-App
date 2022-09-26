@@ -59,7 +59,7 @@ class RestaurentFoodPicksVCVM {
                     self.getCartCall()
               //      self.updateValues(itemCount: itemCount, index: index, addOns: addOns)
                 } else {
-                   self.alertClosure?("Some technical problem")
+                   self.alertClosure?(errorMessage ?? "Some Technical Problem")
                 }
             }
         })
@@ -81,7 +81,7 @@ class RestaurentFoodPicksVCVM {
                     self.foodOrderItems?.foodItems = self.getCartModel?.data
                     self.reloadTableViewClosure?()
                 } else {
-                   self.alertClosure?("Some technical problem")
+                   self.alertClosure?(errorMessage ?? "Some Technical Problem")
                 }
             }
         })

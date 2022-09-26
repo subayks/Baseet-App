@@ -40,7 +40,7 @@ class MyOrderVM {
                     self.ordersListModel = result as? OrdersListModel
                     self.reloadClosure?()
                 } else {
-                   self.alertClosure?("Some technical problem")
+                   self.alertClosure?(errorMessage ?? "Some Technical Problem")
                 }
             }
         })
@@ -64,7 +64,7 @@ class MyOrderVM {
                     self.orderTrackModel = result as? OrderTrackModel
                     self.navigateToDetailsClosure?()
                 } else {
-                   self.alertClosure?("Some technical problem")
+                   self.alertClosure?(errorMessage ?? "Some Technical Problem")
                 }
             }
         })

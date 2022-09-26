@@ -55,7 +55,7 @@ class MyFavoritesVM {
                     self.shopDetailsModel = result as? ShopDetailsModel
                     self.navigateToDetailsClosure?()
                 } else {
-                   self.alertClosure?("Some technical problem")
+                   self.alertClosure?(errorMessage ?? "Some Technical Problem")
                 }
             }
         })

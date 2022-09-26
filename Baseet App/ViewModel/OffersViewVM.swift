@@ -32,7 +32,7 @@ class OffersViewVM {
                     self.couponModel = result as? CouponModel
                     self.reloadClosure?()
                 } else {
-                   self.alertClosure?("Some technical problem")
+                   self.alertClosure?(errorMessage ?? "Some Technical Problem")
                 }
             }
         })

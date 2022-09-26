@@ -105,7 +105,7 @@ class RestarentDishViewControllerVM {
                         self.proDuctDetailsModel = result as? FoodItems
                         self.navigateToDetailsClosure?()
                     } else {
-                        self.alertClosure?("Some technical problem")
+                        self.alertClosure?(errorMessage ?? "Some Technical Problem")
                     }
                 }
             })
@@ -127,7 +127,7 @@ class RestarentDishViewControllerVM {
                     self.reloadRecipieCollectionView?()
                   //  self.shopDetailsModel?.products?.append(contentsOf: shopDetailsModelValue?.products ?? [FoodItems()])
                 } else {
-                   self.alertClosure?("Some technical problem")
+                   self.alertClosure?(errorMessage ?? "Some Technical Problem")
                 }
             }
         })
@@ -275,7 +275,7 @@ class RestarentDishViewControllerVM {
                         self.reloadRecipieCollectionView?()
                     }
                 } else {
-                   self.alertClosure?("Some technical problem")
+                   self.alertClosure?(errorMessage ?? "Some Technical Problem")
                 }
             }
         })

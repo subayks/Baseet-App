@@ -95,7 +95,7 @@ class OrderOntheWayVM {
                     self.orderTrackModel = result as? OrderTrackModel
                     self.setupOderStatus()
                 } else {
-                   self.alertClosure?("Some technical problem")
+                   self.alertClosure?(errorMessage ?? "Some Technical Problem")
                 }
             }
         })

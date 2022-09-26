@@ -34,7 +34,7 @@ class LocationAccessVM {
                     UserDefaults.standard.set(self.zoneModel?.zoneId, forKey: "zoneID")
                     self.navigateToDetailsClosure?()
                 } else {
-                   self.alertClosure?("Some technical problem")
+                   self.alertClosure?(errorMessage ?? "Some Technical Problem")
                 }
             }
         })

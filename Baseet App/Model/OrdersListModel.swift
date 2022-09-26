@@ -8,7 +8,7 @@
 import Foundation
 
 struct OrdersListModel: Codable {
-
+  var errors : [ErrorMap]? = nil
   var totalSize : Int?      = nil
   var limit     : String?   = nil
   var offset    : String?   = nil
@@ -20,6 +20,8 @@ struct OrdersListModel: Codable {
     case limit     = "limit"
     case offset    = "offset"
     case orders    = "orders"
+      case errors = "errors"
+
   }
 
   init(from decoder: Decoder) throws {
@@ -29,6 +31,7 @@ struct OrdersListModel: Codable {
     limit     = try values.decodeIfPresent(String.self   , forKey: .limit     )
     offset    = try values.decodeIfPresent(String.self   , forKey: .offset    )
     orders    = try values.decodeIfPresent([Orders].self , forKey: .orders    )
+      errors   = try values.decodeIfPresent([ErrorMap].self , forKey: .errors)
   }
 
   init() {
@@ -180,7 +183,7 @@ struct Orders: Codable {
     detailsCount             = try values.decodeIfPresent(Int.self             , forKey: .detailsCount             )
     restaurant               = try values.decodeIfPresent(Restaurant.self      , forKey: .restaurant               )
     deliveryMan              = try values.decodeIfPresent(DeliveryMan.self          , forKey: .deliveryMan              )
- 
+
   }
 
   init() {

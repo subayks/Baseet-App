@@ -80,8 +80,8 @@ class RestaurentFoodPicksVC: UIViewController {
     }
     
     func setupValues() {
-        self.restaurentName.text = self.restaurentFoodPicksVCVM?.foodOrderItems?.shopName
-        self.restaurentImage.loadImageUsingURL(self.restaurentFoodPicksVCVM?.foodOrderItems?.icon)
+        self.restaurentName.text = self.restaurentFoodPicksVCVM?.getCartModel?[0].restauranName
+        self.restaurentImage.loadImageUsingURL(self.restaurentFoodPicksVCVM?.getCartModel?[0].restauranApplogo)
         self.savingsOverView.layer.borderWidth = 2
         self.savingsOverView.layer.borderColor = UIColor(red: 239/255, green: 250/255, blue: 255/255, alpha: 1).cgColor
         self.totalSavingsAmountLabel.text = "QR \(Double(self.restaurentFoodPicksVCVM?.totalSaving() ?? 0))"
@@ -170,11 +170,11 @@ class RestaurentFoodPicksVC: UIViewController {
 extension RestaurentFoodPicksVC:UITableViewDelegate,UITableViewDataSource
 {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.restaurentFoodPicksVCVM?.foodOrderItems?.foodItems?.count == 0 ? 1: self.restaurentFoodPicksVCVM?.foodOrderItems?.foodItems?.count ?? 0
+        return self.restaurentFoodPicksVCVM?.getCartModel?.count == 0 ? 1: self.restaurentFoodPicksVCVM?.getCartModel?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if self.restaurentFoodPicksVCVM?.foodOrderItems?.foodItems?.count == 0 {
+        if self.restaurentFoodPicksVCVM?.getCartModel?.count == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "AddMoreItemCell", for: indexPath) as! AddMoreItemCell
             self.totalSavingsAmountLabel.text = "0.0"
             return cell
@@ -192,7 +192,7 @@ extension RestaurentFoodPicksVC:UITableViewDelegate,UITableViewDataSource
     }
     
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        if (self.restaurentFoodPicksVCVM?.foodOrderItems?.foodItems?.count ?? 0) > 0 {
+        if (self.restaurentFoodPicksVCVM?.getCartModel?.count ?? 0) > 0 {
             let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: "BasketFooterViewCell") as! BasketFooterViewCell
             headerView.takeAway.layer.cornerRadius = 10
             headerView.orderNow.layer.cornerRadius = 10

@@ -48,7 +48,7 @@ struct ShopDetailsModel: Codable {
 }
 
 struct FoodItems: Codable {
-    var cartId: Int? = nil
+  var cartId: Int? = nil
   var itemQuantity: Int? = nil
   var id                    : Int?             = nil
   var name                  : String?          = nil

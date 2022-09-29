@@ -70,8 +70,9 @@ class MapkitViewVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelega
         
         mapView.delegate = self
         // Do any additional setup after loading the view, typically from a nib.
-        
-        let sourceLocation = CLLocationCoordinate2D(latitude: 17.3850, longitude:  78.4867)
+       //long 78.4867
+       // lat 17.3850
+        let sourceLocation = CLLocationCoordinate2D(latitude: deliveryManLat, longitude: deliveryLong)
         let destinationLocation = CLLocationCoordinate2D(latitude: customerLat, longitude: customerLong)
         
         // 3.

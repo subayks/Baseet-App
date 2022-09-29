@@ -141,6 +141,24 @@ class RestarentDishViewController: UIViewController {
                 self.buttonFavourite.setImage(UIImage(named: "UnFavourite"), for: .normal)
             }
         }
+        
+        self.restarentDishViewControllerVM?.deleteClosure = { [weak self] (error) in
+            DispatchQueue.main.async {
+                guard let self = self else {return}
+                let alert = UIAlertController(title: "Alert", message: error, preferredStyle: UIAlertController.Style.alert)
+                // add the actions (buttons)
+                alert.addAction(UIAlertAction(title: "Yes", style: UIAlertAction.Style.default, handler: { action in
+                    do {
+                        self.restarentDishViewControllerVM?.deleteCart()
+                    } catch {
+                        print("Error")
+                    }
+                }))
+                alert.addAction(UIAlertAction(title: "No", style: UIAlertAction.Style.cancel, handler: nil))
+                // show the alert
+                self.present(alert, animated: true, completion: nil)
+            }
+        }
     }
     
     func setupNavigationBar() {

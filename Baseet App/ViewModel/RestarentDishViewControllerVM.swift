@@ -33,7 +33,7 @@ class RestarentDishViewControllerVM {
     var updateCartModel: UpdateCartModel?
     var getCartModel: GetCartModel?
     var navigateToCartViewClosure:(()->())?
-    var limit = 5
+    var limit = 10
     var isInitialUpdate = true
     var foodItems: [FoodItems]? {
         didSet {
@@ -42,6 +42,7 @@ class RestarentDishViewControllerVM {
     }
     var removeFavClosure:(()->())?
     var addFavouriteClosure:(()->())?
+    var deleteClosure:((String)->())?
 
     
     init(shopDetailsModel: ShopDetailsModel, apiServices: HomeApiServicesProtocol = HomeApiServices()) {
@@ -118,19 +119,20 @@ class RestarentDishViewControllerVM {
         if Reachability.isConnectedToNetwork() {
             self.showLoadingIndicatorClosure?()
             self.apiServices?.getShopDetails(finalURL: "\(Constants.Common.finalURL)/products/product_by_restaurant?restaurant_id=\(id)&category_id=0&limit=\(limit)&offset=1",  completion: { (status: Bool? , errorCode: String?,result: AnyObject?, errorMessage: String?) -> Void in
-            DispatchQueue.main.async {
-                self.hideLoadingIndicatorClosure?()
-                if status == true {
-                    var shopDetailsModelValue: ShopDetailsModel?
-                    shopDetailsModelValue = result as? ShopDetailsModel
-                    self.foodItems = self.shopDetailsModel?.products
-                    self.reloadRecipieCollectionView?()
-                  //  self.shopDetailsModel?.products?.append(contentsOf: shopDetailsModelValue?.products ?? [FoodItems()])
-                } else {
-                   self.alertClosure?(errorMessage ?? "Some Technical Problem")
+                DispatchQueue.main.async {
+                    self.hideLoadingIndicatorClosure?()
+                    if status == true {
+                        
+                        self.shopDetailsModel = result as? ShopDetailsModel
+                        self.foodItems = self.shopDetailsModel?.products
+                        
+                        // self.shopDetailsModel?.products?.append(contentsOf: shopDetailsModelValue?.products ?? [FoodItems()])
+                        self.reloadRecipieCollectionView?()
+                    } else {
+                        self.alertClosure?(errorMessage ?? "Some Technical Problem")
+                    }
                 }
-            }
-        })
+            })
         } else {
             self.alertClosure?("No Internet Availabe")
         }
@@ -151,7 +153,7 @@ class RestarentDishViewControllerVM {
     }
     
     func getRestaurentFoodPicksVCVM() ->RestaurentFoodPicksVCVM {
-        return RestaurentFoodPicksVCVM(foodOrderItems: FoodOrderItems(shopName: self.shopDetailsModel?.restaurant?.name, icon: self.shopDetailsModel?.restaurant?.applogo, foodItems: getSelectedFood()))
+        return RestaurentFoodPicksVCVM(getCartModel: self.getSelectedFood())
     }
     
     func makeLoadMore() {
@@ -166,7 +168,7 @@ class RestarentDishViewControllerVM {
         } else {
             if itemCount > 0 {
                 if self.checkOtherShopItems() {
-                    self.alertClosure?("You already have some items in cart please order/clear items availabe in cart.")
+                    self.deleteClosure?("The Cart has some items from different restaurent, Are you sure, you want to clear?")
                 } else {
                     self.createCartCall(itemCount: itemCount, index: index, addOns: addOns)
                 }
@@ -311,6 +313,7 @@ class RestarentDishViewControllerVM {
     }
     
     func updatePreviousItems(cartdataModel: [CartDataModel]) {
+        self.foodItems = self.shopDetailsModel?.products
         for item in cartdataModel {
             if  let index = self.foodItems?.firstIndex(where: {$0.id == Int(item.cartfoodid ?? "")}) {
                 var foodItem = self.foodItems?[index]
@@ -338,7 +341,6 @@ class RestarentDishViewControllerVM {
                         foodItem?.addOns?.insert(adOnFinalItem ?? AddOns(), at: adonIndex)
                     }
                 }
-                
                 self.foodItems?.insert(foodItem ?? FoodItems(), at: index)
             }
         }
@@ -421,6 +423,25 @@ extension RestarentDishViewControllerVM {
         }
         }
         return foodName
+    }
+    
+    func deleteCart() {
+        if Reachability.isConnectedToNetwork() {
+            self.showLoadingIndicatorClosure?()
+            let cartID = self.getCartModel?.data?[0].cartid ?? ""
+            self.apiServices?.deleteCartApi(finalURL: "\(Constants.Common.finalURL)/products/cart_delete/\(cartID)", completion:  { (status: Bool? , errorCode: String?,result: AnyObject?, errorMessage: String?) -> Void in
+            DispatchQueue.main.async {
+                self.hideLoadingIndicatorClosure?()
+                if status == true {
+                    self.getCartCall()
+                } else {
+                   self.alertClosure?( errorMessage ?? "Some technical problem")
+                }
+            }
+        })
+        } else {
+            self.alertClosure?("No Internet Availabe")
+        }
     }
 }
 

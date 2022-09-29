@@ -7,16 +7,9 @@
 
 import Foundation
 
-struct FoodOrderItems {
-    var shopName: String?
-    var icon: String?
-    var foodItems: [CartDataModel]?
-    
-}
-
 class RestaurentFoodPicksVCVM {
     var apiServices: HomeApiServicesProtocol?
-    var foodOrderItems: FoodOrderItems?
+    var getCartModel: [CartDataModel]?
     var reloadTableViewClosure:(()->())?
     var navigationClosure:(()->())?
     var alertClosure:((String)->())?
@@ -27,13 +20,13 @@ class RestaurentFoodPicksVCVM {
     var itemId = [Int]()
     var itemCount = [Int]()
     var userID = String()
-    var getCartModel: GetCartModel?
+    var getCartData: GetCartModel?
     var notes: String?
     
-    init(foodOrderItems: FoodOrderItems, apiServices: HomeApiServicesProtocol = HomeApiServices()) {
-        self.foodOrderItems = foodOrderItems
+    init(getCartModel: [CartDataModel], apiServices: HomeApiServicesProtocol = HomeApiServices()) {
+        self.getCartModel = getCartModel
         self.apiServices = apiServices
-        self.userID = self.foodOrderItems?.foodItems?[0].cartuserid ?? ""
+        self.userID = self.getCartModel?[0].cartuserid ?? ""
     }
     
     init(apiServices: HomeApiServicesProtocol = HomeApiServices()) {
@@ -41,7 +34,7 @@ class RestaurentFoodPicksVCVM {
     }
     
     func getRestFoodPickTableViewCellVM(index: Int) ->RestFoodPickTableViewCellVM {
-        return RestFoodPickTableViewCellVM(foodItems: self.foodOrderItems?.foodItems?[index] ?? CartDataModel())
+        return RestFoodPickTableViewCellVM(foodItems: self.getCartModel?[index] ?? CartDataModel())
     }
     
     func updateCartCall(itemCount: Int, index: Int, addOns: [AddOns]? = nil) {
@@ -53,7 +46,7 @@ class RestaurentFoodPicksVCVM {
                 self.hideLoadingIndicatorClosure?()
                 if status == true {
                     self.updateCartModel = result as? UpdateCartModel
-                    let item = self.foodOrderItems?.foodItems?[index]
+                    let item = self.getCartModel?[index]
                     self.itemId.append(Int(item?.id ?? "") ?? 0)
                     self.itemCount.append(itemCount)
                     self.getCartCall()
@@ -77,8 +70,8 @@ class RestaurentFoodPicksVCVM {
             DispatchQueue.main.async {
                 self.hideLoadingIndicatorClosure?()
                 if status == true {
-                    self.getCartModel = result as? GetCartModel
-                    self.foodOrderItems?.foodItems = self.getCartModel?.data
+                    self.getCartData = result as? GetCartModel
+                    self.getCartModel = self.getCartData?.data
                     self.reloadTableViewClosure?()
                 } else {
                    self.alertClosure?(errorMessage ?? "Some Technical Problem")
@@ -107,7 +100,7 @@ class RestaurentFoodPicksVCVM {
 //    }
     
     func getCartParam(itemCount: Int, index: Int) -> String {
-        let item = self.foodOrderItems?.foodItems?[index]
+        let item = self.getCartModel?[index]
         var jsonToReturn: NSDictionary = NSDictionary()
         var addOnsArray = [NSDictionary]()
 
@@ -160,7 +153,7 @@ class RestaurentFoodPicksVCVM {
     
     func priceCalculation() ->Int {
         var priceArray = [Int]()
-        if let selectedFoodItems = self.foodOrderItems?.foodItems {
+        if let selectedFoodItems = self.getCartModel {
             for item in selectedFoodItems {
                 priceArray.append(item.tprice ?? 0)
             }
@@ -171,7 +164,7 @@ class RestaurentFoodPicksVCVM {
     
     func totalSaving() ->Double {
         var discount = [Double]()
-        if let selectedFoodItems = self.foodOrderItems?.foodItems {
+        if let selectedFoodItems = self.getCartModel {
             for item in selectedFoodItems {
                 discount.append(Double(item.discount ?? "") ?? 0.00)
             }
@@ -182,7 +175,7 @@ class RestaurentFoodPicksVCVM {
     
     func taxCalculation() ->Int {
         var taxArray = [Int]()
-        if let selectedFoodItems = self.foodOrderItems?.foodItems {
+        if let selectedFoodItems = self.getCartModel {
             for item in selectedFoodItems {
                 taxArray.append(Int(item.tax ?? "") ?? 0)
             }

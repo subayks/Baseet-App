@@ -157,7 +157,7 @@ class HomeViewControllerVM {
     }
     
     func getRestaurentFoodPicksVCVM() ->RestaurentFoodPicksVCVM {
-        return RestaurentFoodPicksVCVM(foodOrderItems: FoodOrderItems(shopName: self.getCartModel?.data?[0].restauranName, icon: self.getCartModel?.data?[0].restauranApplogo, foodItems: getSelectedFood()))
+        return RestaurentFoodPicksVCVM(getCartModel: self.getSelectedFood())
     }
     
     func getSelectedFood() ->[CartDataModel] {

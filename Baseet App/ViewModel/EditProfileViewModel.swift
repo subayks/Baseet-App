@@ -23,6 +23,8 @@ class EditProfileViewModel {
             self.uploadProfilePic()
         }
     }
+    var setProfileImageClosure:(()->())?
+
     var customerInfoModel: CustomerInfoModel?
 
     var firstName = String()
@@ -47,7 +49,6 @@ class EditProfileViewModel {
             DispatchQueue.main.async {
                 self.hideLoadingIndicatorClosure?()
                 if status == true {
-                    self.replaceUserModel = result as? ReplaceUserModel
                     self.navigationClosure?()
                 } else {
                     self.alertClosure?(errorMessage ?? "Some Technical Problem")
@@ -125,7 +126,8 @@ class EditProfileViewModel {
                     self.hideLoadingIndicatorClosure?()
                     if status == true {
                        // self.imageModel = result as? ImageModel
-                     
+                        self.setProfileImageClosure?()
+                        self.getCustomerInfo()
                     } else {
                         self.alertClosure?(errorMessage ?? "Some Technical Problem")
                     }
@@ -133,6 +135,26 @@ class EditProfileViewModel {
             })
         } else {
             self.alertClosure?("Check your internet")
+        }
+    }
+    
+    func getCustomerInfo() {
+        if Reachability.isConnectedToNetwork() {
+            self.showLoadingIndicatorClosure?()
+            self.apiServices?.getCustomerInfo(finalURL: "\(Constants.Common.finalURL)/customer/info",  completion: { (status: Bool? , errorCode: String?,result: AnyObject?, errorMessage: String?) -> Void in
+            DispatchQueue.main.async {
+                self.hideLoadingIndicatorClosure?()
+                if status == true {
+                    self.customerInfoModel = result as? CustomerInfoModel
+                    UserDefaults.standard.set(self.customerInfoModel?.fName, forKey: "Name")
+                    UserDefaults.standard.set(self.customerInfoModel?.appImage, forKey: "ProfileImage")
+                } else {
+                   self.alertClosure?(errorMessage ?? "Some Technical Problem")
+                }
+            }
+        })
+        } else {
+            self.alertClosure?("No Internet Availabe")
         }
     }
 }

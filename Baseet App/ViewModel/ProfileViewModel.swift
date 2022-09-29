@@ -29,7 +29,7 @@ class ProfileViewModel {
                 if status == true {
                     self.customerInfoModel = result as? CustomerInfoModel
                     UserDefaults.standard.set(self.customerInfoModel?.fName, forKey: "Name")
-                    UserDefaults.standard.set(self.customerInfoModel?.image, forKey: "ProfileImage")
+                    UserDefaults.standard.set(self.customerInfoModel?.appImage, forKey: "ProfileImage")
                     self.setupValuesClosure?()
                 } else {
                    self.alertClosure?(errorMessage ?? "Some Technical Problem")

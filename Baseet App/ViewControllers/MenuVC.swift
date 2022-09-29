@@ -45,6 +45,10 @@ class MenuVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupNavigationBar()
+        profileIcon.layer.borderWidth = 5
+        profileIcon.layer.borderColor = UIColor.clear.cgColor
+        profileIcon.layer.cornerRadius = profileIcon.frame.height/2
+        profileIcon.clipsToBounds = true
     }
     
     override func viewWillAppear(_ animated: Bool) {

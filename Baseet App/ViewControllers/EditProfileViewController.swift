@@ -30,6 +30,7 @@ class EditProfileViewController: UIViewController {
         profilePhoto.layer.borderColor = UIColor.red.cgColor
         profilePhoto.layer.cornerRadius = profilePhoto.frame.height/2
         profilePhoto.clipsToBounds = true
+        self.profilePhoto.loadImageUsingURL(self.editProfileViewModel?.customerInfoModel?.appImage)
         values = [self.editProfileViewModel?.customerInfoModel?.fName ?? "", self.editProfileViewModel?.customerInfoModel?.email ?? "", UserDefaults.standard.string(forKey: "Location_Info") ?? "", self.editProfileViewModel?.customerInfoModel?.phone ?? "", ""]
         
         self.editProfileViewModel?.firstName = self.editProfileViewModel?.customerInfoModel?.fName ?? ""
@@ -79,6 +80,13 @@ class EditProfileViewController: UIViewController {
                 pickerController.delegate = self
                 pickerController.allowsEditing = true
                 self.present(pickerController, animated: true)
+            }
+        }
+        
+        self.editProfileViewModel?.setProfileImageClosure = { [weak self] in
+            DispatchQueue.main.async {
+                guard let self = self else {return}
+                self.profilePhoto.image = self.editProfileViewModel?.selectedImage
             }
         }
     }
@@ -136,7 +144,6 @@ extension EditProfileViewController: UIImagePickerControllerDelegate, UINavigati
             selectedImageFromPicker = info[UIImagePickerController.InfoKey.originalImage] as? UIImage
         }
         self.editProfileViewModel?.selectedImage = selectedImageFromPicker
-        self.profilePhoto.image = selectedImageFromPicker
         dismiss(animated: true)
     }
 }

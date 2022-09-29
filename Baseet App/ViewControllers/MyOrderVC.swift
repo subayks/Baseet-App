@@ -98,7 +98,6 @@ class MyOrderVC: UIViewController {
             self.profileIcon.isHidden = false
             self.userName.isHidden = false
             self.userName.text = UserDefaults.standard.string(forKey: "Name") ?? "Unknown"
-            self.profileIcon.loadImageUsingURL(UserDefaults.standard.string(forKey: "ProfileImage"))
         }
     }
     

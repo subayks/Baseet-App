@@ -26,6 +26,7 @@ struct CustomerInfoModel: Codable {
     var socialId        : String? = nil
     var zoneId          : String? = nil
     var memberSinceDays : Int?    = nil
+    var appImage : String? = nil
     
     enum CodingKeys: String, CodingKey {
         
@@ -47,7 +48,7 @@ struct CustomerInfoModel: Codable {
         case zoneId          = "zone_id"
         case memberSinceDays = "member_since_days"
         case errors = "errors"
-        
+        case appImage = "app_image"
     }
     
     init(from decoder: Decoder) throws {
@@ -71,7 +72,7 @@ struct CustomerInfoModel: Codable {
         zoneId          = try values.decodeIfPresent(String.self , forKey: .zoneId          )
         memberSinceDays = try values.decodeIfPresent(Int.self    , forKey: .memberSinceDays )
         errors   = try values.decodeIfPresent([ErrorMap].self , forKey: .errors)
-        
+        appImage          = try values.decodeIfPresent(String.self , forKey: .appImage          )
     }
     
     init() {

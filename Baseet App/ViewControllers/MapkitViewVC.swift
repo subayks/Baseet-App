@@ -62,16 +62,17 @@ class MapkitViewVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelega
     }
     
     func locationSetup() {
-        let currentLat = Double(self.mapkitViewVM?.orderTrackModel?.deliveryAddress?.latitude ?? "") ?? 0.0
-        let currentLong = Double(self.mapkitViewVM?.orderTrackModel?.deliveryAddress?.longitude ?? "") ?? 0.0
+        let customerLat = Double(self.mapkitViewVM?.orderTrackModel?.deliveryAddress?.latitude ?? "") ?? 0.0
+        let customerLong = Double(self.mapkitViewVM?.orderTrackModel?.deliveryAddress?.longitude ?? "") ?? 0.0
         let deliveryManLat = Double(self.mapkitViewVM?.orderTrackModel?.deliveryMan?.lat ?? "") ?? 0.0
         let deliveryLong = Double(self.mapkitViewVM?.orderTrackModel?.deliveryMan?.lng ?? "") ?? 0.0
+      
         
         mapView.delegate = self
         // Do any additional setup after loading the view, typically from a nib.
         
-        let sourceLocation = CLLocationCoordinate2D(latitude: currentLat, longitude: currentLong)
-        let destinationLocation = CLLocationCoordinate2D(latitude: deliveryManLat, longitude: deliveryLong)
+        let sourceLocation = CLLocationCoordinate2D(latitude: 17.3850, longitude:  78.4867)
+        let destinationLocation = CLLocationCoordinate2D(latitude: customerLat, longitude: customerLong)
         
         // 3.
         let sourcePlacemark = MKPlacemark(coordinate: sourceLocation, addressDictionary: nil)
@@ -82,8 +83,10 @@ class MapkitViewVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelega
         let destinationMapItem = MKMapItem(placemark: destinationPlacemark)
         
         // 5.
-        let sourceAnnotation = MKPointAnnotation()
-        sourceAnnotation.title = "Times Square"
+        let sourceAnnotation = CustomPointAnnotation()
+        sourceAnnotation.title = "Info2"
+        sourceAnnotation.subtitle = "Subtitle"
+        sourceAnnotation.imageName = "Delivery_Mini"
         
         if let location = sourcePlacemark.location {
             sourceAnnotation.coordinate = location.coordinate
@@ -136,6 +139,33 @@ class MapkitViewVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelega
         
         return renderer
     }
+    
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+
+               if !(annotation is CustomPointAnnotation) {
+                   return nil
+               }
+
+               let reuseId = "test"
+
+        var anView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseId)
+               if anView == nil {
+                   anView = MKAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
+                   anView?.canShowCallout = true
+               }
+               else {
+                   anView?.annotation = annotation
+               }
+
+               //Set annotation-specific properties **AFTER**
+               //the view is dequeued or created...
+
+        let cpa = annotation as! CustomPointAnnotation
+        anView?.image = UIImage(named:cpa.imageName)
+
+               return anView
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -145,4 +175,7 @@ class MapkitViewVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelega
     @IBAction func DoneBtn(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
+}
+class CustomPointAnnotation: MKPointAnnotation {
+    var imageName: String!
 }

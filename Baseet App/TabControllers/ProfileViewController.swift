@@ -9,6 +9,7 @@ import UIKit
 
 class ProfileViewController: UIViewController {
     
+    @IBOutlet weak var phoneNumberLabel: UILabel!
     @IBOutlet weak var TitleNameLabel: UILabel!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var emailId: UILabel!
@@ -66,7 +67,8 @@ class ProfileViewController: UIViewController {
                 self.phoneNumber.text = self.profileViewModel.customerInfoModel?.phone
                 self.emailId.text = self.profileViewModel.customerInfoModel?.email
                 self.addressLabel.text = UserDefaults.standard.string(forKey: "Location_Info")
-              //  self.profileImage.loadImageUsingURL(self.profileViewModel.customerInfoModel?.image)
+                self.phoneNumberLabel.text = self.profileViewModel.customerInfoModel?.phone
+                self.profileImage.loadImageUsingURL(self.profileViewModel.customerInfoModel?.appImage)
             }
         }
         self.profileViewModel.getCustomerInfo()

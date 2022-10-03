@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		09013F6C28EAB4CD006D9252 /* FeedbackViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09013F6B28EAB4CD006D9252 /* FeedbackViewModel.swift */; };
 		0909B68028E028B5007D13CD /* MyCurrentOrderTableViewCellVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0909B67F28E028B4007D13CD /* MyCurrentOrderTableViewCellVM.swift */; };
 		0909B68228E07D2C007D13CD /* DeliveryDetailsCellVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0909B68128E07D2C007D13CD /* DeliveryDetailsCellVM.swift */; };
 		0909B68428E07F4E007D13CD /* OrderItemsListCellVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0909B68328E07F4E007D13CD /* OrderItemsListCellVM.swift */; };
@@ -189,6 +190,7 @@
 
 /* Begin PBXFileReference section */
 		048022AC857A2B6DEE1BBCF8 /* Pods-Baseet App.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Baseet App.release.xcconfig"; path = "Target Support Files/Pods-Baseet App/Pods-Baseet App.release.xcconfig"; sourceTree = "<group>"; };
+		09013F6B28EAB4CD006D9252 /* FeedbackViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackViewModel.swift; sourceTree = "<group>"; };
 		0909B67F28E028B4007D13CD /* MyCurrentOrderTableViewCellVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCurrentOrderTableViewCellVM.swift; sourceTree = "<group>"; };
 		0909B68128E07D2C007D13CD /* DeliveryDetailsCellVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryDetailsCellVM.swift; sourceTree = "<group>"; };
 		0909B68328E07F4E007D13CD /* OrderItemsListCellVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderItemsListCellVM.swift; sourceTree = "<group>"; };
@@ -453,6 +455,7 @@
 				09C15F7928E0DA72008C215B /* NotificationsViewControllerVM.swift */,
 				09C15F7B28E0E05C008C215B /* NotificationsTableViewCellVM.swift */,
 				09B25F5628E1D48900C2D17C /* MenuVM.swift */,
+				09013F6B28EAB4CD006D9252 /* FeedbackViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -860,6 +863,7 @@
 				0967E58B28DC2BF800D6B141 /* CouponCellVM.swift in Sources */,
 				883ED5962877E9EA00F06F22 /* OtpViewController.swift in Sources */,
 				099B107D28D4982900340AA1 /* AddNoteVCVM.swift in Sources */,
+				09013F6C28EAB4CD006D9252 /* FeedbackViewModel.swift in Sources */,
 				094AA39C289C45CC0032D4A5 /* AllRestaurentModel.swift in Sources */,
 				092875FA28DB375B000BE890 /* SearchRestaurentVM.swift in Sources */,
 				0967E58F28DC3C5600D6B141 /* ZoneModel.swift in Sources */,
@@ -1153,7 +1157,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.17;
+				MARKETING_VERSION = 0.18;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.Amtech.Baseet-App";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -1193,7 +1197,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.17;
+				MARKETING_VERSION = 0.18;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.Amtech.Baseet-App";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

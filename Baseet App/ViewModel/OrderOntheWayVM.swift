@@ -24,8 +24,8 @@ class OrderOntheWayVM {
     var successClosure:(()->())?
 
     var orderTrackModel: OrderTrackModel?
-    let orderState = ["  Order Processed", "  Order On the Way", "Order Delivered"]
-    let imageNames = ["","OnTheWay",""]
+    let orderState = ["  Order Processed", "  Order On the Way", " Order Delivered"]
+    let imageNames = ["SandClock","OnTheWay","ss"]
     var orderInfoArray = [OrderInfo]()
     var originalOrderInfoArray = [OrderInfo]()
     var isFromSuccessScreen: Bool?

@@ -22,4 +22,8 @@ class DeliveredSucessViewVM {
         }
         return foodItem
     }
+    
+    func getFeedbackViewModel() ->FeedbackViewModel {
+        return FeedbackViewModel(orderId: self.orderTrackModel?.id ?? 0)
+    }
 }

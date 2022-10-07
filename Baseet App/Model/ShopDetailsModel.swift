@@ -81,6 +81,7 @@ struct FoodItems: Codable {
   var restaurantOpeningTime : String?          = nil
   var restaurantClosingTime : String?          = nil
   var scheduleOrder         : Bool?            = nil
+  var qty : String? = nil
 
   enum CodingKeys: String, CodingKey {
 
@@ -117,6 +118,7 @@ struct FoodItems: Codable {
     case scheduleOrder         = "schedule_order"
   case itemQuantity = "itemQuantity"
       case cartId = "cartId"
+      case qty = "qty"
   }
 
   init(from decoder: Decoder) throws {
@@ -155,7 +157,7 @@ struct FoodItems: Codable {
     scheduleOrder         = try values.decodeIfPresent(Bool.self            , forKey: .scheduleOrder         )
     itemQuantity = try values.decodeIfPresent(Int.self          , forKey: .itemQuantity )
       cartId = try values.decodeIfPresent(Int.self          , forKey: .cartId )
-
+      qty = try values.decodeIfPresent(String.self          , forKey: .qty )
  
   }
 

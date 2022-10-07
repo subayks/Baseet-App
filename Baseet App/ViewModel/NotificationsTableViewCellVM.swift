@@ -8,9 +8,9 @@
 import Foundation
 
 class NotificationsTableViewCellVM {
-    var notificationModel: NotificationModel?
+    var notificationModel: NotificationDataModel?
     
-    init(notificationModel: NotificationModel) {
+    init(notificationModel: NotificationDataModel) {
         self.notificationModel = notificationModel
     }
 }

@@ -35,12 +35,12 @@ class RecipeDetailsVC: UIViewController {
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
-        
-        if self.recipeDetailsVCVM?.proDuctDetailsModel?.addOns == nil || self.recipeDetailsVCVM?.proDuctDetailsModel?.addOns?.count == 0 {
-            self.addOnLbl.isHidden = true
-        } else {
-            self.addOnLbl.isHidden = false
-        }
+        self.addOnLbl.isHidden = true
+//        if self.recipeDetailsVCVM?.proDuctDetailsModel?.addOns == nil || self.recipeDetailsVCVM?.proDuctDetailsModel?.addOns?.count == 0 {
+//            self.addOnLbl.isHidden = true
+//        } else {
+//            self.addOnLbl.isHidden = false
+//        }
     }
     
     @objc

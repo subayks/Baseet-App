@@ -75,7 +75,7 @@ class HomeApiServices: HomeApiServicesProtocol {
             "Authorization": "\(((UserDefaults.standard.string(forKey: "AuthToken") ?? "") as String))",
             "zoneId": "\(zoneId ?? "")"
             ]
-        NetworkAdapter.clientNetworkRequestArrayResponseCodable(withBaseURL: finalURL, withParameters:   "", withHttpMethod: "GET", withContentType: "Application/json", withHeaders: headers, completionHandler: { (result: Data?, showPopUp: Bool?, error: String?, errorCode: String?)  -> Void in
+        NetworkAdapter.clientNetworkRequestCodable(withBaseURL: finalURL, withParameters:   "", withHttpMethod: "GET", withContentType: "Application/json", withHeaders: headers, completionHandler: { (result: Data?, showPopUp: Bool?, error: String?, errorCode: String?)  -> Void in
             
             if let error = error {
                 completion(false,errorCode,nil,error)
@@ -90,7 +90,7 @@ class HomeApiServices: HomeApiServicesProtocol {
                         completion(false,errorCode,nil,"Unhandled Error")
                         return
                     }
-                    let values = try decoder.decode([NotificationModel].self, from: result!)
+                    let values = try decoder.decode(NotificationModel.self, from: result!)
                     completion(true,errorCode,values as AnyObject?,error)
                 } catch let error as NSError {
                     //do something with error

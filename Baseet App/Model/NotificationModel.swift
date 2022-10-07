@@ -6,7 +6,31 @@
 //
 
 import Foundation
+
 struct NotificationModel: Codable {
+    
+    var notifications       : [NotificationDataModel]?   = []
+    var errors : [ErrorMap]? = nil
+    
+    enum CodingKeys: String, CodingKey {
+        
+        case notifications = "notifications"
+        case errors = "errors"
+        
+    }
+    
+    init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        notifications   = try values.decodeIfPresent([NotificationDataModel].self   , forKey: .notifications)
+        errors   = try values.decodeIfPresent([ErrorMap].self , forKey: .errors)
+    }
+    
+    init() {
+        
+    }
+}
+
+struct NotificationDataModel: Codable {
 
   var id            : Int?    = nil
   var data          : NotioficationData?   = NotioficationData()

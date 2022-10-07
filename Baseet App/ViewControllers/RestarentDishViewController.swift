@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import CoreMedia
 
 class RestarentDishViewController: UIViewController {
     
@@ -84,7 +85,8 @@ class RestarentDishViewController: UIViewController {
                 vc.itemAdded  = { (itemCount, index, addOns) in
                     DispatchQueue.main.async {
                 //        self.restarentDishViewControllerVM?.updateValues(itemCount: itemCount, index: index, addOns: addOns)
-                        self.restarentDishViewControllerVM?.decideFlow(itemCount: itemCount, index: index, addOns: addOns)
+              //      self.restarentDishViewControllerVM?.decideFlow(itemCount: itemCount, index: index, addOns: addOns)
+                    self.navigateToAdOnView(itemCount: itemCount, index: index, addon: addOns)
                     }
                 }
                 vc.modalTransitionStyle = .coverVertical
@@ -157,6 +159,13 @@ class RestarentDishViewController: UIViewController {
                 alert.addAction(UIAlertAction(title: "No", style: UIAlertAction.Style.cancel, handler: nil))
                 // show the alert
                 self.present(alert, animated: true, completion: nil)
+            }
+        }
+        
+        self.restarentDishViewControllerVM?.showAdOnClosure = { [weak self] (itemCount, index, addOn) in
+            DispatchQueue.main.async {
+                guard let self = self else {return}
+                self.navigateToAdOnView(itemCount: itemCount, index: index, addon: addOn)
             }
         }
     }
@@ -278,10 +287,15 @@ extension RestarentDishViewController:UICollectionViewDelegate,UICollectionViewD
             cellC.buttonAdd.layer.cornerRadius = 10
             cellC.resDishCollectionViewCellTwoVM = self.restarentDishViewControllerVM?.getResDishCollectionViewCellTwoVM(index: indexPath.row)
             cellC.buttonAdd.tag = indexPath.row
-            cellC.itemAdded  = { (itemCount, index) in
+            cellC.itemAdded  = { (itemCount, index, isAdded) in
                 DispatchQueue.main.async {
                    // self.restarentDishViewControllerVM?.updateValues(itemCount: itemCount, index: index)
-                  self.restarentDishViewControllerVM?.decideFlow(itemCount: itemCount, index: index)
+              //    self.restarentDishViewControllerVM?.decideFlow(itemCount: itemCount, index: index)
+                    if isAdded {
+                    self.navigateToAdOnView(itemCount: itemCount, index: index)
+                    } else {
+                    self.restarentDishViewControllerVM?.decideFlow(itemCount: itemCount, index: index)
+                    }
                 }
             }
             return cellC
@@ -333,18 +347,41 @@ extension RestarentDishViewController:UICollectionViewDelegate,UICollectionViewD
             }
             return
         }
+        if self.restarentDishViewControllerVM?.foodItems?[indexPath.row].qty != nil &&
+            ((self.restarentDishViewControllerVM?.foodItems?[indexPath.row].qty ?? "") as NSString).integerValue > 0 {
         let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
         let vc = storyboard.instantiateViewController(identifier: "RecipeDetailsVC") as! RecipeDetailsVC
         vc.recipeDetailsVCVM = self.restarentDishViewControllerVM?.getRecipeDetailsVCVM(index: indexPath.row)
         vc.itemAdded  = { (itemCount, index, addOns) in
             DispatchQueue.main.async {
             //    self.restarentDishViewControllerVM?.updateValues(itemCount: itemCount, index: index, addOns: addOns)
-                self.restarentDishViewControllerVM?.decideFlow(itemCount: itemCount, index: index, addOns: addOns)
+             //   self.restarentDishViewControllerVM?.decideFlow(itemCount: itemCount, index: index, addOns: addOns)
+                self.navigateToAdOnView(itemCount: itemCount, index: index, addon: addOns)
             }
         }
         vc.modalTransitionStyle = .coverVertical
         vc.modalPresentationStyle = .fullScreen
         self.present(vc, animated: true, completion: nil)
+        }
+    }
+    
+    func navigateToAdOnView(itemCount: Int, index: Int, addon: [AddOns]? = nil) {
+        let foodItem = self.restarentDishViewControllerVM?.foodItems?[index]
+        if foodItem?.addOns != nil && foodItem?.addOns?.count ?? 0 > 0 {
+        let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewController(identifier: "AddOnViewController") as! AddOnViewController
+        vc.addOnViewControllerVM = self.restarentDishViewControllerVM?.getAddOnViewControllerVM(index: index)
+        vc.addOns  = { (addOns) in
+            DispatchQueue.main.async {
+                self.restarentDishViewControllerVM?.decideFlow(itemCount: itemCount, index: index, addOns: addOns)
+            }
+        }
+        vc.modalTransitionStyle  = .crossDissolve
+       // vc.modalPresentationStyle = .fullScreen
+        self.present(vc, animated: true, completion: nil)
+        } else {
+            self.restarentDishViewControllerVM?.decideFlow(itemCount: itemCount, index: index)
+        }
     }
     
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {

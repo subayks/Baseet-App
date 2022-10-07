@@ -35,6 +35,8 @@ class RestarentDishViewControllerVM {
     var navigateToCartViewClosure:(()->())?
     var limit = 10
     var isInitialUpdate = true
+    var showAdOnClosure:((Int, Int, [AddOns])->())?
+
     var foodItems: [FoodItems]? {
         didSet {
             self.reloadRecipieCollectionView?()
@@ -170,7 +172,7 @@ class RestarentDishViewControllerVM {
                 if self.checkOtherShopItems() {
                     self.deleteClosure?("The Cart has some items from different restaurent, Are you sure, you want to clear?")
                 } else {
-                    self.createCartCall(itemCount: itemCount, index: index, addOns: addOns)
+                     self.createCartCall(itemCount: itemCount, index: index, addOns: addOns)
                 }
             }
         }
@@ -367,6 +369,10 @@ class RestarentDishViewControllerVM {
     
     func resetAll() {
         
+    }
+    
+    func getAddOnViewControllerVM(index: Int) ->AddOnViewControllerVM {
+        return AddOnViewControllerVM(addOns: self.foodItems?[index].addOns ?? [AddOns()])
     }
 }
 

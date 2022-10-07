@@ -22,6 +22,7 @@ class AddOnViewController: UIViewController {
     }
    
     @IBAction func backBtn(_ sender: Any) {
+        self.addOns?(self.addOnViewControllerVM?.addOns ?? [AddOns()])
         self.dismiss(animated: true,completion: nil)
     }
     

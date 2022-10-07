@@ -57,7 +57,7 @@ class NotificationsViewController: UIViewController {
 
 extension NotificationsViewController:UITableViewDelegate,UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.viewModel.notificationModel?.count ?? 0
+        return self.viewModel.notificationModel?.notifications?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

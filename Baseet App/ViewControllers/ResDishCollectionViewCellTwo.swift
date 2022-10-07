@@ -17,7 +17,7 @@ class ResDishCollectionViewCellTwo: UICollectionViewCell {
     @IBOutlet weak var itemCountLabel: UILabel!
     @IBOutlet weak var countView: UIView!
     @IBOutlet weak var qrCodeLabel: UILabel!
-    var itemAdded:((Int, Int)->())?
+    var itemAdded:((Int, Int,Bool)->())?
     var resDishCollectionViewCellTwoVM: ResDishCollectionViewCellTwoVM? {
         didSet {
             self.setupValues()
@@ -29,6 +29,7 @@ class ResDishCollectionViewCellTwo: UICollectionViewCell {
         self.itemImage.layer.cornerRadius = 10
         self.itemImage.loadImageUsingURL(self.resDishCollectionViewCellTwoVM?.foodItems?.appimage)
         self.itemName.text = self.resDishCollectionViewCellTwoVM?.foodItems?.name
+       
         if self.resDishCollectionViewCellTwoVM?.foodItems?.itemQuantity == 0 ||  self.resDishCollectionViewCellTwoVM?.foodItems?.itemQuantity == nil {
             self.buttonAdd.isHidden = false
             self.countView.isHidden = true
@@ -36,6 +37,15 @@ class ResDishCollectionViewCellTwo: UICollectionViewCell {
             self.itemCountLabel.text = "\(self.resDishCollectionViewCellTwoVM?.getItemQuantity() ?? 0)"
             self.buttonAdd.isHidden = true
             self.countView.isHidden = false
+        }
+        
+        if self.resDishCollectionViewCellTwoVM?.foodItems?.qty == nil ||
+            ((self.resDishCollectionViewCellTwoVM?.foodItems?.qty ?? "") as NSString).integerValue  == 0 {
+            self.buttonAdd.isHidden = false
+            self.countView.isHidden = true
+            self.buttonAdd.isEnabled = false
+        } else {
+            self.buttonAdd.isEnabled = true
         }
         self.itemCount = self.resDishCollectionViewCellTwoVM?.getItemQuantity() ?? 0
         self.ratingLabel.text = "⭑ \(self.resDishCollectionViewCellTwoVM?.foodItems?.avgRating ?? 0)"
@@ -53,13 +63,13 @@ class ResDishCollectionViewCellTwo: UICollectionViewCell {
         if itemCount == 0 {
             self.itemCount = 1
         }
-        self.itemAdded?(itemCount, buttonAdd.tag)
+        self.itemAdded?(itemCount, buttonAdd.tag, true)
     }
     
     @IBAction func actionIncrease(_ sender: Any) {
         self.itemCount = self.itemCount  + 1
     //    self.itemCountLabel.text = "\(self.itemCount)"
-        self.itemAdded?(self.itemCount, buttonAdd.tag)
+        self.itemAdded?(self.itemCount, buttonAdd.tag, true)
     }
     
     @IBAction func actionReduce(_ sender: Any) {
@@ -71,7 +81,7 @@ class ResDishCollectionViewCellTwo: UICollectionViewCell {
             self.itemCount = self.itemCount - 1
         //    self.itemCountLabel.text = "\(self.itemCount)"
         }
-        self.itemAdded?(self.itemCount, buttonAdd.tag)
+        self.itemAdded?(self.itemCount, buttonAdd.tag, false)
     }
     
 }

@@ -14,7 +14,7 @@ class NotificationsViewControllerVM {
     var navigateToDetailsClosure:(()->())?
     var showLoadingIndicatorClosure:(()->())?
     var hideLoadingIndicatorClosure:(()->())?
-    var notificationModel: [NotificationModel]?
+    var notificationModel: NotificationModel?
     
     init(apiServices: HomeApiServicesProtocol = HomeApiServices()) {
         self.apiServices = apiServices
@@ -27,7 +27,7 @@ class NotificationsViewControllerVM {
             DispatchQueue.main.async {
                 self.hideLoadingIndicatorClosure?()
                 if status == true {
-                    self.notificationModel = result as? [NotificationModel]
+                    self.notificationModel = result as? NotificationModel
                     self.reloadClosure?()
                 } else {
                    self.alertClosure?(errorMessage ?? "Some Technical Problem")
@@ -40,6 +40,6 @@ class NotificationsViewControllerVM {
     }
     
     func getNotificationsTableViewCellVM(index: Int) ->NotificationsTableViewCellVM {
-        return NotificationsTableViewCellVM(notificationModel: self.notificationModel?[index] ?? NotificationModel())
+        return NotificationsTableViewCellVM(notificationModel: self.notificationModel?.notifications?[index] ?? NotificationDataModel())
     }
 }

@@ -68,7 +68,7 @@ class MyOrderVC: UIViewController {
     }
     
     @IBAction func myOderSeqment(_ sender: Any) {
-        
+        self.myOrderVM.ordersListModel?.orders?.removeAll()
         if (sender as AnyObject).selectedSegmentIndex == 0 {
             self.selectedIndex = 0
             self.myOrderVM.makeOrderListCall(type: 0, limitAdded: 0)

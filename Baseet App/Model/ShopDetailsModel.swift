@@ -328,7 +328,8 @@ struct AddOns: Codable {
   var updatedAt    : String? = nil
   var restaurantId : Int?    = nil
   var status       : Int?    = nil
-
+  var quantity: String? = nil
+    
   enum CodingKeys: String, CodingKey {
 
     case id           = "id"
@@ -339,20 +340,22 @@ struct AddOns: Codable {
     case restaurantId = "restaurant_id"
     case status       = "status"
     case itemQuantity = "itemQuantity"
+      case quantity = "quantity"
   }
 
-  init(from decoder: Decoder) throws {
-    let values = try decoder.container(keyedBy: CodingKeys.self)
-
-    id           = try values.decodeIfPresent(Int.self    , forKey: .id           )
-    name         = try values.decodeIfPresent(String.self , forKey: .name         )
-    price        = try values.decodeIfPresent(Int.self    , forKey: .price        )
-    createdAt    = try values.decodeIfPresent(String.self , forKey: .createdAt    )
-    updatedAt    = try values.decodeIfPresent(String.self , forKey: .updatedAt    )
-    restaurantId = try values.decodeIfPresent(Int.self    , forKey: .restaurantId )
-    status       = try values.decodeIfPresent(Int.self    , forKey: .status       )
-    itemQuantity       = try values.decodeIfPresent(Int.self    , forKey: .itemQuantity )
-  }
+    init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        
+        id           = try values.decodeIfPresent(Int.self    , forKey: .id           )
+        name         = try values.decodeIfPresent(String.self , forKey: .name         )
+        price        = try values.decodeIfPresent(Int.self    , forKey: .price        )
+        createdAt    = try values.decodeIfPresent(String.self , forKey: .createdAt    )
+        updatedAt    = try values.decodeIfPresent(String.self , forKey: .updatedAt    )
+        restaurantId = try values.decodeIfPresent(Int.self    , forKey: .restaurantId )
+        status       = try values.decodeIfPresent(Int.self    , forKey: .status       )
+        itemQuantity       = try values.decodeIfPresent(Int.self    , forKey: .itemQuantity )
+        quantity       = try values.decodeIfPresent(String.self    , forKey: .quantity )
+    }
 
   init() {
 

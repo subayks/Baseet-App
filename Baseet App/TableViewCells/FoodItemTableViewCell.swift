@@ -12,7 +12,11 @@ class FoodItemTableViewCell: UITableViewCell {
     @IBOutlet weak var foodItemCollectionView: UICollectionView!
     var itemId:((Int)->())?
 
-    var foodItemTableViewCellVM: FoodItemTableViewCellVM?
+    var foodItemTableViewCellVM: FoodItemTableViewCellVM? {
+        didSet {
+            self.foodItemCollectionView.reloadData()
+        }
+    }
 
     override func awakeFromNib() {
         super.awakeFromNib()

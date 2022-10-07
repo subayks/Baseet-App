@@ -31,15 +31,15 @@ class MenuVC: UIViewController {
     UIImage(named: "notifications"),
     UIImage(named: "settings_1"),
     UIImage(named: "pointloc"),
-    UIImage(named: "conntect"),
-    UIImage(named: "conntect")]
+    UIImage(named: "Join_Us"),
+    UIImage(named: "Sing_Out")]
     
     let imageArrayUnauth = [
     UIImage(named: "home_icon"),
     UIImage(named: "conntect"),
-    UIImage(named: "conntect"),
+    UIImage(named: "Join_Us"),
     UIImage(named: "pointloc"),
-    UIImage(named: "conntect")]
+    UIImage(named: "Sing_In")]
     
 
     override func viewDidLoad() {

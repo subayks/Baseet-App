@@ -85,7 +85,7 @@ struct Orders: Codable {
   var zoneId                   : String?          = nil
   var detailsCount             : Int?             = nil
   var restaurant               : Restaurant?      = Restaurant()
-  var deliveryMan              : DeliveryMan?          = DeliveryMan()
+  var deliveryMan              : DeliveryMan?     = DeliveryMan()
 
   enum CodingKeys: String, CodingKey {
 

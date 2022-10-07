@@ -211,7 +211,7 @@ struct Details: Codable {
     var price           : Int?         = nil
     var foodDetails     : FoodDetails? = FoodDetails()
     var variation       : [String]?    = []
-    var addOns          : [String]?    = []
+    var addOns          : [AddOns]?    = []
     var discountOnFood  : Int?         = nil
     var discountType    : String?      = nil
     var quantity        : Int?         = nil
@@ -252,7 +252,7 @@ struct Details: Codable {
         price           = try values.decodeIfPresent(Int.self         , forKey: .price           )
         foodDetails     = try values.decodeIfPresent(FoodDetails.self , forKey: .foodDetails     )
         variation       = try values.decodeIfPresent([String].self    , forKey: .variation       )
-        addOns          = try values.decodeIfPresent([String].self    , forKey: .addOns          )
+        addOns          = try values.decodeIfPresent([AddOns].self    , forKey: .addOns          )
         discountOnFood  = try values.decodeIfPresent(Int.self         , forKey: .discountOnFood  )
         discountType    = try values.decodeIfPresent(String.self      , forKey: .discountType    )
         quantity        = try values.decodeIfPresent(Int.self         , forKey: .quantity        )

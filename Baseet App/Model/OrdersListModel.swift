@@ -133,7 +133,6 @@ struct Orders: Codable {
     case detailsCount             = "details_count"
     case restaurant               = "restaurant"
     case deliveryMan              = "delivery_man"
-  
   }
 
   init(from decoder: Decoder) throws {

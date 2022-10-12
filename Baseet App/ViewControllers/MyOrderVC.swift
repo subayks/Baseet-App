@@ -19,6 +19,8 @@ class MyOrderVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupNavigationBar()
+        let tap = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
+       view.addGestureRecognizer(tap)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -65,6 +67,11 @@ class MyOrderVC: UIViewController {
         }
         
         self.myOrderVM.makeOrderListCall(type: 0, limitAdded: 0)
+    }
+    
+    @objc func dismissKeyboard() {
+        //Causes the view (or one of its embedded text fields) to resign the first responder status.
+        view.endEditing(true)
     }
     
     @IBAction func myOderSeqment(_ sender: Any) {
@@ -153,5 +160,23 @@ extension MyOrderVC:UITableViewDelegate,UITableViewDataSource {
                 self.myOrderVM.makeOrderListCall(type: self.selectedIndex, limitAdded: 10)
             }
         }
+    }
+}
+
+//Textfield delegates
+extension MyOrderVC: UISearchBarDelegate {
+    
+    func searchBar(_ searchBar: UISearchBar, shouldChangeTextIn range: NSRange,
+                   replacementText text: String) -> Bool {
+        return true
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+//        query = searchBar.text ?? ""
+//        self.searchRestaurentVM.getSearchItem(query: searchBar.text ?? "")
+        self.searchField.endEditing(true)
     }
 }

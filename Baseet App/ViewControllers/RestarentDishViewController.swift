@@ -40,6 +40,9 @@ class RestarentDishViewController: UIViewController {
     {
         super.viewDidLoad()
         
+        let tap = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
+       view.addGestureRecognizer(tap)
+        
         menu_vc1 = self.storyboard?.instantiateViewController(withIdentifier: "RecipeDetailsVC") as? RecipeDetailsVC
         setupValues()
         self.restarentDishViewControllerVM?.setUpItemsList()
@@ -168,6 +171,11 @@ class RestarentDishViewController: UIViewController {
                 self.navigateToAdOnView(itemCount: itemCount, index: index, addon: addOn)
             }
         }
+    }
+    
+    @objc func dismissKeyboard() {
+        //Causes the view (or one of its embedded text fields) to resign the first responder status.
+        view.endEditing(true)
     }
     
     func setupNavigationBar() {

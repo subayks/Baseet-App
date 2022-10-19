@@ -40,9 +40,10 @@ class RestarentDishViewController: UIViewController {
     {
         super.viewDidLoad()
         
-        let tap = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
-       view.addGestureRecognizer(tap)
-        
+//        let tap = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
+//       view.addGestureRecognizer(tap)
+        resDishTB.delegate = self
+        resDishTB.dataSource = self
         menu_vc1 = self.storyboard?.instantiateViewController(withIdentifier: "RecipeDetailsVC") as? RecipeDetailsVC
         setupValues()
         self.restarentDishViewControllerVM?.setUpItemsList()
@@ -402,4 +403,10 @@ extension RestarentDishViewController:UICollectionViewDelegate,UICollectionViewD
     }
 }
 
+extension RestarentDishViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+}
 

@@ -6206,6 +6206,9 @@ will be return with in 5 days.</string>
                                                         <rect key="frame" x="40" y="5" width="350" height="36"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                         <textInputTraits key="textInputTraits"/>
+                                                        <connections>
+                                                            <outlet property="delegate" destination="Nen-3w-Z4b" id="Ht0-7s-2OT"/>
+                                                        </connections>
                                                     </textField>
                                                 </subviews>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -10031,14 +10034,14 @@ logout from this application.es</string>
         <image name="berger" width="412" height="229"/>
         <image name="bg" width="480" height="221.66667175292969"/>
         <image name="biryanippng" width="216" height="176"/>
-        <image name="cart" width="27.666666030883789" height="27.666666030883789"/>
         <image name="cart" catalog="system" width="128" height="102"/>
+        <image name="cart" width="27.666666030883789" height="27.666666030883789"/>
         <image name="cashC" width="292" height="126"/>
         <image name="change_password" width="186" height="166"/>
         <image name="checkmark" width="25" height="25"/>
         <image name="chevron.down.circle" catalog="system" width="128" height="121"/>
-        <image name="clock" width="23.333333969116211" height="23.333333969116211"/>
         <image name="clock" catalog="system" width="128" height="121"/>
+        <image name="clock" width="23.333333969116211" height="23.333333969116211"/>
         <image name="debitCard" width="40" height="39"/>
         <image name="deletImg" width="25" height="31"/>
         <image name="didsele" width="20" height="18"/>

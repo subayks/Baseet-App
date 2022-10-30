@@ -7,7 +7,7 @@ import UIKit
 
 struct ImageRequestParam {
     let paramName: String
-    let fileName: String
+    let name: String
     let image: UIImage
 }
 
@@ -33,7 +33,7 @@ class NetworkAdapter {
 
         // Add the image data to the raw http request data
         data.append("\r\n--\(boundary)\r\n".data(using: .utf8)!)
-        data.append("Content-Disposition: form-data; name=\"\(parameters.paramName)\"; filename=\"\(parameters.fileName + ".png")\"\r\n".data(using: .utf8)!)
+        data.append("Content-Disposition: form-data; name=\"\(parameters.paramName)\"; filename=\"\(parameters.name + ".png")\"\r\n".data(using: .utf8)!)
         data.append("Content-Type: image/png\r\n\r\n".data(using: .utf8)!)
         data.append(parameters.image.pngData()!)
 

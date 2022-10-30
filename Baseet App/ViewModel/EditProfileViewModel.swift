@@ -118,7 +118,7 @@ class EditProfileViewModel {
     }
     
     func uploadProfilePic() {
-        let imageRequest = ImageRequestParam(paramName: "file", fileName: "Profile", image: self.selectedImage ?? UIImage())
+        let imageRequest = ImageRequestParam(paramName: "image", name: "image", image: self.selectedImage ?? UIImage())
         if Reachability.isConnectedToNetwork() {
             self.showLoadingIndicatorClosure?()
             self.apiServices?.uploadProfileApi(finalURL: "\(Constants.Common.finalURL)/customer/update-profile", withParameters: imageRequest, completion: { (status: Bool? , errorCode: String?,result: AnyObject?, errorMessage: String?) -> Void in
